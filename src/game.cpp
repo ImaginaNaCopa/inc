@@ -80,17 +80,19 @@ Game::run()
     m_frontEnd->draw();
 
     Uint32 now = SDL_GetTicks();
-    Uint32 last;
+    Uint32 last = 0;
 
     while ( !m_quit )
     {
-        last = now;
         now = SDL_GetTicks();
-
         m_input->eventLoop();
-        m_stage->update(now - last);
-        m_stage->draw();
-        imageLoad->render();
+        if(now > last + 25)
+        {
+            m_stage->update(now - last);  
+            m_stage->draw();
+            imageLoad->render();
+            last = now;
+        }
     }
 }
 

@@ -94,7 +94,7 @@ Caio::Caio()
     m_clips[15].h = 100;
 
 	isDrawn = false;
-	speed = 110;
+	speed = 110; // pixels per second
     gravity = 0;
 	dx = 0;
     dy = 0;
@@ -124,10 +124,10 @@ Caio::draw()
 void
 Caio::update(Uint32 delta)
 {
-    m_position.x += ((speed*delta)/1000.0)*dx;
-	m_position.y -= ((speed*delta)/1000.0)*dy;
+    m_position.x += round(((speed*delta)/1000.0)*dx);
+	m_position.y -= round(((speed*delta)/1000.0)*dy);
 
-	if( (m_position.x < 0) || ( m_position.x > 800 ) )
+	if( (m_position.x < 0) || ( m_position.x > 750 ) )
     {
         m_position.x -= ((speed*delta)/1000.0)*dx;
     }
@@ -157,7 +157,7 @@ Caio::handle(SDL_Event& event)
                 case SDLK_a:
 					dx = -1;
                     processed = true;
-                    if(u<=3)
+                    if((u>=0) && (u<3))
                         u++;
                     else
                         u=0;
@@ -165,7 +165,7 @@ Caio::handle(SDL_Event& event)
                 case SDLK_d:
                     dx = 1;
                     processed = true;
-                    if((u>=4) && (u<8))
+                    if((u>=4) && (u<7))
                         u++;
                     else
                         u=4;
@@ -174,7 +174,7 @@ Caio::handle(SDL_Event& event)
                     dy = 1;
                     processed = true;
                     u++;
-                    if((u>=12) && (u<15))
+                    if((u>=12) && (u<14))
                         u++;
                     else
                         u=12;                    
