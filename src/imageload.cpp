@@ -61,8 +61,10 @@ ImageLoad::loadImg(const string& path)
         throw "Impossível carregar a imagem!";
     }
 
+    SDL_SetColorKey (surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFA, 0xCF, 0xAC));
+
     SDL_Texture* texture = SDL_CreateTextureFromSurface( m_renderer, surface );
-    
+
     if( texture == NULL )
     {
     	SDL_FreeSurface(surface);
@@ -82,9 +84,9 @@ ImageLoad::release(SDL_Texture* texture)
 }
 
 void
-ImageLoad::update(SDL_Texture* m_texture, SDL_Rect* destRect)
+ImageLoad::update(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 {
-    SDL_RenderCopy( m_renderer, m_texture, NULL, destRect );
+    SDL_RenderCopy( m_renderer, texture, srcRect, destRect);
 }
 
 void
@@ -95,33 +97,33 @@ ImageLoad::render()
 }
 
 void
-ImageLoad::fadein(SDL_Texture* m_texture, SDL_Rect* destRect)
+ImageLoad::fadein(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 {
-    for (alpha = 0x00; alpha < 0xFF;)
+    for (m_alpha = 0x00; m_alpha < 0xFF;)
     {
-        alpha += 0x05;
+        m_alpha += 0x05;
 
-        SDL_SetTextureBlendMode( m_texture, SDL_BLENDMODE_BLEND );
-        SDL_SetTextureAlphaMod( m_texture, alpha );
+        SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
+        SDL_SetTextureAlphaMod( texture, m_alpha );
 
         SDL_RenderClear( m_renderer );
-        SDL_RenderCopy( m_renderer, m_texture, NULL, destRect );
+        SDL_RenderCopy( m_renderer, texture, srcRect, destRect );
         SDL_RenderPresent( m_renderer );
     }
 }
 
 void
-ImageLoad::fadeout(SDL_Texture* m_texture, SDL_Rect* destRect)
+ImageLoad::fadeout(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 {
-    for (alpha = 0xFF; alpha > 0x00;)
+    for (m_alpha = 0xFF; m_alpha > 0x00;)
     {
-        alpha -= 0x01;
+        m_alpha -= 0x01;
      
-        SDL_SetTextureBlendMode( m_texture, SDL_BLENDMODE_BLEND );
-        SDL_SetTextureAlphaMod( m_texture, alpha );
+        SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
+        SDL_SetTextureAlphaMod( texture, m_alpha );
 
         SDL_RenderClear( m_renderer );
-        SDL_RenderCopy( m_renderer, m_texture, NULL, destRect );
+        SDL_RenderCopy( m_renderer, texture, srcRect, destRect );
         SDL_RenderPresent( m_renderer );
     }
 

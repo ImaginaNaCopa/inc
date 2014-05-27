@@ -36,15 +36,15 @@ void
 Enemy::draw()
 {
 	positionCurupira.x = 700;
-    imageLoad->update(m_texture, &positionCurupira);
+    imageLoad->update(m_texture, NULL, &positionCurupira);
     positionCurupira.x = 600;
-    imageLoad->update(m_texture, &positionCurupira);
+    imageLoad->update(m_texture, NULL, &positionCurupira);
     positionUrubu.x = 150;
-    imageLoad->update(m_texture2, &positionUrubu);
+    imageLoad->update(m_texture2, NULL, &positionUrubu);
     positionUrubu.x = 350;
-    imageLoad->update(m_texture2, &positionUrubu);
+    imageLoad->update(m_texture2, NULL, &positionUrubu);
     positionUrubu.x = 550;
-    imageLoad->update(m_texture2, &positionUrubu);
+    imageLoad->update(m_texture2, NULL, &positionUrubu);
 }
 
 void 

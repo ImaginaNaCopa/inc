@@ -10,8 +10,8 @@ Aim::Aim()
 {
 	position.x = 400;
 	position.y = 300;
-	position.w = 20;
-	position.h = 20;
+	position.w = 87;
+	position.h = 90;
 
 	isDrawn = false;
 
@@ -26,13 +26,13 @@ Aim::~Aim()
 void 
 Aim::init()
 {
-	m_texture = imageLoad->loadImg("res/images/aim.png");
+	m_texture = imageLoad->loadImg("res/images/s_hud.png");
 }
 
 void 
 Aim::draw()
 {
-    imageLoad->update(m_texture, &position);   
+    imageLoad->update(m_texture,NULL,&position);   
 }
 
 void 

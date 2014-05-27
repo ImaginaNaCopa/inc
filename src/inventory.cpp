@@ -33,17 +33,17 @@ Inventory::init()
 void 
 Inventory::draw()
 {
-    imageLoad->update(m_texture, &position);
+    imageLoad->update(m_texture, NULL, &position);
     position.x = 50;
-    imageLoad->update(m_texture, &position);
+    imageLoad->update(m_texture, NULL, &position);
     position.x = 90;
-    imageLoad->update(m_texture, &position);
+    imageLoad->update(m_texture, NULL, &position);
     position.x = 130;
-    imageLoad->update(m_texture, &position);
+    imageLoad->update(m_texture, NULL, &position);
     position.x = 170;
-    imageLoad->update(m_texture, &position);
+    imageLoad->update(m_texture, NULL, &position);
     position.x = 210;
-    imageLoad->update(m_texture, &position);
+    imageLoad->update(m_texture, NULL, &position);
 }
 
 void 

@@ -32,7 +32,7 @@ Dialogue::init()
 void 
 Dialogue::draw()
 {
-    imageLoad->update(m_texture, &position);
+    imageLoad->update(m_texture, NULL, &position);
 }
 
 void 

@@ -70,8 +70,8 @@ FrontEnd::draw()
 {
 	while (!ISM_IfEmpty(m_stack))
 	{
-	    imageLoad->fadein(ISM_TopTexture(m_stack), ISM_TopDest(m_stack));
-	    imageLoad->fadeout(ISM_TopTexture(m_stack), ISM_TopDest(m_stack));
+	    imageLoad->fadein(ISM_TopTexture(m_stack), NULL, ISM_TopDest(m_stack));
+	    imageLoad->fadeout(ISM_TopTexture(m_stack), NULL, ISM_TopDest(m_stack));
 	    m_stack = ISM_Pop(m_stack);		
 	}
 }
