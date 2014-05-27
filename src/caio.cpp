@@ -157,17 +157,27 @@ Caio::handle(SDL_Event& event)
                 case SDLK_a:
 					dx = -1;
                     processed = true;
-                    u = 4;
+                    if(u<=3)
+                        u++;
+                    else
+                        u=0;
                 break;
                 case SDLK_d:
                     dx = 1;
                     processed = true;
-                    u = 0;
+                    if((u>=4) && (u<8))
+                        u++;
+                    else
+                        u=4;
                 break;
                 case SDLK_SPACE:
                     dy = 1;
                     processed = true;
-                    u = 12;
+                    u++;
+                    if((u>=12) && (u<15))
+                        u++;
+                    else
+                        u=12;                    
                 break;
                 default:
                 break;
