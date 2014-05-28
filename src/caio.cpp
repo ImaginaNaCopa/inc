@@ -93,12 +93,10 @@ Caio::Caio()
     m_clips[15].w = 50;
     m_clips[15].h = 100;
 
-	isDrawn = false;
 	speed = 110; // pixels per second
-    gravity = 0;
+    jumpspeed = 10;
+    jumping = false;
 	dx = 0;
-    dy = 0;
-    u = 0;
 
     imageLoad = imageLoad->getInstance();
     m_imageSprite = new ImageSprite();
@@ -106,7 +104,7 @@ Caio::Caio()
 
 Caio::~Caio()
 {
-	// Nothing yet
+	delete m_imageSprite;
 }
 
 void 
@@ -124,18 +122,24 @@ Caio::draw()
 void
 Caio::update(Uint32 delta)
 {
-    m_position.x += round(((speed*delta)/1000.0)*dx);
-	m_position.y -= round(((speed*delta)/1000.0)*dy);
+    if (jumping)
+    {
+        m_position.y -= jumpspeed;
+        jumpspeed -= 0.5f;
+
+        if (m_position.y >= 350)
+        {
+            m_position.y = 350;
+            jumping = false;
+            jumpspeed = 10;
+        }
+    }
+
+    m_position.x += round(((speed*delta)/1000.0)*dx); 
 
 	if( (m_position.x < 0) || ( m_position.x > 750 ) )
     {
         m_position.x -= ((speed*delta)/1000.0)*dx;
-    }
-    
-    if( m_position.y < 150)
-    {
-        m_position.y += ((speed*delta)/1000.0)*dy;
-        gravity = 0;
     }
 }
 
@@ -143,6 +147,13 @@ void
 Caio::release()
 {
 	SDL_DestroyTexture(m_imageSprite->m_texture);
+}
+
+
+SDL_Rect 
+Caio::getRect() const
+{
+    return m_position;
 }
 
 bool 
@@ -171,7 +182,7 @@ Caio::handle(SDL_Event& event)
                         u=4;
                 break;
                 case SDLK_SPACE:
-                    dy = 1;
+                    jumping = true;
                     processed = true;
                     u++;
                     if((u>=12) && (u<14))
@@ -196,7 +207,6 @@ Caio::handle(SDL_Event& event)
                     processed = true;
                 break;
                 case SDLK_SPACE:
-                    dy = 0;
                     processed = true;
                 break;
                 default:

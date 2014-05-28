@@ -44,15 +44,17 @@ void
 Entity::draw()
 {
 	caio->draw();
-	aim->draw();
 	enemy->draw();
+	aim->draw();
 }
 
 void 
 Entity::update(Uint32 delta)
 {
 	caio->update(delta);
+	enemy->update(delta);
 	aim->update();
+	aim->overPlayer(caio->getRect());
 }
 
 void 

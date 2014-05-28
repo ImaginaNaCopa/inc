@@ -71,6 +71,11 @@ Game::shutdown()
     SystemLogger::step("[Game] Using Shutdown Method.");
     m_stage->release();
     m_frontEnd->release();
+    delete m_frontEnd;
+    delete m_stage;
+    delete m_input;
+    delete m_window;
+    delete m_system;
 }
 
 void
