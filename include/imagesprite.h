@@ -4,6 +4,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 #include "imageload.h"
+#include <vector>
 
 using namespace std;
 
@@ -12,16 +13,26 @@ class ImageSprite
 public:
 	ImageSprite();
 	~ImageSprite();
-	bool loadFromFile(const string& path);
 	void free();
+
+	bool loadFromFile(const string& path);
 	void render(int x, int y, SDL_Rect* clip = NULL );
+	void addClip(int x, int y, int w, int h);
+
 	int getWidth();
 	int getHeight();
+
 	SDL_Texture* m_texture;
 	ImageLoad* imageLoad;
+	vector<SDL_Rect> m_clips;
+
+	int m_clipNumber;
+	SDL_Rect m_position;
+
 private:
 	int m_width;
 	int m_height;
+	
 };
 
 

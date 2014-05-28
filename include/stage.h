@@ -2,7 +2,7 @@
 #define STAGE_H
 
 #include "hud.h"
-#include "entity.h"
+#include "stageentity.h"
 #include "scenario.h"
 #include "inputhandler.h"
 
@@ -18,11 +18,11 @@ public:
 
 	void release();
 
-	Entity* getEntity() const;
+	StageEntity* getEntity() const;
 
 private:
 	Hud* hud;
-	Entity* entity;
+	StageEntity* entity;
 	Scenario* scenario;
 };
 

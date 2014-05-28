@@ -8,9 +8,10 @@ using namespace std;
 
 Stage::Stage()
 {
-	try{
+	try
+	{
 		hud = new Hud();
-		entity = new Entity();
+		entity = new StageEntity();
 		scenario = new Scenario();
 	}
 	catch (const string& e)
@@ -60,7 +61,7 @@ Stage::release()
     entity->release();
 }
 
-Entity*
+StageEntity*
 Stage::getEntity() const
 {
 	return entity;

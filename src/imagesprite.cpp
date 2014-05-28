@@ -14,6 +14,7 @@ ImageSprite::ImageSprite()
 	m_texture = NULL;
 	m_width = 0;
 	m_height = 0;
+	m_clipNumber = 0;
 }
 
 ImageSprite::~ImageSprite()
@@ -26,8 +27,6 @@ ImageSprite::loadFromFile(const string& path)
 {
 	free();
 	SDL_Texture* newTexture = imageLoad->loadImg(path);
-	//m_width = newTexture->w;
-	//m_height = newTexture->h;
 	m_texture = newTexture;
 	return m_texture != NULL;
 }
@@ -54,6 +53,18 @@ ImageSprite::render(int x, int y, SDL_Rect* clip)
 		renderQuad.h = clip->h;
 	}
 	imageLoad->update(m_texture, clip, &renderQuad);
+}
+
+void
+ImageSprite::addClip(int x, int y, int w, int h)
+{
+	SystemLogger::step("[ImageSprite] Trying to Push Back in Vector.");
+	SDL_Rect clipBase;
+	clipBase.x = x;
+	clipBase.y = y;
+	clipBase.w = w;
+	clipBase.h = h;
+	m_clips.push_back(clipBase);
 }
 
 int

@@ -1,15 +1,15 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef STAGEENTITY_H
+#define STAGEENTITY_H
 
 #include "caio.h"
 #include "aim.h"
 #include "enemy.h"
 
-class Entity
+class StageEntity
 {
 public:
-	Entity();
-	~Entity();
+	StageEntity();
+	~StageEntity();
 
 	void init();
 	void draw();
@@ -25,4 +25,4 @@ private:
 
 };
 
-#endif // ENTITY_H
+#endif // STAGEENTITY_H

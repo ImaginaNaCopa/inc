@@ -1,4 +1,4 @@
-#include "entity.h"
+#include "stageentity.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
@@ -6,17 +6,17 @@
 
 using namespace std;
 
-Entity::Entity()
+StageEntity::StageEntity()
 {
 	try 
 	{
 		caio = new Caio();
 		aim = new Aim();
-		enemy = new Enemy();
+		//enemy = new Enemy();
 	}
 	catch (const string& e)
 	{
-		delete enemy;
+		//delete enemy;
 		delete aim;
 		delete caio;
 
@@ -25,54 +25,54 @@ Entity::Entity()
 
 }
 
-Entity::~Entity()
+StageEntity::~StageEntity()
 {
-	delete enemy;
+	//delete enemy;
 	delete aim;
 	delete caio;
 }
 
 void 
-Entity::init()
+StageEntity::init()
 {
 	caio->init();
 	aim->init();
-	enemy->init();
+	//enemy->init();
 }
 
 void 
-Entity::draw()
+StageEntity::draw()
 {
 	caio->draw();
-	enemy->draw();
+	//enemy->draw();
 	aim->draw();
 }
 
 void 
-Entity::update(Uint32 delta)
+StageEntity::update(Uint32 delta)
 {
 	caio->update(delta);
-	enemy->update(delta);
+	//enemy->update(delta);
 	aim->update();
-	aim->overPlayer(caio->getRect());
+	aim->overPlayer(caio->getPosition());
 }
 
 void 
-Entity::release()
+StageEntity::release()
 {
 	caio->release();
 	aim->release();
-	enemy->release();
+	//enemy->release();
 }
 
 Caio*
-Entity::getCaio() const
+StageEntity::getCaio() const
 {
 	return caio;
 }
 
 Aim*
-Entity::getAim() const
+StageEntity::getAim() const
 {
 	return aim;
 }

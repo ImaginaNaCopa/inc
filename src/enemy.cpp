@@ -92,8 +92,6 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
-	delete m_imageSpriteCurupira;
-	delete m_imageSpriteUrubu;
 }
 
 void 

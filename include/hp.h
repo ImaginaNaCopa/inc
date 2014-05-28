@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "imageload.h"
+#include "imagesprite.h"
 
 class Hp
 {

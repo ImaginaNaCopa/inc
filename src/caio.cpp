@@ -1,4 +1,5 @@
 #include "caio.h"
+#include "systemlogger.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
@@ -6,190 +7,130 @@
 
 using namespace std;
 
-Caio::Caio()
+Caio::Caio() : ImageSprite()
 {
-	m_position.x = 50;
-	m_position.y = 350;
-	m_position.w = 50;
-	m_position.h = 100;
-
-    m_clips[0].x = 0;
-    m_clips[0].y = 0;
-    m_clips[0].w = 50;
-    m_clips[0].h = 100;
-
-    m_clips[1].x = 50;
-    m_clips[1].y = 0;
-    m_clips[1].w = 50;
-    m_clips[1].h = 100;
-
-    m_clips[2].x = 100;
-    m_clips[2].y = 0;
-    m_clips[2].w = 50;
-    m_clips[2].h = 100;
-
-    m_clips[3].x = 150;
-    m_clips[3].y = 0;
-    m_clips[3].w = 50;
-    m_clips[3].h = 100;
-
-    m_clips[4].x = 0;
-    m_clips[4].y = 100;
-    m_clips[4].w = 50;
-    m_clips[4].h = 100;
-
-    m_clips[5].x = 50;
-    m_clips[5].y = 100;
-    m_clips[5].w = 50;
-    m_clips[5].h = 100;
-
-    m_clips[6].x = 100;
-    m_clips[6].y = 100;
-    m_clips[6].w = 50;
-    m_clips[6].h = 100;
-
-    m_clips[7].x = 150;
-    m_clips[7].y = 100;
-    m_clips[7].w = 50;
-    m_clips[7].h = 100;
-
-    m_clips[8].x = 0;
-    m_clips[8].y = 200;
-    m_clips[8].w = 50;
-    m_clips[8].h = 100;
-
-    m_clips[9].x = 50;
-    m_clips[9].y = 200;
-    m_clips[9].w = 50;
-    m_clips[9].h = 85;
-
-    m_clips[10].x = 100;
-    m_clips[10].y = 200;
-    m_clips[10].w = 50;
-    m_clips[10].h = 60;
-
-    m_clips[11].x = 150;
-    m_clips[11].y = 200;
-    m_clips[11].w = 50;
-    m_clips[11].h = 50;
-
-    m_clips[12].x = 0;
-    m_clips[12].y = 300;
-    m_clips[12].w = 50;
-    m_clips[12].h = 100;
-
-    m_clips[13].x = 50;
-    m_clips[13].y = 300;
-    m_clips[13].w = 50;
-    m_clips[13].h = 100;
-
-    m_clips[14].x = 100;
-    m_clips[14].y = 300;
-    m_clips[14].w = 50;
-    m_clips[14].h = 100;
-
-    m_clips[15].x = 150;
-    m_clips[15].y = 300;
-    m_clips[15].w = 50;
-    m_clips[15].h = 100;
-
-	speed = 110; // pixels per second
+    generatePosition();
+    generateClips();
+	speed = 110;
     jumpspeed = 10;
-    jumping = false;
+    isMoving = false;
+    isJumping = false;
+    isCrouching = false;
 	dx = 0;
-
-    imageLoad = imageLoad->getInstance();
-    m_imageSprite = new ImageSprite();
 }
 
 Caio::~Caio()
 {
-	delete m_imageSprite;
 }
 
 void 
 Caio::init()
 {
-	m_imageSprite->loadFromFile("res/images/s_caio.png");
+	loadFromFile("res/images/s_caio.png");
 }
 
 void 
 Caio::draw()
 {
-    imageLoad->update(m_imageSprite->m_texture, &m_clips[u], &m_position);
+    SDL_Rect clip = m_clips.at(m_clipNumber);
+    imageLoad->update(m_texture, &clip, &m_position);
 }
 
 void
 Caio::update(Uint32 delta)
 {
-    if (jumping)
+    if( isJumping )
     {
         m_position.y -= jumpspeed;
         jumpspeed -= 0.5f;
-
-        if (m_position.y >= 350)
-        {
-            m_position.y = 350;
-            jumping = false;
-            jumpspeed = 10;
-        }
     }
 
-    m_position.x += round(((speed*delta)/1000.0)*dx); 
+    if ( !isCrouching )
+        m_position.x += round(((speed*delta)/1000.0)*dx);
 
-	if( (m_position.x < 0) || ( m_position.x > 750 ) )
+    if( (m_position.x < 0) || ( (m_position.x + m_position.w) >= 800 ) )
+        m_position.x -= round((speed*delta)/1000.0)*dx;
+
+    if ( (m_position.y + m_position.h) >= 450 )
     {
-        m_position.x -= ((speed*delta)/1000.0)*dx;
+        m_position.y = 450 - m_position.h;
+        isJumping = false;
+        jumpspeed = 10;
     }
 }
 
 void 
 Caio::release()
 {
-	SDL_DestroyTexture(m_imageSprite->m_texture);
+	SDL_DestroyTexture(m_texture);
 }
 
-
-SDL_Rect 
-Caio::getRect() const
+SDL_Rect
+Caio::getPosition() const
 {
     return m_position;
+}
+
+void
+Caio::generatePosition()
+{
+    m_position.x = 50;
+    m_position.y = 350;
+    m_position.w = 50;
+    m_position.h = 100;
+}
+
+void
+Caio::generateClips()
+{
+    addClip(0,0,m_position.w,m_position.h);
+    addClip(m_position.w,0,m_position.w,m_position.h);
+    addClip(m_position.w*2,0,m_position.w,m_position.h);
+    addClip(m_position.w*3,0,m_position.w,m_position.h);
+
+    addClip(0,m_position.h,m_position.w,m_position.h);
+    addClip(m_position.w,m_position.h,m_position.w,m_position.h);
+    addClip(m_position.w*2,m_position.h,m_position.w,m_position.h);
+    addClip(m_position.w*3,m_position.h,m_position.w,m_position.h);
+
+    addClip(0,m_position.h*2,m_position.w,m_position.h);
+    addClip(m_position.w,m_position.h*2,m_position.w,m_position.h-15);
+    addClip(m_position.w*2,m_position.h*2,m_position.w,m_position.h-40);
+    addClip(m_position.w*3,m_position.h*2,m_position.w,m_position.h-50);
+
+    addClip(0,m_position.h*3,m_position.w,m_position.h);
+    addClip(m_position.w,m_position.h*3,m_position.w,m_position.h);
+    addClip(m_position.w*2,m_position.h*3,m_position.w,m_position.h);
+    addClip(m_position.w*3,m_position.h*3,m_position.w,m_position.h);
+
 }
 
 bool 
 Caio::handle(SDL_Event& event)
 {
     bool processed = false;
+
     switch (event.type)
     {
         case SDL_KEYDOWN:
             switch(event.key.keysym.sym)
             {
                 case SDLK_a:
-					dx = -1;
                     processed = true;
-                    if((u>=0) && (u<3))
-                        u++;
-                    else
-                        u=0;
+                    moveBackward();
                 break;
                 case SDLK_d:
-                    dx = 1;
                     processed = true;
-                    if((u>=4) && (u<7))
-                        u++;
-                    else
-                        u=4;
+                    moveForward();
+                break;
+                case SDLK_s:
+                    processed = true;
+                    moveCrouch();
                 break;
                 case SDLK_SPACE:
-                    jumping = true;
                     processed = true;
-                    u++;
-                    if((u>=12) && (u<14))
-                        u++;
-                    else
-                        u=12;                    
-                break;
+                    moveJump();                
+                break;                
                 default:
                 break;
             }
@@ -199,16 +140,24 @@ Caio::handle(SDL_Event& event)
             switch(event.key.keysym.sym)
             {
                 case SDLK_a:
-                	dx = 0;
                     processed = true;
+                    isMoving = false;
+                    dx = 0;
                 break;
                 case SDLK_d:
-                	dx = 0;
                     processed = true;
+                    isMoving = false;
+                    dx = 0;
                 break;
                 case SDLK_SPACE:
                     processed = true;
                 break;
+                case SDLK_s:
+                    processed = true;
+                    isCrouching = false;
+                    m_position.h = 100;
+                    m_clipNumber = 0;
+                break;              
                 default:
                 break;
             }
@@ -217,5 +166,77 @@ Caio::handle(SDL_Event& event)
         default:
         break;
     }
+
     return processed;
+}
+
+void
+Caio::moveForward()
+{
+    isMoving = true;
+    if(!isCrouching)
+    {
+        dx = 1;
+        if((m_clipNumber>=4) && (m_clipNumber<7))
+            m_clipNumber++;
+        else
+            m_clipNumber=4;                        
+    }
+}
+
+void
+Caio::moveBackward()
+{
+    isMoving = true;
+    if(!isCrouching)
+    {
+        dx = -1;
+        if((m_clipNumber>=0) && (m_clipNumber<3))
+            m_clipNumber++;
+        else
+            m_clipNumber=0;
+    }
+}
+
+void
+Caio::moveJump()
+{
+    if(!isCrouching)
+    {
+        isJumping = true;                        
+        if((m_clipNumber>=12) && (m_clipNumber<15))
+            m_clipNumber++;
+        else
+            m_clipNumber=12;                         
+    }
+}
+
+void
+Caio::moveCrouch()
+{
+    if( !isMoving )
+    {
+        isCrouching = true;
+        if((m_clipNumber==8)&&(m_position.h==100)&&(!isJumping))
+        {
+            m_clipNumber++;
+            m_position.h -= 15;
+            m_position.y += 15;
+        }
+        else if((m_clipNumber==9)&&(m_position.h==85)&&(!isJumping))
+        {
+            m_clipNumber++;
+            m_position.h -= 25;
+            m_position.y += 25;
+        }
+        else if((m_clipNumber==10)&&(m_position.h==60)&&(!isJumping))
+        {
+            m_clipNumber++;
+            m_position.h -= 10;
+            m_position.y += 10;
+        }
+        else if((m_clipNumber==11)&&(m_position.h==50)&&(!isJumping)){}
+        else
+            m_clipNumber=8;
+    }
 }
