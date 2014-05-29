@@ -20,9 +20,10 @@ public:
 	void render();
 	void fadein(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
 	void fadeout(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
+	SDL_Renderer* m_renderer;
+	
 private:
 	ImageLoad();
-	SDL_Renderer* m_renderer;
 	Uint8 m_alpha;
 };
 

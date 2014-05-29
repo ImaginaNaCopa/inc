@@ -25,7 +25,6 @@ ImageSprite::~ImageSprite()
 void
 ImageSprite::init()
 {
-	release();
 	m_texture = imageLoad->loadImg(imagePath);;
 }
 

@@ -14,7 +14,6 @@ Aim::Aim() : ImageSprite()
     generatePosition(400,300,87,90);
     generateClips();
     SDL_ShowCursor(0);
-    m_clipNumber = 0;
 }
 
 Aim::~Aim()
@@ -49,6 +48,7 @@ Aim::generateClips()
     addClip(100,0,87,90);
     addClip(200,0,87,90);
     addClip(300,0,87,90);
+    SystemLogger::step("[Aim] Finished Generating Sprite Clips.");
 }
 
 bool 

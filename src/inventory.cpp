@@ -3,6 +3,7 @@
 #include <string>
 #include "imageload.h"
 #include "inventory.h"
+#include "systemlogger.h"
 
 using namespace std;
 
@@ -40,5 +41,7 @@ Inventory::drawEach()
 void
 Inventory::generateClips()
 {
+    SystemLogger::step("[Inventory] Generating Sprite Clips.");
     addClip(0,15,m_position.w,m_position.h);
+    SystemLogger::step("[Inventory] Finished Generating Sprite Clips.");
 }

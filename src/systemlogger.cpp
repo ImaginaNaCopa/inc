@@ -3,9 +3,9 @@
 
 using namespace std;
 
-bool SystemLogger::isConditionPlusVerbose = true;
-bool SystemLogger::isConditionVerbose = true;
-bool SystemLogger::isLoopVerbose = true;
+bool SystemLogger::isConditionPlusVerbose = false;
+bool SystemLogger::isConditionVerbose = false;
+bool SystemLogger::isLoopVerbose = false;
 bool SystemLogger::isStepVerbose = false;
 
 void
@@ -47,7 +47,8 @@ SystemLogger::log(const string& message)
 void
 SystemLogger::loop(const string& message)
 {
-	cout << "Loop:	" << message << endl;
+	if(SystemLogger::isLoopVerbose)
+		cout << "Loop:	" << message << endl;
 }
 
 void

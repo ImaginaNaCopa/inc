@@ -92,8 +92,10 @@ Game::run()
         m_input->eventLoop();
         if(now > last + 25)
         {
-            m_stage->update(now - last);  
+            m_stage->update(now - last);
+            SystemLogger::loop("[Game] Finished Updates");
             m_stage->draw();
+            SystemLogger::loop("[Game] Finished Draw");
             imageLoad->render();
             last = now;
         }

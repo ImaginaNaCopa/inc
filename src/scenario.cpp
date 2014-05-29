@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include "scenario.h"
+#include "systemlogger.h"
 
 using namespace std;
 
@@ -44,6 +45,7 @@ Scenario::draw()
 	background->draw();
 	secondlayer->draw();
 	platform->draw();
+    SystemLogger::loop("[Scenario] Finished Draw");
 }
 
 void 

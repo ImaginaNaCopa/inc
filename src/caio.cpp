@@ -90,6 +90,7 @@ Caio::generateClips()
     addClip(m_position.w,m_position.h*3,m_position.w,m_position.h);
     addClip(m_position.w*2,m_position.h*3,m_position.w,m_position.h);
     addClip(m_position.w*3,m_position.h*3,m_position.w,m_position.h);
+    SystemLogger::step("[Caio] Finished Generating Sprite Clips.");
 
 }
 

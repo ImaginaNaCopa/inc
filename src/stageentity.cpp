@@ -44,6 +44,7 @@ void
 StageEntity::draw()
 {
 	caio->draw();
+    SystemLogger::loop("[StageEntity] Finished Draw");
 	//enemy->draw();
 	aim->draw();
 }
@@ -55,6 +56,7 @@ StageEntity::update(Uint32 delta)
 	//enemy->update(delta);
 	aim->update();
 	aim->overPlayer(caio->getPosition());
+	SystemLogger::loop("[StageEntity] Finished Updates");
 }
 
 void 

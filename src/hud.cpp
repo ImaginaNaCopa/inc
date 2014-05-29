@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include "hud.h"
+#include "systemlogger.h"
 
 using namespace std;
 
@@ -54,6 +55,7 @@ Hud::draw()
 	dialogue->draw();
 	sebastiao->draw();
 	gameMenu->draw();
+    SystemLogger::loop("[HUD] Finished Draw");
 }
 
 void 
