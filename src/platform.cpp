@@ -8,35 +8,17 @@ using namespace std;
 
 Platform::Platform()
 {
-	m_position.x = 0;
-	m_position.y = 450;
-	m_position.w = 800;
-	m_position.h = 150;
-
-	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
+	imagePath.clear();
+	imagePath.insert(0,"res/images/platform.png");
+	generatePosition(0,450,800,150);
 }
 
 Platform::~Platform()
 {
-	// Nothing yet
 }
 
-void 
-Platform::init()
+void
+Platform::generateClips()
 {
-	loadFromFile("res/images/platform.png");
-}
-
-void 
-Platform::draw()
-{
-   	imageLoad->update(m_texture, NULL, &m_position);
-}
-
-void 
-Platform::release()
-{
-	SDL_DestroyTexture(m_texture);
+	addClip(0,0,800,150);
 }

@@ -8,6 +8,8 @@ using namespace std;
 
 Inventory::Inventory() : ImageSprite()
 {
+    imagePath.clear();
+    imagePath.insert(0,"res/images/s_hud.png");
     generatePosition(0,0,40,40);
     generateClips();
     isDrawn = false;
@@ -18,33 +20,21 @@ Inventory::~Inventory()
 }
 
 void 
-Inventory::init()
-{
-	loadFromFile("res/images/s_hud.png");
-}
-
-void 
-Inventory::draw()
+Inventory::drawEach()
 {
     m_position.x = 10;
     m_position.y = 30;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    draw();
     m_position.x += 5 + m_position.w;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    draw();
     m_position.x += 5 + m_position.w;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    draw();
     m_position.x += 5 + m_position.w;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    draw();
     m_position.x += 5 + m_position.w;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    draw();
     m_position.x += 5 + m_position.w;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
-}
-
-void 
-Inventory::release()
-{
-	SDL_DestroyTexture(m_texture);
+    draw();
 }
 
 void

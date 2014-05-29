@@ -10,10 +10,6 @@ public:
 	GameMenu();
 	~GameMenu();
 
-	void init();
-	void draw();
-	void release();
-
 	void generateClips();
 private:
 	bool isDrawn;

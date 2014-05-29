@@ -13,9 +13,7 @@ class ImageSprite
 public:
 	ImageSprite();
 	~ImageSprite();
-	void free();
-
-	bool loadFromFile(const string& path);
+	
 	void render(int x, int y, SDL_Rect* clip = NULL );
 	void generatePosition(int x, int y, int w, int h);
 	void addClip(int x, int y, int w, int h);
@@ -23,9 +21,14 @@ public:
 	int getWidth();
 	int getHeight();
 
+	void init();
+	void draw();
+	void release();
+
 	SDL_Texture* m_texture;
 	ImageLoad* imageLoad;
 	vector<SDL_Rect> m_clips;
+	string imagePath;
 
 	int m_clipNumber;
 	SDL_Rect m_position;

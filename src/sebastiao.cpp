@@ -8,6 +8,8 @@ using namespace std;
 
 Sebastiao::Sebastiao() : ImageSprite()
 {
+	imagePath.clear();
+	imagePath.insert(0,"res/images/s_sebastiao.png");
 	generatePosition(550,10,200,90);
 	generateClips();
 	isDrawn = false;
@@ -15,24 +17,6 @@ Sebastiao::Sebastiao() : ImageSprite()
 
 Sebastiao::~Sebastiao()
 {
-}
-
-void 
-Sebastiao::init()
-{
-	loadFromFile("res/images/s_sebastiao.png");
-}
-
-void 
-Sebastiao::draw()
-{
-	imageLoad->update(m_texture, &m_clips.at(0), &m_position);
-}
-
-void 
-Sebastiao::release()
-{
-	SDL_DestroyTexture(m_texture);
 }
 
 void

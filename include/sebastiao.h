@@ -12,10 +12,6 @@ public:
 	Sebastiao();
 	~Sebastiao();
 
-	void init();
-	void draw();
-	void release();
-
 	void generateClips();
 
 private:

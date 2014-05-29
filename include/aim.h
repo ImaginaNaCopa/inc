@@ -3,9 +3,9 @@
 
 #include <SDL2/SDL.h>
 #include "caio.h"
-#include "imageload.h"
 #include "imagesprite.h"
 #include "inputhandler.h"
+#include "systemlogger.h"
 
 class Aim : public InputHandler, public ImageSprite
 {
@@ -13,13 +13,9 @@ public:
 	Aim();
 	~Aim();
 
-	void init();
-	void draw();
-	void update();
-	void release();
-
 	void overPlayer(SDL_Rect rect);
 
+	void update();
 	bool handle(SDL_Event& event);
 
 	void generateClips();

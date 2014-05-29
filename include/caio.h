@@ -14,10 +14,8 @@ public:
 	Caio();
 	~Caio();
 
-	void init();
-	void draw();
+	void generateClips();
 	void update(Uint32 delta);
-	void release();
 	bool handle(SDL_Event& event);
 
 	void moveForward();
@@ -25,7 +23,6 @@ public:
 	void moveJump();
 	void moveCrouch();
 	
-	void generateClips();
 	SDL_Rect getPosition() const;
 
 	int getPosX();

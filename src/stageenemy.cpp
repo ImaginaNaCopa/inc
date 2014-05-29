@@ -103,8 +103,6 @@ StageEnemy::~StageEnemy()
 void 
 StageEnemy::init()
 {
-	m_imageSpriteUrubu->loadFromFile("res/images/s_urubu.png");
-	m_imageSpriteCurupira->loadFromFile("res/images/s_curupira.png");
 }
 
 void 

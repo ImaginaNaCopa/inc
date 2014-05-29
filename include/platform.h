@@ -10,9 +10,6 @@ class Platform : public ImageSprite
 public:
 	Platform();
 	~Platform();
-	void init();
-	void draw();
-	void release();
 
 	void generateClips();
 private:

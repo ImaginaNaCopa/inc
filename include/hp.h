@@ -11,10 +11,7 @@ public:
 	Hp();
 	~Hp();
 
-	void init();
-	void draw();
-	void release();
-	
+	void drawEach();
 	void generateClips();
 
 private:

@@ -8,6 +8,8 @@ using namespace std;
 
 Hp::Hp() : ImageSprite()
 {
+	imagePath.clear();
+	imagePath.insert(0,"res/images/s_hud.png");
 	generatePosition(0,0,50,15);
 	generateClips();
 	isDrawn = false;
@@ -18,27 +20,15 @@ Hp::~Hp()
 }
 
 void 
-Hp::init()
-{
-	loadFromFile("res/images/s_hud.png");
-}
-
-void 
-Hp::draw()
+Hp::drawEach()
 {
 	m_position.x = 10;
 	m_position.y = 10;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    draw();
     m_position.x = 60;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    draw();
     m_position.x = 110;
-    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
-}
-
-void 
-Hp::release()
-{
-	SDL_DestroyTexture(m_texture);	
+    draw();
 }
 
 void

@@ -9,6 +9,9 @@ using namespace std;
 
 Caio::Caio() : ImageSprite()
 {
+    SystemLogger::step("[Caio] Trying to Construct.");
+    imagePath.clear();
+    imagePath.insert(0,"res/images/s_caio.png");
     generatePosition(50,350,50,100);
     generateClips();
 	speed = 110;
@@ -21,59 +24,53 @@ Caio::Caio() : ImageSprite()
 
 Caio::~Caio()
 {
-}
-
-void 
-Caio::init()
-{
-	loadFromFile("res/images/s_caio.png");
-}
-
-void 
-Caio::draw()
-{
-    SDL_Rect clip = m_clips.at(m_clipNumber);
-    imageLoad->update(m_texture, &clip, &m_position);
+    SystemLogger::step("[Caio] Destroying.");
+    release();
 }
 
 void
 Caio::update(Uint32 delta)
 {
+    SystemLogger::loop("[Caio] Updating.");
     if( isJumping )
     {
+        SystemLogger::conditionPlus(0,"[Caio] Jumping.");
         m_position.y -= jumpspeed;
         jumpspeed -= 0.5f;
     }
 
     if ( !isCrouching )
+    {
+        SystemLogger::conditionPlus(0,"[Caio] Moving.");
         m_position.x += round(((speed*delta)/1000.0)*dx);
+    }
 
     if( (m_position.x < 0) || ( (m_position.x + m_position.w) >= 800 ) )
+    {
+        SystemLogger::conditionPlus(0,"[Caio] Window Collision.");
         m_position.x -= round((speed*delta)/1000.0)*dx;
+    }
 
     if ( (m_position.y + m_position.h) >= 450 )
     {
+        SystemLogger::conditionPlus(0,"[Caio] Platform Collision.");
         m_position.y = 450 - m_position.h;
         isJumping = false;
         jumpspeed = 10;
     }
 }
 
-void 
-Caio::release()
-{
-	SDL_DestroyTexture(m_texture);
-}
-
 SDL_Rect
 Caio::getPosition() const
 {
+    SystemLogger::loop("[Caio] Getting Position.");
     return m_position;
 }
 
 void
 Caio::generateClips()
 {
+    SystemLogger::step("[Caio] Generating Sprite Clips.");
     addClip(0,0,m_position.w,m_position.h);
     addClip(m_position.w,0,m_position.w,m_position.h);
     addClip(m_position.w*2,0,m_position.w,m_position.h);
@@ -99,26 +96,30 @@ Caio::generateClips()
 bool 
 Caio::handle(SDL_Event& event)
 {
+    SystemLogger::loop("[Caio] Handling Events.");
     bool processed = false;
-
     switch (event.type)
     {
         case SDL_KEYDOWN:
             switch(event.key.keysym.sym)
             {
                 case SDLK_a:
+                    SystemLogger::conditionPlus(0,"[Caio] Button a Down.");
                     processed = true;
                     moveBackward();
                 break;
                 case SDLK_d:
+                    SystemLogger::conditionPlus(0,"[Caio] Button d Down.");
                     processed = true;
                     moveForward();
                 break;
                 case SDLK_s:
+                    SystemLogger::conditionPlus(0,"[Caio] Button s Down.");
                     processed = true;
                     moveCrouch();
                 break;
                 case SDLK_SPACE:
+                    SystemLogger::conditionPlus(0,"[Caio] Button SPACE Down.");
                     processed = true;
                     moveJump();                
                 break;                
@@ -131,24 +132,28 @@ Caio::handle(SDL_Event& event)
             switch(event.key.keysym.sym)
             {
                 case SDLK_a:
+                    SystemLogger::conditionPlus(0,"[Caio] Button a Up.");
                     processed = true;
                     isMoving = false;
                     dx = 0;
                 break;
                 case SDLK_d:
+                    SystemLogger::conditionPlus(0,"[Caio] Button d Up.");
                     processed = true;
                     isMoving = false;
                     dx = 0;
                 break;
-                case SDLK_SPACE:
-                    processed = true;
-                break;
                 case SDLK_s:
+                    SystemLogger::conditionPlus(0,"[Caio] Button s Up.");
                     processed = true;
                     isCrouching = false;
                     m_position.h = 100;
                     m_clipNumber = 0;
                 break;              
+                case SDLK_SPACE:
+                    SystemLogger::conditionPlus(0,"[Caio] Button SPACE Up.");
+                    processed = true;
+                break;
                 default:
                 break;
             }
@@ -157,7 +162,6 @@ Caio::handle(SDL_Event& event)
         default:
         break;
     }
-
     return processed;
 }
 

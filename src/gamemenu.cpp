@@ -2,6 +2,8 @@
 
 GameMenu::GameMenu() : ImageSprite()
 {
+	imagePath.clear();
+	imagePath.insert(0,"res/images/s_hud.png");
 	generatePosition(760,10,30,30);
 	generateClips();
 	isDrawn = false;
@@ -9,24 +11,6 @@ GameMenu::GameMenu() : ImageSprite()
 
 GameMenu::~GameMenu()
 {
-}
-
-void
-GameMenu::init()
-{
-	loadFromFile("res/images/s_hud.png");
-}
-
-void
-GameMenu::draw()
-{
-	imageLoad->update(m_texture, &m_clips.at(0), &m_position);
-}
-
-void
-GameMenu::release()
-{
-	SDL_DestroyTexture(m_texture);
 }
 
 void

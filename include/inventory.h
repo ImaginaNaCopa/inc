@@ -12,10 +12,7 @@ public:
 	Inventory();
 	~Inventory();
 
-	void init();
-	void draw();
-	void release();
-
+	void drawEach();
 	void generateClips();
 
 private:

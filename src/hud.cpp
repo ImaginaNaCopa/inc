@@ -49,8 +49,8 @@ Hud::init()
 void 
 Hud::draw()
 {
-	hp->draw();
-	inventory->draw();
+	hp->drawEach();
+	inventory->drawEach();
 	dialogue->draw();
 	sebastiao->draw();
 	gameMenu->draw();
