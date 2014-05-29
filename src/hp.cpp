@@ -1,46 +1,49 @@
-#include "hp.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "imageload.h"
+#include "hp.h"
 
 using namespace std;
 
-Hp::Hp()
+Hp::Hp() : ImageSprite()
 {
-	position.x = 10;
-	position.y = 10;
-	position.w = 30;
-	position.h = 20;
-
+	generatePosition(0,0,50,15);
+	generateClips();
 	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
 }
 
 Hp::~Hp()
 {
-	// Nothing yet
 }
 
 void 
 Hp::init()
 {
-	m_texture = imageLoad->loadImg("res/images/hp.png");
+	loadFromFile("res/images/s_hud.png");
 }
 
 void 
 Hp::draw()
 {
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 50;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 90;
-    imageLoad->update(m_texture, NULL, &position);
+	m_position.x = 10;
+	m_position.y = 10;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    m_position.x = 60;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    m_position.x = 110;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
 }
 
 void 
 Hp::release()
 {
 	SDL_DestroyTexture(m_texture);	
+}
+
+void
+Hp::generateClips()
+{
+	addClip(0,0,m_position.w,m_position.h);
+	addClip(m_position.w,0,m_position.w,m_position.h);
 }

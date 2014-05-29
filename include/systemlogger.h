@@ -1,5 +1,6 @@
 #ifndef SYSTEMLOGGER_H
 #define SYSTEMLOGGER_H
+
 #include <string>
 
 using namespace std;

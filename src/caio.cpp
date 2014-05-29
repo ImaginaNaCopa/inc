@@ -1,15 +1,15 @@
-#include "caio.h"
-#include "systemlogger.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include "caio.h"
+#include "systemlogger.h"
 
 using namespace std;
 
 Caio::Caio() : ImageSprite()
 {
-    generatePosition();
+    generatePosition(50,350,50,100);
     generateClips();
 	speed = 110;
     jumpspeed = 10;
@@ -69,15 +69,6 @@ SDL_Rect
 Caio::getPosition() const
 {
     return m_position;
-}
-
-void
-Caio::generatePosition()
-{
-    m_position.x = 50;
-    m_position.y = 350;
-    m_position.w = 50;
-    m_position.h = 100;
 }
 
 void
@@ -239,4 +230,10 @@ Caio::moveCrouch()
         else
             m_clipNumber=8;
     }
+}
+
+int
+Caio::getPosX()
+{
+    return m_position.x;
 }

@@ -1,8 +1,8 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include "imageload.h"
 #include <SDL2/SDL.h>
+#include "imageload.h"
 
 class Background 
 {

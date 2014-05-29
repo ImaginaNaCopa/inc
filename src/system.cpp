@@ -1,7 +1,6 @@
+#include <SDL2/SDL.h>
 #include "system.h"
 #include "systemlogger.h"
-
-#include <SDL2/SDL.h>
 
 System::System()
 {

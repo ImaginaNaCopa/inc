@@ -1,9 +1,9 @@
-#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "systemlogger.h"
-#include "imageload.h"
 #include <iostream>
+#include <string>
+#include "imageload.h"
+#include "systemlogger.h"
 
 using namespace std;
 

@@ -1,8 +1,8 @@
-#include "secondlayer.h"
-#include "imageload.h"
-#include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <string>
+#include "imageload.h"
+#include "secondlayer.h"
 
 using namespace std;
 

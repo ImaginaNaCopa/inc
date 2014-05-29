@@ -13,9 +13,11 @@ Hud::Hud()
 		inventory = new Inventory();
 		dialogue = new Dialogue();
 		sebastiao = new Sebastiao();
+		gameMenu = new GameMenu();
 	}
 	catch (const string& e)
 	{
+		delete gameMenu;
 		delete sebastiao;
 		delete dialogue;
 		delete inventory;
@@ -27,6 +29,7 @@ Hud::Hud()
 
 Hud::~Hud()
 {
+	delete gameMenu;
 	delete sebastiao;
 	delete dialogue;
 	delete inventory;
@@ -40,6 +43,7 @@ Hud::init()
 	inventory->init();
 	dialogue->init();
 	sebastiao->init();
+	gameMenu->init();
 }
 
 void 
@@ -49,6 +53,7 @@ Hud::draw()
 	inventory->draw();
 	dialogue->draw();
 	sebastiao->draw();
+	gameMenu->draw();
 }
 
 void 
@@ -64,4 +69,5 @@ Hud::release()
 	inventory->release();
 	dialogue->release();
 	sebastiao->release();
+	gameMenu->release();
 }

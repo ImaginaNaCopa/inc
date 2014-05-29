@@ -2,10 +2,10 @@
 #define AIM_H
 
 #include <SDL2/SDL.h>
+#include "caio.h"
 #include "imageload.h"
 #include "imagesprite.h"
 #include "inputhandler.h"
-#include "caio.h"
 
 class Aim : public InputHandler, public ImageSprite
 {
@@ -22,7 +22,6 @@ public:
 
 	bool handle(SDL_Event& event);
 
-	void generatePosition();
 	void generateClips();
 };
 

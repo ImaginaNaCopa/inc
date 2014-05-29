@@ -3,24 +3,23 @@
 
 #include <SDL2/SDL.h>
 #include "imageload.h"
+#include "imagesprite.h"
 
 
-class Sebastiao
+class Sebastiao : public ImageSprite
 {
 public:
 	Sebastiao();
 	~Sebastiao();
+
 	void init();
 	void draw();
 	void release();
+
+	void generateClips();
+
 private:
-	SDL_Texture* m_texture;
-	SDL_Rect position;
-	ImageLoad* imageLoad;
-
 	bool isDrawn;
-	
-
 };
 
 #endif // SEBASTIAO_H

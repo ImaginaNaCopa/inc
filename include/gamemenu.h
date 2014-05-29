@@ -1,25 +1,22 @@
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef GAMEMENU_H
+#define GAMEMENU_H
 
 #include <SDL2/SDL.h>
-#include "imageload.h"
 #include "imagesprite.h"
 
-
-class Inventory : public ImageSprite
+class GameMenu : public ImageSprite
 {
 public:
-	Inventory();
-	~Inventory();
+	GameMenu();
+	~GameMenu();
 
 	void init();
 	void draw();
 	void release();
 
 	void generateClips();
-
 private:
 	bool isDrawn;
 };
 
-#endif // INVENTORY_H
+#endif // GAMEMENU_H

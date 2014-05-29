@@ -1,9 +1,10 @@
 #ifndef HUD_H
 #define HUD_H
 
-#include "hp.h"
-#include "inventory.h"
 #include "dialogue.h"
+#include "hp.h"
+#include "gamemenu.h"
+#include "inventory.h"
 #include "sebastiao.h"
 
 class Hud
@@ -20,6 +21,7 @@ private:
 	Inventory* inventory;
 	Dialogue* dialogue;
 	Sebastiao* sebastiao;
+	GameMenu* gameMenu;
 };
 
 #endif // HUD_H

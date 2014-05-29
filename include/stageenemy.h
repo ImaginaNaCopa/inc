@@ -1,15 +1,15 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef STAGEENEMY_H
+#define STAGEENEMY_H
 
 #include <SDL2/SDL.h>
-#include "imagesprite.h"
 #include "imageload.h"
+#include "imagesprite.h"
 
-class Enemy
+class StageEnemy
 {
 public:
-	Enemy();
-	~Enemy();
+	StageEnemy();
+	~StageEnemy();
 	void init();
 	void draw();
 	void update(Uint32 delta);

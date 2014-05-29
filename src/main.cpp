@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "game.h"
 #include "systemlogger.h"
 

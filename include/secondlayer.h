@@ -1,8 +1,8 @@
 #ifndef SECONDLAYER_H
 #define SECONDLAYER_H
 
-#include "imageload.h"
 #include <SDL2/SDL.h>
+#include "imageload.h"
 
 class SecondLayer 
 {

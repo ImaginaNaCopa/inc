@@ -1,8 +1,8 @@
-#include "stage.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include "stage.h"
 
 using namespace std;
 

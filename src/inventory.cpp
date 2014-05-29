@@ -1,53 +1,54 @@
-#include "inventory.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "imageload.h"
+#include "inventory.h"
 
 using namespace std;
 
-Inventory::Inventory()
+Inventory::Inventory() : ImageSprite()
 {
-	position.x = 10;
-	position.y = 40;
-	position.w = 35;
-	position.h = 25;
-
-	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
+    generatePosition(0,0,40,40);
+    generateClips();
+    isDrawn = false;
 }
 
 Inventory::~Inventory()
 {
-	// Nothing yet
 }
 
 void 
 Inventory::init()
 {
-	m_texture = imageLoad->loadImg("res/images/inventario.png");
-
+	loadFromFile("res/images/s_hud.png");
 }
 
 void 
 Inventory::draw()
 {
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 50;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 90;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 130;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 170;
-    imageLoad->update(m_texture, NULL, &position);
-    position.x = 210;
-    imageLoad->update(m_texture, NULL, &position);
+    m_position.x = 10;
+    m_position.y = 30;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    m_position.x += 5 + m_position.w;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    m_position.x += 5 + m_position.w;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    m_position.x += 5 + m_position.w;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    m_position.x += 5 + m_position.w;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
+    m_position.x += 5 + m_position.w;
+    imageLoad->update(m_texture, &m_clips.at(0), &m_position);
 }
 
 void 
 Inventory::release()
 {
 	SDL_DestroyTexture(m_texture);
+}
+
+void
+Inventory::generateClips()
+{
+    addClip(0,15,m_position.w,m_position.h);
 }

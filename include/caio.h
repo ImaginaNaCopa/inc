@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 #include <string>
 #include "imageload.h"
-#include "inputhandler.h"
 #include "imagesprite.h"
+#include "inputhandler.h"
 
 class Caio : public InputHandler, public ImageSprite
 {
@@ -24,10 +24,11 @@ public:
 	void moveBackward();
 	void moveJump();
 	void moveCrouch();
-
-	void generatePosition();
+	
 	void generateClips();
 	SDL_Rect getPosition() const;
+
+	int getPosX();
 
 private:
 	bool isMoving;

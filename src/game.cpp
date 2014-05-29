@@ -1,9 +1,8 @@
-#include "game.h"
-#include "systemlogger.h"
-
-#include <string>
 #include <SDL2/SDL.h>
 #include <iostream>
+#include <string>
+#include "game.h"
+#include "systemlogger.h"
 
 using namespace std;
 

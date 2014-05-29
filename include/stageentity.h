@@ -1,9 +1,10 @@
 #ifndef STAGEENTITY_H
 #define STAGEENTITY_H
 
-#include "caio.h"
 #include "aim.h"
-#include "enemy.h"
+#include "caio.h"
+#include "camera.h"
+#include "stageenemy.h"
 
 class StageEntity
 {
@@ -20,7 +21,7 @@ public:
 	Aim* getAim() const;
 private:
 	Caio* caio;
-	Enemy* enemy;
+	StageEnemy* enemy;
 	Aim* aim;
 
 };

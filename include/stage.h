@@ -2,9 +2,9 @@
 #define STAGE_H
 
 #include "hud.h"
-#include "stageentity.h"
-#include "scenario.h"
 #include "inputhandler.h"
+#include "scenario.h"
+#include "stageentity.h"
 
 class Stage
 {

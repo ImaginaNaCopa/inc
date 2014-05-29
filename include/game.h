@@ -1,14 +1,14 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "system.h"
-#include "stage.h"
-#include "window.h"
-#include "inputhandler.h"
-#include "resource.h"
 #include "frontend.h"
 #include "imageload.h"
 #include "input.h"
+#include "inputhandler.h"
+#include "resource.h"
+#include "stage.h"
+#include "system.h"
+#include "window.h"
 
 class Game : public InputHandler
 {

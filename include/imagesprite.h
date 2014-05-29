@@ -1,10 +1,10 @@
 #ifndef IMAGESPRITE_H
 #define IMAGESPRITE_H
 
-#include <string>
 #include <SDL2/SDL.h>
-#include "imageload.h"
+#include <string>
 #include <vector>
+#include "imageload.h"
 
 using namespace std;
 
@@ -17,6 +17,7 @@ public:
 
 	bool loadFromFile(const string& path);
 	void render(int x, int y, SDL_Rect* clip = NULL );
+	void generatePosition(int x, int y, int w, int h);
 	void addClip(int x, int y, int w, int h);
 
 	int getWidth();

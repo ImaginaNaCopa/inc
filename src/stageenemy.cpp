@@ -1,12 +1,18 @@
-#include "enemy.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <string>
+#include "stageenemy.h"
 
 using namespace std;
 
-Enemy::Enemy()
+/* CORRIGIR TUDO ISSO :P
+ -> Aqui é bom ficar APENAS o roteiro dos inimigos no cenario
+ -> Como a posição inicial dele e possiveis alterações no comportamento
+ -> Todo o Restante deverá estar individualmente nos padrões de cada inimigo
+*/
+ 
+StageEnemy::StageEnemy()
 {
     m_clips[0].x = 0;
     m_clips[0].y = 0;
@@ -90,19 +96,19 @@ Enemy::Enemy()
     m_imageSpriteCurupira = new ImageSprite();
 }
 
-Enemy::~Enemy()
+StageEnemy::~StageEnemy()
 {
 }
 
 void 
-Enemy::init()
+StageEnemy::init()
 {
 	m_imageSpriteUrubu->loadFromFile("res/images/s_urubu.png");
 	m_imageSpriteCurupira->loadFromFile("res/images/s_curupira.png");
 }
 
 void 
-Enemy::draw()
+StageEnemy::draw()
 {
     imageLoad->update(m_imageSpriteCurupira->m_texture, &m_clips[uC[0]], &positionCurupira[0]);
     imageLoad->update(m_imageSpriteCurupira->m_texture, &m_clips[uC[1]], &positionCurupira[1]);
@@ -112,7 +118,7 @@ Enemy::draw()
 }
 
 void 
-Enemy::update(Uint32 delta)
+StageEnemy::update(Uint32 delta)
 {
 	if (delta < 100){
 		// Curupiras
@@ -201,7 +207,7 @@ Enemy::update(Uint32 delta)
 }
 
 void 
-Enemy::release()
+StageEnemy::release()
 {
 	SDL_DestroyTexture(m_texture);
 }

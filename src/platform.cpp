@@ -1,17 +1,17 @@
-#include "platform.h"
-#include "imageload.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
+#include "imageload.h"
+#include "platform.h"
 
 using namespace std;
 
 Platform::Platform()
 {
-	position.x = 0;
-	position.y = 450;
-	position.w = 800;
-	position.h = 150;
+	m_position.x = 0;
+	m_position.y = 450;
+	m_position.w = 800;
+	m_position.h = 150;
 
 	isDrawn = false;
 
@@ -26,13 +26,13 @@ Platform::~Platform()
 void 
 Platform::init()
 {
-	m_texture = imageLoad->loadImg("res/images/platform.png");
+	loadFromFile("res/images/platform.png");
 }
 
 void 
 Platform::draw()
 {
-   	imageLoad->update(m_texture, NULL, &position);
+   	imageLoad->update(m_texture, NULL, &m_position);
 }
 
 void 

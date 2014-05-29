@@ -1,8 +1,8 @@
-#include "stageentity.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include "stageentity.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ StageEntity::StageEntity()
 	{
 		caio = new Caio();
 		aim = new Aim();
-		//enemy = new Enemy();
+		//enemy = new StageEnemy();
 	}
 	catch (const string& e)
 	{

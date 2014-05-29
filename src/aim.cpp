@@ -1,14 +1,14 @@
-#include "aim.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <string>
 #include <iostream>
+#include <string>
+#include "aim.h"
 
 using namespace std;
 
-Aim::Aim()
+Aim::Aim() : ImageSprite()
 {
-    generatePosition();
+    generatePosition(400,300,87,90);
     generateClips();
     SDL_ShowCursor(0);
     m_clipNumber = 0;
@@ -16,6 +16,7 @@ Aim::Aim()
 
 Aim::~Aim()
 {
+    release();
 }
 
 void 
@@ -48,15 +49,6 @@ void
 Aim::release()
 {
 	SDL_DestroyTexture(m_texture);
-}
-
-void
-Aim::generatePosition()
-{
-    m_position.x = 400;
-    m_position.y = 300;
-    m_position.w = 87;
-    m_position.h = 90;   
 }
 
 void
