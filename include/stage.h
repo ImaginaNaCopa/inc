@@ -4,7 +4,7 @@
 #include "hud.h"
 #include "inputhandler.h"
 #include "scenario.h"
-#include "stageentity.h"
+#include "entity.h"
 
 class Stage
 {
@@ -18,12 +18,11 @@ public:
 
 	void release();
 
-	StageEntity* getEntity() const;
+	Entity* getEntity() const;
 
 private:
-	Camera* camera;
 	Hud* hud;
-	StageEntity* entity;
+	Entity* entity;
 	Scenario* scenario;
 };
 

@@ -24,9 +24,6 @@ public:
 	void moveCrouch();
 	
 	SDL_Rect getPosition() const;
-
-	int getPosX();
-
 private:
 	bool isMoving;
 	bool isJumping;

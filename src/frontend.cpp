@@ -14,6 +14,7 @@ FrontEnd::FrontEnd() : ImageEffect()
 
 FrontEnd::~FrontEnd()
 {
+	release();
 }
 
 void

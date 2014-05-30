@@ -9,7 +9,6 @@ public:
 	Platform();
 	~Platform();
 
-	void drawtest();
 	void generateClips();
 private:
 	bool isDrawn;

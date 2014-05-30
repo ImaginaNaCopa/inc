@@ -11,7 +11,7 @@ Background::Background() : ImageSprite()
 
 Background::~Background()
 {
-	// Nothing yet
+	release();
 }
 
 void

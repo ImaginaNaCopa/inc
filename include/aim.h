@@ -1,8 +1,6 @@
 #ifndef AIM_H
 #define AIM_H
 
-#include <SDL2/SDL.h>
-#include "caio.h"
 #include "imagesprite.h"
 #include "inputhandler.h"
 #include "systemlogger.h"
@@ -14,11 +12,15 @@ public:
 	~Aim();
 
 	void overPlayer(SDL_Rect rect);
+	bool overEnemy(SDL_Rect rect);
 
 	void update();
 	bool handle(SDL_Event& event);
 
 	void generateClips();
+	
+private:
+	bool shoot;
 };
 
 #endif // AIM_H

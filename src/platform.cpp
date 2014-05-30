@@ -12,6 +12,7 @@ Platform::Platform() : ImageSprite()
 
 Platform::~Platform()
 {
+	release();
 }
 
 void

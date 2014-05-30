@@ -1,7 +1,3 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <string>
 #include "aim.h"
 
 using namespace std;
@@ -26,7 +22,7 @@ void
 Aim::update()
 {
     SystemLogger::loop("[Aim] Updating.");
-    m_clipNumber = 0;
+    m_clipNumber = 2;
 }
 
 void
@@ -37,8 +33,22 @@ Aim::overPlayer(SDL_Rect rect)
             (m_position.y < rect.y+55) && (m_position.y > rect.y-45)    )
     {
         SystemLogger::condition("[Aim] Targeted an Entity (Over Player).");
-        m_clipNumber = 2;
+        m_clipNumber = 0;
     }
+}
+
+bool 
+Aim::overEnemy(SDL_Rect rect)
+{
+    SystemLogger::loop("[Aim] Searching if Targeted an Entity (Over Enemy).");   
+    if (m_position.x < rect.x && m_position.x > rect.x-45 && m_position.y < rect.y+55 && m_position.y > rect.y-45)
+    {
+        SystemLogger::condition("[Aim] Targeted an Entity (Over Enemy).");
+        m_clipNumber = 1;
+        return shoot;
+    }
+
+    return false;
 }
 
 void
@@ -56,6 +66,7 @@ Aim::handle(SDL_Event& event)
 {
     SystemLogger::loop("[Aim] Handling Events.");
 	bool processed = false;
+    shoot = false;
     switch (event.type)
     {
         case SDL_MOUSEMOTION:
@@ -67,6 +78,7 @@ Aim::handle(SDL_Event& event)
 
         case SDL_MOUSEBUTTONDOWN:
             SystemLogger::conditionPlus(0,"[Aim] MouseButtonDown.");
+            shoot = true;
             processed = true;
         break;
 

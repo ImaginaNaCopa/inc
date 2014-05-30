@@ -236,9 +236,3 @@ Caio::moveCrouch()
             m_clipNumber=8;
     }
 }
-
-int
-Caio::getPosX()
-{
-    return m_position.x;
-}

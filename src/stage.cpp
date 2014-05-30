@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include "stage.h"
-#include "camera.h"
 
 using namespace std;
 
@@ -12,13 +11,11 @@ Stage::Stage()
 	try
 	{
 		hud = new Hud();
-		entity = new StageEntity();
+		entity = new Entity();
 		scenario = new Scenario();
-		//camera = new Camera();
 	}
 	catch (const string& e)
 	{
-		//delete camera;
 		delete scenario;
 		delete entity;
 		delete hud;
@@ -29,7 +26,6 @@ Stage::Stage()
 
 Stage::~Stage()
 {
-	//delete camera;
 	delete scenario;
 	delete entity;
 	delete hud;
@@ -57,7 +53,6 @@ Stage::update(Uint32 delta)
 {
 	entity->update(delta);
 	SystemLogger::loop("[Stage] Finished Updates");
-	//camera->update();
 }
 
 void 
@@ -68,7 +63,7 @@ Stage::release()
     entity->release();
 }
 
-StageEntity*
+Entity*
 Stage::getEntity() const
 {
 	return entity;
