@@ -34,6 +34,13 @@ ImageSprite::draw()
 	imageLoad->update(m_texture, &m_clips.at(m_clipNumber), &m_position);
 }
 
+/*void
+ImageSprite::drawT(Camera &camera)
+{
+	SDL_Rect renderQuad = {(m_position.x - camera->range.x), m_position.y, m_position.w, m_position.h};
+	imageLoad->update(m_texture, &m_clips.at(m_clipNumber), &renderQuad);
+}*/
+
 void
 ImageSprite::release()
 {
@@ -47,15 +54,9 @@ ImageSprite::release()
 }
 
 void
-ImageSprite::render(int x, int y, SDL_Rect* clip)
+ImageSprite::render()
 {
-	SDL_Rect renderQuad = {x, y, m_width, m_height};
-	if(clip!=NULL)
-	{
-		renderQuad.w = clip->w;
-		renderQuad.h = clip->h;
-	}
-	imageLoad->update(m_texture, clip, &renderQuad);
+	imageLoad->render();
 }
 
 void

@@ -1,21 +1,12 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <string>
 #include "background.h"
-#include "imageload.h"
 
 using namespace std;
 
-Background::Background()
+Background::Background() : ImageSprite()
 {
-	position.x = 0;
-	position.y = 0;
-	position.w = 800;
-	position.h = 600;
-
-	isDrawn = false;
-
-    imageLoad = ImageLoad::getInstance();
+	imagePath.insert(0,"res/images/s_02.png");
+	generatePosition(0,0,800,600);
+	generateClips();
 }
 
 Background::~Background()
@@ -24,20 +15,7 @@ Background::~Background()
 }
 
 void
-Background::init()
+Background::generateClips()
 {
-
-	m_texture = imageLoad->loadImg("res/images/background.png");
-}
-
-void
-Background::draw()
-{
-	imageLoad->update(m_texture, NULL, &position);
-}
-
-void
-Background::release()
-{
-	SDL_DestroyTexture(m_texture);
+	addClip(0,0,2,2);
 }

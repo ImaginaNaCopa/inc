@@ -24,7 +24,6 @@ public:
 	
 private:
 	ImageLoad();
-	Uint8 m_alpha;
 };
 
 #endif // IMAGELOAD_H

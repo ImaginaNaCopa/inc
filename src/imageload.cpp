@@ -18,7 +18,7 @@ static ImageLoad* instance = NULL;
 ImageLoad* 
 ImageLoad::getInstance()
 {
-    SystemLogger::step("[Image Load] Getting Instance.");
+    SystemLogger::loop("[Image Load] Getting Instance.");
 	if (instance == NULL)
 	{
         SystemLogger::step("[Image Load] Using Constructor to Instance.");
@@ -96,37 +96,4 @@ ImageLoad::render()
 {
     SDL_RenderPresent( m_renderer );
     SDL_RenderClear ( m_renderer );
-}
-
-void
-ImageLoad::fadein(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
-{
-    for (m_alpha = 0x00; m_alpha < 0xFF;)
-    {
-        m_alpha += 0x05;
-
-        SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
-        SDL_SetTextureAlphaMod( texture, m_alpha );
-
-        SDL_RenderClear( m_renderer );
-        SDL_RenderCopy( m_renderer, texture, srcRect, destRect );
-        SDL_RenderPresent( m_renderer );
-    }
-}
-
-void
-ImageLoad::fadeout(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
-{
-    for (m_alpha = 0xFF; m_alpha > 0x00;)
-    {
-        m_alpha -= 0x01;
-     
-        SDL_SetTextureBlendMode( texture, SDL_BLENDMODE_BLEND );
-        SDL_SetTextureAlphaMod( texture, m_alpha );
-
-        SDL_RenderClear( m_renderer );
-        SDL_RenderCopy( m_renderer, texture, srcRect, destRect );
-        SDL_RenderPresent( m_renderer );
-    }
-
 }

@@ -1,21 +1,10 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <string>
 #include "dialogue.h"
-#include "imageload.h"
 
-using namespace std;
-
-Dialogue::Dialogue()
+Dialogue::Dialogue() : ImageSprite()
 {
-	position.x = 265;
-	position.y = 10;
-	position.w = 250;
-	position.h = 125;
-
-	isDrawn = false;
-
-    imageLoad = imageLoad->getInstance();
+	imagePath.insert(0,"res/images/s_hud.png");
+	generatePosition(280,10,260,90);
+	generateClips();
 }
 
 Dialogue::~Dialogue()
@@ -24,19 +13,7 @@ Dialogue::~Dialogue()
 }
 
 void 
-Dialogue::init()
+Dialogue::generateClips()
 {
-	m_texture = imageLoad->loadImg("res/images/dialogue.png");
-}
-
-void 
-Dialogue::draw()
-{
-    imageLoad->update(m_texture, NULL, &position);
-}
-
-void 
-Dialogue::release()
-{
-	SDL_DestroyTexture(m_texture);
+	addClip(42,17,4,4);
 }

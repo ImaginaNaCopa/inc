@@ -1,20 +1,20 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "caio.h"
+#include <SDL2/SDL.h>
 
 class Camera
 {
 public:
-	Camera(Caio* const caio);
+	Camera();
 	~Camera();
 
 	void update();
-	SDL_Rect m_clip;
+	SDL_Rect m_range;
 private:
 	int m_width;
 	int m_height;
-	Caio* m_caio;
+
 };
 
 #endif // CAMERA_H

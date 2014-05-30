@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "imageload.h"
+#include "systemlogger.h"
 
 using namespace std;
 
@@ -14,7 +15,6 @@ public:
 	ImageSprite();
 	~ImageSprite();
 	
-	void render(int x, int y, SDL_Rect* clip = NULL );
 	void generatePosition(int x, int y, int w, int h);
 	void addClip(int x, int y, int w, int h);
 
@@ -23,6 +23,7 @@ public:
 
 	void init();
 	void draw();
+	void render();
 	void release();
 
 	SDL_Texture* m_texture;

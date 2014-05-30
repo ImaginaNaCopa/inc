@@ -43,7 +43,7 @@ void
 Scenario::draw()
 {
 	background->draw();
-	secondlayer->draw();
+	secondlayer->drawEach();
 	platform->draw();
     SystemLogger::loop("[Scenario] Finished Draw");
 }

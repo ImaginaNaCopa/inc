@@ -21,6 +21,7 @@ public:
 	StageEntity* getEntity() const;
 
 private:
+	Camera* camera;
 	Hud* hud;
 	StageEntity* entity;
 	Scenario* scenario;

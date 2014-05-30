@@ -60,8 +60,8 @@ Aim::handle(SDL_Event& event)
     {
         case SDL_MOUSEMOTION:
             SystemLogger::conditionPlus(0,"[Aim] MouseMotion.");
-            m_position.x = event.motion.x;
-            m_position.y = event.motion.y;
+            m_position.x = event.motion.x - 45;
+            m_position.y = event.motion.y - 45;
             processed = true;
         break;
 

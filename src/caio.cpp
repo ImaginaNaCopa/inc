@@ -45,7 +45,7 @@ Caio::update(Uint32 delta)
         m_position.x += round(((speed*delta)/1000.0)*dx);
     }
 
-    if( (m_position.x < 0) || ( (m_position.x + m_position.w) >= 800 ) )
+    if( (m_position.x < 0) || ( (m_position.x + m_position.w) >= 1600 ) )
     {
         SystemLogger::conditionPlus(0,"[Caio] Window Collision.");
         m_position.x -= round((speed*delta)/1000.0)*dx;

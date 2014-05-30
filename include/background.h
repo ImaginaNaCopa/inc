@@ -1,23 +1,15 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include <SDL2/SDL.h>
-#include "imageload.h"
+#include "imagesprite.h"
 
-class Background 
+class Background : public ImageSprite
 {
 public:
 	Background();
 	~Background();
-	void init();
-	void draw();
-	void release();
-private:
-	SDL_Texture* m_texture;
-	SDL_Rect position;
-	ImageLoad* imageLoad;
 
-	bool isDrawn;
+	void generateClips();
 };
 
 #endif // BACKGROUND_H

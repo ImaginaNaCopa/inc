@@ -1,25 +1,15 @@
 #ifndef DIALOGUE_H
 #define DIALOGUE_H
 
-#include <SDL2/SDL.h>
-#include "imageload.h"
+#include "imagesprite.h"
 
-
-class Dialogue
+class Dialogue : public ImageSprite
 {
 public:
 	Dialogue();
 	~Dialogue();
-	void init();
-	void draw();
-	void release();
-private:
-	SDL_Texture* m_texture;
-	SDL_Rect position;
-	ImageLoad* imageLoad;
 
-	bool isDrawn;
-
+	void generateClips();
 };
 
 #endif // DIALOGUE_H

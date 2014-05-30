@@ -81,7 +81,7 @@ void
 Game::run()
 {
     SystemLogger::step("[Game] Using Run Method.");
-    m_frontEnd->draw();
+    //m_frontEnd->drawEach();
 
     Uint32 now = SDL_GetTicks();
     Uint32 last = 0;
