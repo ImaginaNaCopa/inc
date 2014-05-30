@@ -87,3 +87,9 @@ ImageSprite::getHeight()
 {
 	return m_height;
 }
+
+SDL_Rect
+ImageSprite::position() const
+{
+	return m_position;
+}

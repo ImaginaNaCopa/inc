@@ -25,6 +25,7 @@ public:
 	void draw();
 	void render();
 	void release();
+	SDL_Rect position() const;
 
 	SDL_Texture* m_texture;
 	ImageLoad* imageLoad;
@@ -39,6 +40,5 @@ private:
 	int m_height;
 	
 };
-
 
 #endif // IMAGESPRITE_H
