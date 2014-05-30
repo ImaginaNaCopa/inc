@@ -36,7 +36,7 @@ Caio::update(Uint32 delta)
     {
         SystemLogger::conditionPlus(0,"[Caio] Jumping.");
         m_position.y -= jumpspeed;
-        jumpspeed -= 0.5f;
+        jumpspeed -= 0.4f;
     }
 
     if ( !isCrouching )
@@ -65,6 +65,34 @@ Caio::getPosition() const
 {
     SystemLogger::loop("[Caio] Getting Position.");
     return m_position;
+}
+
+bool
+Caio::overEnemy(SDL_Rect rect)
+{
+    if (m_position.x+50 > rect.x && m_position.x < rect.x+50 && m_position.y < rect.y+100 && m_position.y+100 > rect.y)
+    {
+        if (m_position.x+50 > rect.x) /*Colliding from the right*/
+        {
+            m_position.x += 4;   
+            return true;
+        }
+        else if (m_position.x < rect.x+50) /*Colliding from the left*/
+        {  
+            m_position.x -= 4;
+            return true;
+        }
+        else if (m_position.y > rect.y+100) /*Colliding from the above*/
+        {
+            return true;
+        }
+        else if (m_position.y+100 < rect.y) /*Colliding from the below*/
+        {        
+            return true;
+        }   
+    }
+
+    return false;
 }
 
 void

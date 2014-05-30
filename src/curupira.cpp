@@ -7,6 +7,7 @@ using namespace std;
 Curupira::Curupira(int x, int y, int dx, int max_x, int max_y)
 	: Enemy() 
 {
+	SystemLogger::step("[Curupira] Creating Curupira.");
 	m_speed = 50;
 	m_dx = dx;
 	m_frame = 0;
@@ -18,6 +19,7 @@ Curupira::Curupira(int x, int y, int dx, int max_x, int max_y)
     imagePath.insert(0,"res/images/s_curupira.png");
     generatePosition(x, y, 50, 100);
     generateClips();
+    SystemLogger::step("[Curupira] Curupira created.");
 }
 
 void 
@@ -39,16 +41,38 @@ Curupira::generateClips()
 void 
 Curupira::update(Uint32 delta)
 {	
-    m_clipNumber = 0;
 	if (delta < 100)
 	{
 		m_position.x += round(((m_speed*delta)/1000.0)*m_dx);
 
 		if (m_position.x >= m_max_x)
 			m_dx = -1;
+
+		if (m_dx == -1)
+		{
+			if (m_position.x % 8 == 0)
+				m_clipNumber = 0;
+			if (m_position.x % 8 == 1)
+				m_clipNumber = 1;
+			if (m_position.x % 8 == 2)
+				m_clipNumber = 2;
+			if (m_position.x % 8 == 3)
+				m_clipNumber = 3;
+		}
+
 		if (m_position.x <= m_max_y)
 			m_dx = 1;
-	}
 
-	delta = 0;
+		if (m_dx == 1)
+		{
+			if (m_position.x % 8 == 4)
+				m_clipNumber = 4;
+			if (m_position.x % 8 == 5)
+				m_clipNumber = 5;
+			if (m_position.x % 8 == 6)
+				m_clipNumber = 6;
+			if (m_position.x % 8 == 7)
+				m_clipNumber = 7;	
+		}			
+	}
 }

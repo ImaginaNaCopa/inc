@@ -16,6 +16,7 @@ public:
 
 	void generateClips();
 	void update(Uint32 delta);
+	bool overEnemy(SDL_Rect rect);
 	bool handle(SDL_Event& event);
 
 	void moveForward();

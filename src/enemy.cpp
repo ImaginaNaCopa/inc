@@ -22,4 +22,5 @@ Enemy::~Enemy()
 void
 Enemy::update(Uint32 delta)
 {
+	
 }

@@ -12,13 +12,15 @@ Entity::Entity()
 {
 	try 
 	{
+		collided = false;
+		
 		caio = new Caio();
 		aim = new Aim();
 
 		enemy = new Curupira(700, 350, 1, 420, 315);
 		enemies.push_back(enemy);
 
-		enemy = new Curupira(300, 350, 1, 420, 315);
+		enemy = new Curupira(330, 350, -1, 333, 105);
 		enemies.push_back(enemy);
 	}
 	catch (const string& e)
@@ -64,11 +66,13 @@ Entity::update(Uint32 delta)
 {
 	if (enemies.size() < 1)
 	{
-		enemy = new Curupira((rand() % 200) + 300, 350, 1, (rand() % 200) + 150, (rand() % 200) + 150);
+		enemy = new Curupira((rand() % 200) + 300, 350, 1, (rand() % 100) + 400, (rand() % 100) + 200);
 		enemy->init();
 		enemies.push_back(enemy);
 	}
  
+	collision();
+
 	caio->update(delta);
 
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
@@ -114,4 +118,23 @@ Aim*
 Entity::getAim() const
 {
 	return aim;
+}
+
+void
+Entity::collision()
+{
+	now = 0;
+	last = 0;
+
+	for (auto it = enemies.begin(); it != enemies.end(); it++)
+		collided = caio->overEnemy((*it)->position());
+
+	if (collided)
+	{
+		now = SDL_GetTicks();
+		if (now > last + 1000)
+		{
+			
+		}
+	}	
 }
