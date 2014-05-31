@@ -6,7 +6,7 @@ using namespace systemLogger;
 
 int main()
 {
-    setVerbosity(false,false,false,false,true);
+    setVerbosity(0,0,0,0,0,1);
     try 
     {
         step("[Main] Trying to Initialize Game.");

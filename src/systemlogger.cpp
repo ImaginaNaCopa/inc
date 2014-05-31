@@ -6,6 +6,7 @@ namespace systemLogger
 	bool actionVerbosity = false;
 	bool controlsVerbosity = false;
 	bool conditionVerbosity = false;
+	bool imageVerbosity = false;
 	bool loopVerbosity = false;
 	bool stepVerbosity = false;
 
@@ -63,9 +64,16 @@ namespace systemLogger
 	}
 
 	void
+	image(const string& message)
+	{
+		if(isImageVerbose())
+			cout << "Image:	" << message << endl; 
+	}
+
+	void
 	log(const string& message)
 	{
-		cerr << "System:	" << message << endl;
+		cout << "System:	" << message << endl;
 	}
 
 	void
@@ -83,11 +91,12 @@ namespace systemLogger
 	}
 
 	void
-	setVerbosity(bool action, bool controls, bool condition, bool loop, bool step)
+	setVerbosity(bool action, bool controls, bool condition, bool image, bool loop, bool step)
 	{
 		actionVerbosity = action;
 		controlsVerbosity = controls;
 		conditionVerbosity = condition;
+		imageVerbosity = image;
 		loopVerbosity = loop;
 		stepVerbosity = step;
 	}
@@ -108,6 +117,12 @@ namespace systemLogger
 	isConditionVerbose()
 	{
 		return conditionVerbosity;
+	}
+
+	bool
+	isImageVerbose()
+	{
+		return imageVerbosity;
 	}
 
 	bool isLoopVerbose()

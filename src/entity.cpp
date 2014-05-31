@@ -55,15 +55,16 @@ Entity::init()
 void 
 Entity::draw()
 {
-	caio->draw();
+	caio->drawRelative();
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
-		(*it)->draw();
+		(*it)->drawRelative();
 	aim->draw();
 }
 
 void 
 Entity::update(Uint32 delta)
 {
+	updateCamera(caio->getPosition(), 1600);
 	if (enemies.size() < 1)
 	{
 		enemy = new Curupira((rand() % 200) + 300, 350, 1, (rand() % 100) + 400, (rand() % 100) + 200);
@@ -73,7 +74,7 @@ Entity::update(Uint32 delta)
  
 	collision();
 
-	caio->update(delta);
+	caio->update(delta,1600);
 
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->update(delta);

@@ -5,8 +5,10 @@
 #include "aim.h"
 #include "enemy.h"
 #include "curupira.h"
+#include "camera.h"
 
 #include <vector>
+using namespace camera;
 using std::vector;
 
 class Entity

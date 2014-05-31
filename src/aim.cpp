@@ -2,11 +2,9 @@
 
 Aim::Aim() : ImageSprite()
 {
-    step("[Aim] Trying to Construct.");
-    imagePath.clear();
+    step("[Aim] Constructing.");
     imagePath.insert(0,"res/images/s_hud.png");
     generatePosition(400,300,87,90);
-    updateKernel();
     generateClips();
     SDL_ShowCursor(0);
 }
@@ -20,16 +18,17 @@ Aim::~Aim()
 void
 Aim::generateClips()
 {
-    step("[Aim] Generating Sprite Clips.");
+    image("[Aim] Generating Sprite Clips.");
     addClip(100,0,87,90);
     addClip(200,0,87,90);
     addClip(300,0,87,90);
-    step("[Aim] Finished Generating Sprite Clips.");
+    image("[Aim] Finished Generating Sprite Clips.");
 }
 
 void 
 Aim::update()
 {
+    updateKernel();
     loop("[Aim] Updating.");
     m_clipNumber = 2;
 }
@@ -53,7 +52,7 @@ Aim::overEnemy(SDL_Rect rect)
     {
         condition("[Aim] Targeted an Entity (Over Enemy).");
         m_clipNumber = 1;
-        return shoot;
+        return m_shoot;
     }
 
     return false;
@@ -66,20 +65,19 @@ Aim::handle(SDL_Event& event)
 {
     loop("[Aim] Handling Events.");
     bool processed = false;
-    shoot = false;
+    m_shoot = false;
     switch (event.type)
     {
         case SDL_MOUSEMOTION:
             controls(0,"[Aim] MouseMotion.");
             m_position.x = event.motion.x - 45;
             m_position.y = event.motion.y - 45;
-            updateKernel();
             processed = true;
         break;
 
         case SDL_MOUSEBUTTONDOWN:
             controls(0,"[Aim] MouseButtonDown.");
-            shoot = true;
+            m_shoot = true;
             processed = true;
         break;
 
@@ -105,5 +103,5 @@ void
 Aim::updateKernel()
 {
     loop("[Aim] Updating Kernel Position.");
-    m_kernel = {m_position.x+40, m_position.y+40, 5, 5};
+    m_kernel = {m_position.x+40+getCameraLeftPosition(), m_position.y+40, 5, 5};
 }

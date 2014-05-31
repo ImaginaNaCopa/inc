@@ -3,19 +3,12 @@
 
 #include <SDL2/SDL.h>
 
-class Camera
+namespace camera
 {
-public:
-	Camera();
-	~Camera();
-
-	void update();
-	SDL_Rect m_range;
-
-private:
-	int m_width;
-	int m_height;
-
-};
+	void updateCamera(SDL_Rect target, int levelWidth);
+	SDL_Rect getCameraRange();
+	int getCameraLeftPosition();
+	int getCameraRightPosition();
+}
 
 #endif // CAMERA_H

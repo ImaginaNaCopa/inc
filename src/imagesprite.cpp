@@ -40,12 +40,14 @@ ImageSprite::draw()
 	imageLoad->update(m_texture, &m_clips.at(m_clipNumber), &m_position);
 }
 
-/*void
-ImageSprite::drawT(Camera &camera)
+void
+ImageSprite::drawRelative()
 {
-	SDL_Rect renderQuad = {(m_position.x - camera->range.x), m_position.y, m_position.w, m_position.h};
-	imageLoad->update(m_texture, &m_clips.at(m_clipNumber), &renderQuad);
-}*/
+	SDL_Rect relative = {m_position.x - getCameraLeftPosition(), m_position.y, m_position.w, m_position.h };
+
+	if(ifCollided(0,getCameraRange(),m_position))
+		imageLoad->update(m_texture, &m_clips.at(m_clipNumber), &relative);
+}
 
 void
 ImageSprite::release()

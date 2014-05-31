@@ -25,7 +25,7 @@ public:
 	void updateKernel();	
 private:
 	SDL_Rect m_kernel;
-	bool shoot;
+	bool m_shoot;
 };
 
 #endif // AIM_H

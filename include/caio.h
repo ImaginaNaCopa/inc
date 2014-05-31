@@ -10,25 +10,35 @@ class Caio : public InputHandler, public ImageEffect
 
 public:
 	Caio();
+	Caio(int x);
 	~Caio();
 
 	void generateClips();
-	void update(Uint32 delta);
-	bool overEnemy(SDL_Rect rect);
-	bool handle(SDL_Event& event);
+	void update(Uint32 delta, int levelWidth);
 
-	void moveForward();
+	bool overEnemy(SDL_Rect rect);
+
+	bool handle(SDL_Event& event);
 	void moveBackward();
-	void moveJump();
 	void moveCrouch();
-	
+	void moveForward();
+	void moveJump();
+
+	bool isCrouching();
+	bool isJumping();
+	bool isMoving();
+	float getJumpspeed();
+	int getDirection();
+	int getSpeed();
+
+	void setSpeed(int speed);
 private:
-	bool isMoving;
-	bool isJumping;
-	bool isCrouching;
-	int speed;
-	int dx;
-	float jumpspeed;
+	bool m_crouching;
+	bool m_jumping;
+	bool m_moving;
+	float m_jumpspeed;
+	int m_dx;
+	int m_speed;
 };
 
 #endif // CAIO_H

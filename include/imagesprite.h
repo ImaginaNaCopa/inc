@@ -3,7 +3,11 @@
 
 #include <vector>
 #include "imageload.h"
+#include "collision.h"
+#include "camera.h"
 
+using namespace camera;
+using namespace collision;
 using namespace std;
 
 class ImageSprite
@@ -21,6 +25,7 @@ public:
 
 	void init();
 	void draw();
+	void drawRelative();
 	void render();
 	void release();
 	SDL_Rect position() const;

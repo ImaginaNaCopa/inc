@@ -23,17 +23,17 @@ SecondLayer::drawEach()
 {
 	m_clipNumber = 0;
 	generatePosition(40,240,270,210);
-	draw();
+	drawRelative();
 	m_clipNumber = 1;
 	generatePosition(450,180,270,270);
-	draw();
+	drawRelative();
 	m_clipNumber = 2;
-	generatePosition(1100,90,120,360);
-	draw();
-	generatePosition(1350,90,120,360);
-	draw();
-	generatePosition(1600,90,120,360);
-	draw();
-	generatePosition(1850,90,120,360);
-	draw();
+	generatePosition(800,90,120,360);
+	drawRelative();
+	generatePosition(1000,90,120,360);
+	drawRelative();
+	generatePosition(1200,90,120,360);
+	drawRelative();
+	generatePosition(1400,90,120,360);
+	drawRelative();
 }
