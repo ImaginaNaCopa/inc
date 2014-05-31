@@ -17,7 +17,7 @@ GameMenu::~GameMenu()
 void
 GameMenu::generateClips()
 {
-	SystemLogger::step("[GameMenu] Generating Sprite Clips.");
+	step("[GameMenu] Generating Sprite Clips.");
 	addClip(0,55,30,30);
-	SystemLogger::step("[GameMenu] Finished Generating Sprite Clips.");
+	step("[GameMenu] Finished Generating Sprite Clips.");
 }

@@ -3,7 +3,9 @@
 
 #include <SDL2/SDL.h>
 #include <string>
+#include "systemlogger.h"
 
+using namespace systemLogger;
 using namespace std;
 
 class ImageLoad

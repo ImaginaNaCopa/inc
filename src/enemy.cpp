@@ -1,17 +1,10 @@
 #include "enemy.h"
-
+#include <iostream>
 using namespace std;
 
-Enemy::Enemy(int x, int y)
+Enemy::Enemy()
 	: ImageSprite()
 {
-	m_box.x = x;
-	m_box.y = y;
-}
-
-Enemy::Enemy()
-{
-
 }
 
 Enemy::~Enemy()
@@ -22,5 +15,5 @@ Enemy::~Enemy()
 void
 Enemy::update(Uint32 delta)
 {
-	
+	cout << delta << endl;
 }

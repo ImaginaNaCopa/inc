@@ -55,7 +55,7 @@ Hud::draw()
 	dialogue->draw();
 	sebastiao->draw();
 	gameMenu->draw();
-    SystemLogger::loop("[HUD] Finished Draw");
+    loop("[HUD] Finished Draw");
 }
 
 void 

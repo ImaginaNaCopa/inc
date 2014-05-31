@@ -1,13 +1,11 @@
 #ifndef CAIO_H
 #define CAIO_H
 
-#include <SDL2/SDL.h>
-#include <string>
-#include "imageload.h"
-#include "imagesprite.h"
 #include "inputhandler.h"
+#include "collision.h"
+#include "imageeffect.h"
 
-class Caio : public InputHandler, public ImageSprite
+class Caio : public InputHandler, public ImageEffect
 {
 
 public:
@@ -24,7 +22,6 @@ public:
 	void moveJump();
 	void moveCrouch();
 	
-	SDL_Rect getPosition() const;
 private:
 	bool isMoving;
 	bool isJumping;

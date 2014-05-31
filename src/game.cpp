@@ -10,7 +10,7 @@ Game::Game()
 {
     try 
     {
-        SystemLogger::step("[Game] Trying to Construct.");
+        step("[Game] Trying to Construct.");
 
         m_system = new System();
         m_window = new Window();
@@ -33,8 +33,8 @@ Game::Game()
     } 
     catch (const string& e)
     {
-        SystemLogger::error(e);
-        SystemLogger::step("[Game] Destroying Manually.");
+        error(e);
+        step("[Game] Destroying Manually.");
 
         free(m_stack);
         delete m_frontEnd;
@@ -47,7 +47,7 @@ Game::Game()
 
 Game::~Game()
 {
-    SystemLogger::step("[Game] Destroying.");
+    step("[Game] Destroying.");
     free(m_stack);
     delete m_frontEnd;
     delete m_stage;
@@ -59,7 +59,7 @@ Game::~Game()
 void
 Game::init()
 {
-    SystemLogger::step("[Game] Using Init Method.");
+    step("[Game] Using Init Method.");
     m_frontEnd->init();
     m_stage->init();
 }
@@ -67,7 +67,7 @@ Game::init()
 void
 Game::shutdown()
 {
-    SystemLogger::step("[Game] Using Shutdown Method.");
+    step("[Game] Using Shutdown Method.");
     m_stage->release();
     m_frontEnd->release();
     delete m_frontEnd;
@@ -80,7 +80,7 @@ Game::shutdown()
 void
 Game::run()
 {
-    SystemLogger::step("[Game] Using Run Method.");
+    step("[Game] Using Run Method.");
     //m_frontEnd->drawEach();
 
     Uint32 now = SDL_GetTicks();
@@ -93,9 +93,9 @@ Game::run()
         if(now > last + 25)
         {
             m_stage->update(now - last);
-            SystemLogger::loop("[Game] Finished Updates");
+            loop("[Game] Finished Updates");
             m_stage->draw();
-            SystemLogger::loop("[Game] Finished Draw");
+            loop("[Game] Finished Draw");
             imageLoad->render();
             last = now;
         }

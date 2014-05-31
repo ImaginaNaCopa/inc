@@ -22,6 +22,12 @@ ImageSprite::~ImageSprite()
 	release();
 }
 
+SDL_Rect
+ImageSprite::getPosition()
+{
+	return m_position;
+}
+
 void
 ImageSprite::init()
 {
@@ -71,7 +77,7 @@ ImageSprite::generatePosition(int x, int y, int w, int h)
 void
 ImageSprite::addClip(int x, int y, int w, int h)
 {
-	SystemLogger::step("[ImageSprite] Trying to Push Back in Vector.");
+	step("[ImageSprite] Trying to Push Back in Vector.");
 	SDL_Rect clipBase = {x,y,w,h};
 	m_clips.push_back(clipBase);
 }

@@ -18,7 +18,7 @@ Platform::~Platform()
 void
 Platform::generateClips()
 {
-	SystemLogger::step("[Platform] Generating Sprite Clips.");
+	step("[Platform] Generating Sprite Clips.");
 	addClip(0,4,2,1);
-	SystemLogger::step("[Platform] Finished Generating Sprite Clips.");
+	step("[Platform] Finished Generating Sprite Clips.");
 }

@@ -11,6 +11,7 @@ public:
 
 	void update();
 	SDL_Rect m_range;
+
 private:
 	int m_width;
 	int m_height;

@@ -1,59 +1,123 @@
 #include <iostream>
 #include "systemlogger.h"
 
-using namespace std;
-
-bool SystemLogger::isConditionPlusVerbose = false;
-bool SystemLogger::isConditionVerbose = false;
-bool SystemLogger::isLoopVerbose = false;
-bool SystemLogger::isStepVerbose = false;
-
-void
-SystemLogger::condition(const string& message)
+namespace systemLogger
 {
-	if(SystemLogger::isConditionVerbose)
-		cout << "Condition:	" << message << endl;
-}
+	bool actionVerbosity = false;
+	bool controlsVerbosity = false;
+	bool conditionVerbosity = false;
+	bool loopVerbosity = false;
+	bool stepVerbosity = false;
 
-void
-SystemLogger::conditionPlus(int type, const string& message)
-{
-	if(SystemLogger::isConditionPlusVerbose)
+	void
+	action(int type, const string& message)
 	{
-		if(type==0)
-			cout << "Mouse Action:	" << message << endl;
+		if(isActionVerbose())
+		{
+			switch(type)
+			{
+				case 0:
+					cout << "Caio Action:	" << message << endl;
+				case 1:
+					cout << "Sebastiao Action:	" << message << endl;
+				case 2:
+					cout << "Special Action:	" << message << endl;
+			}
+		}
 	}
-}
+	void
+	condition(const string& message)
+	{
+		if(isConditionVerbose())
+			cout << "Condition:	" << message << endl;
+	}
 
-void
-SystemLogger::error(const string& message)
-{
-	cerr << "Error:		" << message << endl;
-}
+	void
+	controls(int type, const string& message)
+	{
+		if(isControlsVerbose())
+		{
+			switch(type)
+			{
+				case 0:
+					cout << "Mouse Action:	" << message << endl;
+				case 1:
+					cout << "Keyboard Action:	" << message << endl;
+				case 2:
+					cout << "Joystick Action:	" << message << endl;
+			}
+		}
+	}
 
-void
-SystemLogger::errorSDL(const string& message, const string& error)
-{
-	cerr << "SDL Error:	" << message << endl;
-	cerr << "-->	" << error << endl;
-}
+	void
+	error(const string& message)
+	{
+		cerr << "Error:		" << message << endl;
+	}
 
-void
-SystemLogger::log(const string& message)
-{
-	cerr << "System:	" << message << endl;
-}
+	void
+	errorSDL(const string& message, const string& error)
+	{
+		cerr << "SDL Error:	" << message << endl;
+		cerr << "-->	" << error << endl;
+	}
 
-void
-SystemLogger::loop(const string& message)
-{
-	if(SystemLogger::isLoopVerbose)
-		cout << "Loop:	" << message << endl;
-}
+	void
+	log(const string& message)
+	{
+		cerr << "System:	" << message << endl;
+	}
 
-void
-SystemLogger::step(const string& message)
-{
-	if(SystemLogger::isStepVerbose)
-		cout << "Step:	" << message << endl;
+	void
+	loop(const string& message)
+	{
+		if(isLoopVerbose())
+			cout << "Loop:	" << message << endl;
+	}
+
+	void
+	step(const string& message)
+	{
+		if(isStepVerbose())
+			cout << "Step:	" << message << endl;
+	}
+
+	void
+	setVerbosity(bool action, bool controls, bool condition, bool loop, bool step)
+	{
+		actionVerbosity = action;
+		controlsVerbosity = controls;
+		conditionVerbosity = condition;
+		loopVerbosity = loop;
+		stepVerbosity = step;
+	}
+
+	bool
+	isActionVerbose()
+	{
+		return actionVerbosity;
+	}
+
+	bool
+	isControlsVerbose()
+	{
+		return controlsVerbosity;
+	}
+
+	bool
+	isConditionVerbose()
+	{
+		return conditionVerbosity;
+	}
+
+	bool isLoopVerbose()
+	{
+		return loopVerbosity;
+	}
+
+	bool
+	isStepVerbose()
+	{
+		return stepVerbosity;
+	}	
 }

@@ -45,14 +45,14 @@ Stage::draw()
     scenario->draw();
 	hud->draw();
     entity->draw();
-    SystemLogger::loop("[Stage] Finished Draw");
+    loop("[Stage] Finished Draw");
 }
 
 void 
 Stage::update(Uint32 delta)
 {
 	entity->update(delta);
-	SystemLogger::loop("[Stage] Finished Updates");
+	loop("[Stage] Finished Updates");
 }
 
 void 

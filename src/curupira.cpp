@@ -7,7 +7,7 @@ using namespace std;
 Curupira::Curupira(int x, int y, int dx, int max_x, int max_y)
 	: Enemy() 
 {
-	SystemLogger::step("[Curupira] Creating Curupira.");
+	step("[Curupira] Creating Curupira.");
 	m_speed = 50;
 	m_dx = dx;
 	m_frame = 0;
@@ -19,13 +19,13 @@ Curupira::Curupira(int x, int y, int dx, int max_x, int max_y)
     imagePath.insert(0,"res/images/s_curupira.png");
     generatePosition(x, y, 50, 100);
     generateClips();
-    SystemLogger::step("[Curupira] Curupira created.");
+    step("[Curupira] Curupira created.");
 }
 
 void 
 Curupira::generateClips()
 {
-	SystemLogger::step("[Curupira] Generating Sprite Clips.");
+	step("[Curupira] Generating Sprite Clips.");
 	addClip(0,0,m_position.w,m_position.h);
     addClip(m_position.w,0,m_position.w,m_position.h);
     addClip(m_position.w*2,0,m_position.w,m_position.h);
@@ -35,7 +35,7 @@ Curupira::generateClips()
     addClip(m_position.w,m_position.h,m_position.w,m_position.h);
     addClip(m_position.w*2,m_position.h,m_position.w,m_position.h);
     addClip(m_position.w*3,m_position.h,m_position.w,m_position.h);
-    SystemLogger::step("[Curupira] Finished Generating Sprite Clips.");
+    step("[Curupira] Finished Generating Sprite Clips.");
 }
 
 void 

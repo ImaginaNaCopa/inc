@@ -35,8 +35,8 @@ Hp::drawEach()
 void
 Hp::generateClips()
 {
-	SystemLogger::step("[HP] Generating Sprite Clips.");
+	step("[HP] Generating Sprite Clips.");
 	addClip(0,0,m_position.w,m_position.h);
 	addClip(m_position.w,0,m_position.w,m_position.h);
-	SystemLogger::step("[HP] Finished Generating Sprite Clips.");
+	step("[HP] Finished Generating Sprite Clips.");
 }

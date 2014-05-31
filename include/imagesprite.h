@@ -1,11 +1,8 @@
 #ifndef IMAGESPRITE_H
 #define IMAGESPRITE_H
 
-#include <SDL2/SDL.h>
-#include <string>
 #include <vector>
 #include "imageload.h"
-#include "systemlogger.h"
 
 using namespace std;
 
@@ -18,6 +15,7 @@ public:
 	void generatePosition(int x, int y, int w, int h);
 	void addClip(int x, int y, int w, int h);
 
+	SDL_Rect getPosition();
 	int getWidth();
 	int getHeight();
 

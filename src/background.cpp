@@ -1,7 +1,5 @@
 #include "background.h"
 
-using namespace std;
-
 Background::Background() : ImageSprite()
 {
 	imagePath.insert(0,"res/images/s_02.png");

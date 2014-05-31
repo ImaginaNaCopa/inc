@@ -41,7 +41,7 @@ Inventory::drawEach()
 void
 Inventory::generateClips()
 {
-    SystemLogger::step("[Inventory] Generating Sprite Clips.");
+    step("[Inventory] Generating Sprite Clips.");
     addClip(0,15,m_position.w,m_position.h);
-    SystemLogger::step("[Inventory] Finished Generating Sprite Clips.");
+    step("[Inventory] Finished Generating Sprite Clips.");
 }

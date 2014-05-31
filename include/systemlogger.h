@@ -5,21 +5,24 @@
 
 using namespace std;
 
-class SystemLogger
+namespace systemLogger
 {
-public:
-	static bool isConditionPlusVerbose;
-	static bool isConditionVerbose;
-	static bool isLoopVerbose;
-	static bool isStepVerbose;
+	void action(int type, const string& message);
+	void condition(const string& message);
+	void controls(int type, const string& message);
+	void error(const string& message);
+	void errorSDL(const string& message, const string& error);
+	void log(const string& message);
+	void loop(const string& messsage);
+	void step(const string& message);
 
-	static void condition(const string& message);
-	static void conditionPlus(int type, const string& message);
-	static void error(const string& message);
-	static void errorSDL(const string& message, const string& error);
-	static void log(const string& message);
-	static void loop(const string& messsage);
-	static void step(const string& message);
-};
+	bool isActionVerbose();
+	bool isControlsVerbose();
+	bool isConditionVerbose();
+	bool isLoopVerbose();
+	bool isStepVerbose();	
+
+	void setVerbosity(bool action, bool controls, bool condition, bool loop, bool step);
+}
 
 #endif //SYSTEMLOGGER_H

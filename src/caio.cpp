@@ -1,15 +1,11 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <string>
 #include "caio.h"
-#include "systemlogger.h"
 
 using namespace std;
+using namespace collision;
 
-Caio::Caio() : ImageSprite()
+Caio::Caio() : ImageEffect()
 {
-    SystemLogger::step("[Caio] Trying to Construct.");
+    step("[Caio] Trying to Construct.");
     imagePath.clear();
     imagePath.insert(0,"res/images/s_caio.png");
     generatePosition(50,350,50,100);
@@ -24,81 +20,62 @@ Caio::Caio() : ImageSprite()
 
 Caio::~Caio()
 {
-    SystemLogger::step("[Caio] Destroying.");
+    step("[Caio] Destroying.");
     release();
 }
 
 void
 Caio::update(Uint32 delta)
 {
-    SystemLogger::loop("[Caio] Updating.");
+    loop("[Caio] Updating.");
     if( isJumping )
     {
-        SystemLogger::conditionPlus(0,"[Caio] Jumping.");
+        action(0,"[Caio] Jumping.");
         m_position.y -= jumpspeed;
         jumpspeed -= 0.4f;
     }
 
     if ( !isCrouching )
     {
-        SystemLogger::conditionPlus(0,"[Caio] Moving.");
+        action(0,"[Caio] Moving.");
         m_position.x += round(((speed*delta)/1000.0)*dx);
     }
 
     if( (m_position.x < 0) || ( (m_position.x + m_position.w) >= 1600 ) )
     {
-        SystemLogger::conditionPlus(0,"[Caio] Window Collision.");
+        action(0,"[Caio] Window Collision.");
         m_position.x -= round((speed*delta)/1000.0)*dx;
     }
 
     if ( (m_position.y + m_position.h) >= 450 )
     {
-        SystemLogger::conditionPlus(0,"[Caio] Platform Collision.");
+        action(0,"[Caio] Platform Collision.");
         m_position.y = 450 - m_position.h;
         isJumping = false;
         jumpspeed = 10;
     }
 }
 
-SDL_Rect
-Caio::getPosition() const
-{
-    SystemLogger::loop("[Caio] Getting Position.");
-    return m_position;
-}
-
 bool
 Caio::overEnemy(SDL_Rect rect)
 {
-    if (m_position.x+50 > rect.x && m_position.x < rect.x+50 && m_position.y < rect.y+100 && m_position.y+100 > rect.y)
+    if(ifCollided(1,getPosition(),rect))
     {
-        if (m_position.x+50 > rect.x) /*Colliding from the right*/
-        {
-            m_position.x += 4;   
-            return true;
-        }
-        else if (m_position.x < rect.x+50) /*Colliding from the left*/
-        {  
-            m_position.x -= 4;
-            return true;
-        }
-        else if (m_position.y > rect.y+100) /*Colliding from the above*/
-        {
-            return true;
-        }
-        else if (m_position.y+100 < rect.y) /*Colliding from the below*/
-        {        
-            return true;
-        }   
+        m_position.x -= 1;
+        return true;
     }
-
+    else if(ifCollided(2,getPosition(),rect))
+    {
+        m_position.x += 1;
+        return true;
+    }
     return false;
 }
 
 void
 Caio::generateClips()
 {
-    SystemLogger::step("[Caio] Generating Sprite Clips.");
+    step("[Caio] Generating Sprite Clips.");
     addClip(0,0,m_position.w,m_position.h);
     addClip(m_position.w,0,m_position.w,m_position.h);
     addClip(m_position.w*2,0,m_position.w,m_position.h);
@@ -118,14 +95,14 @@ Caio::generateClips()
     addClip(m_position.w,m_position.h*3,m_position.w,m_position.h);
     addClip(m_position.w*2,m_position.h*3,m_position.w,m_position.h);
     addClip(m_position.w*3,m_position.h*3,m_position.w,m_position.h);
-    SystemLogger::step("[Caio] Finished Generating Sprite Clips.");
+    step("[Caio] Finished Generating Sprite Clips.");
 
 }
 
 bool 
 Caio::handle(SDL_Event& event)
 {
-    SystemLogger::loop("[Caio] Handling Events.");
+    loop("[Caio] Handling Events.");
     bool processed = false;
     switch (event.type)
     {
@@ -133,22 +110,22 @@ Caio::handle(SDL_Event& event)
             switch(event.key.keysym.sym)
             {
                 case SDLK_a:
-                    SystemLogger::conditionPlus(0,"[Caio] Button a Down.");
+                    controls(1,"[Caio] Button a Down.");
                     processed = true;
                     moveBackward();
                 break;
                 case SDLK_d:
-                    SystemLogger::conditionPlus(0,"[Caio] Button d Down.");
+                    controls(1,"[Caio] Button d Down.");
                     processed = true;
                     moveForward();
                 break;
                 case SDLK_s:
-                    SystemLogger::conditionPlus(0,"[Caio] Button s Down.");
+                    controls(1,"[Caio] Button s Down.");
                     processed = true;
                     moveCrouch();
                 break;
                 case SDLK_SPACE:
-                    SystemLogger::conditionPlus(0,"[Caio] Button SPACE Down.");
+                    controls(1,"[Caio] Button SPACE Down.");
                     processed = true;
                     moveJump();                
                 break;                
@@ -161,26 +138,26 @@ Caio::handle(SDL_Event& event)
             switch(event.key.keysym.sym)
             {
                 case SDLK_a:
-                    SystemLogger::conditionPlus(0,"[Caio] Button a Up.");
+                    controls(1,"[Caio] Button a Up.");
                     processed = true;
                     isMoving = false;
                     dx = 0;
                 break;
                 case SDLK_d:
-                    SystemLogger::conditionPlus(0,"[Caio] Button d Up.");
+                    controls(1,"[Caio] Button d Up.");
                     processed = true;
                     isMoving = false;
                     dx = 0;
                 break;
                 case SDLK_s:
-                    SystemLogger::conditionPlus(0,"[Caio] Button s Up.");
+                    controls(1,"[Caio] Button s Up.");
                     processed = true;
                     isCrouching = false;
                     m_position.h = 100;
                     m_clipNumber = 0;
                 break;              
                 case SDLK_SPACE:
-                    SystemLogger::conditionPlus(0,"[Caio] Button SPACE Up.");
+                    controls(1,"[Caio] Button SPACE Up.");
                     processed = true;
                 break;
                 default:

@@ -2,8 +2,8 @@
 
 Camera::Camera()
 {
-	m_width=1600;
-	m_height=600;
+	m_width = 1600;
+	m_height = 600;
 	m_range = {0,0,800,600};
 }
 

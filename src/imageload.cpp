@@ -9,7 +9,7 @@ using namespace std;
 
 ImageLoad::ImageLoad()
 {
-    SystemLogger::step("[Image Load] Contructing.");
+    step("[Image Load] Contructing.");
 	m_renderer = NULL;
 }
 
@@ -18,10 +18,10 @@ static ImageLoad* instance = NULL;
 ImageLoad* 
 ImageLoad::getInstance()
 {
-    SystemLogger::loop("[Image Load] Getting Instance.");
+    loop("[Image Load] Getting Instance.");
 	if (instance == NULL)
 	{
-        SystemLogger::step("[Image Load] Using Constructor to Instance.");
+        step("[Image Load] Using Constructor to Instance.");
 		instance = new ImageLoad();
 	}
 		
@@ -31,14 +31,14 @@ ImageLoad::getInstance()
 void 
 ImageLoad::releaseInstance()
 {
-    SystemLogger::step("[Image Load] Releasing Instance.");
+    step("[Image Load] Releasing Instance.");
 	delete instance;
 }
 
 void 
 ImageLoad::setRenderer(SDL_Renderer* renderer)
 {
-    SystemLogger::step("[Image Load] Setting Renderer.");
+    step("[Image Load] Setting Renderer.");
 	m_renderer = renderer;
 }
 
@@ -46,7 +46,7 @@ ImageLoad::setRenderer(SDL_Renderer* renderer)
 SDL_Texture* 
 ImageLoad::loadImg(const string& path)
 {
-    SystemLogger::step("[Image Load] Loading Image.");
+    step("[Image Load] Loading Image.");
 
 	if (m_renderer == NULL)
 	{
@@ -57,7 +57,7 @@ ImageLoad::loadImg(const string& path)
 
     if( surface == NULL )
     {
-        SystemLogger::step("[Image Load] Null Surface.");
+        step("[Image Load] Null Surface.");
         cout << SDL_GetError() << endl;
         throw "Impossível carregar a imagem!";
     }
@@ -68,7 +68,7 @@ ImageLoad::loadImg(const string& path)
 
     if( texture == NULL )
     {
-        SystemLogger::step("[Image Load] Null Texture.");
+        step("[Image Load] Null Texture.");
     	SDL_FreeSurface(surface);
     	throw "Impossível criar a textura!";
     }

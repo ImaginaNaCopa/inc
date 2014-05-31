@@ -2,14 +2,14 @@
 #include "game.h"
 #include "systemlogger.h"
 
-using namespace std;
+using namespace systemLogger;
 
 int main()
 {
-    SystemLogger::isStepVerbose = true;
+    setVerbosity(false,false,false,false,true);
     try 
     {
-        SystemLogger::step("[Main] Trying to Initialize Game.");
+        step("[Main] Trying to Initialize Game.");
         Game* game = new Game();
         
         game->init();
@@ -18,9 +18,9 @@ int main()
     } 
     catch (const string& e) 
     {
-        SystemLogger::error(e);
+        error(e);
         return -1;
     }
-    SystemLogger::step("[Main] Exiting.");
+    step("[Main] Exiting.");
 	return 0;
 }

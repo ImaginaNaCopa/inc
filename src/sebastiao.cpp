@@ -23,7 +23,7 @@ Sebastiao::~Sebastiao()
 void
 Sebastiao::generateClips()
 {
-	SystemLogger::step("[Sebastiao] Generating Sprite Clips.");
+	step("[Sebastiao] Generating Sprite Clips.");
 	addClip(0,0,m_position.w,m_position.h);
 	addClip(m_position.w,0,m_position.w,m_position.h);
 
@@ -35,5 +35,5 @@ Sebastiao::generateClips()
 	
 	addClip(0,m_position.h*3,m_position.w,m_position.h);
 	addClip(m_position.w,m_position.h*3,m_position.w,m_position.h);
-	SystemLogger::step("[Sebastiao] Finished Generating Sprite Clips.");
+	step("[Sebastiao] Finished Generating Sprite Clips.");
 }
