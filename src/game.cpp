@@ -70,20 +70,22 @@ Game::shutdown()
 void
 Game::run()
 {
-
     step("[Game] Using Run Method.");
     m_frontEnd->drawEach();
+
     while ( !m_quit )
     {
         tick();
         eventLoop();
-        SDL_Delay(25);
-        levelOne->update();
-        loop("[Game] Finished Updates");
-        levelOne->draw();
-        loop("[Game] Finished Draw");
-        imageLoad->render();
-        setLastToNow();
+        if(beyondLimitsOfFPS())
+        {
+            levelOne->update();
+            loop("[Game] Finished Updates");
+            levelOne->draw();
+            loop("[Game] Finished Draw");
+            imageLoad->render();
+            setLastToNow();
+        }
     }
 }
 

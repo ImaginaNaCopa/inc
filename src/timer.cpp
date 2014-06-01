@@ -24,6 +24,7 @@ namespace timer
 		{
 			tick();
 		}
+		setLastToNow();
 	}
 
 	Uint32

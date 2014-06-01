@@ -30,7 +30,6 @@ FrontEnd::drawEach()
     int steps = 0;
     while(steps!=4)
     {
-    	setLastToNow();
 	    tick();
 	    switch(steps)
 	    {
@@ -41,7 +40,6 @@ FrontEnd::drawEach()
 				steps++;
 			break;
 			case 1:
-				setLastToNow();
 				waitMiliseconds(2000);
 				fadeout();
 				m_clipNumber = 1;
@@ -50,7 +48,6 @@ FrontEnd::drawEach()
 				steps++;
 			break;
 			case 2:
-				setLastToNow();
 				waitMiliseconds(2000);
 				fadeout();
 				m_clipNumber = 2;
@@ -59,7 +56,6 @@ FrontEnd::drawEach()
 				steps++;
 			break;
 			case 3:
-				setLastToNow();
 				waitMiliseconds(2000);
 				fadeout();
 				steps++;
