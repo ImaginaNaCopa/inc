@@ -1,70 +1,42 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <string>
 #include "stage.h"
 
 using namespace std;
 
-Stage::Stage()
-{
-	try
-	{
-		hud = new Hud();
-		entity = new Entity();
-		scenario = new Scenario();
-	}
-	catch (const string& e)
-	{
-		delete scenario;
-		delete entity;
-		delete hud;
-
-		throw e;
-	}
-}
+Stage::Stage() : Scenario(), Hud(), Entity()
+{}
 
 Stage::~Stage()
 {
-	delete scenario;
-	delete entity;
-	delete hud;
+	release();
 }
 
 void 
 Stage::init()
 {
-    scenario->init();
-	hud->init();
-    entity->init();
+    initScenario();
+	initHud();
+    initEntity();
 }
 
 void 
 Stage::draw()
 {
-    scenario->draw();
-	hud->draw();
-    entity->draw();
-    loop("[Stage] Finished Draw");
+    drawScenario();
+	drawHud();
+    drawEntity();
 }
 
 void 
-Stage::update(Uint32 delta)
+Stage::update()
 {
-	entity->update(delta);
-	loop("[Stage] Finished Updates");
+	updateEntity();
+	controlEntityEvents();
 }
 
 void 
 Stage::release()
 {
-    scenario->release();
-	hud->release();
-    entity->release();
-}
-
-Entity*
-Stage::getEntity() const
-{
-	return entity;
+    releaseScenario();
+	releaseHud();
+    releaseEntity();
 }

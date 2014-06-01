@@ -1,44 +1,36 @@
-#include <iostream>
-#include <queue>
 #include "input.h"
 
-using namespace std;
-
-Input::Input()
+namespace input
 {
-}
+	vector<InputHandler *> handlers;
 
-Input::~Input()
-{
-}
-
-void
-Input::eventLoop()
-{
-	SDL_Event event;
-	queue <SDL_Event> events;
-
-	//pegando eventos pendentes
-    while (SDL_PollEvent(&event) != 0)
-    {
-    	events.push(event);
-	}
-	while(events.empty() == false)
+	void
+	eventLoop()
 	{
-		event = events.front();
-		events.pop();
-		for (size_t i = 0; i < m_handlers.size(); i++)
+		SDL_Event event;
+		queue <SDL_Event> events;
+
+	    while (SDL_PollEvent(&event) != 0)
+	    {
+	    	events.push(event);
+		}
+		while(events.empty() == false)
 		{
-			if (m_handlers[i]->handle(event))
+			event = events.front();
+			events.pop();
+			for (size_t i = 0; i < handlers.size(); i++)
 			{
-				break;
+				if (handlers[i]->handle(event))
+				{
+					break;
+				}
 			}
 		}
 	}
-}
 
-void 
-Input::addHandler(InputHandler * h)
-{
-	m_handlers.push_back(h);
+	void 
+	addHandler(InputHandler * h)
+	{
+		handlers.push_back(h);
+	}
 }

@@ -1,8 +1,4 @@
-#include <SDL2/SDL.h>
-#include <iostream>
-#include <string>
 #include "game.h"
-#include "systemlogger.h"
 
 using namespace std;
 
@@ -14,8 +10,7 @@ Game::Game()
 
         m_system = new System();
         m_window = new Window();
-        m_input = new Input();
-        m_stage = new Stage();
+        levelOne = new LevelOne();
 
         imageLoad = ImageLoad::getInstance();
         imageLoad->setRenderer(m_window->renderer());
@@ -26,9 +21,7 @@ Game::Game()
         exitstate[0] = false;
         exitstate[1] = false;
 
-        m_input->addHandler(this);
-        m_input->addHandler(m_stage->getEntity()->getCaio());
-        m_input->addHandler(m_stage->getEntity()->getAim());
+        addHandler(this);
         //m_input->addHandler(m_fade);
     } 
     catch (const string& e)
@@ -38,8 +31,7 @@ Game::Game()
 
         free(m_stack);
         delete m_frontEnd;
-        delete m_stage;
-        delete m_input;
+        delete levelOne;
         delete m_window;
         delete m_system;
     }
@@ -50,8 +42,7 @@ Game::~Game()
     step("[Game] Destroying.");
     free(m_stack);
     delete m_frontEnd;
-    delete m_stage;
-    delete m_input;
+    delete levelOne;
     delete m_window;
     delete m_system;
 }
@@ -61,18 +52,17 @@ Game::init()
 {
     step("[Game] Using Init Method.");
     m_frontEnd->init();
-    m_stage->init();
+    levelOne->init();
 }
 
 void
 Game::shutdown()
 {
     step("[Game] Using Shutdown Method.");
-    m_stage->release();
+    levelOne->release();
     m_frontEnd->release();
     delete m_frontEnd;
-    delete m_stage;
-    delete m_input;
+    delete levelOne;
     delete m_window;
     delete m_system;
 }
@@ -80,25 +70,20 @@ Game::shutdown()
 void
 Game::run()
 {
+
     step("[Game] Using Run Method.");
-    //m_frontEnd->drawEach();
-
-    Uint32 now = SDL_GetTicks();
-    Uint32 last = 0;
-
+    m_frontEnd->drawEach();
     while ( !m_quit )
     {
-        now = SDL_GetTicks();
-        m_input->eventLoop();
-        if(now > last + 25)
-        {
-            m_stage->update(now - last);
-            loop("[Game] Finished Updates");
-            m_stage->draw();
-            loop("[Game] Finished Draw");
-            imageLoad->render();
-            last = now;
-        }
+        tick();
+        eventLoop();
+        SDL_Delay(25);
+        levelOne->update();
+        loop("[Game] Finished Updates");
+        levelOne->draw();
+        loop("[Game] Finished Draw");
+        imageLoad->render();
+        setLastToNow();
     }
 }
 

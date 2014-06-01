@@ -4,7 +4,7 @@ Aim::Aim() : ImageSprite()
 {
     step("[Aim] Constructing.");
     imagePath.insert(0,"res/images/s_hud.png");
-    generatePosition(400,300,87,90);
+    generatePosition(round(getWindowW()/2),round(getWindowH()/2),87,90);
     generateClips();
     SDL_ShowCursor(0);
 }
@@ -28,8 +28,8 @@ Aim::generateClips()
 void 
 Aim::update()
 {
-    updateKernel();
     loop("[Aim] Updating.");
+    updateKernel();
     m_clipNumber = 2;
 }
 
@@ -103,5 +103,5 @@ void
 Aim::updateKernel()
 {
     loop("[Aim] Updating Kernel Position.");
-    m_kernel = {m_position.x+40+getCameraLeftPosition(), m_position.y+40, 5, 5};
+    m_kernel = {m_position.x+getCameraLeftPosition()+40, m_position.y+40, 5, 5};
 }

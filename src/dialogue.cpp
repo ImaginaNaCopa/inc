@@ -2,6 +2,7 @@
 
 Dialogue::Dialogue() : ImageSprite()
 {
+	step("[Dialogue] Constructing.");
 	imagePath.insert(0,"res/images/s_hud.png");
 	generatePosition(280,10,260,90);
 	generateClips();
@@ -9,11 +10,14 @@ Dialogue::Dialogue() : ImageSprite()
 
 Dialogue::~Dialogue()
 {
-	// Nothing yet
+	step("[Dialogue] Destroying.");
+	release();
 }
 
 void 
 Dialogue::generateClips()
 {
+	step("[Dialogue] Generating Sprite Clips.");
 	addClip(42,17,4,4);
+	step("[Dialogue] Finished Generating Sprite Clips.");
 }

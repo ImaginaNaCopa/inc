@@ -3,12 +3,16 @@
 
 #include <vector>
 #include "imageload.h"
-#include "collision.h"
 #include "camera.h"
+#include "collision.h"
+#include "configuration.h"
+#include "timer.h"
 
 using namespace camera;
 using namespace collision;
+using namespace configuration;
 using namespace std;
+using namespace timer;
 
 class ImageSprite
 {

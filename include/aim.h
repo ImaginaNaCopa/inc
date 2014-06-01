@@ -1,11 +1,8 @@
 #ifndef AIM_H
 #define AIM_H
 
-#include "collision.h"
-#include "imagesprite.h"
 #include "inputhandler.h"
-
-using namespace collision;
+#include "imagesprite.h"
 
 class Aim : public InputHandler, public ImageSprite
 {
@@ -22,7 +19,8 @@ public:
 	bool handle(SDL_Event& event);
 
 	SDL_Rect getKernel();
-	void updateKernel();	
+	void updateKernel();
+
 private:
 	SDL_Rect m_kernel;
 	bool m_shoot;

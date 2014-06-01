@@ -4,11 +4,14 @@
 #include "frontend.h"
 #include "imageload.h"
 #include "input.h"
-#include "inputhandler.h"
 #include "resource.h"
-#include "stage.h"
+#include "levelone.h"
 #include "system.h"
 #include "window.h"
+#include "timer.h"
+
+using namespace input;
+using namespace timer;
 
 class Game : public InputHandler
 {
@@ -23,9 +26,8 @@ public:
     bool handle(SDL_Event &event);
 
 private:
-    Stage* m_stage;
+    LevelOne* levelOne;
     FrontEnd* m_frontEnd;
-    Input *m_input;
     ImageLoad* imageLoad;
 
     

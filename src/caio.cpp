@@ -1,33 +1,30 @@
 #include "caio.h"
 
-using namespace std;
-using namespace collision;
-
 Caio::Caio() : ImageEffect()
 {
     step("[Caio] Constructing.");
     imagePath.insert(0,"res/images/s_caio.png");
-    generatePosition(50,350,50,100);
+    generatePosition(round(getWindowW()/16),getPlatformH(),50,100);
     generateClips();
     m_crouching = false;
     m_jumping = false;
     m_moving = false;
 	m_dx = 0;
-    m_speed = 110;
+    m_speed = haveNormalSpeed();
     m_jumpspeed = 10;
 }
 
-Caio::Caio(int x) : ImageEffect()
+Caio::Caio(int initialPosition) : ImageEffect()
 {
     step("[Caio] Constructing.");
     imagePath.insert(0,"res/images/s_caio.png");
-    generatePosition(x,350,50,100);
+    generatePosition(initialPosition,getPlatformH(),50,100);
     generateClips();
     m_crouching = false;
     m_jumping = false;
     m_moving = false;
     m_dx = 0;
-    m_speed = 110;
+    m_speed = haveNormalSpeed();
     m_jumpspeed = 10;
 }
 
@@ -64,7 +61,7 @@ Caio::generateClips()
 }
 
 void
-Caio::update(Uint32 delta, int levelWidth)
+Caio::update(int levelWidth)
 {
     loop("[Caio] Updating.");
     if(isJumping())
@@ -77,19 +74,19 @@ Caio::update(Uint32 delta, int levelWidth)
     if(!isCrouching())
     {
         condition("[Caio] If isnt Crouching, Caio moves.");
-        m_position.x += round(((m_speed*delta)/1000.0)*m_dx);
+        m_position.x += round(((m_speed*getDelta())/1000.0)*m_dx);
     }
 
     if((m_position.x < 0) || ((m_position.x+m_position.w) >= levelWidth))
     {
         condition("[Caio] Scenario Limit Collision.");
-        m_position.x -= round(((m_speed*delta)/1000.0)*m_dx);
+        m_position.x -= round(((m_speed*getDelta())/1000.0)*m_dx);
     }
 
-    if((m_position.y+m_position.h) >= 450)
+    if((m_position.y+m_position.h) >= getPlatformH())
     {
         condition("[Caio] Platform Collision.");
-        m_position.y = 450 - m_position.h;
+        m_position.y = getPlatformH() - m_position.h;
         m_jumping = false;
         m_jumpspeed = 10;
     }

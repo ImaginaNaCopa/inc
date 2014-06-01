@@ -12,10 +12,10 @@ class Hud
 public:
 	Hud();
 	~Hud();
-	void init();
-	void draw();
-	void update();
-	void release();
+	void initHud();
+	void drawHud();
+	void updateHud();
+	void releaseHud();
 private:
 	Hp* hp;
 	Inventory* inventory;

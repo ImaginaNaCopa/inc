@@ -1,25 +1,38 @@
 #include "curupira.h"
-#include "systemlogger.h"
-#include <iostream>
 
 using namespace std;
 
-Curupira::Curupira(int x, int y, int dx, int max_x, int max_y)
-	: Enemy() 
+Curupira::Curupira(int earlyPosition) : Enemy() 
 {
-	step("[Curupira] Creating Curupira.");
-	m_speed = 50;
-	m_dx = dx;
-	m_frame = 0;
-
-	m_max_x = max_x;
-	m_max_y = max_y;
-
-	imagePath.clear();
+	step("[Curupira] Constructing.");
     imagePath.insert(0,"res/images/s_curupira.png");
-    generatePosition(x, y, 50, 100);
+	generatePosition(earlyPosition,350,50,100);
     generateClips();
-    step("[Curupira] Curupira created.");
+	generateBehavior();
+}
+
+Curupira::~Curupira()
+{
+	step("[Curupira] Destroying.");
+	release();
+}
+
+void
+Curupira::generateBehavior()
+{
+	step("[Curupira] Generating Behavior.");
+	m_hunter = isHunter();
+	m_flying = isTerrestrial();
+	m_typeDamage = doSimpleDamageType();
+	m_health = haveWeakHealth();
+	m_patrol = doNormalPatrol();
+	m_patrolRange[0] = (m_position.x - m_patrol);
+	m_patrolRange[1] = (m_position.x + m_patrol);
+	m_direction[0] = 1;
+	m_direction[1] = 0;
+	m_speed = haveNormalSpeed();
+	m_taxRotation = haveZombieRotation();
+	m_typeDetection = haveCommonDetection();
 }
 
 void 
@@ -39,40 +52,34 @@ Curupira::generateClips()
 }
 
 void 
-Curupira::update(Uint32 delta)
-{	
-	if (delta < 100)
+Curupira::update()
+{
+	loop("[Curupira] Updating.");
+	updatePositionX();
+	updateDirectionX();
+
+	if(isOnLeftDirection())
 	{
-		m_position.x += round(((m_speed*delta)/1000.0)*m_dx);
-
-		if (m_position.x >= m_max_x)
-			m_dx = -1;
-
-		if (m_dx == -1)
-		{
-			if (m_position.x % 8 == 0)
-				m_clipNumber = 0;
-			if (m_position.x % 8 == 1)
-				m_clipNumber = 1;
-			if (m_position.x % 8 == 2)
-				m_clipNumber = 2;
-			if (m_position.x % 8 == 3)
-				m_clipNumber = 3;
-		}
-
-		if (m_position.x <= m_max_y)
-			m_dx = 1;
-
-		if (m_dx == 1)
-		{
-			if (m_position.x % 8 == 4)
-				m_clipNumber = 4;
-			if (m_position.x % 8 == 5)
-				m_clipNumber = 5;
-			if (m_position.x % 8 == 6)
-				m_clipNumber = 6;
-			if (m_position.x % 8 == 7)
-				m_clipNumber = 7;	
-		}			
+		condition("[Curupira] Moving Backward.");
+		if (m_position.x % 8 == 0)
+			m_clipNumber = 0;
+		if (m_position.x % 8 == 1)
+			m_clipNumber = 1;
+		if (m_position.x % 8 == 2)
+			m_clipNumber = 2;
+		if (m_position.x % 8 == 3)
+			m_clipNumber = 3;
+	}
+	else if(isOnRightDirection())
+	{
+		condition("[Curupira] Moving Forward.");
+		if (m_position.x % 8 == 4)
+			m_clipNumber = 4;
+		if (m_position.x % 8 == 5)
+			m_clipNumber = 5;
+		if (m_position.x % 8 == 6)
+			m_clipNumber = 6;
+		if (m_position.x % 8 == 7)
+			m_clipNumber = 7;	
 	}
 }

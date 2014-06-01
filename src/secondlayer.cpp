@@ -1,13 +1,14 @@
 #include "secondlayer.h"
 
-SecondLayer::SecondLayer()
+SecondLayer::SecondLayer(const string& path)
 {
-	imagePath.insert(0,"res/images/s_02.png");
+	imagePath.assign(path);
 	generateClips();
 }
 
 SecondLayer::~SecondLayer()
 {
+	release();
 }
 
 void

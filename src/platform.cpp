@@ -2,10 +2,9 @@
 
 using namespace std;
 
-Platform::Platform() : ImageSprite()
+Platform::Platform(const string& path) : ImageSprite()
 {
-	imagePath.clear();
-	imagePath.assign("res/images/s_02.png");
+	imagePath.assign(path);
 	generatePosition(0,450,800,150);
 	generateClips();
 }

@@ -2,8 +2,10 @@
 #define CAIO_H
 
 #include "inputhandler.h"
-#include "collision.h"
 #include "imageeffect.h"
+#include "behavior.h"
+
+using namespace behavior;
 
 class Caio : public InputHandler, public ImageEffect
 {
@@ -14,7 +16,7 @@ public:
 	~Caio();
 
 	void generateClips();
-	void update(Uint32 delta, int levelWidth);
+	void update(int levelWidth);
 
 	bool overEnemy(SDL_Rect rect);
 
@@ -32,6 +34,7 @@ public:
 	int getSpeed();
 
 	void setSpeed(int speed);
+	
 private:
 	bool m_crouching;
 	bool m_jumping;

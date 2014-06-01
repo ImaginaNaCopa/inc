@@ -2,11 +2,10 @@
 #define STAGE_H
 
 #include "hud.h"
-#include "inputhandler.h"
 #include "scenario.h"
 #include "entity.h"
 
-class Stage
+class Stage : public Scenario, public Hud, public Entity
 {
 public:
 	Stage();
@@ -14,16 +13,8 @@ public:
 
 	void init();
 	void draw();
-	void update(Uint32 delta);
-
+	void update();
 	void release();
-
-	Entity* getEntity() const;
-
-private:
-	Hud* hud;
-	Entity* entity;
-	Scenario* scenario;
 };
 
 #endif // STAGE_H

@@ -6,7 +6,7 @@
 class Platform : public ImageSprite
 {
 public:
-	Platform();
+	Platform(const string& path);
 	~Platform();
 
 	void generateClips();

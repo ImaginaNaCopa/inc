@@ -9,12 +9,16 @@ class Scenario
 {
 public:
 	Scenario();
-	~Scenario();
-	void init();
-	void draw();
-	void update();
-	void release();
-private:
+	virtual ~Scenario();
+	void initScenario();
+	void drawScenario();
+	void updateScenario();
+	void releaseScenario();
+
+	virtual void defineBackground();
+	virtual void generatePlatform();
+	virtual void generateSecondLayer();
+protected:
 	Background* background;
 	Platform* platform;
 	SecondLayer* secondlayer;

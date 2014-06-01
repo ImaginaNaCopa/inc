@@ -6,41 +6,26 @@
 
 using namespace std;
 
-Scenario::Scenario()
-{
-	try
-	{
-		background = new Background();
-		secondlayer = new SecondLayer();
-		platform = new Platform();
-	}
-	catch (const string& e)
-	{
-		delete platform;
-		delete secondlayer;
-		delete background;
-
-		throw e;
-	}
-}
+Scenario::Scenario() {}
 
 Scenario::~Scenario()
 {
-	delete platform;
+	releaseScenario();
 	delete secondlayer;
+	delete platform;
 	delete background;
 }
 
 void 
-Scenario::init()
+Scenario::initScenario()
 {
 	background->init();
-	secondlayer->init();
 	platform->init();
+	secondlayer->init();
 }
 
 void 
-Scenario::draw()
+Scenario::drawScenario()
 {
 	background->draw();
 	secondlayer->drawEach();
@@ -49,15 +34,21 @@ Scenario::draw()
 }
 
 void 
-Scenario::update()
-{
-	// Nothing yet
-}
+Scenario::updateScenario() {}
 
 void 
-Scenario::release()
+Scenario::releaseScenario()
 {
-	platform->release();
 	secondlayer->release();
+	platform->release();
 	background->release();
 }
+
+void
+Scenario::defineBackground() {}
+
+void
+Scenario::generatePlatform() {}
+
+void
+Scenario::generateSecondLayer() {}

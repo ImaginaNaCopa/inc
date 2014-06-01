@@ -1,38 +1,37 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "caio.h"
-#include "aim.h"
-#include "enemy.h"
-#include "curupira.h"
-#include "camera.h"
-
 #include <vector>
+#include "aim.h"
+#include "caio.h"
+#include "camera.h"
+#include "enemy.h"
+#include "input.h"
+
 using namespace camera;
-using std::vector;
+using namespace input;
+using namespace std;
 
 class Entity
 {
 public:
 	Entity();
-	~Entity();
+	virtual ~Entity();
 
-	void init();
-	void draw();
-	void update(Uint32 delta);
-	void release();
-	void collision();
+	virtual void generateEnemies();
 
-	Caio* getCaio() const;
-	Aim* getAim() const;
-private:
+	void initEntity();
+	void drawEntity();
+	void updateEntity();
+	void releaseEntity();
+
+	virtual void controlEntityEvents();
+
+protected:
+	Aim* aim;
 	Caio* caio;
 	vector<Enemy *> enemies;
-	Aim* aim;
 	Enemy* enemy;
-
-	Uint32 now, last;
-	bool collided;
 };
 
 #endif // ENTITY_H

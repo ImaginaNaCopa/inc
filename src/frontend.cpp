@@ -1,13 +1,8 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <string>
 #include "frontend.h"
-#include "imageload.h"
-
-using namespace std;
 
 FrontEnd::FrontEnd() : ImageEffect()
 {
+	step("WOLOLO");
 	imagePath.insert(0,"res/images/s_frontend.png");
 	generateClips();
 }
@@ -32,41 +27,46 @@ FrontEnd::generateClips()
 void
 FrontEnd::drawEach()
 {
-	Uint32 now = SDL_GetTicks();
-    Uint32 last = 0;
-    int step = 0;
-    while(step!=4)
+    int steps = 0;
+    while(steps!=4)
     {
-	    now = SDL_GetTicks();
-	    if(step==0)
+    	setLastToNow();
+	    tick();
+	    switch(steps)
 	    {
-			m_clipNumber = 0;
-			generatePosition(225,165,350,270);
-			fadein();
-			step++;
-		}
-		else if((now > last + 2000) && (step==1))
-		{
-			fadeout();
-			m_clipNumber = 1;
-			generatePosition(200,100,400,400);
-			fadein();
-			step++;
-			last = now;
-		}
-		else if((now > last + 2000) && (step==2))
-		{
-			fadeout();
-			m_clipNumber = 2;
-			generatePosition(163,165,475,270);
-			fadein();
-			step++;
-			last = now;
-		}
-		else if((now > last + 2000) && (step==3))
-		{
-			fadeout();
-			step++;
-		}
+	    	case 0:
+		    	m_clipNumber = 0;
+				generatePosition(225,165,350,270);
+				fadein();
+				steps++;
+			break;
+			case 1:
+				setLastToNow();
+				waitMiliseconds(2000);
+				fadeout();
+				m_clipNumber = 1;
+				generatePosition(200,100,400,400);
+				fadein();
+				steps++;
+			break;
+			case 2:
+				setLastToNow();
+				waitMiliseconds(2000);
+				fadeout();
+				m_clipNumber = 2;
+				generatePosition(163,165,475,270);
+				fadein();
+				steps++;
+			break;
+			case 3:
+				setLastToNow();
+				waitMiliseconds(2000);
+				fadeout();
+				steps++;
+			break;
+
+			default:
+			break;
+	    }
 	}
 }

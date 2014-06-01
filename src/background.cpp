@@ -1,10 +1,10 @@
 #include "background.h"
 
-Background::Background() : ImageSprite()
+Background::Background(const string& path) : ImageSprite()
 {
 	step("[Background] Constructing.");
-	imagePath.insert(0,"res/images/s_02.png");
-	generatePosition(0,0,800,600);
+	imagePath.assign(path);
+	generatePosition(0,0,getWindowW(),getWindowH());
 	generateClips();
 }
 

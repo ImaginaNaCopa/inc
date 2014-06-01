@@ -38,7 +38,7 @@ Hud::~Hud()
 }
 
 void 
-Hud::init()
+Hud::initHud()
 {
 	hp->init();
 	inventory->init();
@@ -48,7 +48,7 @@ Hud::init()
 }
 
 void 
-Hud::draw()
+Hud::drawHud()
 {
 	hp->drawEach();
 	inventory->drawEach();
@@ -59,13 +59,13 @@ Hud::draw()
 }
 
 void 
-Hud::update()
+Hud::updateHud()
 {
 	// Nothing yet
 }
 
 void 
-Hud::release()
+Hud::releaseHud()
 {
 	hp->release();
 	inventory->release();

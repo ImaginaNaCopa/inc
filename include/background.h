@@ -6,7 +6,7 @@
 class Background : public ImageSprite
 {
 public:
-	Background();
+	Background(const string& path);
 	~Background();
 
 	void generateClips();
