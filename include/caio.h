@@ -3,9 +3,9 @@
 
 #include "inputhandler.h"
 #include "imageeffect.h"
-#include "behavior.h"
+#include "behaviour.h"
 
-using namespace behavior;
+using namespace behaviour;
 
 class Caio : public InputHandler, public ImageEffect
 {

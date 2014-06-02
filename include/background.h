@@ -8,8 +8,6 @@ class Background : public ImageSprite
 public:
 	Background(const string& path);
 	~Background();
-
-	void generateClips();
 };
 
 #endif // BACKGROUND_H

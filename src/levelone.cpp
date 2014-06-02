@@ -2,7 +2,6 @@
 
 LevelOne::LevelOne() : Stage()
 {
-	m_over = false;
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
@@ -15,6 +14,7 @@ void
 LevelOne::defineBackground()
 {
 	background = new Background("res/images/s_02.png");
+	background->addClip(0,0,2,2);
 }
 
 void
@@ -65,16 +65,4 @@ LevelOne::controlEntityEvents()
 		delete *dead;
 		enemies.erase(dead);
 	}
-}
-
-bool
-LevelOne::isOver()
-{
-	return m_over;
-}
-
-void
-LevelOne::setOver(bool overState)
-{
-	m_over = overState;
 }

@@ -7,6 +7,7 @@ namespace timer
 	int normalFPS = 40;
 	int timelineEventNumber = 0;
 	int idleTime = 0;
+	bool over = false;
 
 	void
 	tick()
@@ -38,6 +39,7 @@ namespace timer
 	setTimelineEvent(int eventNumber)
 	{
 		timelineEventNumber = eventNumber;
+		over = false;
 	}
 
 	int
@@ -52,9 +54,21 @@ namespace timer
 		idleTime = newIdleTime;
 	}
 
+	bool
+	isOver()
+	{
+		return over;
+	}
+
+	void
+	setOver(bool overState)
+	{
+		over = overState;
+	}
+
 	void
 	setLastToNow()
 	{
 		last = now;
-	}
+	}	
 }

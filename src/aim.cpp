@@ -22,7 +22,6 @@ Aim::generateClips()
     addClip(100,0,87,90);
     addClip(200,0,87,90);
     addClip(300,0,87,90);
-    image("[Aim] Finished Generating Sprite Clips.");
 }
 
 void 

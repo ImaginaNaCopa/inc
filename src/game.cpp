@@ -63,10 +63,9 @@ Game::run()
             switch(getTimelineEvent())
             {
                 case 0: // FRONT END
-                    if(!m_frontEnd->isOver())
+                    if(!isOver())
                     {
                         m_frontEnd->update();
-                        m_frontEnd->draw();
                     }
                     else
                         setTimelineEvent(1);
@@ -80,7 +79,7 @@ Game::run()
                 break;
 
                 case 3: // LEVEL ONE
-                    if(!levelOne->isOver())
+                    if(!isOver())
                     {
                         levelOne->update();
                         levelOne->draw();                        

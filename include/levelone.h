@@ -16,12 +16,6 @@ public:
 	void defineBackground();
 	void generatePlatform();
 	void generateSecondLayer();
-
-	bool isOver();
-	void setOver(bool overState);
-
-private:
-	bool m_over;
 };
 
 #endif // LEVELONE_H

@@ -1,6 +1,7 @@
 #ifndef FRONTEND_H
 #define FRONTEND_H
 
+#include "background.h"
 #include "imageeffect.h"
 
 class FrontEnd : public ImageEffect
@@ -12,11 +13,8 @@ public:
 	void generateClips();
 	void update();
 
-	bool isOver();
-	void setOver(bool overState);
-
 private:
-	bool m_over;
+	Background* background;
 };
 
 #endif // FRONTEND_H

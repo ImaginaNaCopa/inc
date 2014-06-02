@@ -1,6 +1,6 @@
-#include "behavior.h"
+#include "behaviour.h"
 
-namespace behavior
+namespace behaviour
 {
 	int normalSpeed = 110;
 	int slowSpeed = round(normalSpeed/2);

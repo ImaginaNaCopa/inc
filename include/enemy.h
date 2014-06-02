@@ -2,9 +2,9 @@
 #define ENEMY_H
 
 #include "imagesprite.h"
-#include "behavior.h"
+#include "behaviour.h"
 
-using namespace behavior;
+using namespace behaviour;
 
 class Enemy : public ImageSprite
 {

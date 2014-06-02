@@ -16,6 +16,9 @@ namespace timer
 
 	int getIdleTime();
 	void setIdleTime(int newIdleTime);
+
+	bool isOver();
+	void setOver(bool overState);
 	
 	void setLastToNow();
 }

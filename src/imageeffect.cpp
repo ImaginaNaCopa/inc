@@ -42,7 +42,7 @@ ImageEffect::fade()
             m_fadingin = true;
         }
 
-        if(getIdleTime() == 80)
+        if(getIdleTime() == 60)
         {
             setIdleTime(0);
             m_fading = true;
@@ -58,7 +58,7 @@ ImageEffect::fadeinTick()
     {
         SDL_SetTextureBlendMode(m_texture, SDL_BLENDMODE_BLEND);
         SDL_SetTextureAlphaMod(m_texture, m_alpha);
-        m_alpha += 3;
+        m_alpha += 15;
     }
     else
         m_alpha = SDL_ALPHA_OPAQUE;
@@ -71,7 +71,7 @@ ImageEffect::fadeoutTick()
     {
         SDL_SetTextureBlendMode(m_texture, SDL_BLENDMODE_BLEND);
         SDL_SetTextureAlphaMod(m_texture, m_alpha);
-        m_alpha -= 3;
+        m_alpha -= 15;
     }
     else
         m_alpha = SDL_ALPHA_TRANSPARENT;

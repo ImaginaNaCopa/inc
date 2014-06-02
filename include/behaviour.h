@@ -1,9 +1,9 @@
-#ifndef BEHAVIOR_H
-#define BEHAVIOR_H
+#ifndef BEHAVIOUR_H
+#define BEHAVIOUR_H
 
 #include <cmath>
 
-namespace behavior
+namespace behaviour
 {
 	int haveSlowSpeed();
 	int haveNormalSpeed();
@@ -37,4 +37,4 @@ namespace behavior
 	bool isPassive();
 }
 
-#endif // BEHAVIOR_H
+#endif // BEHAVIOUR_H
