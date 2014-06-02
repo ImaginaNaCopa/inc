@@ -3,7 +3,7 @@
 Aim::Aim() : ImageSprite()
 {
     step("[Aim] Constructing.");
-    imagePath.insert(0,"res/images/s_hud.png");
+    imagePath.assign("res/images/s_hud.png");
     generatePosition(round(getWindowW()/2),round(getWindowH()/2),87,90);
     generateClips();
     SDL_ShowCursor(0);

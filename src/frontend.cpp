@@ -2,8 +2,12 @@
 
 FrontEnd::FrontEnd() : ImageEffect()
 {
-	step("WOLOLO");
-	imagePath.insert(0,"res/images/s_frontend.png");
+	m_alpha = 0;
+	m_over = false;
+	m_fading = true;
+	m_fadingin = true;
+	imagePath.assign("res/images/s_frontend.png");
+	generatePosition(225,165,350,270);	
 	generateClips();
 }
 
@@ -25,44 +29,41 @@ FrontEnd::generateClips()
 }
 
 void
-FrontEnd::drawEach()
+FrontEnd::update()
 {
-    int steps = 0;
-    while(steps!=4)
-    {
-	    tick();
-	    switch(steps)
-	    {
-	    	case 0:
-		    	m_clipNumber = 0;
-				generatePosition(225,165,350,270);
-				fadein();
-				steps++;
-			break;
+	int before = m_clipNumber;
+	fade();
+	if(before != m_clipNumber)
+	{
+		switch(m_clipNumber)
+		{
 			case 1:
-				waitMiliseconds(2000);
-				fadeout();
-				m_clipNumber = 1;
 				generatePosition(200,100,400,400);
-				fadein();
-				steps++;
 			break;
 			case 2:
-				waitMiliseconds(2000);
-				fadeout();
-				m_clipNumber = 2;
 				generatePosition(163,165,475,270);
-				fadein();
-				steps++;
 			break;
 			case 3:
-				waitMiliseconds(2000);
-				fadeout();
-				steps++;
+				m_clipNumber = 0;
+				setOver(true);
 			break;
 
 			default:
-			break;
-	    }
+				m_clipNumber = 0;
+				generatePosition(225,165,350,270);
+			break;			
+		}
 	}
+}
+
+bool
+FrontEnd::isOver()
+{
+	return m_over;
+}
+
+void
+FrontEnd::setOver(bool overState)
+{
+	m_over = overState;
 }

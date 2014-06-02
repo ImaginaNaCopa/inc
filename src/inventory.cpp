@@ -10,7 +10,7 @@ using namespace std;
 Inventory::Inventory() : ImageSprite()
 {
     imagePath.clear();
-    imagePath.insert(0,"res/images/s_hud.png");
+    imagePath.assign("res/images/s_hud.png");
     generatePosition(0,0,40,40);
     generateClips();
     isDrawn = false;

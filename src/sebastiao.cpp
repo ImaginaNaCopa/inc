@@ -10,7 +10,7 @@ using namespace std;
 Sebastiao::Sebastiao() : ImageSprite()
 {
 	imagePath.clear();
-	imagePath.insert(0,"res/images/s_sebastiao.png");
+	imagePath.assign("res/images/s_sebastiao.png");
 	generatePosition(550,10,200,90);
 	generateClips();
 	isDrawn = false;

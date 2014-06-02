@@ -5,26 +5,21 @@ namespace timer
 	Uint32 now = 0;
 	Uint32 last = 0;
 	int normalFPS = 40;
-	bool limitFPS = false;
-
-	bool
-	beyondLimitsOfFPS()
-	{
-		if(now > (last + (1000/normalFPS)))
-			limitFPS = true;
-		else
-			limitFPS = false;
-		return limitFPS;
-	}
+	int timelineEventNumber = 0;
+	int idleTime = 0;
 
 	void
-	waitMiliseconds(int waitingTime)
+	tick()
 	{
-		while(now < (last + waitingTime))
-		{
-			tick();
-		}
-		setLastToNow();
+		now = SDL_GetTicks();
+	}
+
+	bool
+	isBeyondLimitsOfFPS()
+	{
+		if(now > (last + (1000/normalFPS)))
+			return true;
+		return false;
 	}
 
 	Uint32
@@ -33,15 +28,33 @@ namespace timer
 		return (now - last);
 	}
 
+	int
+	getTimelineEvent()
+	{
+		return timelineEventNumber;
+	}
+
+	void
+	setTimelineEvent(int eventNumber)
+	{
+		timelineEventNumber = eventNumber;
+	}
+
+	int
+	getIdleTime()
+	{
+		return idleTime;
+	}
+
+	void
+	setIdleTime(int newIdleTime)
+	{
+		idleTime = newIdleTime;
+	}
+
 	void
 	setLastToNow()
 	{
 		last = now;
-	}
-
-	void
-	tick()
-	{
-		now = SDL_GetTicks();
 	}
 }

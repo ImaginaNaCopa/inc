@@ -9,10 +9,14 @@ public:
 	ImageEffect();
 	~ImageEffect();
 
-	void fadein();
-	void fadeout();
+	void fade();
+	void fadeinTick();
+	void fadeoutTick();
+	
 protected:
 	Uint8 m_alpha;
+	bool m_fading;
+	bool m_fadingin;
 };
 
 #endif // IMAGEEFFECT_H

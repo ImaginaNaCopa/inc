@@ -5,7 +5,7 @@ using namespace std;
 Curupira::Curupira(int earlyPosition) : Enemy() 
 {
 	step("[Curupira] Constructing.");
-    imagePath.insert(0,"res/images/s_curupira.png");
+    imagePath.assign("res/images/s_curupira.png");
 	generatePosition(earlyPosition,350,50,100);
     generateClips();
 	generateBehavior();

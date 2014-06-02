@@ -4,7 +4,6 @@
 #include "frontend.h"
 #include "imageload.h"
 #include "input.h"
-#include "resource.h"
 #include "levelone.h"
 #include "system.h"
 #include "window.h"
@@ -30,11 +29,9 @@ private:
     FrontEnd* m_frontEnd;
     ImageLoad* imageLoad;
 
-    
     System *m_system;
     Window *m_window;
 
-    struct ISM * m_stack;
     bool exitstate[2];
 
     bool m_quit;

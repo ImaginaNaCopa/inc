@@ -10,36 +10,69 @@ ImageEffect::~ImageEffect()
 
 }
 
+
 void
-ImageEffect::fadein()
+ImageEffect::fade()
 {
-    m_alpha = SDL_ALPHA_TRANSPARENT;
-    while(m_alpha<SDL_ALPHA_OPAQUE)
+    if(m_fading)
     {
-        waitMiliseconds(10);
-        SDL_SetTextureBlendMode( m_texture, SDL_BLENDMODE_BLEND );
-        SDL_SetTextureAlphaMod(m_texture, m_alpha);
-        m_alpha += 5;
-        if(m_alpha>=SDL_ALPHA_OPAQUE)
-            m_alpha = SDL_ALPHA_OPAQUE;
-        draw();
-        render();
+        if(m_fadingin)
+        {
+            if(m_alpha!=SDL_ALPHA_OPAQUE)
+                fadeinTick();
+            else
+                m_fading = false;
+        }
+        else
+        {
+            if(m_alpha!=SDL_ALPHA_TRANSPARENT)
+                fadeoutTick();
+            else
+                m_fading = false;
+        }
     }
+    else
+    {
+        if(m_alpha==SDL_ALPHA_OPAQUE)
+            setIdleTime(getIdleTime()+1);
+        else if((m_alpha==SDL_ALPHA_TRANSPARENT) && (m_clipNumber!=3))
+        {
+            m_clipNumber++;
+            m_fading = true;
+            m_fadingin = true;
+        }
+
+        if(getIdleTime() == 80)
+        {
+            setIdleTime(0);
+            m_fading = true;
+            m_fadingin = false;
+        }       
+    }   
 }
 
 void
-ImageEffect::fadeout()
+ImageEffect::fadeinTick()
 {
-    m_alpha = SDL_ALPHA_OPAQUE;
-    while(m_alpha>SDL_ALPHA_TRANSPARENT)
+    if(m_alpha<SDL_ALPHA_OPAQUE)
     {
-        waitMiliseconds(10);
-        SDL_SetTextureBlendMode( m_texture, SDL_BLENDMODE_BLEND );
+        SDL_SetTextureBlendMode(m_texture, SDL_BLENDMODE_BLEND);
         SDL_SetTextureAlphaMod(m_texture, m_alpha);
-        m_alpha -= 5;
-        if(m_alpha<=SDL_ALPHA_TRANSPARENT)
-            m_alpha = SDL_ALPHA_TRANSPARENT;
-        draw();
-        render();
+        m_alpha += 3;
     }
+    else
+        m_alpha = SDL_ALPHA_OPAQUE;
+}
+
+void
+ImageEffect::fadeoutTick()
+{
+    if(m_alpha>SDL_ALPHA_TRANSPARENT)
+    {
+        SDL_SetTextureBlendMode(m_texture, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureAlphaMod(m_texture, m_alpha);
+        m_alpha -= 3;
+    }
+    else
+        m_alpha = SDL_ALPHA_TRANSPARENT;
 }

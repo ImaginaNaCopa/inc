@@ -3,7 +3,7 @@
 Caio::Caio() : ImageEffect()
 {
     step("[Caio] Constructing.");
-    imagePath.insert(0,"res/images/s_caio.png");
+    imagePath.assign("res/images/s_caio.png");
     generatePosition(round(getWindowW()/16),getPlatformH(),50,100);
     generateClips();
     m_crouching = false;
@@ -17,7 +17,7 @@ Caio::Caio() : ImageEffect()
 Caio::Caio(int initialPosition) : ImageEffect()
 {
     step("[Caio] Constructing.");
-    imagePath.insert(0,"res/images/s_caio.png");
+    imagePath.assign("res/images/s_caio.png");
     generatePosition(initialPosition,getPlatformH(),50,100);
     generateClips();
     m_crouching = false;

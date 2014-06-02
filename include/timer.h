@@ -5,10 +5,18 @@
 
 namespace timer
 {
-	bool beyondLimitsOfFPS();
 	void tick();
-	void waitMiliseconds(int waitingTime);
+
+	bool isBeyondLimitsOfFPS();
+
 	Uint32 getDelta();
+	
+	int getTimelineEvent();
+	void setTimelineEvent(int eventNumber);
+
+	int getIdleTime();
+	void setIdleTime(int newIdleTime);
+	
 	void setLastToNow();
 }
 

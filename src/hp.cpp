@@ -10,7 +10,7 @@ using namespace std;
 Hp::Hp() : ImageSprite()
 {
 	imagePath.clear();
-	imagePath.insert(0,"res/images/s_hud.png");
+	imagePath.assign("res/images/s_hud.png");
 	generatePosition(0,0,50,15);
 	generateClips();
 	isDrawn = false;

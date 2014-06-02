@@ -3,7 +3,7 @@
 Dialogue::Dialogue() : ImageSprite()
 {
 	step("[Dialogue] Constructing.");
-	imagePath.insert(0,"res/images/s_hud.png");
+	imagePath.assign("res/images/s_hud.png");
 	generatePosition(280,10,260,90);
 	generateClips();
 }

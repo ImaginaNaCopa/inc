@@ -4,22 +4,22 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "systemlogger.h"
+#include "configuration.h"
 
+using namespace configuration;
 using namespace systemLogger;
 
 class Window {
 	public:
-        Window(unsigned int w = 800, unsigned int h = 600);
+        Window();
         ~Window();
 
         SDL_Renderer * renderer() const;
-        int w() const;
-        int h() const;
         SDL_Surface * getSurface() const;
 
     private:
-        unsigned int m_w;
-        unsigned int m_h;
+        unsigned int m_width;
+        unsigned int m_height;
         int imageFlags;
 
         SDL_Window *m_window;

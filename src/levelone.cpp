@@ -2,6 +2,7 @@
 
 LevelOne::LevelOne() : Stage()
 {
+	m_over = false;
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
@@ -64,4 +65,16 @@ LevelOne::controlEntityEvents()
 		delete *dead;
 		enemies.erase(dead);
 	}
+}
+
+bool
+LevelOne::isOver()
+{
+	return m_over;
+}
+
+void
+LevelOne::setOver(bool overState)
+{
+	m_over = overState;
 }

@@ -1,14 +1,17 @@
 #include "window.h"
 
-Window::Window(unsigned int width, unsigned int height) : m_w(width), m_h(height)
+Window::Window()
 {
     step("[Window] Trying to Construct.");
+    m_width = getWindowW();
+    m_height = getWindowH();
+
     // Setando filtro de textura linear
     SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" );
 
     // Criando a janela
     m_window = SDL_CreateWindow( "InC. - Imagina na Copa", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-        m_w, m_h, SDL_WINDOW_SHOWN );
+        m_width, m_height, SDL_WINDOW_SHOWN );
 
     if ( m_window == NULL )
         errorSDL("Couldn't Create Window.", SDL_GetError());
@@ -57,18 +60,4 @@ Window::getSurface() const
 {
     step("[Window] Getting the Surface.");
     return m_surface;
-}
-
-int
-Window::w() const
-{
-    step("[Window] Getting the Width.");
-    return m_w;
-}
-
-int
-Window::h() const
-{
-    step("[Window] Getting the Height.");
-    return m_h;
 }

@@ -10,7 +10,13 @@ public:
 	~FrontEnd();
 
 	void generateClips();
-	void drawEach();
+	void update();
+
+	bool isOver();
+	void setOver(bool overState);
+
+private:
+	bool m_over;
 };
 
 #endif // FRONTEND_H

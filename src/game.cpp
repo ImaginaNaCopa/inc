@@ -4,45 +4,28 @@ using namespace std;
 
 Game::Game()
 {
-    try 
-    {
-        step("[Game] Trying to Construct.");
+    step("[Game] Trying to Construct.");
 
-        m_system = new System();
-        m_window = new Window();
-        levelOne = new LevelOne();
+    m_system = new System();
+    m_window = new Window();
+    imageLoad = ImageLoad::getInstance();
+    imageLoad->setRenderer(m_window->renderer());
 
-        imageLoad = ImageLoad::getInstance();
-        imageLoad->setRenderer(m_window->renderer());
+    m_frontEnd = new FrontEnd();
+    levelOne = new LevelOne();
 
-        m_frontEnd = new FrontEnd();
+    exitstate[0] = false;
+    exitstate[1] = false;
 
-        m_stack = NULL;
-        exitstate[0] = false;
-        exitstate[1] = false;
-
-        addHandler(this);
-        //m_input->addHandler(m_fade);
-    } 
-    catch (const string& e)
-    {
-        error(e);
-        step("[Game] Destroying Manually.");
-
-        free(m_stack);
-        delete m_frontEnd;
-        delete levelOne;
-        delete m_window;
-        delete m_system;
-    }
+    addHandler(this);
+    //m_input->addHandler(m_fade);
 }
 
 Game::~Game()
 {
     step("[Game] Destroying.");
-    free(m_stack);
-    delete m_frontEnd;
     delete levelOne;
+    delete m_frontEnd;
     delete m_window;
     delete m_system;
 }
@@ -71,18 +54,44 @@ void
 Game::run()
 {
     step("[Game] Using Run Method.");
-    m_frontEnd->drawEach();
-
     while ( !m_quit )
     {
         tick();
         eventLoop();
-        if(beyondLimitsOfFPS())
+        if(isBeyondLimitsOfFPS())
         {
-            levelOne->update();
-            loop("[Game] Finished Updates");
-            levelOne->draw();
-            loop("[Game] Finished Draw");
+            switch(getTimelineEvent())
+            {
+                case 0: // FRONT END
+                    if(!m_frontEnd->isOver())
+                    {
+                        m_frontEnd->update();
+                        m_frontEnd->draw();
+                    }
+                    else
+                        setTimelineEvent(1);
+                break;
+                case 1: // MAIN MENU
+                    setTimelineEvent(2);
+                break;
+
+                case 2: // PROGRESSION MENU
+                    setTimelineEvent(3);
+                break;
+
+                case 3: // LEVEL ONE
+                    if(!levelOne->isOver())
+                    {
+                        levelOne->update();
+                        levelOne->draw();                        
+                    }
+                    else
+                        m_quit = true;
+                break;
+
+                default:
+                break;                
+            }
             imageLoad->render();
             setLastToNow();
         }
