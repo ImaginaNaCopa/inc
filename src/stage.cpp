@@ -7,7 +7,6 @@ Stage::Stage() : Scenario(), Hud(), Entity()
 
 Stage::~Stage()
 {
-	release();
 }
 
 void 
@@ -31,12 +30,4 @@ Stage::update()
 {
 	updateEntity();
 	controlEntityEvents();
-}
-
-void 
-Stage::release()
-{
-    releaseScenario();
-	releaseHud();
-    releaseEntity();
 }

@@ -32,17 +32,6 @@ Aim::update()
     m_clipNumber = 2;
 }
 
-void
-Aim::overPlayer(SDL_Rect rect)
-{
-    loop("[Aim] Searching if Targeted an Entity (Over Player).");   
-    if (ifCollided(0,getKernel(),rect))
-    {
-        condition("[Aim] Targeted an Entity (Over Player).");
-        m_clipNumber = 0;
-    }
-}
-
 bool 
 Aim::overEnemy(SDL_Rect rect)
 {
@@ -57,7 +46,16 @@ Aim::overEnemy(SDL_Rect rect)
     return false;
 }
 
-
+void
+Aim::overPlayer(SDL_Rect rect)
+{
+    loop("[Aim] Searching if Targeted an Entity (Over Player).");   
+    if (ifCollided(0,getKernel(),rect))
+    {
+        condition("[Aim] Targeted an Entity (Over Player).");
+        m_clipNumber = 0;
+    }
+}
 
 bool 
 Aim::handle(SDL_Event& event)

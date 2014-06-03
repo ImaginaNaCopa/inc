@@ -19,5 +19,4 @@ Dialogue::generateClips()
 {
 	step("[Dialogue] Generating Sprite Clips.");
 	addClip(42,17,4,4);
-	step("[Dialogue] Finished Generating Sprite Clips.");
 }

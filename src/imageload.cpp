@@ -1,15 +1,8 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <iostream>
-#include <string>
 #include "imageload.h"
-#include "systemlogger.h"
-
-using namespace std;
 
 ImageLoad::ImageLoad()
 {
-    step("[Image Load] Contructing.");
+    step("[Image Load] Constructing.");
 	m_renderer = NULL;
 }
 
@@ -29,13 +22,6 @@ ImageLoad::getInstance()
 }
 
 void 
-ImageLoad::releaseInstance()
-{
-    step("[Image Load] Releasing Instance.");
-	delete instance;
-}
-
-void 
 ImageLoad::setRenderer(SDL_Renderer* renderer)
 {
     step("[Image Load] Setting Renderer.");
@@ -46,7 +32,7 @@ ImageLoad::setRenderer(SDL_Renderer* renderer)
 SDL_Texture* 
 ImageLoad::loadImg(const string& path)
 {
-    step("[Image Load] Loading Image.");
+    loop("[Image Load] Loading Image.");
 
 	if (m_renderer == NULL)
 	{
@@ -57,9 +43,7 @@ ImageLoad::loadImg(const string& path)
 
     if( surface == NULL )
     {
-        step("[Image Load] Null Surface.");
-        cout << SDL_GetError() << endl;
-        throw "Impossível carregar a imagem!";
+        errorSDL("[Image Load] Null Surface", SDL_GetError());
     }
 
     SDL_SetColorKey (surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFA, 0xCF, 0xAC));
@@ -68,9 +52,7 @@ ImageLoad::loadImg(const string& path)
 
     if( texture == NULL )
     {
-        step("[Image Load] Null Texture.");
-    	SDL_FreeSurface(surface);
-    	throw "Impossível criar a textura!";
+        errorSDL("[Image Load] Null Texture", SDL_GetError());
     }
 
     return texture;
@@ -79,6 +61,7 @@ ImageLoad::loadImg(const string& path)
 void 
 ImageLoad::release(SDL_Texture* texture)
 {
+    loop("[Image Load] Releasing a Texture.");
 	if (texture)
 	{
 		SDL_DestroyTexture(texture);
@@ -88,12 +71,14 @@ ImageLoad::release(SDL_Texture* texture)
 void
 ImageLoad::update(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 {
+    loop("[Image Load] Updating the Image.");
     SDL_RenderCopy( m_renderer, texture, srcRect, destRect);
 }
 
 void
 ImageLoad::render()
 {
+    loop("[Image Load] Rendering the Image.");
     SDL_RenderPresent( m_renderer );
     SDL_RenderClear ( m_renderer );
 }

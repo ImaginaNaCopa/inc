@@ -2,7 +2,7 @@
 
 namespace camera
 {
-	SDL_Rect m_range = {0,0,800,600};
+	SDL_Rect m_range = {0,0,getWindowW(),getWindowH()};
 
 	void
 	updateCamera(SDL_Rect target, int levelWidth)
@@ -13,6 +13,14 @@ namespace camera
 			m_range.x = 0;
 		else if(m_range.x>levelWidth-m_range.w)
 			m_range.x = levelWidth - m_range.w;
+	}
+
+	void
+	updateCameraRange()
+	{
+		step("[Camera] Updating Range According to Window Dimensions.");
+		m_range.w = getWindowW();
+		m_range.h = getWindowH();
 	}
 
 	SDL_Rect

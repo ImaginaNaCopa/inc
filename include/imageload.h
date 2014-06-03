@@ -1,12 +1,10 @@
 #ifndef IMAGELOAD_H
 #define IMAGELOAD_H
 
-#include <SDL2/SDL.h>
-#include <string>
+#include <SDL2/SDL_image.h>
 #include "systemlogger.h"
 
 using namespace systemLogger;
-using namespace std;
 
 class ImageLoad
 {

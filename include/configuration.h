@@ -2,6 +2,9 @@
 #define CONFIGURATION_H
 
 #include <cmath>
+#include "systemlogger.h"
+
+using namespace systemLogger;
 
 namespace configuration
 {
@@ -9,8 +12,8 @@ namespace configuration
 	int getWindowH();
 	void setNewWindowDimension(int newMultiplyFactor);
 
-	int getNormalLevelW();
-	void setNormalLevelW(int newMultiplyFactorToNormalLevel);
+	int getLevelW();
+	void setLevelW(int newMultiplyFactorToLevel);
 
 	int getPlatformH();
 }

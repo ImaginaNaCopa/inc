@@ -15,13 +15,12 @@ public:
 	void initHud();
 	void drawHud();
 	void updateHud();
-	void releaseHud();
 private:
+	Dialogue* dialogue;
+	GameMenu* gameMenu;
 	Hp* hp;
 	Inventory* inventory;
-	Dialogue* dialogue;
 	Sebastiao* sebastiao;
-	GameMenu* gameMenu;
 };
 
 #endif // HUD_H

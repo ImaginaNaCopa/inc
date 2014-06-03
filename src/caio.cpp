@@ -57,11 +57,10 @@ Caio::generateClips()
     addClip(m_position.w,m_position.h*3,m_position.w,m_position.h);
     addClip(m_position.w*2,m_position.h*3,m_position.w,m_position.h);
     addClip(m_position.w*3,m_position.h*3,m_position.w,m_position.h);
-    step("[Caio] Finished Generating Sprite Clips.");
 }
 
 void
-Caio::update(int levelWidth)
+Caio::update()
 {
     loop("[Caio] Updating.");
     if(isJumping())
@@ -77,7 +76,7 @@ Caio::update(int levelWidth)
         m_position.x += round(((m_speed*getDelta())/1000.0)*m_dx);
     }
 
-    if((m_position.x < 0) || ((m_position.x+m_position.w) >= levelWidth))
+    if((m_position.x < 0) || ((m_position.x+m_position.w) >= getLevelW()))
     {
         condition("[Caio] Scenario Limit Collision.");
         m_position.x -= round(((m_speed*getDelta())/1000.0)*m_dx);

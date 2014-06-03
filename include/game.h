@@ -6,8 +6,8 @@
 #include "input.h"
 #include "levelone.h"
 #include "system.h"
-#include "window.h"
 #include "timer.h"
+#include "window.h"
 
 using namespace input;
 using namespace timer;
@@ -25,16 +25,16 @@ public:
     bool handle(SDL_Event &event);
 
 private:
-    LevelOne* levelOne;
-    FrontEnd* m_frontEnd;
-    ImageLoad* imageLoad;
+    bool m_exitstate[2];
+    bool m_quit;
 
+    FrontEnd* m_frontEnd;
+
+    LevelOne* m_levelOne;
+
+    ImageLoad* imageLoad;
     System *m_system;
     Window *m_window;
-
-    bool exitstate[2];
-
-    bool m_quit;
 };
 
 #endif // GAME_H

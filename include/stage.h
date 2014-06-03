@@ -14,7 +14,6 @@ public:
 	void init();
 	void draw();
 	void update();
-	void release();
 };
 
 #endif // STAGE_H

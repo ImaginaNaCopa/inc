@@ -1,14 +1,12 @@
 #include "curupira.h"
 
-using namespace std;
-
 Curupira::Curupira(int earlyPosition) : Enemy() 
 {
 	step("[Curupira] Constructing.");
     imagePath.assign("res/images/s_curupira.png");
-	generatePosition(earlyPosition,350,50,100);
+	generatePosition(earlyPosition,(getPlatformH()-100),50,100);
     generateClips();
-	generateBehavior();
+	generateBehaviour();
 }
 
 Curupira::~Curupira()
@@ -18,9 +16,9 @@ Curupira::~Curupira()
 }
 
 void
-Curupira::generateBehavior()
+Curupira::generateBehaviour()
 {
-	step("[Curupira] Generating Behavior.");
+	step("[Curupira] Generating Behaviour.");
 	m_hunter = isHunter();
 	m_flying = isTerrestrial();
 	m_typeDamage = doSimpleDamageType();
@@ -48,7 +46,6 @@ Curupira::generateClips()
     addClip(m_position.w,m_position.h,m_position.w,m_position.h);
     addClip(m_position.w*2,m_position.h,m_position.w,m_position.h);
     addClip(m_position.w*3,m_position.h,m_position.w,m_position.h);
-    step("[Curupira] Finished Generating Sprite Clips.");
 }
 
 void 

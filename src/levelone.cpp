@@ -43,6 +43,7 @@ LevelOne::generateEnemies()
 void
 LevelOne::controlEntityEvents()
 {
+
 	if (enemies.size() < 1)
 	{
 		enemy = new Curupira((rand() % 200) + 300);
@@ -54,6 +55,7 @@ LevelOne::controlEntityEvents()
 
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 	{
+		caio->overEnemy((*it)->m_position);
 		if (aim->overEnemy((*it)->m_position))
 		{
 			dead = it;

@@ -1,8 +1,8 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "imagesprite.h"
 #include "behaviour.h"
+#include "imagesprite.h"
 
 using namespace behaviour;
 

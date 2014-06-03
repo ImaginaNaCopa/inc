@@ -7,31 +7,30 @@
 #include "camera.h"
 #include "enemy.h"
 #include "input.h"
+#include "systemlogger.h"
 
 using namespace camera;
 using namespace input;
-using namespace std;
+using namespace systemLogger;
 
 class Entity
 {
 public:
 	Entity();
 	virtual ~Entity();
-
+	
+	virtual void controlEntityEvents();
 	virtual void generateEnemies();
 
 	void initEntity();
 	void drawEntity();
 	void updateEntity();
-	void releaseEntity();
-
-	virtual void controlEntityEvents();
 
 protected:
 	Aim* aim;
 	Caio* caio;
-	vector<Enemy *> enemies;
 	Enemy* enemy;
+	vector<Enemy *> enemies;
 };
 
 #endif // ENTITY_H

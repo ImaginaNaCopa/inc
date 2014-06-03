@@ -10,7 +10,6 @@ Entity::Entity()
 Entity::~Entity()
 {
 	step("[Entity] Destroying.");
-	releaseEntity();
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		delete *it;
 	delete caio;
@@ -20,12 +19,13 @@ Entity::~Entity()
 void 
 Entity::initEntity()
 {
-	step("[Entity] Uploading Sprite Sheets and Initiating Input Handle Environments.");
+	step("[Entity] Uploading Sprite Sheets");
 	aim->init();
 	caio->init();
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->init();
-
+	
+	step("[Entity] Initiating Input Handle Environments.");
 	addHandler(caio);
     addHandler(aim);
 }
@@ -46,20 +46,10 @@ Entity::updateEntity()
 	loop("[Entity] Updating Entities.");
 	aim->update();
 	aim->overPlayer(caio->getPosition());
-	caio->update(getNormalLevelW());
-	updateCamera(caio->getPosition(), getNormalLevelW());
+	caio->update();
+	updateCamera(caio->getPosition(), getLevelW());
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->update();
-}
-
-void 
-Entity::releaseEntity()
-{
-	loop("[Entity] Releasing Entities.");
-	for (auto it = enemies.begin(); it != enemies.end(); it++)
-		(*it)->release();
-	caio->release();
-	aim->release();
 }
 
 void

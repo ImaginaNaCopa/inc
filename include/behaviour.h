@@ -2,6 +2,9 @@
 #define BEHAVIOUR_H
 
 #include <cmath>
+#include "systemlogger.h"
+
+using namespace systemLogger;
 
 namespace behaviour
 {

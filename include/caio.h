@@ -1,9 +1,9 @@
 #ifndef CAIO_H
 #define CAIO_H
 
+#include "behaviour.h"
 #include "inputhandler.h"
 #include "imageeffect.h"
-#include "behaviour.h"
 
 using namespace behaviour;
 
@@ -16,7 +16,7 @@ public:
 	~Caio();
 
 	void generateClips();
-	void update(int levelWidth);
+	void update();
 
 	bool overEnemy(SDL_Rect rect);
 

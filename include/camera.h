@@ -2,13 +2,16 @@
 #define CAMERA_H
 
 #include <SDL2/SDL.h>
+#include "configuration.h"
 #include "systemlogger.h"
 
+using namespace configuration;
 using namespace systemLogger;
 
 namespace camera
 {
 	void updateCamera(SDL_Rect target, int levelWidth);
+	void updateCameraRange();
 	
 	SDL_Rect getCameraRange();
 	int getCameraLeftPosition();
