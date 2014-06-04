@@ -2,6 +2,9 @@
 #define TIMER_H
 
 #include <SDL2/SDL.h>
+#include "systemlogger.h"
+
+using namespace systemLogger;
 
 namespace timer
 {

@@ -2,8 +2,9 @@
 #define INPUT_H
 
 #include "inputhandler.h"
+#include "systemlogger.h"
 
-using namespace std;
+using namespace systemLogger;
 
 namespace input
 {

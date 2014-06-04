@@ -10,7 +10,7 @@ using namespace systemLogger;
 
 namespace camera
 {
-	void updateCamera(SDL_Rect target, int levelWidth);
+	void updateCamera(SDL_Rect target);
 	void updateCameraRange();
 	
 	SDL_Rect getCameraRange();

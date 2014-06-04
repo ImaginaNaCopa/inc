@@ -16,13 +16,6 @@ ImageSprite::~ImageSprite()
 	release();
 }
 
-SDL_Rect
-ImageSprite::getPosition()
-{
-    loop("[ImageSprite] Getting a Position.");
-	return m_position;
-}
-
 void
 ImageSprite::init()
 {
@@ -86,6 +79,13 @@ ImageSprite::addClip(int x, int y, int w, int h)
 	m_clips.push_back(clipBase);
 }
 
+SDL_Rect
+ImageSprite::getPosition()
+{
+    loop("[ImageSprite] Getting a Position.");
+	return m_position;
+}
+
 int
 ImageSprite::getWidth()
 {
@@ -98,4 +98,10 @@ ImageSprite::getHeight()
 {
     loop("[ImageSprite] Getting Height from Image.");
 	return m_height;
+}
+
+void
+ImageSprite::setClipNumber(int clipNumber)
+{
+	m_clipNumber = clipNumber;
 }

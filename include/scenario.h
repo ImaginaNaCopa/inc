@@ -11,13 +11,13 @@ public:
 	Scenario();
 	virtual ~Scenario();
 	void initScenario();
-	void drawScenario();
-	void updateScenario();
-	void releaseScenario();
+	void drawScenarioStaticImages();
 
 	virtual void defineBackground();
 	virtual void generatePlatform();
 	virtual void generateSecondLayer();
+	virtual void drawScenarioRelativeImages();
+
 protected:
 	Background* background;
 	Platform* platform;

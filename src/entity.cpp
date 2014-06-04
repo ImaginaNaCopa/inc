@@ -33,7 +33,7 @@ Entity::initEntity()
 void
 Entity::drawEntity()
 {
-	loop("[Entity] Rendering Entities.");
+	loop("[Entity] Drawing Entities.");
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->drawRelative();
 	caio->drawRelative();
@@ -47,7 +47,7 @@ Entity::updateEntity()
 	aim->update();
 	aim->overPlayer(caio->getPosition());
 	caio->update();
-	updateCamera(caio->getPosition(), getLevelW());
+	updateCamera(caio->getPosition());
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->update();
 }

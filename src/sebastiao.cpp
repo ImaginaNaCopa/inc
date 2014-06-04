@@ -9,15 +9,16 @@ using namespace std;
 
 Sebastiao::Sebastiao() : ImageSprite()
 {
-	imagePath.clear();
+    step("[Sebastiao] Constructing.");
 	imagePath.assign("res/images/s_sebastiao.png");
 	generatePosition(550,10,200,90);
 	generateClips();
-	isDrawn = false;
 }
 
 Sebastiao::~Sebastiao()
 {
+	step("[Sebastiao] Destroying.");
+	release();
 }
 
 void
@@ -35,5 +36,4 @@ Sebastiao::generateClips()
 	
 	addClip(0,m_position.h*3,m_position.w,m_position.h);
 	addClip(m_position.w,m_position.h*3,m_position.w,m_position.h);
-	step("[Sebastiao] Finished Generating Sprite Clips.");
 }

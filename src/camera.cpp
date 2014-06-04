@@ -5,14 +5,14 @@ namespace camera
 	SDL_Rect m_range = {0,0,getWindowW(),getWindowH()};
 
 	void
-	updateCamera(SDL_Rect target, int levelWidth)
+	updateCamera(SDL_Rect target)
 	{
 		loop("[Camera] Updating Camera Position.");
 		m_range.x = (target.x+target.w/2)-(m_range.w/2);
 		if(m_range.x < 0)
 			m_range.x = 0;
-		else if(m_range.x>levelWidth-m_range.w)
-			m_range.x = levelWidth - m_range.w;
+		else if(m_range.x > getLevelW() -m_range.w)
+			m_range.x = getLevelW() - m_range.w;
 	}
 
 	void

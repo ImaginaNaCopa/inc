@@ -19,6 +19,12 @@ class ImageSprite
 public:
 	ImageSprite();
 	~ImageSprite();
+
+	void init();
+	void draw();
+	void drawRelative();
+	void render();
+	void release();
 	
 	void generatePosition(int x, int y, int w, int h);
 	void addClip(int x, int y, int w, int h);
@@ -27,25 +33,21 @@ public:
 	int getWidth();
 	int getHeight();
 
-	void init();
-	void draw();
-	void drawRelative();
-	void render();
-	void release();
-	SDL_Rect position() const;
+	void setClipNumber(int clipNumber);
+	
+protected:
+	ImageLoad* imageLoad;
+
+	SDL_Rect m_position;
+	vector<SDL_Rect> m_clips;
 
 	SDL_Texture* m_texture;
-	ImageLoad* imageLoad;
-	vector<SDL_Rect> m_clips;
-	string imagePath;
-
+	
 	int m_clipNumber;
-	SDL_Rect m_position;
-
-private:
 	int m_width;
 	int m_height;
 	
+	string imagePath;
 };
 
 #endif // IMAGESPRITE_H

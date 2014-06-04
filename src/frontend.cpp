@@ -47,24 +47,24 @@ FrontEnd::update()
 			case 1:
 				loop("[FrontEnd] Generating Rating.");
 				generatePosition(200,100,400,400);
-				background->m_clipNumber = 1;
+				background->setClipNumber(1);
 			break;
 			case 2:
 				loop("[FrontEnd] Generating Other Logos.");
 				generatePosition(163,165,475,270);
-				background->m_clipNumber = 2;				
+				background->setClipNumber(2);				
 			break;
 			case 3:
 				step("[FrontEnd] Reseting and its over...");
 				m_clipNumber = 0;
-				background->m_clipNumber = 0;
+				background->setClipNumber(0);
 				setOver(true);
 			break;
 
 			default:
 				loop("[FrontEnd] Generating Default Values.");
 				m_clipNumber = 0;
-				background->m_clipNumber = 0;
+				background->setClipNumber(0);
 				generatePosition(225,165,350,270);
 			break;			
 		}

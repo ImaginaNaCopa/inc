@@ -1,7 +1,5 @@
 #include "stage.h"
 
-using namespace std;
-
 Stage::Stage() : Scenario(), Hud(), Entity()
 {}
 
@@ -12,6 +10,7 @@ Stage::~Stage()
 void 
 Stage::init()
 {
+    step("[Stage] Initiating Each Stage Object.");
     initScenario();
 	initHud();
     initEntity();
@@ -20,7 +19,9 @@ Stage::init()
 void 
 Stage::draw()
 {
-    drawScenario();
+    loop("[Stage] Drawing Each Stage Object.");
+    drawScenarioStaticImages();
+	drawScenarioRelativeImages();
 	drawHud();
     drawEntity();
 }
@@ -28,6 +29,7 @@ Stage::draw()
 void 
 Stage::update()
 {
+    loop("[Stage] Updating Each Stage Object.");
 	updateEntity();
 	controlEntityEvents();
 }

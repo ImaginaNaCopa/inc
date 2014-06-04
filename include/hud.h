@@ -15,7 +15,8 @@ public:
 	void initHud();
 	void drawHud();
 	void updateHud();
-private:
+
+protected:
 	Dialogue* dialogue;
 	GameMenu* gameMenu;
 	Hp* hp;

@@ -10,7 +10,7 @@ Scenario::Scenario() {}
 
 Scenario::~Scenario()
 {
-	releaseScenario();
+    step("[Scenario] Destroying.");
 	delete secondlayer;
 	delete platform;
 	delete background;
@@ -19,29 +19,18 @@ Scenario::~Scenario()
 void 
 Scenario::initScenario()
 {
-	background->init();
+    step("[Scenario] Uploading Sprite Sheets.");
+    background->init();
 	platform->init();
 	secondlayer->init();
 }
 
 void 
-Scenario::drawScenario()
+Scenario::drawScenarioStaticImages()
 {
+    loop("[Scenario] Drawing Scenario Non-Relative Images.");
 	background->draw();
-	secondlayer->drawEach();
 	platform->draw();
-    loop("[Scenario] Finished Draw");
-}
-
-void 
-Scenario::updateScenario() {}
-
-void 
-Scenario::releaseScenario()
-{
-	secondlayer->release();
-	platform->release();
-	background->release();
 }
 
 void
@@ -52,3 +41,6 @@ Scenario::generatePlatform() {}
 
 void
 Scenario::generateSecondLayer() {}
+
+void
+Scenario::drawScenarioRelativeImages() {}
