@@ -2,7 +2,7 @@
 
 namespace input
 {
-	vector<InputHandler *> handlers;
+	vector<InputHandler*> handlers;
 
 	void
 	eventLoop()
@@ -33,9 +33,23 @@ namespace input
 	}
 
 	void 
-	addHandler(InputHandler * h)
+	addHandler(InputHandler* h)
 	{
 		loop("[Input] Adding a input handler in a Vector.");
 		handlers.push_back(h);
+	}
+
+	void
+	removeHandler(InputHandler* h)
+	{
+		for(auto it = handlers.begin(); it != handlers.end(); it++)
+		{
+			if(*it == h)
+			{
+				handlers.erase(it);
+				break;
+			}
+
+		}
 	}
 }

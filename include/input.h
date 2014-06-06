@@ -9,7 +9,8 @@ using namespace systemLogger;
 namespace input
 {
 	void eventLoop();
-	void addHandler(InputHandler * h);
+	void addHandler(InputHandler* h);
+	void removeHandler(InputHandler* h);
 }
 
 #endif // INPUT_H

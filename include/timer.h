@@ -24,6 +24,9 @@ namespace timer
 	void setOver(bool overState);
 	
 	void setLastToNow();
+
+	void iWantToQuit();
+	bool onQuit();
 }
 
 #endif // TIMER_H

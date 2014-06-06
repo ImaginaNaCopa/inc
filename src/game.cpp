@@ -14,6 +14,8 @@ Game::Game()
 
     m_frontEnd = new FrontEnd();
 
+    m_mainMenu = new MainMenu();
+
     m_levelOne = new LevelOne();
 
     m_exitstate[0] = false;
@@ -35,6 +37,8 @@ Game::init()
     step("[Game] Using Init Method.");
     m_frontEnd->init();
 
+    m_mainMenu->init();
+
     m_levelOne->init();
 }
 
@@ -43,6 +47,8 @@ Game::shutdown()
 {
     step("[Game] Using Shutdown Method.");
     delete m_levelOne;
+
+    delete m_mainMenu;
 
     delete m_frontEnd;
 
@@ -56,7 +62,7 @@ void
 Game::run()
 {
     step("[Game] Using Run Method.");
-    while ( !m_quit )
+    while ( !onQuit() )
     {
         loop("[Game] Starting a New Loop");
         tick();
@@ -80,8 +86,7 @@ Game::run()
                 break;
                 case 1:
                     loop("[Game] Its on Main Menu, ladies and gentlemans!");
-                        step("[Game] Transitioning: Main Menu >>> Progression Menu.");
-                    setTimelineEvent(2);
+                    m_mainMenu->update();
                 break;
 
                 case 2:
@@ -101,6 +106,18 @@ Game::run()
                     {}
                 break;
 
+                case 10:
+                    loop("[Game] Its on Configuration Menu, ladies and gentlemans!");
+                        step("[Game] Transitioning: Configuration Menu >>> Level One.");
+                    setTimelineEvent(3);
+                break;
+
+                case 20:
+                    loop("[Game] Its on Credits, ladies and gentlemans!");
+                        step("[Game] Transitioning: Credits >>> Level One.");
+                    setTimelineEvent(3);
+                break;                                    
+
                 default:
                 break;                
             }
@@ -118,7 +135,7 @@ Game::handle(SDL_Event &event)
     bool processed = false;    
     if (event.type == SDL_QUIT)
     {
-        m_quit = true;
+        iWantToQuit();
     }
     switch (event.type)
     {
@@ -165,7 +182,7 @@ Game::handle(SDL_Event &event)
     if (m_exitstate[0] == true && m_exitstate[1] == true)
     {
         step("[Game] Player used the Secret Code to Quit the Game.");
-        m_quit = true;
+        iWantToQuit();
     }
 
     return processed;

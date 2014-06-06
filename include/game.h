@@ -4,6 +4,7 @@
 #include "frontend.h"
 #include "imageload.h"
 #include "input.h"
+#include "mainmenu.h"
 #include "levelone.h"
 #include "system.h"
 #include "timer.h"
@@ -26,9 +27,10 @@ public:
 
 private:
     bool m_exitstate[2];
-    bool m_quit;
 
     FrontEnd* m_frontEnd;
+
+    MainMenu* m_mainMenu;
 
     LevelOne* m_levelOne;
 

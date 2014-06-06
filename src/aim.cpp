@@ -6,7 +6,7 @@ Aim::Aim() : ImageSprite()
     imagePath.assign("res/images/s_hud.png");
     generatePosition(round(getWindowW()/2),round(getWindowH()/2),87,90);
     generateClips();
-    SDL_ShowCursor(0);
+    //SDL_ShowCursor(0);
 }
 
 Aim::~Aim()

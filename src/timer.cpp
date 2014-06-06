@@ -5,9 +5,10 @@ namespace timer
 	Uint32 now = 0;
 	Uint32 last = 0;
 	int normalFPS = 40;
-	int timelineEventNumber = 0;
+	int timelineEventNumber = 1;
 	int idleTime = 0;
 	bool over = false;
+	bool quit = false;
 
 	void
 	tick()
@@ -80,5 +81,17 @@ namespace timer
 	{
     	loop("[Timer] Defining Time Delta = 0.");
 		last = now;
-	}	
+	}
+
+	void
+	iWantToQuit()
+	{
+		quit = true;
+	}
+
+	bool
+	onQuit()
+	{
+		return quit;
+	}
 }
