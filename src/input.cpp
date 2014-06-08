@@ -12,9 +12,9 @@ namespace input
 		queue <SDL_Event> events;
 
 		loop("[Input] Adding all Events in a Queue.");
-	    while (SDL_PollEvent(&event) != 0)
-	    {
-	    	events.push(event);
+		while (SDL_PollEvent(&event) != 0)
+		{
+			events.push(event);
 		}
 
 		loop("[Input] Handling each Event until Queue empty.");

@@ -27,7 +27,7 @@ Entity::initEntity()
 	
 	step("[Entity] Initiating Input Handle Environments.");
 	addHandler(caio);
-    addHandler(aim);
+	addHandler(aim);
 }
 
 void

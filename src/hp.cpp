@@ -28,9 +28,9 @@ Hp::drawEach()
 	loop("[HP] Drawing Each Health Bar.");
 	m_position.x = 10;
 	m_position.y = 10;
-    draw();
-    m_position.x = 60;
-    draw();
-    m_position.x = 110;
-    draw();
+	draw();
+	m_position.x = 60;
+	draw();
+	m_position.x = 110;
+	draw();
 }

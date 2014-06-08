@@ -13,14 +13,14 @@ namespace timer
 	void
 	tick()
 	{
-    	loop("[Timer] Tic-Tac.");
+		loop("[Timer] Tic-Tac.");
 		now = SDL_GetTicks();
 	}
 
 	bool
 	isBeyondLimitsOfFPS()
 	{
-    	loop("[Timer] Idle Miliseconds relative to normal FPS.");
+		loop("[Timer] Idle Miliseconds relative to normal FPS.");
 		if(now > (last + (1000/normalFPS)))
 			return true;
 		return false;
@@ -29,21 +29,21 @@ namespace timer
 	Uint32
 	getDelta()
 	{
-    	loop("[Timer] Getting Delta Time.");
+		loop("[Timer] Getting Delta Time.");
 		return (now - last);
 	}
 
 	int
 	getTimelineEvent()
 	{
-    	loop("[Timer] Getting Timeline Event Number.");
+		loop("[Timer] Getting Timeline Event Number.");
 		return timelineEventNumber;
 	}
 
 	void
 	setTimelineEvent(int eventNumber)
 	{
-    	step("[Timer] Setting a New Timeline Event Number.");
+		step("[Timer] Setting a New Timeline Event Number.");
 		timelineEventNumber = eventNumber;
 		over = false;
 	}
@@ -51,35 +51,35 @@ namespace timer
 	int
 	getIdleTime()
 	{
-    	loop("[Timer] Getting Timeline Event Number.");
+		loop("[Timer] Getting Timeline Event Number.");
 		return idleTime;
 	}
 
 	void
 	setIdleTime(int newIdleTime)
 	{
-    	loop("[Timer] Setting a new Idle Time.");
+		loop("[Timer] Setting a new Idle Time.");
 		idleTime = newIdleTime;
 	}
 
 	bool
 	isOver()
 	{
-    	loop("[Timer] Returning Over Condition from Timeline Event.");
+		loop("[Timer] Returning Over Condition from Timeline Event.");
 		return over;
 	}
 
 	void
 	setOver(bool overState)
 	{
-    	step("[Timer] Setting the Over State.");
+		step("[Timer] Setting the Over State.");
 		over = overState;
 	}
 
 	void
 	setLastToNow()
 	{
-    	loop("[Timer] Defining Time Delta = 0.");
+		loop("[Timer] Defining Time Delta = 0.");
 		last = now;
 	}
 

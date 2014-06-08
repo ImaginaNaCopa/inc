@@ -6,6 +6,7 @@
 class SecondLayer : public ImageSprite
 {
 public:
+	SecondLayer();
 	SecondLayer(const string& path);
 	~SecondLayer();
 };

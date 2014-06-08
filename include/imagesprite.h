@@ -11,6 +11,7 @@
 using namespace camera;
 using namespace collision;
 using namespace configuration;
+using namespace imageLoad;
 using namespace std;
 using namespace timer;
 
@@ -23,7 +24,6 @@ public:
 	void init();
 	void draw();
 	void drawRelative();
-	void render();
 	void release();
 	
 	void generatePosition(int x, int y, int w, int h);
@@ -36,8 +36,6 @@ public:
 	void setClipNumber(int clipNumber);
 	
 protected:
-	ImageLoad* imageLoad;
-
 	SDL_Rect m_position;
 	vector<SDL_Rect> m_clips;
 

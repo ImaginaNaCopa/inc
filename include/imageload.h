@@ -6,24 +6,15 @@
 
 using namespace systemLogger;
 
-class ImageLoad
+namespace imageLoad
 {
-public:
-	static ImageLoad* getInstance();
-	static void releaseInstance();
-
 	void setRenderer(SDL_Renderer* renderer);
+	void freeRenderer();
 
-	SDL_Texture* loadImg(const string& path);
-	void release(SDL_Texture* texture);
-	void update(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
+	SDL_Texture* loadImage(const string& path);
+	void imageDraw(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
 	void render();
-	void fadein(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
-	void fadeout(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
-	SDL_Renderer* m_renderer;
-	
-private:
-	ImageLoad();
-};
+	SDL_Texture* surfaceToTexture(SDL_Surface* targetSurface);
+}
 
 #endif // IMAGELOAD_H

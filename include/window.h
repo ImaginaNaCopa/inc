@@ -11,20 +11,20 @@ using namespace systemLogger;
 
 class Window {
 	public:
-        Window();
-        ~Window();
+		Window();
+		~Window();
 
-        SDL_Renderer * renderer() const;
-        SDL_Surface * getSurface() const;
+		SDL_Renderer * renderer() const;
+		SDL_Surface * getSurface() const;
 
-    private:
-        unsigned int m_width;
-        unsigned int m_height;
-        int imageFlags;
+	private:
+		unsigned int m_width;
+		unsigned int m_height;
+		int imageFlags;
 
-        SDL_Window *m_window;
-        SDL_Renderer *m_renderer;
-        SDL_Surface *m_surface;
+		SDL_Window *m_window;
+		SDL_Renderer *m_renderer;
+		SDL_Surface *m_surface;
 };
 
 #endif // WINDOW_H

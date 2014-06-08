@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include "systemlogger.h"
+#include "imageload.h"
 
 using namespace systemLogger;
 
@@ -10,10 +11,12 @@ namespace configuration
 {
 	int getWindowW();
 	int getWindowH();
-	void setNewWindowDimension(int newMultiplyFactor);
+
+	int getWindowSizeType();
+	void setWindowSizeType(int newWindowSizeType);
 
 	int getLevelW();
-	void setLevelW(int newMultiplyFactorToLevel);
+	void setLevelW(float newMultiplyFactorToLevel);
 
 	int getPlatformH();
 }

@@ -9,7 +9,7 @@ using namespace std;
 
 Sebastiao::Sebastiao() : ImageSprite()
 {
-    step("[Sebastiao] Constructing.");
+	step("[Sebastiao] Constructing.");
 	imagePath.assign("res/images/s_sebastiao.png");
 	generatePosition(550,10,200,90);
 	generateClips();

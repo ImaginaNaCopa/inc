@@ -4,7 +4,7 @@ using namespace std;
 
 Platform::Platform(const string& path) : ImageSprite()
 {
-    step("[Platform] Constructing.");
+	step("[Platform] Constructing.");
 	imagePath.assign(path);
 	generatePosition(0,getPlatformH(),getWindowW(),getWindowH()-getPlatformH());
 	generateClips();
@@ -12,7 +12,7 @@ Platform::Platform(const string& path) : ImageSprite()
 
 Platform::~Platform()
 {
-    step("[Platform] Destroying.");
+	step("[Platform] Destroying.");
 	release();
 }
 

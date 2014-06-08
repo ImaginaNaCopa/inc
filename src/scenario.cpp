@@ -10,7 +10,7 @@ Scenario::Scenario() {}
 
 Scenario::~Scenario()
 {
-    step("[Scenario] Destroying.");
+	step("[Scenario] Destroying.");
 	delete secondlayer;
 	delete platform;
 	delete background;
@@ -19,8 +19,8 @@ Scenario::~Scenario()
 void 
 Scenario::initScenario()
 {
-    step("[Scenario] Uploading Sprite Sheets.");
-    background->init();
+	step("[Scenario] Uploading Sprite Sheets.");
+	background->init();
 	platform->init();
 	secondlayer->init();
 }
@@ -28,7 +28,7 @@ Scenario::initScenario()
 void 
 Scenario::drawScenarioStaticImages()
 {
-    loop("[Scenario] Drawing Scenario Non-Relative Images.");
+	loop("[Scenario] Drawing Scenario Non-Relative Images.");
 	background->draw();
 	platform->draw();
 }

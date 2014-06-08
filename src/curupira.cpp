@@ -3,9 +3,9 @@
 Curupira::Curupira(int earlyPosition) : Enemy() 
 {
 	step("[Curupira] Constructing.");
-    imagePath.assign("res/images/s_curupira.png");
+	imagePath.assign("res/images/s_curupira.png");
 	generatePosition(earlyPosition,(getPlatformH()-100),50,100);
-    generateClips();
+	generateClips();
 	generateBehaviour();
 }
 
@@ -38,14 +38,14 @@ Curupira::generateClips()
 {
 	step("[Curupira] Generating Sprite Clips.");
 	addClip(0,0,m_position.w,m_position.h);
-    addClip(m_position.w,0,m_position.w,m_position.h);
-    addClip(m_position.w*2,0,m_position.w,m_position.h);
-    addClip(m_position.w*3,0,m_position.w,m_position.h);
+	addClip(m_position.w,0,m_position.w,m_position.h);
+	addClip(m_position.w*2,0,m_position.w,m_position.h);
+	addClip(m_position.w*3,0,m_position.w,m_position.h);
 
-    addClip(0,m_position.h,m_position.w,m_position.h);
-    addClip(m_position.w,m_position.h,m_position.w,m_position.h);
-    addClip(m_position.w*2,m_position.h,m_position.w,m_position.h);
-    addClip(m_position.w*3,m_position.h,m_position.w,m_position.h);
+	addClip(0,m_position.h,m_position.w,m_position.h);
+	addClip(m_position.w,m_position.h,m_position.w,m_position.h);
+	addClip(m_position.w*2,m_position.h,m_position.w,m_position.h);
+	addClip(m_position.w*3,m_position.h,m_position.w,m_position.h);
 }
 
 void 

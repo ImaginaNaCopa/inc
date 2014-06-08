@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "configurationmenu.h"
 #include "frontend.h"
 #include "imageload.h"
 #include "input.h"
@@ -12,31 +13,33 @@
 
 using namespace input;
 using namespace timer;
+using namespace imageLoad;
 
 class Game : public InputHandler
 {
 public:
-    Game();
-    ~Game();
+	Game();
+	~Game();
 
-    void init();
-    void run();
-    void shutdown();
-    
-    bool handle(SDL_Event &event);
+	void init();
+	void run();
+	void shutdown();
+	
+	bool handle(SDL_Event &event);
 
 private:
-    bool m_exitstate[2];
+	bool m_exitstate[2];
 
-    FrontEnd* m_frontEnd;
+	FrontEnd* m_frontEnd;
 
-    MainMenu* m_mainMenu;
+	MainMenu* m_mainMenu;
 
-    LevelOne* m_levelOne;
+	ConfigurationMenu* m_configurationMenu;
 
-    ImageLoad* imageLoad;
-    System *m_system;
-    Window *m_window;
+	LevelOne* m_levelOne;
+
+	System* m_system;
+	Window* m_window;
 };
 
 #endif // GAME_H

@@ -1,84 +1,70 @@
 #include "imageload.h"
 
-ImageLoad::ImageLoad()
+namespace imageLoad
 {
-    step("[Image Load] Constructing.");
-	m_renderer = NULL;
-}
+	SDL_Renderer* renderer = NULL;
 
-static ImageLoad* instance = NULL;
-
-ImageLoad* 
-ImageLoad::getInstance()
-{
-    loop("[Image Load] Getting Instance.");
-	if (instance == NULL)
+	void
+	setRenderer(SDL_Renderer* newRenderer)
 	{
-        step("[Image Load] Using Constructor to Instance.");
-		instance = new ImageLoad();
+		step("[Image Load] Setting Renderer.");
+		renderer = newRenderer;
 	}
+
+	void
+	freeRenderer()
+	{
+		step("[Image Load] Freeing Renderer.");
+		free(renderer);
+	}
+
+	SDL_Texture*
+	loadImage(const string& path)
+	{
+		loop("[Image Load] Loading Image.");
+
+		if (renderer == NULL)
+		{
+			return NULL;
+		}
 		
-	return instance;
-}
+		SDL_Surface* surface = IMG_Load( path.c_str() );
 
-void 
-ImageLoad::setRenderer(SDL_Renderer* renderer)
-{
-    step("[Image Load] Setting Renderer.");
-	m_renderer = renderer;
-}
+		if( surface == NULL )
+		{
+			errorSDL("[Image Load] Null Surface", SDL_GetError());
+		}
 
+		SDL_SetColorKey (surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFA, 0xCF, 0xAC));
 
-SDL_Texture* 
-ImageLoad::loadImg(const string& path)
-{
-    loop("[Image Load] Loading Image.");
+		SDL_Texture* texture = SDL_CreateTextureFromSurface( renderer, surface );
 
-	if (m_renderer == NULL)
-	{
-		return NULL;
+		if( texture == NULL )
+		{
+			errorSDL("[Image Load] Null Texture", SDL_GetError());
+		}
+
+		return texture;		 
 	}
-	
-	SDL_Surface* surface = IMG_Load( path.c_str() );
 
-    if( surface == NULL )
-    {
-        errorSDL("[Image Load] Null Surface", SDL_GetError());
-    }
-
-    SDL_SetColorKey (surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFA, 0xCF, 0xAC));
-
-    SDL_Texture* texture = SDL_CreateTextureFromSurface( m_renderer, surface );
-
-    if( texture == NULL )
-    {
-        errorSDL("[Image Load] Null Texture", SDL_GetError());
-    }
-
-    return texture;
-}
-
-void 
-ImageLoad::release(SDL_Texture* texture)
-{
-    loop("[Image Load] Releasing a Texture.");
-	if (texture)
+	void
+	imageDraw(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 	{
-		SDL_DestroyTexture(texture);
+		loop("[Image Load] Updating the Image.");
+		SDL_RenderCopy( renderer, texture, srcRect, destRect);
 	}
-}
 
-void
-ImageLoad::update(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
-{
-    loop("[Image Load] Updating the Image.");
-    SDL_RenderCopy( m_renderer, texture, srcRect, destRect);
-}
+	void
+	render()
+	{
+		loop("[Image Load] Rendering the Image.");
+		SDL_RenderPresent( renderer );
+		SDL_RenderClear ( renderer );
+	}
 
-void
-ImageLoad::render()
-{
-    loop("[Image Load] Rendering the Image.");
-    SDL_RenderPresent( m_renderer );
-    SDL_RenderClear ( m_renderer );
+	SDL_Texture*
+	surfaceToTexture(SDL_Surface* targetSurface)
+	{
+		return SDL_CreateTextureFromSurface(renderer,targetSurface); 
+	}
 }

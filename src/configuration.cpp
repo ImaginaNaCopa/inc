@@ -2,42 +2,53 @@
 
 namespace configuration
 {
-	int WindowWidthBase = 32;
-	int WindowHeightBase = 24;
-	int multiplyFactor = 25;
+	int windowWidthBase = 800;
+	int windowHeightBase = 600;
 
-	int multiplyFactorToLevel = 2;
+	float resizeFactor[3] = {1,1.28,1.8};
+	int windowSizeType = 0;
+
+	float multiplyFactorToLevel = 2;
+
+	bool fullScreenMode = false;
+	bool muteSound = false;
 
 	int
 	getWindowW()
 	{
 		loop("[Configuration] Getting Window Width.");
-		return WindowWidthBase*multiplyFactor;
+		return windowWidthBase*resizeFactor[windowSizeType];
 	}
 
 	int
 	getWindowH()
 	{
 		loop("[Configuration] Getting Window Height.");
-		return WindowHeightBase*multiplyFactor;
+		return windowHeightBase*resizeFactor[windowSizeType];
+	}
+
+	int
+	getWindowSizeType()
+	{
+		return windowSizeType;
 	}
 
 	void
-	setNewWindowDimension(int newMultiplyFactor)
+	setWindowSizeType(int newWindowSizeType)
 	{
-		loop("[Configuration] Setting New Window Multiply Factor.");
-		multiplyFactor = newMultiplyFactor;	
+		loop("[Configuration] Setting New Window Resize Factor according to Type.");
+		windowSizeType = newWindowSizeType;
 	}
 
 	int
 	getLevelW()
 	{
 		loop("[Configuration] Getting Level Width.");
-		return WindowWidthBase * multiplyFactor * multiplyFactorToLevel;
+		return round(getWindowW() * multiplyFactorToLevel);
 	}
 
 	void
-	setLevelW(int newMultiplyFactorToLevel)
+	setLevelW(float newMultiplyFactorToLevel)
 	{
 		loop("[Configuration] Setting Level Width.");
 		multiplyFactorToLevel = newMultiplyFactorToLevel;
@@ -48,5 +59,29 @@ namespace configuration
 	{
 		loop("[Configuration] Getting Platform Height.");
 		return round(((getWindowH())/50)*37.5);
+	}
+
+	void
+	setFullScreenMode()
+	{
+
+	}
+
+	void
+	setWindowScreenMode()
+	{
+
+	}
+
+	void
+	setNoSound()
+	{
+
+	}
+
+	void
+	setSound()
+	{
+		
 	}
 }

@@ -10,26 +10,26 @@ Stage::~Stage()
 void 
 Stage::init()
 {
-    step("[Stage] Initiating Each Stage Object.");
-    initScenario();
+	step("[Stage] Initiating Each Stage Object.");
+	initScenario();
 	initHud();
-    initEntity();
+	initEntity();
 }
 
 void 
 Stage::draw()
 {
-    loop("[Stage] Drawing Each Stage Object.");
-    drawScenarioStaticImages();
+	loop("[Stage] Drawing Each Stage Object.");
+	drawScenarioStaticImages();
 	drawScenarioRelativeImages();
 	drawHud();
-    drawEntity();
+	drawEntity();
 }
 
 void 
 Stage::update()
 {
-    loop("[Stage] Updating Each Stage Object.");
+	loop("[Stage] Updating Each Stage Object.");
 	updateEntity();
 	controlEntityEvents();
 }
