@@ -1,4 +1,7 @@
 #include "levelone.h"
+#include <iostream>
+
+using namespace std;
 
 LevelOne::LevelOne() : Stage()
 {
@@ -27,7 +30,6 @@ LevelOne::generatePlatform()
 {
 	step("[LevelOne] Generating Platform.");
 	platform = new Platform("res/images/s_02.png");
-
 }
 
 void
@@ -61,18 +63,8 @@ void
 LevelOne::generateItens()
 {
 	step("[LevelOne] Generating Itens.");
-	item = new Potion(200);
-	itens.push_back(item);
-	item = new Potion(210);
-	itens.push_back(item);
-	item = new Potion(220);
-	itens.push_back(item);
-	item = new Potion(230);
-	itens.push_back(item);
-	item = new Potion(240);
-	itens.push_back(item);
-	item = new Potion(250);
-	itens.push_back(item);
+	//item = new Potion(200, 200);
+	//itens.push_back(item);
 }
 
 void
@@ -144,13 +136,18 @@ LevelOne::controlEntityEvents()
 		{
     		loop("[LevelOne] if Shooted an Enemy, define Dead to it.");
 			dead = it;
+
+   			SDL_Rect position = (*dead)->getPosition();
+			item = new Potion(round(position.x + (position.w/2)), position.y);
+			item->init();
+			itens.push_back(item);
 		}
 	}
 
 	if (dead != enemies.end())
 	{
     	loop("[LevelOne] Delete all Dead Enemies.");
-		delete *dead;
+  		delete *dead;
 		enemies.erase(dead);
 	}
 }

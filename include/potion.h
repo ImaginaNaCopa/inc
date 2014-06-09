@@ -6,11 +6,13 @@
 class Potion : public Item
 {
 public:
-	Potion(int earlyPosition);
+	Potion(int earlyPositionX, int earlyPositionY);
 	~Potion();
 
 	void generateClips();
 	void update();
+private:
+	int m_dropspeed;
 };
 
 #endif // POTION_H

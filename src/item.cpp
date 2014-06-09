@@ -5,4 +5,7 @@ Item::Item() : ImageSprite() {}
 Item::~Item() {}
 
 void
-Item::update() {}
+Item::update()
+{
+	
+}
