@@ -4,6 +4,7 @@
 #include "stage.h"
 #include "curupira.h"
 #include "urubu.h"
+#include "potion.h"
 
 class LevelOne : public Stage
 {
@@ -12,6 +13,7 @@ public:
 	~LevelOne();
 
 	void generateEnemies();
+	void generateItens();
 	void drawScenarioRelativeImages();
 	void controlEntityEvents();
 

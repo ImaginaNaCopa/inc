@@ -1,19 +1,15 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "systemlogger.h"
+#include "imagesprite.h"
 
-class Item
+class Item : public ImageSprite
 {
 public:
 	Item();
-	~Item();
+	virtual ~Item();
 
-	void initItem();
-	void drawItem();
-	void updateItem();
-private:
-
+	virtual void update();
 };
 
 #endif // ITEM_H

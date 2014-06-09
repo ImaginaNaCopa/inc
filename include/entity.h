@@ -7,6 +7,7 @@
 #include "camera.h"
 #include "enemy.h"
 #include "input.h"
+#include "item.h"
 #include "systemlogger.h"
 
 using namespace camera;
@@ -21,6 +22,7 @@ public:
 	
 	virtual void controlEntityEvents();
 	virtual void generateEnemies();
+	virtual void generateItens();
 
 	void initEntity();
 	void drawEntity();
@@ -30,7 +32,9 @@ protected:
 	Aim* aim;
 	Caio* caio;
 	Enemy* enemy;
-	vector<Enemy *> enemies;
+	vector<Enemy*> enemies;
+	Item* item;
+	vector<Item*> itens;
 };
 
 #endif // ENTITY_H

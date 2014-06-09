@@ -9,6 +9,7 @@ LevelOne::LevelOne() : Stage()
 	generateSecondLayer();
 	step("[LevelOne] Defining Enemies.");
 	generateEnemies();
+	generateItens();
 }
 
 LevelOne::~LevelOne() {}
@@ -54,6 +55,24 @@ LevelOne::generateEnemies()
 	
 	enemy = new Urubu(600);
 	enemies.push_back(enemy);
+}
+
+void
+LevelOne::generateItens()
+{
+	step("[LevelOne] Generating Itens.");
+	item = new Potion(200);
+	itens.push_back(item);
+	item = new Potion(210);
+	itens.push_back(item);
+	item = new Potion(220);
+	itens.push_back(item);
+	item = new Potion(230);
+	itens.push_back(item);
+	item = new Potion(240);
+	itens.push_back(item);
+	item = new Potion(250);
+	itens.push_back(item);
 }
 
 void

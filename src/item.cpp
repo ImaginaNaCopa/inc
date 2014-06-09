@@ -1,34 +1,8 @@
 #include "item.h"
-#include "systemlogger.h"
-#include <iostream>
 
-using namespace std;
-using namespace systemLogger;
+Item::Item() : ImageSprite() {}
 
-Item::Item()
-{
-    step("[Item] Contructing.");
-}
-
-Item::~Item()
-{
-    step("[Item] Destroying.");
-}
+Item::~Item() {}
 
 void
-Item::initItem()
-{
-    step("[Item] Initing.");
-}
-
-void
-Item::drawItem()
-{
-    loop("[Item] Initing.");
-}
-
-void
-Item::updateItem()
-{
-    loop("[Item] Initing.");
-}
+Item::update() {}

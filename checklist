@@ -1,0 +1,27 @@
+************
+**
+*  CHECKLIST
+**
+************
+
+
+ --- Prioridades ---
+
+ 1) Decréssimo do Health na HUD do jogo;
+ 2) Mensagem de "GAME OVER" quando personagem perder todo o HP;
+ 3) Após morrer, o personagem deverá voltar para o menu do jogo;
+ 4) Carregamento de itens;
+ 	(DONE)
+ 5) Drop de itens de monstros mortos;
+ 6) Acréscimo de itens no HUD do inventário;
+ 7) Gameplay dos inimigos Urubu e Curupira finalizados (usando o behaviour);
+ 8) Implementação de BackGround Music;
+ 9) Implementação de Sound Effects;
+
+ --- Bugs e Correções ---
+
+ 1) Animação do Sebastião quando atirar;
+ 2) Dialogo do Sebastião;
+ 3) Animação do Sebastião quando falar;
+ 4) Correção da movimentação do Caio;
+ 	(tratamento quando mais de uma tecla for pressionada)

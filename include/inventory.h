@@ -3,7 +3,9 @@
 
 #include "imageload.h"
 #include "imagesprite.h"
-#include "item.h"
+#include "systemlogger.h"
+
+using namespace std;
 
 class Inventory : public ImageSprite
 {
@@ -15,10 +17,6 @@ public:
 	void generateClips();
 	void initInventory();
 	void updateInventory();
-
-private:
-	bool isDrawn;
-	Item* item;
 };
 
 #endif // INVENTORY_H
