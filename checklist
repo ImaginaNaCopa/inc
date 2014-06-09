@@ -1,4 +1,8 @@
-CHECKLIST
+====================
+=                  =
+=    CHECKLIST     =
+=                  =
+====================
 
 --------------------
 *	Prioridades
@@ -16,10 +20,10 @@ CHECKLIST
 
 --------------------
 *	Bugs e Correções
------------------------------------------------------
+--------------------
  
- 1) Animação do Sebastião quando atirar;
- 2) Dialogo do Sebastião;
- 3) Animação do Sebastião quando falar;
- 4) Correção da movimentação do Caio;
- 	(tratamento quando mais de uma tecla for pressionada)
+		1) Animação do Sebastião quando atirar;
+		2) Dialogo do Sebastião;
+		3) Animação do Sebastião quando falar;
+		4) Correção da movimentação do Caio;
+			(tratamento quando mais de uma tecla for pressionada)

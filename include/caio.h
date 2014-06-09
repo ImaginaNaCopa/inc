@@ -19,8 +19,10 @@ public:
 	void update();
 
 	bool overEnemy(SDL_Rect rect);
+	bool overItem(SDL_Rect rect);
 
 	bool handle(SDL_Event& event);
+	void useItem(int option);
 	void moveBackward();
 	void moveCrouch();
 	void moveForward();

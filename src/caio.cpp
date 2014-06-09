@@ -116,6 +116,23 @@ Caio::overEnemy(SDL_Rect rect)
     return false;
 }
 
+bool
+Caio::overItem(SDL_Rect rect)
+{
+    loop("[Caio] Checking if Collided with an Item Rectangle.");
+    if(ifCollided(1,getPosition(),rect))
+    {
+        condition("[Caio] Collided on left side.");
+        return true;
+    }
+    else if(ifCollided(2,getPosition(),rect))
+    {
+        condition("[Caio] Collided on right side.");
+        return true;
+    }
+    return false;
+}
+
 bool 
 Caio::handle(SDL_Event& event)
 {
@@ -145,7 +162,37 @@ Caio::handle(SDL_Event& event)
                     controls(1,"[Caio] Button SPACE Down.");
                     processed = true;
                     moveJump();                
-                break;                
+                break;  
+                case SDLK_1:
+                    controls(1,"[Caio] Button 1 Down.");
+                    processed = true;
+                    useItem(1);                
+                break;  
+                case SDLK_2:
+                    controls(1,"[Caio] Button 2 Down.");
+                    processed = true;
+                    useItem(2);                
+                break;  
+                case SDLK_3:
+                    controls(1,"[Caio] Button 3 Down.");
+                    processed = true;
+                    useItem(3);                
+                break;  
+                case SDLK_4:
+                    controls(1,"[Caio] Button 4 Down.");
+                    processed = true;
+                    useItem(4);                
+                break;  
+                case SDLK_5:
+                    controls(1,"[Caio] Button 5 Down.");
+                    processed = true;
+                    useItem(5);                
+                break;  
+                case SDLK_6:
+                    controls(1,"[Caio] Button 6 Down.");
+                    processed = true;
+                    useItem(6);                
+                break;
                 default:
                 break;
             }
@@ -177,6 +224,30 @@ Caio::handle(SDL_Event& event)
                     controls(1,"[Caio] Button SPACE Up.");
                     processed = true;
                 break;
+                case SDLK_1:
+                    controls(1,"[Caio] Button 1 Up.");
+                    processed = true;
+                break;  
+                case SDLK_2:
+                    controls(1,"[Caio] Button 2 Up.");
+                    processed = true;
+                break;  
+                case SDLK_3:
+                    controls(1,"[Caio] Button 3 Up.");
+                    processed = true;
+                break;  
+                case SDLK_4:
+                    controls(1,"[Caio] Button 4 Up.");
+                    processed = true;
+                break;  
+                case SDLK_5:
+                    controls(1,"[Caio] Button 5 Up.");
+                    processed = true;
+                break;  
+                case SDLK_6:
+                    controls(1,"[Caio] Button 6 Up.");
+                    processed = true;
+                break;
                 default:
                 break;
             }
@@ -186,6 +257,36 @@ Caio::handle(SDL_Event& event)
         break;
     }
     return processed;
+}
+
+void
+Caio::useItem(int option)
+{
+    action(0,"[Caio] Using Item.");
+    
+    switch (option)
+    {
+        case 1:
+            action(0,"[Caio] Used Item 1.");        
+        break;
+        case 2:
+            action(0,"[Caio] Used Item 2.");        
+        break;
+        case 3:
+            action(0,"[Caio] Used Item 3.");        
+        break;
+        case 4:
+            action(0,"[Caio] Used Item 4.");        
+        break;
+        case 5:
+            action(0,"[Caio] Used Item 5.");        
+        break;
+        case 6:
+            action(0,"[Caio] Used Item 6.");        
+        break;
+        default:
+        break;
+    }
 }
 
 void

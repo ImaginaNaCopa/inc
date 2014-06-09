@@ -101,6 +101,7 @@ LevelOne::controlEntityEvents()
 	}	
 
 	auto dead = enemies.end();
+	auto loot = itens.end();
 	
 	loop("[LevelOne] Verifying if Caio is imune.");
 	if (!caio->isImune())
@@ -125,6 +126,22 @@ LevelOne::controlEntityEvents()
     	{
     		caio->setImune(false);
     	}
+	}
+
+	for (auto it = itens.begin(); it != itens.end(); it++)
+	{
+		loop("[LevelOne] Verifying Collision Between Caio and Enemies.");
+		if (caio->overItem((*it)->getPosition()))
+		{
+			loot = it;
+		}
+	}
+
+	if (loot != itens.end())
+	{
+    	loop("[LevelOne] Delete all Dead Enemies.");
+  		delete *loot;
+		itens.erase(loot);
 	}
 
 	if (caio->getHealth() == 0)
