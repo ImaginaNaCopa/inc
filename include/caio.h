@@ -12,7 +12,7 @@ class Caio : public InputHandler, public ImageEffect
 
 public:
 	Caio();
-	Caio(int x);
+	//Caio(int x);
 	~Caio();
 
 	void generateClips();
@@ -29,12 +29,17 @@ public:
 	bool isCrouching();
 	bool isJumping();
 	bool isMoving();
+	bool isDead();
+	bool isImune();
 	float getJumpspeed();
 	int getDirection();
 	int getSpeed();
+	int getHealth();
 
 	void setSpeed(int speed);
-	
+	void setHealth(int health);
+	void setImune(int imune);
+
 private:
 	bool m_crouching;
 	bool m_jumping;
@@ -42,6 +47,9 @@ private:
 	float m_jumpspeed;
 	int m_dx;
 	int m_speed;
+	int m_health;
+	bool m_dead;
+	bool m_imune;
 };
 
 #endif // CAIO_H

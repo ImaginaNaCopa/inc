@@ -48,6 +48,12 @@ LevelOne::generateEnemies()
 
 	enemy = new Curupira(330);
 	enemies.push_back(enemy);
+
+	enemy = new Urubu(500);
+	enemies.push_back(enemy);
+	
+	enemy = new Urubu(600);
+	enemies.push_back(enemy);
 }
 
 void
@@ -77,28 +83,54 @@ LevelOne::controlEntityEvents()
 	loop("[LevelOne] Handling Specific Entity Conditions.");
 	if (enemies.size() < 1)
 	{
-		step("[LevelOne] Spawn a New Curupira.");
+    	step("[LevelOne] Spawn a New Curupira.");
 		enemy = new Curupira((rand() % 200) + 300);
 		enemy->init();
 		enemies.push_back(enemy);
 	}	
 
 	auto dead = enemies.end();
+	
+	loop("[LevelOne] Verifying if Caio is imune.");
+	if (!caio->isImune())
+	{
+		for (auto it = enemies.begin(); it != enemies.end(); it++)
+		{
+			loop("[LevelOne] Verifying Collision Between Caio and Enemies.");
+			if (caio->overEnemy((*it)->getPosition()))
+			{
+				caio->setImune(true);
+				caio->setHealth(-1);
+				now = SDL_GetTicks();
+				last = now;
+			}
+		}
+	}
+	else
+	{
+    	now = SDL_GetTicks();
 
+    	if ((now - last) > 1500)
+    	{
+    		caio->setImune(false);
+    	}
+	}
+
+	if (caio->getHealth() == 0)
+		caio->release();
+	
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 	{
-		loop("[LevelOne] Verifying Collision Between Caio and Enemies.");
-		caio->overEnemy((*it)->getPosition());
 		if (aim->overEnemy((*it)->getPosition()))
 		{
-			loop("[LevelOne] if Shooted an Enemy, define Dead to it.");
+    		loop("[LevelOne] if Shooted an Enemy, define Dead to it.");
 			dead = it;
 		}
 	}
 
 	if (dead != enemies.end())
 	{
-		loop("[LevelOne] Delete all Dead Enemies.");
+    	loop("[LevelOne] Delete all Dead Enemies.");
 		delete *dead;
 		enemies.erase(dead);
 	}

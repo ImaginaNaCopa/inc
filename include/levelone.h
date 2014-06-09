@@ -3,6 +3,7 @@
 
 #include "stage.h"
 #include "curupira.h"
+#include "urubu.h"
 
 class LevelOne : public Stage
 {
@@ -17,6 +18,9 @@ public:
 	void defineBackground();
 	void generatePlatform();
 	void generateSecondLayer();
+private:
+	Uint32 now;
+	Uint32 last;
 };
 
 #endif // LEVELONE_H

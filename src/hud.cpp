@@ -45,5 +45,5 @@ Hud::drawHud()
 void 
 Hud::updateHud()
 {
-	// Nothing yet
+	inventory->updateInventory();
 }
