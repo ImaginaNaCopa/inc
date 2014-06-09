@@ -63,8 +63,6 @@ void
 LevelOne::generateItens()
 {
 	step("[LevelOne] Generating Itens.");
-	//item = new Potion(200, 200);
-	//itens.push_back(item);
 }
 
 void
@@ -100,9 +98,14 @@ LevelOne::controlEntityEvents()
 		enemies.push_back(enemy);
 	}	
 
-	auto dead = enemies.end();
-	auto loot = itens.end();
-	
+	damagingCaio();
+	lootingItem();
+	killingEnemy();	
+}
+
+void 
+LevelOne::damagingCaio()
+{
 	loop("[LevelOne] Verifying if Caio is imune.");
 	if (!caio->isImune())
 	{
@@ -128,9 +131,19 @@ LevelOne::controlEntityEvents()
     	}
 	}
 
+	if (caio->getHealth() == 0)
+		caio->release();
+
+}
+
+void
+LevelOne::lootingItem()
+{
+	auto loot = itens.end();
+
 	for (auto it = itens.begin(); it != itens.end(); it++)
 	{
-		loop("[LevelOne] Verifying Collision Between Caio and Enemies.");
+		loop("[LevelOne] Verifying Collision Between Caio and Itens.");
 		if (caio->overItem((*it)->getPosition()))
 		{
 			loot = it;
@@ -143,10 +156,13 @@ LevelOne::controlEntityEvents()
   		delete *loot;
 		itens.erase(loot);
 	}
+}
 
-	if (caio->getHealth() == 0)
-		caio->release();
-	
+void
+LevelOne::killingEnemy()
+{
+	auto dead = enemies.end();
+
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 	{
 		if (aim->overEnemy((*it)->getPosition()))

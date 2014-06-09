@@ -15,11 +15,15 @@ public:
 	void generateEnemies();
 	void generateItens();
 	void drawScenarioRelativeImages();
-	void controlEntityEvents();
 
 	void defineBackground();
 	void generatePlatform();
 	void generateSecondLayer();
+
+	void controlEntityEvents();
+	void damagingCaio();
+	void lootingItem();
+	void killingEnemy();
 private:
 	Uint32 now;
 	Uint32 last;
