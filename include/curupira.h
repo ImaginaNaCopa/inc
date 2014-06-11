@@ -6,7 +6,7 @@
 class Curupira : public Enemy
 {
 public:
-	Curupira(int earlyPosition);
+	Curupira(int item, int earlyPosition);
 	~Curupira();
 
 	void generateBehaviour();

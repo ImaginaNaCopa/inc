@@ -1,12 +1,13 @@
 #include "urubu.h"
 
-Urubu::Urubu(int earlyPosition) : Enemy() 
+Urubu::Urubu(int item, int earlyPosition) : Enemy() 
 {
 	step("[Urubu] Constructing.");
     imagePath.assign("res/images/s_urubu.png");
 	generatePosition(earlyPosition,(getPlatformH()-300),51,36);
     generateClips();
 	generateBehaviour();
+	m_item = item;
 }
 
 Urubu::~Urubu()

@@ -5,6 +5,7 @@
 #include "curupira.h"
 #include "urubu.h"
 #include "potion.h"
+#include "alteredpotion.h"
 
 class LevelOne : public Stage
 {
@@ -22,7 +23,7 @@ public:
 
 	void controlEntityEvents();
 	void damagingCaio();
-	void lootingItem();
+	void lootItem();
 	void killingEnemy();
 private:
 	Uint32 now;

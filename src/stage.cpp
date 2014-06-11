@@ -1,4 +1,7 @@
 #include "stage.h"
+#include <iostream>
+
+using namespace std;
 
 Stage::Stage() : Scenario(), Hud(), Entity()
 {}
@@ -16,7 +19,7 @@ Stage::init()
 	initEntity();
 }
 
-void 
+void
 Stage::draw()
 {
 	loop("[Stage] Drawing Each Stage Object.");
@@ -30,6 +33,12 @@ void
 Stage::update()
 {
 	loop("[Stage] Updating Each Stage Object.");
-	updateEntity();
-	controlEntityEvents();
+
+	if (caio->getHealth() == 0)
+		cout << "game over" << endl;
+	else
+	{
+		updateEntity();
+		controlEntityEvents();
+	}
 }

@@ -17,12 +17,14 @@ public:
 	void updateDirectionX();
 	bool isOnRightDirection();
 	bool isOnLeftDirection();
+	int getItem();
 
 protected:
 	bool m_hunter;
 	bool m_flying;
 
 	int m_health;
+	int m_item;
 	int m_patrol;
 	int m_speed;
 	int m_taxRotation;

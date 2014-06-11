@@ -41,3 +41,9 @@ Enemy::isOnLeftDirection()
 		return true;
 	return false;
 }
+
+int
+Enemy::getItem()
+{
+	return m_item;
+}

@@ -11,6 +11,10 @@ public:
 
 	void generateClips();
 	void drawEach();
+	void setHp(int health);
+	int getHp();
+protected:
+	int hp;
 };
 
 #endif // HP_H

@@ -6,7 +6,7 @@
 class Urubu : public Enemy
 {
 public:
-	Urubu(int earlyPosition);
+	Urubu(int item, int earlyPosition);
 	~Urubu();
 
 	void generateBehaviour();

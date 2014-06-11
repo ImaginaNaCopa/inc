@@ -6,6 +6,7 @@ Hp::Hp() : ImageSprite()
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(0,10,50,15);
 	generateClips();
+	hp = 3;
 }
 
 Hp::~Hp()
@@ -26,11 +27,63 @@ void
 Hp::drawEach()
 {
 	loop("[HP] Drawing Each Health Bar.");
-	m_position.x = 10;
 	m_position.y = 10;
-	draw();
-	m_position.x = 60;
-	draw();
-	m_position.x = 110;
-	draw();
+
+	switch (hp)
+	{
+		case 1:
+			m_position.x = 10;
+			draw();
+		break;
+		case 2:
+			m_position.x = 10;
+			draw();
+			m_position.x = 60;
+			draw();
+		break;
+		case 3:
+			m_position.x = 10;
+			draw();
+			m_position.x = 60;
+			draw();
+			m_position.x = 110;
+			draw();
+		break;
+		case 4:
+			m_position.x = 10;
+			draw();
+			m_position.x = 60;
+			draw();
+			m_position.x = 110;
+			draw();
+			m_position.x = 160;
+			draw();
+		break;
+		case 5:
+			m_position.x = 10;
+			draw();
+			m_position.x = 60;
+			draw();
+			m_position.x = 110;
+			draw();
+			m_position.x = 160;
+			draw();
+			m_position.x = 210;
+			draw();
+		break;
+		default:
+		break;
+	}
+}
+
+void 
+Hp::setHp(int health)
+{
+	hp = health;
+}
+
+int
+Hp::getHp()
+{
+	return hp;
 }

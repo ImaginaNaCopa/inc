@@ -16,24 +16,7 @@ Caio::Caio() : ImageEffect()
     m_dead = false;
     m_imune = false;
 }
-/*
-Caio::Caio(int initialPosition) : ImageEffect()
-{
-    step("[Caio] Constructing.");
-    imagePath.assign("res/images/s_caio.png");
-    generatePosition(initialPosition,getPlatformH(),50,100);
-    generateClips();
-    m_crouching = false;
-    m_jumping = false;
-    m_moving = false;
-    m_dx = 0;
-    m_speed = haveNormalSpeed();
-    m_jumpspeed = 10;
-    m_health = 3;
-    m_dead = false;
-    m_imune = false;
-}
-*/
+
 Caio::~Caio()
 {
     step("[Caio] Destroying.");

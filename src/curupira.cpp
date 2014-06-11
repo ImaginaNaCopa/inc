@@ -1,12 +1,13 @@
 #include "curupira.h"
 
-Curupira::Curupira(int earlyPosition) : Enemy() 
+Curupira::Curupira(int item, int earlyPosition) : Enemy() 
 {
 	step("[Curupira] Constructing.");
 	imagePath.assign("res/images/s_curupira.png");
 	generatePosition(earlyPosition,(getPlatformH()-100),50,100);
 	generateClips();
 	generateBehaviour();
+	m_item = item;
 }
 
 Curupira::~Curupira()
@@ -52,8 +53,8 @@ void
 Curupira::update()
 {
 	loop("[Curupira] Updating.");
-	updatePositionX();
-	updateDirectionX();
+	//updatePositionX();
+	//updateDirectionX();
 
 	if(isOnLeftDirection())
 	{

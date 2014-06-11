@@ -45,17 +45,48 @@ LevelOne::generateSecondLayer()
 void
 LevelOne::generateEnemies()
 {
+	// Setting initial potion to curupiras
 	step("[LevelOne] Generating Enemies.");
-	enemy = new Curupira(700);
+	enemy = new Curupira(0, 300);
+	enemies.push_back(enemy);
+	enemy = new Curupira(1, 760);
+	enemies.push_back(enemy);
+	enemy = new Curupira(0, 800);
+	enemies.push_back(enemy);
+	enemy = new Curupira(0, 900);
+	enemies.push_back(enemy);
+	enemy = new Curupira(0, 950);
+	enemies.push_back(enemy);
+	enemy = new Curupira(1, 1000);
+	enemies.push_back(enemy);
+	enemy = new Curupira(0, 1250);
+	enemies.push_back(enemy);
+	enemy = new Curupira(0, 1300);
+	enemies.push_back(enemy);
+	enemy = new Curupira(2, 1400);
+	enemies.push_back(enemy);
+	enemy = new Curupira(0, 1450);
 	enemies.push_back(enemy);
 
-	enemy = new Curupira(330);
-	enemies.push_back(enemy);
 
-	enemy = new Urubu(500);
+	// Setting initial potion to urubus
+	enemy = new Urubu(0, 300);
 	enemies.push_back(enemy);
-	
-	enemy = new Urubu(600);
+	enemy = new Urubu(0, 500);
+	enemies.push_back(enemy);
+	enemy = new Urubu(2, 600);
+	enemies.push_back(enemy);
+	enemy = new Urubu(0, 900);
+	enemies.push_back(enemy);
+	enemy = new Urubu(0, 1000);
+	enemies.push_back(enemy);
+	enemy = new Urubu(1, 1050);
+	enemies.push_back(enemy);
+	enemy = new Urubu(0, 1150);
+	enemies.push_back(enemy);
+	enemy = new Urubu(1, 1200);
+	enemies.push_back(enemy);
+	enemy = new Urubu(0, 1400);
 	enemies.push_back(enemy);
 }
 
@@ -90,16 +121,16 @@ void
 LevelOne::controlEntityEvents()
 {
 	loop("[LevelOne] Handling Specific Entity Conditions.");
-	if (enemies.size() < 1)
+/*	if (enemies.size() < 1)
 	{
     	step("[LevelOne] Spawn a New Curupira.");
-		enemy = new Curupira((rand() % 200) + 300);
+		enemy = new Curupira(0, (rand() % 200) + 300);
 		enemy->init();
 		enemies.push_back(enemy);
 	}	
-
+*/
 	damagingCaio();
-	lootingItem();
+	lootItem();
 	killingEnemy();	
 }
 
@@ -116,6 +147,8 @@ LevelOne::damagingCaio()
 			{
 				caio->setImune(true);
 				caio->setHealth(-1);
+				hp->setHp(caio->getHealth());
+				cout << "hp: " << hp->getHp() << endl;
 				now = SDL_GetTicks();
 				last = now;
 			}
@@ -133,11 +166,10 @@ LevelOne::damagingCaio()
 
 	if (caio->getHealth() == 0)
 		caio->release();
-
 }
 
 void
-LevelOne::lootingItem()
+LevelOne::lootItem()
 {
 	auto loot = itens.end();
 
@@ -169,11 +201,34 @@ LevelOne::killingEnemy()
 		{
     		loop("[LevelOne] if Shooted an Enemy, define Dead to it.");
 			dead = it;
-
    			SDL_Rect position = (*dead)->getPosition();
-			item = new Potion(round(position.x + (position.w/2)), position.y);
-			item->init();
-			itens.push_back(item);
+
+			switch ((*dead)->getItem())
+			{
+				case 0:
+					// Nothing to drop
+				break;
+				case 1: // Normal Potion Drop
+					item = new Potion(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
+				break;
+				case 2: // Altered Potion Drop
+					item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
+				break;
+				case 3:
+				break;
+				case 4:
+				break;
+				case 5:
+				break;
+				case 6:
+				break;
+				default:
+				break;
+			}
 		}
 	}
 

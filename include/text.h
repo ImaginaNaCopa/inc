@@ -7,7 +7,6 @@
 #include "imageload.h"
 #include "fontconfiguration.h"
 
-
 using namespace imageLoad;
 using namespace std;
 using namespace fontConfiguration;
