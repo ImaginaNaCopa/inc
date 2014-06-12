@@ -55,7 +55,7 @@ Entity::updateEntity()
 	caio->update();
 	updateCamera(caio->getPosition());
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
-		(*it)->update();
+		(*it)->update(caio->getPosition());
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->update();
 }

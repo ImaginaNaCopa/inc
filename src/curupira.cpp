@@ -27,8 +27,6 @@ Curupira::generateBehaviour()
 	m_patrol = doNormalPatrol();
 	m_patrolRange[0] = (m_position.x - m_patrol);
 	m_patrolRange[1] = (m_position.x + m_patrol);
-	m_direction[0] = 1;
-	m_direction[1] = 0;
 	m_speed = haveNormalSpeed();
 	m_taxRotation = haveZombieRotation();
 	m_typeDetection = haveCommonDetection();
@@ -50,11 +48,10 @@ Curupira::generateClips()
 }
 
 void 
-Curupira::update()
+Curupira::update(SDL_Rect target)
 {
 	loop("[Curupira] Updating.");
-	//updatePositionX();
-	//updateDirectionX();
+	updatePosition(target);
 
 	if(isOnLeftDirection())
 	{

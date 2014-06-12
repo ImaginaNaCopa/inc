@@ -12,25 +12,39 @@ public:
 	Enemy();
 	virtual ~Enemy();
 
-	virtual void update();
-	void updatePositionX();
-	void updateDirectionX();
-	bool isOnRightDirection();
+	virtual void update(SDL_Rect target);
+
+	void updatePosition(SDL_Rect target);
+	void hunt();
+	void updateDetection();
+	void updateDirection();
+
+	int calculatePosition();
+
 	bool isOnLeftDirection();
+	bool isOnRightDirection();
+
 	int getItem();
 
 protected:
+	SDL_Rect m_target;
+
 	bool m_hunter;
+	bool m_hunt;
+
 	bool m_flying;
+	bool m_attacking;
+	int m_patrolStep;
 
 	int m_health;
 	int m_item;
+
 	int m_patrol;
 	int m_speed;
 	int m_taxRotation;
 	int m_typeDamage;
+	int m_direction;
 	int m_typeDetection;
-	int m_direction[2];
 	int m_patrolRange[2];
 };
 

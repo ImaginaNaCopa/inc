@@ -193,4 +193,10 @@ namespace behaviour
 		loop("[Behaviour] Receiving Sniffler Type -> PASSIVE.");
 		return passive;
 	}
+
+	int
+	getFlyingStandardHeight()
+	{
+		return getPlatformH()-300;
+	}
 }

@@ -11,7 +11,7 @@ public:
 
 	void generateBehaviour();
 	void generateClips();
-	void update();
+	void update(SDL_Rect target);
 };
 
 #endif

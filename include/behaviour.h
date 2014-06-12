@@ -3,7 +3,9 @@
 
 #include <cmath>
 #include "systemlogger.h"
+#include "configuration.h"
 
+using namespace configuration;
 using namespace systemLogger;
 
 namespace behaviour
@@ -38,6 +40,8 @@ namespace behaviour
 
 	bool isHunter();
 	bool isPassive();
+
+	int getFlyingStandardHeight();
 }
 
 #endif // BEHAVIOUR_H
