@@ -20,6 +20,7 @@ Game::Game()
 
 	m_exitstate[0] = false;
 	m_exitstate[1] = false;
+	released = false;
 
 	addHandler(this);
 }
@@ -93,7 +94,7 @@ Game::run()
 
 				case 2:
 					loop("[Game] Its on Progression Menu, ladies and gentlemans!");
-						step("[Game] Transitioning: Progression Menu >>> Level One.");
+					step("[Game] Transitioning: Progression Menu >>> Level One.");
 					setTimelineEvent(3);
 				break;
 
@@ -105,7 +106,19 @@ Game::run()
 						m_levelOne->draw();
 					}
 					else
-					{}
+					{
+						if (m_levelOne->isFinished())
+						{
+							cout << "mudando de fase" << endl;
+						} 
+						else if (m_levelOne->gameOver())
+						{
+							delete m_levelOne;
+							m_levelOne = new LevelOne();
+							m_levelOne->init();
+							setOver(false);
+						}
+					}
 				break;
 
 				case 10:

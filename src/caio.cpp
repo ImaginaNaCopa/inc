@@ -417,13 +417,20 @@ Caio::setSpeed(int speed)
     m_speed = speed;
 }
 
+void
+Caio::setDead(bool dead)
+{
+    loop("[Caio] Setting a New Speed.");
+    m_dead = dead;
+}
+
 void 
 Caio::setHealth(int health)
 {
-    if (m_health < 4 && m_health > 0)
+    if (m_health <= 0)
+        setDead(true);
+    else if (m_health < 10)
         m_health += health;
-    else if (m_health == 0)
-        m_dead = true;
 }
 
 void 

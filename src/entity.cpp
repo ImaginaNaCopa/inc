@@ -16,6 +16,8 @@ Entity::~Entity()
 		delete *it;
 	delete caio;
 	delete aim;
+	removeHandler(aim);
+	removeHandler(caio);
 }
 
 void 

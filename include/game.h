@@ -28,6 +28,7 @@ public:
 	bool handle(SDL_Event &event);
 
 private:
+	bool released;
 	bool m_exitstate[2];
 
 	FrontEnd* m_frontEnd;

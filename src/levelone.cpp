@@ -13,6 +13,8 @@ LevelOne::LevelOne() : Stage()
 	step("[LevelOne] Defining Enemies.");
 	generateEnemies();
 	generateItens();
+	setFinished(false);
+	setGameOver(false);
 }
 
 LevelOne::~LevelOne() {}
@@ -133,6 +135,7 @@ LevelOne::controlEntityEvents()
 	lootItem();
 	killingEnemy();	
 }
+
 
 void 
 LevelOne::damagingCaio()

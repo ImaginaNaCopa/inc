@@ -12,7 +12,6 @@ class Caio : public InputHandler, public ImageEffect
 
 public:
 	Caio();
-	//Caio(int x);
 	~Caio();
 
 	void generateClips();
@@ -38,6 +37,7 @@ public:
 	int getSpeed();
 	int getHealth();
 
+	void setDead(bool dead);
 	void setSpeed(int speed);
 	void setHealth(int health);
 	void setImune(int imune);
