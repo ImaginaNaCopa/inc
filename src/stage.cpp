@@ -61,6 +61,13 @@ Stage::update()
 		setFinished(false);
 		setGameOver(true);
 	}
+	if(caio->getPosition().x >= 1500)
+	{
+		setOver(true);
+		setFinished(true);
+		removeHandler(caio);
+		removeHandler(aim);
+	}
 }
 
 void

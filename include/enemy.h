@@ -19,7 +19,7 @@ public:
 	void updateDetection();
 	void updateDirection();
 
-	int calculatePosition();
+	int calculatePosition(int direction);
 
 	bool isOnLeftDirection();
 	bool isOnRightDirection();

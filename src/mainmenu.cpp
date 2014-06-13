@@ -72,6 +72,7 @@ MainMenu::update()
 		step("[MainMenu] If selected an option, remove the InputHandler.");
 		SDL_ShowCursor(0);
 		removeHandler(this);
+		setOver(true);
 		switch(m_selection)
 		{
 			case 0:

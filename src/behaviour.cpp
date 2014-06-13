@@ -2,7 +2,7 @@
 
 namespace behaviour
 {
-	int normalSpeed = 110;
+	int normalSpeed = 55;
 	int slowSpeed = round(normalSpeed/2);
 	int quicklySpeed = 2*normalSpeed;
 

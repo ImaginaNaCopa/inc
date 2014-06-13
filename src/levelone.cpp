@@ -49,47 +49,40 @@ LevelOne::generateEnemies()
 {
 	// Setting initial potion to curupiras
 	step("[LevelOne] Generating Enemies.");
-	enemy = new Curupira(0, 300);
-	enemies.push_back(enemy);
-	enemy = new Curupira(1, 760);
-	enemies.push_back(enemy);
-	enemy = new Curupira(0, 800);
-	enemies.push_back(enemy);
-	enemy = new Curupira(0, 900);
-	enemies.push_back(enemy);
-	enemy = new Curupira(0, 950);
-	enemies.push_back(enemy);
-	enemy = new Curupira(1, 1000);
-	enemies.push_back(enemy);
-	enemy = new Curupira(0, 1250);
-	enemies.push_back(enemy);
-	enemy = new Curupira(0, 1300);
-	enemies.push_back(enemy);
-	enemy = new Curupira(2, 1400);
-	enemies.push_back(enemy);
-	enemy = new Curupira(0, 1450);
-	enemies.push_back(enemy);
-
-
-	// Setting initial potion to urubus
-	enemy = new Urubu(0, 300);
-	enemies.push_back(enemy);
-	enemy = new Urubu(0, 500);
-	enemies.push_back(enemy);
-	enemy = new Urubu(2, 600);
-	enemies.push_back(enemy);
-	enemy = new Urubu(0, 900);
-	enemies.push_back(enemy);
-	enemy = new Urubu(0, 1000);
-	enemies.push_back(enemy);
-	enemy = new Urubu(1, 1050);
-	enemies.push_back(enemy);
-	enemy = new Urubu(0, 1150);
-	enemies.push_back(enemy);
-	enemy = new Urubu(1, 1200);
-	enemies.push_back(enemy);
-	enemy = new Urubu(0, 1400);
-	enemies.push_back(enemy);
+	int positionReference = 300;
+	for(positionReference = 300; positionReference<=1550 ; positionReference++)
+	{
+		if(positionReference%300 == 0)
+		{
+			enemy = new Urubu(1, positionReference);
+			enemies.push_back(enemy);
+		}
+		else if(positionReference%250 == 0)
+		{
+			enemy = new Curupira(2, positionReference);
+			enemies.push_back(enemy);
+		}
+		else if(positionReference%220 == 0)
+		{
+			enemy = new Urubu(2, positionReference);
+			enemies.push_back(enemy);
+		}
+		else if(positionReference%200 == 0)
+		{
+			enemy = new Curupira(1, positionReference);
+			enemies.push_back(enemy);
+		}
+		else if(positionReference%80 == 0)
+		{
+			enemy = new Urubu(0, positionReference);
+			enemies.push_back(enemy);
+		}
+		else if(positionReference%50 == 0)
+		{
+			enemy = new Curupira(0, positionReference);
+			enemies.push_back(enemy);
+		}
+	}
 }
 
 void
@@ -133,7 +126,7 @@ LevelOne::controlEntityEvents()
 */
 	damagingCaio();
 	lootItem();
-	killingEnemy();	
+	killingEnemy();
 }
 
 

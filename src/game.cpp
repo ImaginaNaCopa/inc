@@ -110,6 +110,14 @@ Game::run()
 						if (m_levelOne->isFinished())
 						{
 							cout << "mudando de fase" << endl;
+							setOver(false);
+							setTimelineEvent(1);					
+							delete m_mainMenu;
+							m_mainMenu = new MainMenu();
+							m_mainMenu->init();
+							delete m_levelOne;
+							m_levelOne = new LevelOne();
+							m_levelOne->init();		
 						} 
 						else if (m_levelOne->gameOver())
 						{

@@ -10,7 +10,7 @@ Caio::Caio() : ImageEffect()
     m_jumping = false;
     m_moving = false;
     m_dx = 0;
-    m_speed = haveNormalSpeed();
+    m_speed = haveQuicklySpeed();
     m_jumpspeed = 10;
     m_health = 3;
     m_dead = false;

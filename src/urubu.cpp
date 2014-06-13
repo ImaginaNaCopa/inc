@@ -27,7 +27,7 @@ Urubu::generateBehaviour()
 	m_patrol = doNormalPatrol();
 	m_patrolRange[0] = (m_position.x - m_patrol);
 	m_patrolRange[1] = (m_position.x + m_patrol);
-	m_speed = haveNormalSpeed();
+	m_speed = haveQuicklySpeed();
 	m_taxRotation = haveZombieRotation();
 	m_typeDetection = haveCommonDetection();
 }

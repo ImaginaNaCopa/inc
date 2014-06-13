@@ -22,11 +22,12 @@ Enemy::updatePosition(SDL_Rect target)
 	else if(m_hunter)
 	{
 		updateDetection();
-		if((m_patrol == doNormalPatrol()) || (m_patrol == doExtensePatrol()))
-		{
-			updateDirection();
-		}		
 	}
+	if(((m_patrol == doNormalPatrol()) || (m_patrol == doExtensePatrol())) && !m_attacking)
+	{
+		updateDirection();
+		m_position.x += calculatePosition(m_direction);
+	}		
 }
 
 void
@@ -37,42 +38,46 @@ Enemy::hunt()
 			if(!m_attacking)
 			{
 				if(m_position.y > getFlyingStandardHeight())
-					m_position.y -= calculatePosition();
+					m_position.y += calculatePosition(-1);
 				else
 				{
 					m_position.y = getFlyingStandardHeight();
-					if(m_patrolStep<30)
+					if(m_patrolStep<100)
 						m_patrolStep++;
 					else
 					{
 						m_patrolStep = 0;
 						m_attacking = true;
 					}
-
-					/*updateDirection();
-					if(m_patrolStep==0)
-						m_attacking = true;*/				
+					updateDirection();
 				}
 			}
 			else
 			{
-				if(m_target.y+m_target.h >= m_position.y)
-					m_position.y += calculatePosition();
+				if((getPlatformH()-(m_target.h/2)) >= m_position.y)
+					m_position.y += round(2*calculatePosition(1));
 				else
 				{
 					m_attacking = false;
 				}
 			}
 	}
-	if(m_target.x <= m_position.x)
-	{
-		m_position.x -= calculatePosition();
-		m_direction = -1;
-	}
 	else
 	{
-		m_position.x += calculatePosition();
-		m_direction = 1;
+		m_attacking = true;
+	}
+	if(m_attacking)
+	{
+		if(m_target.x <= m_position.x)
+		{
+			m_direction = -1;
+			m_position.x += calculatePosition(m_direction);
+		}
+		else
+		{
+			m_direction = 1;
+			m_position.x += calculatePosition(m_direction);
+		}
 	}
 }
 
@@ -107,10 +112,10 @@ Enemy::updateDetection()
 }
 
 int
-Enemy::calculatePosition()
+Enemy::calculatePosition(int direction)
 {
 	loop("[Enemy] Updating Position in Horizontal axis.");
-		return round((m_speed*getDelta())/1000.0);
+		return round(((m_speed*getDelta())/1000.0)*direction);
 }
 
 void
@@ -119,15 +124,11 @@ Enemy::updateDirection()
 	loop("[Enemy] Updating Direction in Horizontal axis.");
 	if (m_position.x >= m_patrolRange[1])
 	{
-		m_position.x -= calculatePosition();
 		m_direction = -1;
-		m_patrolStep++;
 	}
 	else if (m_position.x <= m_patrolRange[0])
 	{
-		m_position.x += calculatePosition();
 		m_direction = 1;
-		m_patrolStep--;
 	}
 }
 

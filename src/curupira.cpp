@@ -24,7 +24,7 @@ Curupira::generateBehaviour()
 	m_flying = isTerrestrial();
 	m_typeDamage = doSimpleDamageType();
 	m_health = haveWeakHealth();
-	m_patrol = doNormalPatrol();
+	m_patrol = dontPatrol();
 	m_patrolRange[0] = (m_position.x - m_patrol);
 	m_patrolRange[1] = (m_position.x + m_patrol);
 	m_speed = haveNormalSpeed();
