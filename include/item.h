@@ -10,6 +10,9 @@ public:
 	virtual ~Item();
 
 	virtual void update();
+	virtual int getId();
+protected:
+	int id;
 };
 
 #endif // ITEM_H

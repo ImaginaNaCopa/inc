@@ -116,14 +116,7 @@ void
 LevelOne::controlEntityEvents()
 {
 	loop("[LevelOne] Handling Specific Entity Conditions.");
-/*	if (enemies.size() < 1)
-	{
-    	step("[LevelOne] Spawn a New Curupira.");
-		enemy = new Curupira(0, (rand() % 200) + 300);
-		enemy->init();
-		enemies.push_back(enemy);
-	}	
-*/
+
 	damagingCaio();
 	lootItem();
 	killingEnemy();
@@ -175,6 +168,21 @@ LevelOne::lootItem()
 		if (caio->overItem((*it)->getPosition()))
 		{
 			loot = it;
+			switch ((*loot)->getId())
+			{
+				case 1:
+					inventory->setQtdPotion(1);
+				break;
+				case 2:
+					inventory->setQtdAlteredPotion(1);
+				break;
+				case 3:
+					// Nothing yet
+				break;
+				default:
+					// Nothing to do
+				break;
+			}
 		}
 	}
 

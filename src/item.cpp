@@ -9,3 +9,9 @@ Item::update()
 {
 	
 }
+
+int
+Item::getId()
+{
+	return id;
+}

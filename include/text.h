@@ -18,6 +18,7 @@ public:
 	~Text();
 
 	void addText(const string& newText);
+	void removeText();
 	void setTextNumber(int newTextNumber);
 
 	void addPosition(int x, int y);

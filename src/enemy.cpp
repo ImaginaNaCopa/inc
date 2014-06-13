@@ -11,7 +11,10 @@ Enemy::Enemy() : ImageSprite()
 Enemy::~Enemy() {}
 
 void
-Enemy::update(SDL_Rect target) {}
+Enemy::update(SDL_Rect target) 
+{
+	return (void) target;
+}
 
 void
 Enemy::updatePosition(SDL_Rect target)

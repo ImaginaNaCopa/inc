@@ -24,6 +24,11 @@ Text::addText(const string& newText)
 {
 	m_texts.push_back(newText);
 }
+void
+Text::removeText()
+{
+	m_texts.erase(m_texts.begin()+1);
+}
 
 void
 Text::setTextNumber(int newTextNumber)
