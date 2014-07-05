@@ -4,7 +4,7 @@ Urubu::Urubu(int item, int earlyPosition) : Enemy()
 {
 	step("[Urubu] Constructing.");
   imagePath.assign("res/images/s_urubu.png");
-	generatePosition(earlyPosition,getFlyingStandardHeight(),51,36);
+	generatePosition(earlyPosition,getFlyingStandardHeight(),92,70);
   generateClips();
 	generateBehaviour();
 	m_item = item;

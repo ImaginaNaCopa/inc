@@ -64,12 +64,16 @@ Game::shutdown()
 void
 Game::run()
 {
+	// TODO: apagar a linha abaixo
+//		setTimelineEvent(3);
+
 	step("[Game] Using Run Method.");
 	while ( !onQuit() )
 	{
 		loop("[Game] Starting a New Loop");
 		tick();
 		eventLoop();
+
 		if(isBeyondLimitsOfFPS())
 		{
 			loop("[Game] Plot of Events.");

@@ -82,7 +82,7 @@ LevelOne::generateEnemies()
 			enemy = new Curupira(0, positionReference);
 			enemies.push_back(enemy);
 		}
-	}
+	} 
 }
 
 void

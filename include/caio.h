@@ -26,6 +26,8 @@ public:
 	void moveCrouch();
 	void moveForward();
 	void moveJump();
+	void standForward();
+	void standBackward();
 
 	bool isCrouching();
 	bool isJumping();
@@ -43,15 +45,24 @@ public:
 	void setImune(int imune);
 
 private:
-	bool m_crouching;
-	bool m_jumping;
-	bool m_moving;
+	typedef enum {STANDING, JUMPING, CROUCHING, MOVING} State;
+	typedef enum {FORWARD, BACKWARD} Looking;
+
 	float m_jumpspeed;
 	int m_dx;
 	int m_speed;
 	int m_health;
 	bool m_dead;
 	bool m_imune;
+
+	State m_state;
+	Looking m_looking;
+	int m_clipOffset;
+
+	bool m_aPressed;
+	bool m_sPressed;
+	bool m_dPressed;
+	bool m_spacePressed;
 };
 
 #endif // CAIO_H

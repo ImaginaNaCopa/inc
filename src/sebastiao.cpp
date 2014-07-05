@@ -11,7 +11,7 @@ Sebastiao::Sebastiao() : ImageSprite()
 {
 	step("[Sebastiao] Constructing.");
 	imagePath.assign("res/images/s_sebastiao.png");
-	generatePosition(550,10,200,90);
+	generatePosition(550,10,140,70);
 	generateClips();
 }
 
