@@ -37,6 +37,9 @@ main:$(OFILES) $(HPPFILES)
 	@$(LD) $(OFILES) $(CPPFLAGS) $(LDFLAGS) -o $(TARGET)
 	@echo Built executable "$(TARGET)"
 
+run: main
+	./$(TARGET)
+	
 clean:
 	@echo Cleaning...
 	@rm -rf $(BUILD)/
