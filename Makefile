@@ -7,7 +7,7 @@ BUILD		:= build
 # Compiler
 export LD := $(CXX)
 # Compiler flags
-CPPFLAGS=-O2 -g -W -Wall -pedantic -ansi -std=c++0x -Wextra -Wshadow
+CPPFLAGS=-O2 -g -W -Wall -pedantic -ansi -Wno-long-long -std=c++0x -Wextra -Wshadow
 # Linking flags
 LDFLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
