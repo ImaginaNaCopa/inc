@@ -186,9 +186,9 @@ Stage::killingEnemy()
 	{
 		if (aim->overEnemy((*it)->getPosition()))
 		{
-    		loop("[Stage] if Shooted an Enemy, define Dead to it.");
+    	loop("[Stage] if Shooted an Enemy, define Dead to it.");
 			dead = it;
-   			SDL_Rect position = (*dead)->getPosition();
+   		SDL_Rect position = (*dead)->getPosition();
 
 			switch ((*dead)->getItem())
 			{

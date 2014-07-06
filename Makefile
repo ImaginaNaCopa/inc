@@ -26,10 +26,10 @@ export INCLUDE := $(foreach dir,$(INCLUDES), -I$(CURDIR)/$(dir)) -I$(CURDIR)/$(B
 
 all: main
 
-$(BUILD)/%.o:$(SOURCES)/%.cpp
-	@mkdir -p $(BUILD)
-	@echo Building $^ ...
-	@$(LD) $(CPPFLAGS) -c $^ -o $@ $(INCLUDE)
+cr: clean run
+
+run: main
+	./$(TARGET)
 
 main:$(OFILES) $(HPPFILES)
 	@mkdir -p $(BUILD)
@@ -37,11 +37,11 @@ main:$(OFILES) $(HPPFILES)
 	@$(LD) $(OFILES) $(CPPFLAGS) $(LDFLAGS) -o $(TARGET)
 	@echo Built executable "$(TARGET)"
 
-run: main
-	./$(TARGET)
+$(BUILD)/%.o:$(SOURCES)/%.cpp
+	@mkdir -p $(BUILD)
+	@echo Building $^ ...
+	@$(LD) $(CPPFLAGS) -c $^ -o $@ $(INCLUDE)
 
-cr: clean run
-	
 clean:
 	@echo Cleaning...
 	@rm -rf $(BUILD)/

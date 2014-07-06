@@ -66,7 +66,4 @@ void
 Entity::generateEnemies() {}
 
 void
-Entity::generateItens() {}
-
-void
 Entity::controlEntityEvents() {}

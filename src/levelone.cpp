@@ -12,7 +12,6 @@ LevelOne::LevelOne() : Stage()
 	generateSecondLayer();
 	step("[LevelOne] Defining Enemies.");
 	generateEnemies();
-	generateItens();
 	setFinished(false);
 	setGameOver(false);
 }
@@ -84,12 +83,6 @@ LevelOne::generateEnemies()
 			enemies.push_back(enemy);
 		}
 	} 
-}
-
-void
-LevelOne::generateItens()
-{
-	step("[LevelOne] Generating Itens.");
 }
 
 void

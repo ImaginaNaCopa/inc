@@ -1,4 +1,5 @@
 #include "aim.h"
+#include <iostream>
 
 Aim::Aim() : ImageSprite()
 {
@@ -6,6 +7,7 @@ Aim::Aim() : ImageSprite()
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(round(getWindowW()/2),round(getWindowH()/2),87,90);
 	generateClips();
+	defineEffects();
 }
 
 Aim::~Aim()
@@ -21,6 +23,15 @@ Aim::generateClips()
 	addClip(100,0,87,90);
 	addClip(200,0,87,90);
 	addClip(300,0,87,90);
+}
+
+void
+Aim::defineEffects()
+{
+	step("[Aim] Defining Audio Effects.");
+	shot1 = new AudioHandler();
+	shot1->setCurrentEffect("res/audios/se/shot.ogg");
+	shot1->setEffectVolume(100);
 }
 
 void 
@@ -39,6 +50,8 @@ Aim::overEnemy(SDL_Rect rect)
 	{
 		condition("[Aim] Targeted an Entity (Over Enemy).");
 		m_clipNumber = 1;
+		if(m_shoot==true)
+			shot1->playEffect(0);
 		return m_shoot;
 	}
 
@@ -59,7 +72,6 @@ Aim::overPlayer(SDL_Rect rect)
 bool 
 Aim::handle(SDL_Event& event)
 {
-	loop("[Aim] Handling Events.");
 	bool processed = false;
 	m_shoot = false;
 	switch (event.type)
@@ -72,14 +84,28 @@ Aim::handle(SDL_Event& event)
 		break;
 
 		case SDL_MOUSEBUTTONDOWN:
-			controls(0,"[Aim] MouseButtonDown.");
-			m_shoot = true;
-			processed = true;
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				controls(0,"[Aim] MouseButtonDown.");
+				m_shoot = true;
+				processed = true;
+			}
+			else if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				cout << "botão direito pressed" << endl;
+			}
 		break;
 
 		case SDL_MOUSEBUTTONUP:
-			controls(0,"[Aim] MouseButtonUp.");
-			processed = true;
+			if (event.button.button == SDL_BUTTON_LEFT)
+			{
+				controls(0,"[Aim] MouseButtonUp.");
+				processed = true;
+			}
+			else if (event.button.button == SDL_BUTTON_RIGHT)
+			{
+				cout << "botão direito released" << endl;
+			}
 		break;
 
 		default:
@@ -100,4 +126,16 @@ Aim::updateKernel()
 {
 	loop("[Aim] Updating Kernel Position.");
 	m_kernel = {m_position.x+getCameraLeftPosition()+40, m_position.y+40, 5, 5};
+}
+
+bool
+Aim::getShoot()
+{
+	return m_shoot;
+}
+
+void
+Aim::setShoot(bool shoot)
+{
+	m_shoot = shoot;
 }

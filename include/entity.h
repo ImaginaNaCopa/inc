@@ -22,7 +22,6 @@ public:
 	
 	virtual void controlEntityEvents();
 	virtual void generateEnemies();
-	virtual void generateItens();
 
 	void initEntity();
 	void drawEntity();

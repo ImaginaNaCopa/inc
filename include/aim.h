@@ -1,6 +1,7 @@
 #ifndef AIM_H
 #define AIM_H
 
+#include "audiohandler.h"
 #include "inputhandler.h"
 #include "imagesprite.h"
 
@@ -11,6 +12,7 @@ public:
 	~Aim();
 
 	void generateClips();
+	void defineEffects();
 	void update();
 
 	bool overEnemy(SDL_Rect rect);
@@ -20,8 +22,11 @@ public:
 
 	SDL_Rect getKernel();
 	void updateKernel();
+	bool getShoot();
+	void setShoot(bool shoot);
 
 private:
+	AudioHandler* shot1;
 	SDL_Rect m_kernel;
 	bool m_shoot;
 };
