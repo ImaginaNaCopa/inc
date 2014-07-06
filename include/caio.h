@@ -21,8 +21,6 @@ public:
 
 	bool handle(SDL_Event& event);
 
-	void useItem(int option);
-
 	bool isCrouching();
 	bool isJumping();
 	bool isMoving();
@@ -45,16 +43,20 @@ public:
 private:
 	typedef enum {STANDING, JUMPING, CROUCHING, MOVING} State;
 	typedef enum {FORWARD, BACKWARD} Looking;
+	typedef enum {ENERGYTONIC, ALTEREDTONIC, ANTIALL, FREEBOIMEAT, IMAGINANACOPA, NOUSE} UseItem;
 
 	bool m_dead;
 	bool m_imune;
 
 	int m_itemUsed;
+	bool m_use;
+	bool m_keyItemUnpressed;
 
 	bool m_aPressed;
 	bool m_sPressed;
 	bool m_dPressed;
 	bool m_spacePressed;
+	
 	bool m_onePressed;
 	bool m_twoPressed;
 	bool m_threePressed;
@@ -68,21 +70,28 @@ private:
 	int m_health;
 	int m_maxHealth;
 
-	int m_clipOffset;
-
 	Looking m_looking;
 	State m_state;
+	UseItem m_useItem;
 
 	void generateClips();
+	void generateDefaultStats();
 
-	void moveBackward();
-	void moveCrouch();
-	void moveForward();
-	void moveJump();
-	void move();
-	void jump();
+	void handleItens();
+	
+	void stand();
 	void standForward();
 	void standBackward();
+
+	void crouch();
+	void moveCrouch();
+
+	void jump();
+	void moveJump();
+	
+	void move();
+	void moveForward();
+	void moveBackward();
 
 };
 

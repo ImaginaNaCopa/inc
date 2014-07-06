@@ -5,8 +5,7 @@ namespace timer
 	Uint32 now = 0;
 	Uint32 last = 0;
 	int normalFPS = 40;
-	int timelineEventNumber = 0;
-	int idleTime = 0;
+	Timeline timelineEvent;
 	bool over = false;
 	bool quit = false;
 
@@ -33,33 +32,18 @@ namespace timer
 		return (now - last);
 	}
 
-	int
+	Timeline
 	getTimelineEvent()
 	{
-		loop("[Timer] Getting Timeline Event Number.");
-		return timelineEventNumber;
+		loop("[Timer] Getting Timeline Event.");
+		return timelineEvent;
 	}
 
 	void
-	setTimelineEvent(int eventNumber)
+	setTimelineEvent(Timeline newTimelineEvent)
 	{
-		step("[Timer] Setting a New Timeline Event Number.");
-		timelineEventNumber = eventNumber;
-		over = false;
-	}
-
-	int
-	getIdleTime()
-	{
-		loop("[Timer] Getting Timeline Event Number.");
-		return idleTime;
-	}
-
-	void
-	setIdleTime(int newIdleTime)
-	{
-		loop("[Timer] Setting a new Idle Time.");
-		idleTime = newIdleTime;
+		loop("[Timer] Setting a New Timeline Event.");
+		timelineEvent = newTimelineEvent;
 	}
 
 	bool
@@ -72,7 +56,7 @@ namespace timer
 	void
 	setOver(bool overState)
 	{
-		step("[Timer] Setting the Over State.");
+		loop("[Timer] Setting the Over State.");
 		over = overState;
 	}
 

@@ -37,6 +37,7 @@ MainMenu::generateClips()
 void
 MainMenu::update()
 {
+	setOver(false);
 	loop("[MainMenu] Updating and Drawing.");
 	m_background->draw();
 
@@ -77,17 +78,17 @@ MainMenu::update()
 		{
 			case 0:
 				step("[MainMenu] Transitioning: Main Menu >>> Progression Menu.");
-				setTimelineEvent(2);
+				setTimelineEvent(PROGRESSIONMENU);
 			break;
 
 			case 1:
 				step("[MainMenu] Transitioning: Main Menu >>> Configuration Menu.");
-				setTimelineEvent(10);
+				setTimelineEvent(CONFIGURATIONMENU);
 			break;
 
 			case 2:
 				step("[MainMenu] Transitioning: Main Menu >>> Credits.");
-				setTimelineEvent(20);
+				setTimelineEvent(CREDITS);
 			break;
 
 			case 3:
@@ -97,7 +98,7 @@ MainMenu::update()
 
 			default:
 				step("[MainMenu] Transitioning: Main Menu >>> Progression Menu.");
-				setTimelineEvent(2);
+				setTimelineEvent(PROGRESSIONMENU);
 			break;
 		}
 	}

@@ -65,7 +65,7 @@ void
 Game::run()
 {
 	// TODO: apagar a linha abaixo
-	setTimelineEvent(0);
+	setTimelineEvent(MAINMENU);
 
 	step("[Game] Using Run Method.");
 	while ( !onQuit() )
@@ -79,76 +79,53 @@ Game::run()
 			loop("[Game] Plot of Events.");
 			switch(getTimelineEvent())
 			{
-				case 0:
-					if(!isOver())
-					{
-						loop("[Game] Its on Front End, ladies and gentlemans!");
-						m_frontEnd->update();
-					}
-					else
-					{
-						step("[Game] Transitioning: Front End >>> Main Menu.");
-						setTimelineEvent(1);						
-					}
+				case FRONTEND:
+					m_frontEnd->update();
 				break;
-				case 1:
-					loop("[Game] Its on Main Menu, ladies and gentlemans!");
+
+				case MAINMENU:
 					m_mainMenu->update();
 				break;
 
-				case 2:
-					loop("[Game] Its on Progression Menu, ladies and gentlemans!");
-					step("[Game] Transitioning: Progression Menu >>> Level One.");
-					setTimelineEvent(3);
+				case PROGRESSIONMENU:
+					setTimelineEvent(LEVELONE);
 				break;
 
-				case 3:
-					if(!isOver())
-					{
-						loop("[Game] Its on #VAMO PRA RUA, ladies and gentlemans!");
-						m_levelOne->update();
-						m_levelOne->draw();
-					}
-					else
-					{
-						if (m_levelOne->isFinished())
-						{
-							cout << "mudando de fase" << endl;
-							setOver(false);
-							setTimelineEvent(1);					
-							delete m_mainMenu;
-							m_mainMenu = new MainMenu();
-							m_mainMenu->init();
-							delete m_levelOne;
-							m_levelOne = new LevelOne();
-							m_levelOne->init();		
-						} 
-						else if (m_levelOne->gameOver())
-						{
-							delete m_levelOne;
-							m_levelOne = new LevelOne();
-							m_levelOne->init();
-							setOver(false);
-						}
-					}
-				break;
-
-				case 10:
-					loop("[Game] Its on Configuration Menu, ladies and gentlemans!");
+				case CONFIGURATIONMENU:
 					m_configurationMenu->update();
 				break;
 
-				case 20:
-					loop("[Game] Its on Credits, ladies and gentlemans!");
-						step("[Game] Transitioning: Credits >>> Level One.");
-					setTimelineEvent(3);
-				break;									
+				case CREDITS:
+					setTimelineEvent(LEVELONE);
+				break;
+
+				case LEVELONE:
+					m_levelOne->update();
+					m_levelOne->draw();
+					if (m_levelOne->isFinished())
+					{
+						delete m_mainMenu;
+						m_mainMenu = new MainMenu();
+						m_mainMenu->init();
+						delete m_levelOne;
+						m_levelOne = new LevelOne();
+						m_levelOne->init();		
+						setTimelineEvent(MAINMENU);
+					} 
+					else if (m_levelOne->gameOver())
+					{
+						setOver(false);
+						delete m_levelOne;
+						m_levelOne = new LevelOne();
+						m_levelOne->init();
+					}
+				break;					
 
 				default:
 				break;				
 			}
-			loop("[Game] Rendering Everything.");
-			render();
+			if(!isOver())
+				render();
 			setLastToNow();
 		}
 	}

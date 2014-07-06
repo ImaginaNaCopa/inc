@@ -6,34 +6,12 @@ using namespace std;
 Caio::Caio() : ImageEffect()
 {
 	step("[Caio] Constructing.");
+
 	imagePath.assign("res/images/s_caio.png");
 	generatePosition(round(getWindowW()/16),getPlatformH(),48,55);
 	generateClips();
-
-	m_dx = 0;
-	m_speed = haveQuicklySpeed();
-	m_jumpspeed = 10;
-	m_health = 3;
-	m_maxHealth = 3;
-	m_dead = false;
-	m_imune = false;
-
-	m_state = STANDING;
-	m_looking = FORWARD;
-	m_clipOffset = 0;
-
-	m_aPressed = false;
-	m_sPressed = false;
-	m_dPressed = false;
-	m_spacePressed = false;
-
-	m_onePressed = false;
-	m_twoPressed = false;
-	m_threePressed = false;
-	m_fivePressed = false;
-	m_sixPressed = false;
-
-	m_itemUsed = 0;
+	generateDefaultStats();
+	newVariousIdleTimes(2);
 }
 
 Caio::~Caio()
@@ -78,6 +56,38 @@ Caio::generateClips()
 }
 
 void
+Caio::generateDefaultStats()
+{
+	m_dx = 0;
+	m_speed = haveQuicklySpeed();
+	m_jumpspeed = 10;
+
+	m_health = 3;
+	m_maxHealth = 3;
+	m_dead = false;
+	m_imune = false;
+
+	m_state = STANDING;
+	m_looking = FORWARD;
+	m_useItem = NOUSE;
+
+	m_aPressed = false;
+	m_sPressed = false;
+	m_dPressed = false;
+	m_spacePressed = false;
+
+	m_itemUsed = 0;
+	m_keyItemUnpressed = false;
+	m_use = true;
+
+	m_onePressed = false;
+	m_twoPressed = false;
+	m_threePressed = false;
+	m_fivePressed = false;
+	m_sixPressed = false;
+}
+
+void
 Caio::update()
 {
 	loop("[Caio] Updating.");
@@ -85,111 +95,26 @@ Caio::update()
 	switch (m_state)
 	{
 		case STANDING:
-			if (m_aPressed)
-				moveBackward();
-			else if (m_dPressed)
-				moveForward();
-			else if (m_sPressed)
-				moveCrouch();
-			else if (m_spacePressed)
-				moveJump();
-			else 
-			{	
-				m_position.y = getPlatformH() - m_clips.at(m_clipNumber).h;
-				m_jumpspeed = 10;
-			}
+			stand();
 		break;
 
 		case MOVING:
-			if (m_sPressed)
-			{
-				m_aPressed = m_dPressed = false;
-				moveCrouch();
-			}
-			else if (m_spacePressed)
-				moveJump();
-			else
-				move();
+			move();
 		break;
 	
 		case JUMPING:
-			if (m_aPressed == false && m_dPressed == false)
-			{
-				m_dx = 0;
-			} 
-			else if (m_aPressed)
-			{
-				m_dx = -1;
-				m_looking = BACKWARD;
-			}
-			else if (m_dPressed)
-			{
-				m_dx = 1;
-				m_looking = FORWARD;
-			}
-
-			m_position.x += round(((m_speed*getDelta())/1000.0)*m_dx);
 			jump();
 		break;
 
-	case CROUCHING:
-		if (m_aPressed)
-		{
-			m_sPressed = false;
-			moveBackward();
-		} else if (m_dPressed)
-		{
-			m_sPressed = false;
-			moveForward();
-		} else if (m_spacePressed)
-			moveJump();
-		else if (m_sPressed == false)
-		{
-			if (m_looking == FORWARD)
-				standForward();
-			else
-				standBackward();
-		} else
-		{
-			m_clipNumber++;
+		case CROUCHING:
+			crouch();
+		break;
+	}
 
-			if (m_clipNumber > 19)
-				m_clipNumber = 19;
-		}
-	break;	
-	}
-	if(m_position.y > getPlatformH() - m_clips.at(m_clipNumber).h)
-		m_position.y = getPlatformH() - m_clips.at(m_clipNumber).h;
-	m_position.w = m_clips.at(m_clipNumber).w;
-	m_position.h = m_clips.at(m_clipNumber).h;
+	if(m_position.y > getPlatformH() - m_position.h)
+		m_position.y = getPlatformH() - m_position.h;
 
-	if (m_onePressed)
-	{
-		m_itemUsed = 1;
-		m_onePressed = false;
-	}
-	else if (m_twoPressed)
-	{
-		m_itemUsed = 2;
-		m_twoPressed = false;
-	}
-	else if (m_threePressed)
-	{
-		m_itemUsed = 3;
-		m_threePressed = false;
-	}
-	else if (m_fivePressed)
-	{
-		m_itemUsed = 5;
-		m_fivePressed = false;
-	}
-	else if (m_sixPressed)
-	{
-		m_itemUsed = 6;
-		m_sixPressed = false;
-	}
-	else
-		m_itemUsed = 0;	
+	handleItens();
 }
 
 bool
@@ -258,23 +183,28 @@ Caio::handle(SDL_Event& event)
 		break;
 
 		case SDLK_1:
-			m_onePressed = type == SDL_KEYUP ? true : false;
+			m_onePressed = type == SDL_KEYDOWN ? true : false;
+			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
 		break;
 
 		case SDLK_2:
-			m_twoPressed = type == SDL_KEYUP ? true : false;
+			m_twoPressed = type == SDL_KEYDOWN ? true : false;
+			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
 		break; 
 
 		case SDLK_3:
-			m_threePressed = type == SDL_KEYUP ? true : false;
+			m_threePressed = type == SDL_KEYDOWN ? true : false;
+			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
 		break;
 
 		case SDLK_5:
-			m_fivePressed = type == SDL_KEYUP ? true : false;
+			m_fivePressed = type == SDL_KEYDOWN ? true : false;
+			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
 		break;
 
 		case SDLK_6:
-			m_sixPressed = type == SDL_KEYUP ? true : false;
+			m_sixPressed = type == SDL_KEYDOWN ? true : false;
+			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
 		break;
 
 		default:
@@ -285,14 +215,85 @@ Caio::handle(SDL_Event& event)
 }
 
 void
-Caio::moveBackward()
+Caio::handleItens()
 {
-	action(0,"[Caio] Moving Backward.");
-	m_state = MOVING;
-	m_looking = BACKWARD;
-	m_dx = -1;
-	m_clipNumber = 7;
-	m_clipOffset = 4;
+
+	if(m_use)
+	{
+		if(m_onePressed)
+			m_useItem = ENERGYTONIC;
+		else if(m_twoPressed)
+			m_useItem = ALTEREDTONIC;
+		else if(m_threePressed)
+			m_useItem = ANTIALL;
+		else if(m_fivePressed)
+			m_useItem = FREEBOIMEAT;
+		else if(m_sixPressed)
+			m_useItem = IMAGINANACOPA;
+		else
+			m_useItem = NOUSE;		
+	}
+
+	if(!m_keyItemUnpressed)
+	{
+		switch(m_useItem)
+		{
+			case ENERGYTONIC:
+				m_itemUsed = 1;
+				m_useItem = NOUSE;
+				m_use = false;
+			break;
+
+			case ALTEREDTONIC:
+				m_itemUsed = 2;
+				m_useItem = NOUSE;
+				m_use = false;
+			break;
+
+			case ANTIALL:
+				m_itemUsed = 3;
+				m_useItem = NOUSE;
+				m_use = false;
+			break;
+
+			case FREEBOIMEAT:
+				m_itemUsed = 5;
+				m_useItem = NOUSE;
+				m_use = false;
+			break;
+
+			case IMAGINANACOPA:
+				m_itemUsed = 6;
+				m_useItem = NOUSE;
+				m_use = false;
+			break;
+
+			default:
+				m_itemUsed = 0;
+				m_useItem = NOUSE;
+			break;
+		}
+	}
+	else
+		m_use = true;
+}
+
+void
+Caio::stand()
+{
+	if (m_aPressed)
+		moveBackward();
+	else if (m_dPressed)
+		moveForward();
+	else if (m_sPressed)
+		moveCrouch();
+	else if (m_spacePressed)
+		moveJump();
+	else 
+	{	
+		m_position.y = getPlatformH() - m_position.h;
+		m_jumpspeed = 10;
+	}
 }
 
 void 
@@ -301,7 +302,7 @@ Caio::standForward()
 	action(0,"[Caio] Standing forward.");
 	m_state = STANDING;
 	m_dx = 0;
-	m_clipNumber = 0;
+	setClipNumber(0);
 }
 
 void 
@@ -310,16 +311,71 @@ Caio::standBackward()
 	action(0,"[Caio] Standing backward.");
 	m_state = STANDING;
 	m_dx = 0;
-	m_clipNumber = 4;
+	setClipNumber(4);
 }
+
 void
-Caio::moveCrouch()
+Caio::move()
 {
-	action(0,"[Caio] Crouching.");
-	m_state = CROUCHING;
-	m_dx = 0;
-	m_clipNumber = 15;
-	m_clipOffset = 0;
+	defineCurrentIdleTime(1);
+	if (m_sPressed)
+	{
+		m_aPressed = m_dPressed = false;
+		moveCrouch();
+	}
+	else if (m_spacePressed)
+		moveJump();
+	else
+	{
+		if(m_aPressed == false && m_dPressed == false)
+		{
+			if (m_looking == FORWARD)
+				return standForward();
+			else
+				return standBackward();
+		} 
+		else if(m_aPressed)
+		{
+			m_dx = -1;
+			m_looking = BACKWARD;
+		} 
+		else 
+		{
+			m_dx = 1;
+			m_looking = FORWARD;
+		}
+
+		m_position.x += round(((m_speed*getDelta())/1000.0)*m_dx);
+
+		if(getCurrentIdleTime() == 4)
+		{
+			if(m_looking == FORWARD)
+			{
+				if(m_clipNumber==0)
+					setClipNumber(1);
+				else if(m_clipNumber==1)
+					setClipNumber(2);
+				else if(m_clipNumber==2)
+					setClipNumber(3);
+				else
+					setClipNumber(0);
+			}
+			else
+			{
+				if(m_clipNumber==4)
+					setClipNumber(5);
+				else if(m_clipNumber==5)
+					setClipNumber(6);
+				else if(m_clipNumber==6)
+					setClipNumber(7);
+				else
+					setClipNumber(4);			
+			}
+			setCurrentIdleTime(0);
+		}
+		else
+			setCurrentIdleTime(getCurrentIdleTime()+1);
+	}
 }
 
 void
@@ -329,82 +385,67 @@ Caio::moveForward()
 	m_state = MOVING;
 	m_looking = FORWARD;
 	m_dx = 1;
-	m_clipNumber = 3;
-	m_clipOffset = 0;
+	setClipNumber(0);
 }
 
 void
-Caio::moveJump()
+Caio::moveBackward()
 {
-	action(0,"[Caio] Jumping.");
-	m_state = JUMPING;
-	m_clipNumber = 11;
-	m_clipOffset = 8;
-}
-
-void
-Caio::move()
-{
-	if (m_aPressed == false && m_dPressed == false)
-	{
-		if (m_looking == FORWARD)
-			return standForward();
-		else
-			return standBackward();
-	} 
-	else if (m_aPressed)
-	{
-		m_dx = -1;
-		m_looking = BACKWARD;
-	} 
-	else 
-	{
-		m_dx = 1;
-		m_looking = FORWARD;
-	}
-
-	m_position.x += round(((m_speed*getDelta())/1000.0)*m_dx);
-
-	if (m_looking == FORWARD)
-		m_clipOffset = 0;
-	else
-		m_clipOffset = 4;
-
-	m_clipNumber = ((m_clipNumber + 1) % 4) + m_clipOffset;
+	action(0,"[Caio] Moving Backward.");
+	m_state = MOVING;
+	m_looking = BACKWARD;
+	m_dx = -1;
+	setClipNumber(4);
 }
 
 void
 Caio::jump()
 {
+	if (m_aPressed == false && m_dPressed == false)
+	{
+		m_dx = 0;
+	} 
+	else if (m_aPressed)
+	{
+		m_dx = -1;
+		m_looking = BACKWARD;
+	}
+	else if (m_dPressed)
+	{
+		m_dx = 1;
+		m_looking = FORWARD;
+	}
+
+	m_position.x += round(((m_speed*getDelta())/1000.0)*m_dx);	
 	m_position.y -= m_jumpspeed;
 	m_jumpspeed -= 0.4f;
 
 	if(m_looking == FORWARD)
 	{
 		if (m_jumpspeed > 9.0)
-			m_clipNumber = 9;
+			setClipNumber(9);
 		if (m_jumpspeed > 5.0)
-			m_clipNumber = 10;
+			setClipNumber(10);
 		else if (m_jumpspeed < 1.0)
-			m_clipNumber = 11;
+			setClipNumber(11);
 		else
-			m_clipNumber = 8;
+			setClipNumber(8);
 	}
 	else if(m_looking == BACKWARD)
 	{
 		if (m_jumpspeed > 9.0)
-			m_clipNumber = 13;
+			setClipNumber(13);
 		if (m_jumpspeed > 5.0)
-			m_clipNumber = 14;
+			setClipNumber(14);
 		else if (m_jumpspeed < 1.0)
-			m_clipNumber = 15;
+			setClipNumber(15);
 		else
-			m_clipNumber = 12;
+			setClipNumber(12);
 	}
 		
 	if ((m_position.y+m_position.h) >= getPlatformH())
 	{
-		m_position.y = getPlatformH() - m_clips.at(m_clipNumber).h;
+		m_position.y = getPlatformH() - m_position.h;
 
 		m_jumpspeed = 10;
 
@@ -423,6 +464,84 @@ Caio::jump()
 				moveBackward();
 		}
 	}
+}
+
+void
+Caio::moveJump()
+{
+	action(0,"[Caio] Jumping.");
+	m_state = JUMPING;
+	if(m_looking == FORWARD)
+		setClipNumber(8);
+	else
+		setClipNumber(12);
+}
+
+void
+Caio::crouch()
+{
+	defineCurrentIdleTime(1);
+	if(m_aPressed)
+	{
+		m_sPressed = false;
+		moveBackward();
+	}
+	else if(m_dPressed)
+	{
+		m_sPressed = false;
+		moveForward();
+	}
+	else if(m_spacePressed)
+		moveJump();
+	else if(m_sPressed == false)
+	{
+		if(m_looking == FORWARD)
+			standForward();
+		else
+			standBackward();
+	}
+	else if(getCurrentIdleTime() == 4)
+	{
+		if(m_looking == FORWARD)
+		{
+			if(m_clipNumber==15)
+				setClipNumber(16);
+			else if(m_clipNumber==16)
+				setClipNumber(17);
+			else if(m_clipNumber==17)
+				setClipNumber(18);
+			else if(m_clipNumber==18)
+				setClipNumber(19);
+			else
+				setClipNumber(19);
+		}
+		else
+		{
+			if(m_clipNumber==20)
+				setClipNumber(21);
+			else if(m_clipNumber==21)
+				setClipNumber(22);
+			else if(m_clipNumber==22)
+				setClipNumber(23);
+			else
+				setClipNumber(23);
+		}
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
+}
+
+void
+Caio::moveCrouch()
+{
+	action(0,"[Caio] Crouching.");
+	m_state = CROUCHING;
+	m_dx = 0;
+	if(m_looking == FORWARD)
+		setClipNumber(16);
+	else
+		setClipNumber(20);
 }
 
 bool
@@ -481,17 +600,17 @@ Caio::getItemUsed()
 }
 
 void
-Caio::setSpeed(int speed)
-{
-	loop("[Caio] Setting a New Speed.");
-	m_speed = speed;
-}
-
-void
 Caio::setDead(bool dead)
 {
 	loop("[Caio] Setting a New Speed.");
 	m_dead = dead;
+}
+
+void
+Caio::setSpeed(int speed)
+{
+	loop("[Caio] Setting a New Speed.");
+	m_speed = speed;
 }
 
 void 

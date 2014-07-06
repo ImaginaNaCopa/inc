@@ -1,12 +1,13 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include <time.h>
 #include "behaviour.h"
-#include "imagesprite.h"
+#include "imageeffect.h"
 
 using namespace behaviour;
 
-class Enemy : public ImageSprite
+class Enemy : public ImageEffect
 {
 public:
 	Enemy();
@@ -34,7 +35,8 @@ protected:
 
 	bool m_flying;
 	bool m_attacking;
-	int m_patrolStep;
+	
+	int m_idleFlying;
 
 	int m_health;
 	int m_item;
@@ -46,6 +48,7 @@ protected:
 	int m_direction;
 	int m_typeDetection;
 	int m_patrolRange[2];
+
 };
 
 #endif // ENEMY_H

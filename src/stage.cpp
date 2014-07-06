@@ -48,6 +48,7 @@ Stage::draw()
 void 
 Stage::update()
 {
+	setOver(false);
 	loop("[Stage] Updating Each Stage Object.");
 	if (caio->getHealth() != 0)
 	{
@@ -56,7 +57,7 @@ Stage::update()
 	}
 	else
 	{
-		SDL_Delay(1500);
+		//SDL_Delay(1500);
 		setOver(true);
 		setFinished(false);
 		setGameOver(true);
@@ -79,7 +80,7 @@ Stage::setGameOver(bool over)
 bool
 Stage::gameOver()
 {
-	cout << "returning game over" << endl;
+	loop("[Stage] Returning Game Over.");
 	return m_gameOver;
 }
 
@@ -92,7 +93,7 @@ Stage::setFinished(bool finished)
 bool
 Stage::isFinished()
 {
-	cout << "is done" << endl;
+	loop("[Stage] Returning True if Finished.");
 	return m_finished;
 }
 
@@ -112,18 +113,26 @@ Stage::damagingCaio()
 				caio->setHealth(-1);
 				hp->setHp(caio->getHealth());
 				cout << "hp: " << hp->getHp() << endl;
-				now = SDL_GetTicks();
-				last = now;
+				caio->newReverseFade();
 			}
 		}
 	}
 	else
 	{
-    	now = SDL_GetTicks();
-
-    	if ((now - last) > 1500)
+  		caio->defineCurrentIdleTime(2);
+    	if (caio->getCurrentIdleTime() == 5)
     	{
+    		caio->setCurrentIdleTime(0);
     		caio->setImune(false);
+    	}
+    	else
+    	{
+    		if(caio->isFadeEnded())
+    		{
+	    		caio->newReverseFade();
+	    		caio->setCurrentIdleTime(1+caio->getCurrentIdleTime());
+    		}
+  			caio->reverseFade(85,0);
     	}
 	}
 

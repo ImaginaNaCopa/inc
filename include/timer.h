@@ -14,11 +14,10 @@ namespace timer
 
 	Uint32 getDelta();
 	
-	int getTimelineEvent();
-	void setTimelineEvent(int eventNumber);
+	typedef enum {FRONTEND, MAINMENU, PROGRESSIONMENU, CONFIGURATIONMENU, CREDITS, LEVELONE} Timeline;
 
-	int getIdleTime();
-	void setIdleTime(int newIdleTime);
+	Timeline getTimelineEvent();
+	void setTimelineEvent(Timeline timelineEvent);
 
 	bool isOver();
 	void setOver(bool overState);

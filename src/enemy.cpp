@@ -1,10 +1,9 @@
 #include "enemy.h"
 
-Enemy::Enemy() : ImageSprite()
+Enemy::Enemy() : ImageEffect()
 {
 	m_hunt = false;
 	m_attacking = false;
-	m_patrolStep = 0;
 	m_direction = -1;
 }
 
@@ -38,32 +37,35 @@ Enemy::hunt()
 {
 	if(m_flying)
 	{
-			if(!m_attacking)
-			{
-				if(m_position.y > getFlyingStandardHeight())
-					m_position.y += calculatePosition(-1);
-				else
-				{
-					m_position.y = getFlyingStandardHeight();
-					if(m_patrolStep<100)
-						m_patrolStep++;
-					else
-					{
-						m_patrolStep = 0;
-						m_attacking = true;
-					}
-					updateDirection();
-				}
-			}
+		defineCurrentIdleTime(1);
+		if(!m_attacking)
+		{
+			if(m_position.y > getFlyingStandardHeight())
+				m_position.y += calculatePosition(-1);
 			else
 			{
-				if((getPlatformH()-(m_target.h/2)) >= m_position.y)
-					m_position.y += round(2*calculatePosition(1));
+				m_position.y = getFlyingStandardHeight();
+				if(getCurrentIdleTime() == m_idleFlying)
+				{
+					setCurrentIdleTime(0);
+					m_attacking = true;
+				}
 				else
 				{
-					m_attacking = false;
+					updateDirection();
+					setCurrentIdleTime(getCurrentIdleTime()+1);	
 				}
 			}
+		}
+		else
+		{
+			if(getPlatformH()-55 >= m_position.y+m_position.h)
+				m_position.y += round(2*calculatePosition(1));
+			else
+			{
+				m_attacking = false;
+			}
+		}
 	}
 	else
 	{
@@ -125,13 +127,30 @@ void
 Enemy::updateDirection()
 {
 	loop("[Enemy] Updating Direction in Horizontal axis.");
-	if (m_position.x >= m_patrolRange[1])
+	if(m_flying)
 	{
-		m_direction = -1;
+		defineCurrentIdleTime(1);
+		if(getCurrentIdleTime() > (m_idleFlying/3))
+		{
+			if(m_target.x+55 <= m_position.x)
+				m_direction = -1;
+			else if(m_target.x-55 >= m_position.x)
+				m_direction = 1;	
+		}
+		else
+		{
+			if (m_position.x >= m_patrolRange[1])
+				m_direction = -1;
+			else if (m_position.x <= m_patrolRange[0])
+				m_direction = 1;
+		}
 	}
-	else if (m_position.x <= m_patrolRange[0])
+	else
 	{
-		m_direction = 1;
+		if (m_position.x >= m_patrolRange[1])
+			m_direction = -1;
+		else if (m_position.x <= m_patrolRange[0])
+			m_direction = 1;
 	}
 }
 

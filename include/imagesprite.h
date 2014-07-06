@@ -34,6 +34,7 @@ public:
 	int getHeight();
 
 	void setClipNumber(int clipNumber);
+	void setOnlyClipNumber(int clipNumber);
 	
 protected:
 	SDL_Rect m_position;

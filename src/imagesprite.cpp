@@ -95,5 +95,15 @@ ImageSprite::getHeight()
 void
 ImageSprite::setClipNumber(int clipNumber)
 {
+	m_position.y += m_clips.at(m_clipNumber).h - m_clips.at(clipNumber).h;
+	m_position.x += m_clips.at(m_clipNumber).w - m_clips.at(clipNumber).w;
+	m_clipNumber = clipNumber;
+	m_position.h = m_clips.at(m_clipNumber).h;
+	m_position.w = m_clips.at(m_clipNumber).w;
+}
+
+void
+ImageSprite::setOnlyClipNumber(int clipNumber)
+{
 	m_clipNumber = clipNumber;
 }
