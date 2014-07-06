@@ -23,25 +23,26 @@ void
 LevelOne::defineBackground()
 {
 	step("[LevelOne] Defining Background.");
-	background = new Background("res/images/s_02.png");
-	background->addClip(0,0,2,2);
+	background = new Background("res/images/s_level02.png");
+	background->addClip(272,362,46,46);
 }
 
 void
 LevelOne::generatePlatform()
 {
 	step("[LevelOne] Generating Platform.");
-	platform = new Platform("res/images/s_02.png");
+	platform = new Platform("res/images/s_level02.png");
+	platform->addClip(322,362,46,46);
 }
 
 void
 LevelOne::generateSecondLayer()
 {
 	step("[LevelOne] Generating SecondLayer.");
-	secondlayer = new SecondLayer("res/images/s_02.png");
-	secondlayer->addClip(4,0,270,210);
-	secondlayer->addClip(4,210,270,270);
-	secondlayer->addClip(274,0,120,360);	
+	secondlayer = new SecondLayer("res/images/s_level02.png");
+	secondlayer->addClip(0,0,270,210);
+	secondlayer->addClip(0,210,270,270);
+	secondlayer->addClip(270,0,120,360);	
 }
 
 void
@@ -110,136 +111,4 @@ LevelOne::drawScenarioRelativeImages()
 	secondlayer->drawRelative();
 	secondlayer->generatePosition(1400,90,120,360);
 	secondlayer->drawRelative();
-}
-
-void
-LevelOne::controlEntityEvents()
-{
-	loop("[LevelOne] Handling Specific Entity Conditions.");
-
-	damagingCaio();
-	lootItem();
-	killingEnemy();
-}
-
-
-void 
-LevelOne::damagingCaio()
-{
-	loop("[LevelOne] Verifying if Caio is imune.");
-	if (!caio->isImune())
-	{
-		for (auto it = enemies.begin(); it != enemies.end(); it++)
-		{
-			loop("[LevelOne] Verifying Collision Between Caio and Enemies.");
-			if (caio->overEnemy((*it)->getPosition()))
-			{
-				caio->setImune(true);
-				caio->setHealth(-1);
-				hp->setHp(caio->getHealth());
-				cout << "hp: " << hp->getHp() << endl;
-				now = SDL_GetTicks();
-				last = now;
-			}
-		}
-	}
-	else
-	{
-    	now = SDL_GetTicks();
-
-    	if ((now - last) > 1500)
-    	{
-    		caio->setImune(false);
-    	}
-	}
-
-	if (caio->getHealth() == 0)
-		caio->release();
-}
-
-void
-LevelOne::lootItem()
-{
-	auto loot = itens.end();
-
-	for (auto it = itens.begin(); it != itens.end(); it++)
-	{
-		loop("[LevelOne] Verifying Collision Between Caio and Itens.");
-		if (caio->overItem((*it)->getPosition()))
-		{
-			loot = it;
-			switch ((*loot)->getId())
-			{
-				case 1:
-					inventory->setQtdPotion(1);
-				break;
-				case 2:
-					inventory->setQtdAlteredPotion(1);
-				break;
-				case 3:
-					// Nothing yet
-				break;
-				default:
-					// Nothing to do
-				break;
-			}
-		}
-	}
-
-	if (loot != itens.end())
-	{
-    	loop("[LevelOne] Delete all Dead Enemies.");
-  		delete *loot;
-		itens.erase(loot);
-	}
-}
-
-void
-LevelOne::killingEnemy()
-{
-	auto dead = enemies.end();
-
-	for (auto it = enemies.begin(); it != enemies.end(); it++)
-	{
-		if (aim->overEnemy((*it)->getPosition()))
-		{
-    		loop("[LevelOne] if Shooted an Enemy, define Dead to it.");
-			dead = it;
-   			SDL_Rect position = (*dead)->getPosition();
-
-			switch ((*dead)->getItem())
-			{
-				case 0:
-					// Nothing to drop
-				break;
-				case 1: // Normal Potion Drop
-					item = new Potion(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 2: // Altered Potion Drop
-					item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 3:
-				break;
-				case 4:
-				break;
-				case 5:
-				break;
-				case 6:
-				break;
-				default:
-				break;
-			}
-		}
-	}
-
-	if (dead != enemies.end())
-	{
-    	loop("[LevelOne] Delete all Dead Enemies.");
-  		delete *dead;
-		enemies.erase(dead);
-	}
 }

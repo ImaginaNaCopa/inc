@@ -21,51 +21,51 @@ MainMenu::generateClips()
 {
 	step("[MainMenu] Generating Sprite Clips.");
 
-	addClip(350,650,230,20);
-	addClip(350,670,260,35);
-	addClip(350,705,160,30);
-	addClip(350,735,230,20);
+	//addClip(350,650,230,20);
+	//addClip(350,670,260,35);
+	//addClip(350,705,160,30);
+	//addClip(350,735,230,20);
 
-	addClip(0,600,350,350);
+	addClip(0,610,350,350);
 
-	addClip(350,600,50,50);
+	addClip(360,610,55,55);
 
 	m_background->addClip(0,0,800,600);
+	m_background->setClipNumber(0);
 }
 
 void
 MainMenu::update()
 {
 	loop("[MainMenu] Updating and Drawing.");
-	m_background->setClipNumber(0);
 	m_background->draw();
 
-	m_clipNumber = 4;
+	m_clipNumber = 0;
 	generatePosition(400,50,350,350);
 	draw();
 
-	m_clipNumber = 0;
+	/*m_clipNumber = 0;
 	generatePosition(100,100,230,20);
 	m_mouseCollision = checkCollision(0,getPosition());
-	draw();
+	draw();*/
 
-	m_clipNumber = 1;
+	/*m_clipNumber = 1;
 	generatePosition(100,200,260,35);
 	if(!m_mouseCollision)
 		m_mouseCollision = checkCollision(1,getPosition());
-	draw();
+	draw();*/
 
-	m_clipNumber = 2;
+	/*m_clipNumber = 2;
 	generatePosition(100,300,160,30);
 	if(!m_mouseCollision)
 		m_mouseCollision = checkCollision(2,getPosition());
-	draw();
+	draw();*/
 
-	m_clipNumber = 3;
+	/*m_clipNumber = 3;
 	generatePosition(100,400,230,20);
 	if(!m_mouseCollision)
 		m_mouseCollision = checkCollision(3,getPosition());
-	draw();
+	draw();*/
 
 	if(isSelected())
 	{
@@ -104,7 +104,7 @@ MainMenu::update()
 	else
 	{
 		loop("[MainMenu] If not selected an option, generate the Fleur-de-Lis.");
-		m_clipNumber = 5;
+		m_clipNumber = 1;
 		switch(m_selection)
 		{
 			case 0:

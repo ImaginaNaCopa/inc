@@ -24,7 +24,8 @@ public:
 	int getQtdPotion();
 	void setQtdAlteredPotion(int qtd);
 	int getQtdAlteredPotion();
-protected:
+
+private:
 	int qtdPotion;
 	int qtdAlteredPotion;
 	Text* potionText;

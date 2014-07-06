@@ -39,6 +39,8 @@ main:$(OFILES) $(HPPFILES)
 
 run: main
 	./$(TARGET)
+
+cr: clean run
 	
 clean:
 	@echo Cleaning...

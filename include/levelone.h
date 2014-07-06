@@ -20,14 +20,6 @@ public:
 	void defineBackground();
 	void generatePlatform();
 	void generateSecondLayer();
-
-	void controlEntityEvents();
-	void damagingCaio();
-	void lootItem();
-	void killingEnemy();
-private:
-	Uint32 now;
-	Uint32 last;
 };
 
 #endif // LEVELONE_H

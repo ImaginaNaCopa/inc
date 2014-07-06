@@ -15,7 +15,6 @@ Inventory::Inventory() : ImageSprite()
     potionText->setColor(0, 0, 0, 255);
     alteredPotionText = new Text(getFontTulpenOne(),getFontSize(1));
     alteredPotionText->setColor(0, 0, 0, 255);
-   
 }
 
 Inventory::~Inventory()

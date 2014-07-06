@@ -25,12 +25,12 @@ FrontEnd::generateClips()
 {
 	step("[FrontEnd] Generating Sprite Clips.");
 	addClip(0,0,350,270);
-	addClip(0,280,400,400);
-	addClip(360,0,475,270);
+	addClip(0,280,403,403);
+	addClip(0,690,235,270);
 
-	background->addClip(420,310,10,10);
-	background->addClip(460,310,10,10);
-	background->addClip(500,310,10,10);
+	background->addClip(252,702,34,24);
+	background->addClip(302,702,34,24);
+	background->addClip(352,702,34,24);
 }
 
 void
@@ -46,13 +46,13 @@ FrontEnd::update()
 		{
 			case 1:
 				loop("[FrontEnd] Generating Rating.");
-				generatePosition(200,100,400,400);
+				generatePosition(200,100,403,403);
 				background->setClipNumber(1);
 			break;
 			case 2:
 				loop("[FrontEnd] Generating Other Logos.");
-				generatePosition(163,165,475,270);
-				background->setClipNumber(2);				
+				generatePosition(282,165,235,270);
+				background->setClipNumber(2);			
 			break;
 			case 3:
 				step("[FrontEnd] Reseting and its over...");

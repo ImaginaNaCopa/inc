@@ -95,3 +95,173 @@ Stage::isFinished()
 	cout << "is done" << endl;
 	return m_finished;
 }
+
+
+void 
+Stage::damagingCaio()
+{
+	loop("[Stage] Verifying if Caio is imune.");
+	if (!caio->isImune())
+	{
+		for (auto it = enemies.begin(); it != enemies.end(); it++)
+		{
+			loop("[Stage] Verifying Collision Between Caio and Enemies.");
+			if (caio->overEnemy((*it)->getPosition()))
+			{
+				caio->setImune(true);
+				caio->setHealth(-1);
+				hp->setHp(caio->getHealth());
+				cout << "hp: " << hp->getHp() << endl;
+				now = SDL_GetTicks();
+				last = now;
+			}
+		}
+	}
+	else
+	{
+    	now = SDL_GetTicks();
+
+    	if ((now - last) > 1500)
+    	{
+    		caio->setImune(false);
+    	}
+	}
+
+	if (caio->getHealth() == 0)
+		caio->release();
+}
+
+void
+Stage::lootItem()
+{
+	auto loot = itens.end();
+
+	for (auto it = itens.begin(); it != itens.end(); it++)
+	{
+		loop("[Stage] Verifying Collision Between Caio and Itens.");
+		if (caio->overItem((*it)->getPosition()))
+		{
+			loot = it;
+			switch ((*loot)->getId())
+			{
+				case 1:
+					inventory->setQtdPotion(1);
+				break;
+				case 2:
+					inventory->setQtdAlteredPotion(1);
+				break;
+				case 3:
+					// Nothing yet
+				break;
+				default:
+					// Nothing to do
+				break;
+			}
+		}
+	}
+
+	if (loot != itens.end())
+	{
+    	loop("[Stage] Delete all Dead Enemies.");
+  		delete *loot;
+		itens.erase(loot);
+	}
+}
+
+void
+Stage::killingEnemy()
+{
+	auto dead = enemies.end();
+
+	for (auto it = enemies.begin(); it != enemies.end(); it++)
+	{
+		if (aim->overEnemy((*it)->getPosition()))
+		{
+    		loop("[Stage] if Shooted an Enemy, define Dead to it.");
+			dead = it;
+   			SDL_Rect position = (*dead)->getPosition();
+
+			switch ((*dead)->getItem())
+			{
+				case 0:
+					// Nothing to drop
+				break;
+				case 1: // Normal Potion Drop
+					item = new Potion(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
+				break;
+				case 2: // Altered Potion Drop
+					item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
+				break;
+				case 3:
+				break;
+				case 4:
+				break;
+				case 5:
+				break;
+				case 6:
+				break;
+				default:
+				break;
+			}
+		}
+	}
+
+	if (dead != enemies.end())
+	{
+    	loop("[Stage] Delete all Dead Enemies.");
+  		delete *dead;
+		enemies.erase(dead);
+	}
+}
+
+void
+Stage::usingItens()
+{
+	switch (caio->getItemUsed())
+	{
+		case 1:
+			cout << "health atual: " << caio->getHealth() << endl;
+			if (caio->getHealth() < caio->getMaxHealth() && inventory->getQtdPotion() > 0)
+			{
+				caio->setHealth(+1);
+				hp->setHp(caio->getHealth());
+				inventory->setQtdPotion(-1);
+			}
+		break;
+		case 2:
+			cout << "health máximo: " << caio->getMaxHealth() << endl;
+			if (caio->getMaxHealth() < 7 && inventory->getQtdAlteredPotion() > 0)
+			{
+				caio->setMaxHealth(1);
+				hp->setHp(caio->getMaxHealth());
+				inventory->setQtdAlteredPotion(-1);
+			}
+		break;
+		case 3:
+			cout << caio->getItemUsed() << endl;
+		break;
+		case 5:
+			cout << caio->getItemUsed() << endl;
+		break;
+		case 6:
+			cout << caio->getItemUsed() << endl;
+		break;
+		default:
+		break;
+	}
+}
+
+void
+Stage::controlEntityEvents()
+{
+	loop("[LevelOne] Handling Specific Entity Conditions.");
+
+	damagingCaio();
+	lootItem();
+	killingEnemy();
+	usingItens();
+}
