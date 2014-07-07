@@ -12,6 +12,7 @@ LevelOne::LevelOne() : Stage()
 	generateSecondLayer();
 	step("[LevelOne] Defining Enemies.");
 	generateEnemies();
+	generateCivilians();
 	setFinished(false);
 	setGameOver(false);
 }
@@ -83,6 +84,14 @@ LevelOne::generateEnemies()
 			enemies.push_back(enemy);
 		}
 	} 
+}
+
+void
+LevelOne::generateCivilians()
+{
+	step("[LevelOne] Generating Civilians.");
+	civil = new Civil(0, 400);
+	civis.push_back(civil);
 }
 
 void

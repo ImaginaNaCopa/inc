@@ -4,9 +4,15 @@
 #include <iostream>
 #include <vector>
 #include <SDL2/SDL_ttf.h>
+#include "camera.h"
+#include "collision.h"
+#include "configuration.h"
 #include "imageload.h"
 #include "fontconfiguration.h"
 
+using namespace camera;
+using namespace collision;
+using namespace configuration;
 using namespace imageLoad;
 using namespace std;
 using namespace fontConfiguration;
@@ -23,10 +29,12 @@ public:
 
 	void addPosition(int x, int y);
 	void setPositionNumber(int newPositionNumber);
+	void setPosition(int newX, int newY);
 
 	void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
 	void drawText();
+	void drawTextRelative();
 
 private:
 	TTF_Font* m_font;

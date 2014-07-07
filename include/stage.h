@@ -29,6 +29,7 @@ public:
 	void lootItem();
 	void killingEnemy();
 	void usingItens();
+	void rescuingCivilian();
 	void controlEntityEvents();
 	
 protected:

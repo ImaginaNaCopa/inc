@@ -35,6 +35,7 @@ protected:
 
 	bool m_flying;
 	bool m_attacking;
+	bool m_tracking;
 	
 	int m_idleFlying;
 

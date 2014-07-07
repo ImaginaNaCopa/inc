@@ -45,14 +45,14 @@ FrontEnd::update()
 		{
 			m_use = true;
 			m_skip = true;
+			falseCOpenMenu();
 		}
 	}
 	else
 		m_use = false;
 
 	loop("[FrontEnd] Updating and Drawing.");
-	fade(15,60);
-		loop("[FrontEnd] If using a new Clip.");
+	fade(15,80);
 	switch(m_clipNumber)
 	{
 		case 1:
@@ -61,10 +61,13 @@ FrontEnd::update()
 			background->setOnlyClipNumber(1);
 			if(isFadeEnded() || m_skip)
 			{
+				m_skip = false;
+				falseCOpenMenu();
+				newFade();
 				generatePosition(282,165,235,270);
 				background->setOnlyClipNumber(2);
 				setOnlyClipNumber(2);
-				newFade();
+				fade(15,80);
 			}
 		break;
 		case 2:
@@ -74,6 +77,8 @@ FrontEnd::update()
 			if(isFadeEnded() || m_skip)
 			{
 				step("[FrontEnd] And its over...");
+				m_skip = false;
+				falseCOpenMenu();
 				setOver(true);
 				setTimelineEvent(MAINMENU);
 			}
@@ -85,10 +90,13 @@ FrontEnd::update()
 			background->setOnlyClipNumber(0);
 			if(isFadeEnded() || m_skip)
 			{
+				m_skip = false;
+				falseCOpenMenu();
+				newFade();
 				generatePosition(200,100,403,403);
 				background->setOnlyClipNumber(1);
 				setOnlyClipNumber(1);
-				newFade();
+				fade(15,80);
 			}
 		break;			
 	}

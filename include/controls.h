@@ -9,6 +9,8 @@ using namespace systemLogger;
 
 namespace controls
 {
+	bool anyCaioControl();
+
 	bool isCKeyUp();
 	bool isCButtonUp();
 
@@ -28,6 +30,28 @@ namespace controls
 	bool isCItemSix();
 	bool isCShooted();
 	bool isCSpecial();
+
+	void falseCaioControl();
+
+	void falseCKeyUp();
+	void falseCButtonUp();
+
+	void falseCExit();
+	void falseCOpenMenu();
+
+	void falseCForward();
+	void falseCBackward();
+	void falseCJump();
+	void falseCCrouch();
+	void falseCAction();
+	void falseCItemOne();
+	void falseCItemTwo();
+	void falseCItemThree();
+	void falseCItemFour();
+	void falseCItemFive();
+	void falseCItemSix();
+	void falseCShoot();
+	void falseCSpecial();
 
 	SDL_Keycode getMForwardK();
 	SDL_Keycode getMBackwardK();

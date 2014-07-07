@@ -5,6 +5,7 @@ Enemy::Enemy() : ImageEffect()
 	m_hunt = false;
 	m_attacking = false;
 	m_direction = -1;
+	m_tracking = false;
 }
 
 Enemy::~Enemy() {}
@@ -37,9 +38,9 @@ Enemy::hunt()
 {
 	if(m_flying)
 	{
-		defineCurrentIdleTime(1);
 		if(!m_attacking)
 		{
+			defineCurrentIdleTime(1);
 			if(m_position.y > getFlyingStandardHeight())
 				m_position.y += calculatePosition(-1);
 			else
@@ -49,9 +50,11 @@ Enemy::hunt()
 				{
 					setCurrentIdleTime(0);
 					m_attacking = true;
+					m_tracking = false;
 				}
 				else
 				{
+					m_tracking = true;
 					updateDirection();
 					setCurrentIdleTime(getCurrentIdleTime()+1);	
 				}
@@ -127,23 +130,12 @@ void
 Enemy::updateDirection()
 {
 	loop("[Enemy] Updating Direction in Horizontal axis.");
-	if(m_flying)
+	if(m_flying && m_tracking)
 	{
-		defineCurrentIdleTime(1);
-		if(getCurrentIdleTime() > (m_idleFlying/3))
-		{
-			if(m_target.x+55 <= m_position.x)
+			if(m_target.x+80 <= m_position.x)
 				m_direction = -1;
-			else if(m_target.x-55 >= m_position.x)
-				m_direction = 1;	
-		}
-		else
-		{
-			if (m_position.x >= m_patrolRange[1])
-				m_direction = -1;
-			else if (m_position.x <= m_patrolRange[0])
+			else if(m_target.x-80 >= m_position.x+m_position.w)
 				m_direction = 1;
-		}
 	}
 	else
 	{

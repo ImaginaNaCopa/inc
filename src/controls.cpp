@@ -41,10 +41,17 @@ namespace controls
 	bool itemFive = false;
 	bool itemSix = false;
 	bool keyUp = false;
+	bool key = false;
 
 	bool shoot = false;
 	bool special = false;
 	bool buttonUp = false;
+
+	bool
+	anyCaioControl()
+	{
+		return key;
+	}
 
 	bool
 	isCKeyUp()
@@ -148,6 +155,101 @@ namespace controls
 	isCSpecial()
 	{
 		return special;
+	}
+
+	void
+	falseCaioControl()
+	{
+		key = false;
+	}
+
+	void
+	falseCKeyUp()
+	{
+		keyUp = false;
+	}
+	void
+	falseCButtonUp()
+	{
+		buttonUp = false;
+	}
+
+	void
+	falseCExit()
+	{
+		leftAlt = false;
+		q = false;
+	}
+	void
+	falseCOpenMenu()
+	{
+		openMenu = false;
+	}
+
+	void
+	falseCForward()
+	{
+		moveForward = false;
+	}
+	void
+	falseCBackward()
+	{
+		moveBackward = false;
+	}
+	void
+	falseCJump()
+	{
+		jump = false;
+	}
+	void
+	falseCCrouch()
+	{
+		crouch = false;
+	}
+	void
+	falseCAction()
+	{
+		action = false;
+	}
+	void
+	falseCItemOne()
+	{
+		itemOne = false;
+	}
+	void
+	falseCItemTwo()
+	{
+		itemTwo = false;
+	}
+	void
+	falseCItemThree()
+	{
+		itemThree = false;
+	}
+	void
+	falseCItemFour()
+	{
+		itemFour = false;
+	}
+	void
+	falseCItemFive()
+	{
+		itemFive = false;
+	}
+	void
+	falseCItemSix()
+	{
+		itemSix = false;
+	}
+	void
+	falseCShoot()
+	{
+		shoot = false;
+	}
+	void
+	falseCSpecial()
+	{
+		special = false;
 	}
 
 	SDL_Keycode
@@ -330,6 +432,7 @@ namespace controls
 		}
 		else if(type==SDL_KEYDOWN || type==SDL_KEYUP)
 		{
+			key = true;
 			SDL_Keycode sym = event.key.keysym.sym;
 
 			if(sym==leftAltKeyboard){leftAlt = type == SDL_KEYDOWN ? true : false; keyUp = type == SDL_KEYUP ? true : false;}
@@ -346,6 +449,8 @@ namespace controls
 			else if(sym==itemFourKeyboard){itemFour = type == SDL_KEYDOWN ? true : false; keyUp = type == SDL_KEYUP ? true : false;}
 			else if(sym==itemFiveKeyboard){itemFive = type == SDL_KEYDOWN ? true : false; keyUp = type == SDL_KEYUP ? true : false;}
 			else if(sym==itemSixKeyboard){itemSix = type == SDL_KEYDOWN ? true : false; keyUp = type == SDL_KEYUP ? true : false;}
+			else
+				key = false;
 		}
 	}
 

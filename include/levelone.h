@@ -14,6 +14,7 @@ public:
 	~LevelOne();
 
 	void generateEnemies();
+	void generateCivilians();
 	void drawScenarioRelativeImages();
 
 	void defineBackground();

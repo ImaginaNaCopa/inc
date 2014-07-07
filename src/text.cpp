@@ -50,6 +50,13 @@ Text::setPositionNumber(int newPositionNumber)
 }
 
 void
+Text::setPosition(int newX, int newY)
+{
+	m_positions.at(m_positionNumber).x = newX;
+	m_positions.at(m_positionNumber).y = newY;
+}
+
+void
 Text::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
 	SDL_Color newColor = {r,g,b,a};
@@ -71,4 +78,27 @@ Text::drawText()
 	}
 	SDL_QueryTexture(textureText,NULL,NULL,&m_positions.at(m_positionNumber).w,&m_positions.at(m_positionNumber).h);
 	imageDraw(textureText, NULL, &m_positions.at(m_positionNumber));
+}
+
+void
+Text::drawTextRelative()
+{
+		SDL_Rect relative = {m_positions.at(m_positionNumber).x - getCameraLeftPosition(),
+		m_positions.at(m_positionNumber).y, m_positions.at(m_positionNumber).w, m_positions.at(m_positionNumber).h };
+
+		if(ifCollided(0,getCameraRange(),m_positions.at(m_positionNumber)))
+		{
+			SDL_Surface* renderedText = TTF_RenderText_Blended(m_font, m_texts.at(m_textNumber).c_str(), m_fontColor);
+			if(!renderedText)
+			{
+				errorSDL("[Text] Null Texture.",SDL_GetError());
+			}
+			SDL_Texture* textureText = surfaceToTexture(renderedText);
+			if(!textureText)
+			{
+				errorSDL("[Text] Null Texture.",SDL_GetError());
+			}
+			SDL_QueryTexture(textureText,NULL,NULL,&relative.w,&relative.h);
+			imageDraw(textureText, NULL, &relative);
+		}
 }

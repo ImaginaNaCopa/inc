@@ -10,10 +10,13 @@ Entity::Entity()
 Entity::~Entity()
 {
 	step("[Entity] Destroying.");
-	for (auto it = enemies.begin(); it != enemies.end(); it++)
-		delete *it;
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		delete *it;
+	for (auto it = civis.begin(); it != civis.end(); it++)
+		delete *it;
+	for (auto it = enemies.begin(); it != enemies.end(); it++)
+		delete *it;
+
 	delete caio;
 	delete aim;
 }
@@ -26,6 +29,8 @@ Entity::initEntity()
 	caio->init();
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->init();
+	for (auto it = civis.begin(); it != civis.end(); it++)
+		(*it)->init();
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->init();
 }
@@ -36,9 +41,12 @@ Entity::drawEntity()
 	loop("[Entity] Drawing Entities.");
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->drawRelative();
+	for (auto it = civis.begin(); it != civis.end(); it++)
+		(*it)->drawRelative();
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->drawRelative();
 	caio->drawRelative();
+	caio->drawTexts();
 	aim->draw();
 }
 
@@ -52,6 +60,8 @@ Entity::updateEntity()
 	updateCamera(caio->getPosition());
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->update(caio->getPosition());
+	for (auto it = civis.begin(); it != civis.end(); it++)
+		(*it)->update();
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->update();
 }

@@ -3,10 +3,13 @@
 
 #include "behaviour.h"
 #include "controls.h"
+#include "fontconfiguration.h"
 #include "imageeffect.h"
+#include "text.h"
 
 using namespace behaviour;
 using namespace controls;
+using namespace fontConfiguration;
 
 class Caio : public ImageEffect
 {
@@ -16,7 +19,9 @@ public:
 	~Caio();
 
 	void update();
+	void drawTexts();
 
+	bool nearCivilian(SDL_Rect rect);
 	bool overEnemy(SDL_Rect rect);
 	bool overItem(SDL_Rect rect);
 
@@ -39,8 +44,11 @@ public:
 	void setMaxHealth(int quantity);
 	void setImune(int imune);
 
+	void resetFirstAid();
+	bool successfulFirstAid();
+
 private:
-	typedef enum {STANDING, JUMPING, CROUCHING, MOVING} State;
+	typedef enum {FIRSTAID, STANDING, JUMPING, CROUCHING, MOVING} State;
 	typedef enum {FORWARD, BACKWARD} Looking;
 	typedef enum {ENERGYTONIC, ALTEREDTONIC, ANTIALL, FREEBOIMEAT, IMAGINANACOPA, NOUSE} UseItem;
 
@@ -61,6 +69,12 @@ private:
 	State m_state;
 	UseItem m_useItem;
 
+	Text* m_firstAidCountdown;
+	bool m_nearCivilian;
+	bool m_nearOnLeftSide;
+	bool m_firstAid;
+	bool m_successfulFirstAid;
+
 	void generateClips();
 	void generateDefaultStats();
 
@@ -79,6 +93,10 @@ private:
 	void move();
 	void moveForward();
 	void moveBackward();
+
+	void firstAid();
+	void moveFirstAid();
+	void tickFACountdown();
 
 };
 

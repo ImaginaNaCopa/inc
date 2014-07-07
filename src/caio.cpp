@@ -11,12 +11,22 @@ Caio::Caio() : ImageEffect()
 	generatePosition(round(getWindowW()/16),getPlatformH(),48,55);
 	generateClips();
 	generateDefaultStats();
-	newVariousIdleTimes(2);
+	newVariousIdleTimes(4);
+	m_firstAidCountdown = new Text(getFontNulshock(),getFontSize(3));
+	m_firstAidCountdown->addText("5");
+	m_firstAidCountdown->addText("4");
+	m_firstAidCountdown->addText("3");
+	m_firstAidCountdown->addText("2");
+	m_firstAidCountdown->addText("1");
+	m_firstAidCountdown->addText("0");
+	m_firstAidCountdown->addPosition(0,0);
+	m_firstAidCountdown->setColor(0,0,0,255);
 }
 
 Caio::~Caio()
 {
 	step("[Caio] Destroying.");
+	delete m_firstAidCountdown;
 	release();
 }
 
@@ -73,6 +83,10 @@ Caio::generateDefaultStats()
 
 	m_itemUsed = 0;
 	m_use = true;
+
+	m_nearCivilian = false;
+	m_firstAid = false;
+	m_successfulFirstAid = false;
 }
 
 void
@@ -97,12 +111,30 @@ Caio::update()
 		case CROUCHING:
 			crouch();
 		break;
+
+		case FIRSTAID:
+			firstAid();
+		break;
 	}
 
 	if(m_position.y > getPlatformH() - m_position.h)
 		m_position.y = getPlatformH() - m_position.h;
+	if(m_position.x <= 0)
+		m_position.x = 0;
+	else if(m_position.x >= getLevelW() - m_position.w)
+		m_position.x = getLevelW() - m_position.w;
 
 	handleItens();
+}
+
+void
+Caio::drawTexts()
+{
+	if(m_firstAid)
+	{
+		m_firstAidCountdown->setPosition(m_position.x+10, m_position.y-50);
+		m_firstAidCountdown->drawTextRelative();
+	}
 }
 
 bool
@@ -121,6 +153,31 @@ Caio::overEnemy(SDL_Rect rect)
 		m_position.x += 10;
 		return true;
 	}
+	return false;
+}
+
+bool
+Caio::nearCivilian(SDL_Rect rect)
+{
+	loop("[Caio] Checking if Collided with a Rectangle.");
+	SDL_Rect civilian = rect;
+	civilian.x -= 50;
+	civilian.w += 100;
+	if(ifCollided(1,getPosition(),civilian))
+	{
+		condition("[Caio] Collided on left side.");
+		m_nearCivilian = true;
+		m_nearOnLeftSide = true;
+		return true;
+	}
+	else if(ifCollided(2,getPosition(),civilian))
+	{
+		condition("[Caio] Collided on right side.");
+		m_nearCivilian = true;
+		m_nearOnLeftSide = false;
+		return true;
+	}
+	m_nearCivilian = false;
 	return false;
 }
 
@@ -202,13 +259,23 @@ Caio::handleItens()
 		}
 	}
 	else
+	{
+		falseCItemOne();
+		falseCItemTwo();
+		falseCItemThree();
+		falseCItemFour();
+		falseCItemFive();
+		falseCItemSix();
 		m_use = true;
+	}
 }
 
 void
 Caio::stand()
 {
-	if (isCBackwarded())
+	if(isCActioned() && m_nearCivilian)
+		moveFirstAid();
+	else if (isCBackwarded())
 		moveBackward();
 	else if (isCForwarded())
 		moveForward();
@@ -246,7 +313,11 @@ Caio::move()
 {
 	defineCurrentIdleTime(1);
 	if (isCCrouched())
+	{
+		falseCForward();
+		falseCBackward();
 		moveCrouch();
+	}
 	else if (isCJumped())
 		moveJump();
 	else
@@ -407,10 +478,12 @@ Caio::crouch()
 	defineCurrentIdleTime(1);
 	if(isCBackwarded())
 	{
+		falseCCrouch();
 		moveBackward();
 	}
 	else if(isCForwarded())
 	{
+		falseCCrouch();
 		moveForward();
 	}
 	else if(isCJumped())
@@ -464,6 +537,86 @@ Caio::moveCrouch()
 		setClipNumber(16);
 	else
 		setClipNumber(20);
+}
+
+void
+Caio::firstAid()
+{
+	if (isCBackwarded())
+	{
+		resetFirstAid();
+		moveBackward();
+	}
+	else if (isCForwarded())
+	{
+		resetFirstAid();
+		moveForward();
+	}
+	else if (isCCrouched())
+	{
+		resetFirstAid();
+		moveCrouch();
+	}
+	else if (isCJumped())
+	{
+		resetFirstAid();
+		moveJump();
+	}
+	else if(!m_firstAid || m_successfulFirstAid)
+	{
+		resetFirstAid();
+		if(m_looking == FORWARD)
+			standForward();
+		else
+			standBackward();
+	}
+	else
+	{
+		defineCurrentIdleTime(3);
+		if(getCurrentIdleTime() == 40)
+		{
+			setCurrentIdleTime(0);
+			tickFACountdown();
+			defineCurrentIdleTime(3);
+		}
+		else
+			setCurrentIdleTime(getCurrentIdleTime()+1);
+	}
+}
+
+void
+Caio::moveFirstAid()
+{
+	action(0,"[Caio] First Aid.");
+	m_firstAid = true;
+	m_state = FIRSTAID;
+	m_dx = 0;
+	if(m_nearOnLeftSide)
+	{
+		setClipNumber(17);
+		m_looking = FORWARD;
+	}
+	else
+	{
+		setClipNumber(21);	
+		m_looking = BACKWARD;
+	}
+}
+
+void
+Caio::tickFACountdown()
+{
+	defineCurrentIdleTime(4);
+	if(getCurrentIdleTime() == 5)
+	{
+		setCurrentIdleTime(0);
+		m_successfulFirstAid = true;
+	}
+	else
+	{
+		setCurrentIdleTime(getCurrentIdleTime()+1);
+		m_firstAidCountdown->setTextNumber(getCurrentIdleTime());
+	}
 }
 
 bool
@@ -555,4 +708,21 @@ void
 Caio::setImune(int imune)
 {
 	m_imune = imune;
+}
+
+void
+Caio::resetFirstAid()
+{
+	m_firstAid = false;
+	m_successfulFirstAid = false;
+	defineCurrentIdleTime(4);
+	setCurrentIdleTime(0);
+	defineCurrentIdleTime(3);
+	setCurrentIdleTime(0);
+}
+
+bool
+Caio::successfulFirstAid()
+{
+	return m_successfulFirstAid;
 }

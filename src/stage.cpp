@@ -16,7 +16,7 @@ Stage::init()
 {
 	m_text = new Text(getFontTulpenOne(),getFontSize(8));
 	m_text->addPosition(getWindowW()/2-120, getWindowH()/2-60);
-	m_text->addText("Caio morreu!");
+	m_text->addText("Caio morreu! :(");
 	m_text->setColor(0, 0, 0, 255);
 	m_text->setTextNumber(0);
 	m_text->setPositionNumber(0);
@@ -57,7 +57,6 @@ Stage::update()
 	}
 	else
 	{
-		//SDL_Delay(1500);
 		setOver(true);
 		setFinished(false);
 		setGameOver(true);
@@ -108,6 +107,7 @@ Stage::damagingCaio()
 			if (caio->overEnemy((*it)->getPosition()))
 			{
 				caio->setImune(true);
+				caio->resetFirstAid();
 				caio->setHealth(-1);
 				hp->setHp(caio->getHealth());
 				cout << "hp: " << hp->getHp() << endl;
@@ -179,12 +179,12 @@ void
 Stage::killingEnemy()
 {
 	auto dead = enemies.end();
-
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 	{
-		if (aim->overEnemy((*it)->getPosition()))
+		if (aim->overEnemy((*it)->getPosition()) && isCShooted())
 		{
-    	loop("[Stage] if Shooted an Enemy, define Dead to it.");
+  		loop("[Stage] if Shooted an Enemy, define Dead to it.");
+			falseCShoot();
 			dead = it;
    		SDL_Rect position = (*dead)->getPosition();
 
@@ -214,13 +214,15 @@ Stage::killingEnemy()
 				default:
 				break;
 			}
+			break;
 		}
 	}
+	falseCShoot();
 
 	if (dead != enemies.end())
 	{
-    	loop("[Stage] Delete all Dead Enemies.");
-  		delete *dead;
+    loop("[Stage] Delete all Dead Enemies.");
+  	delete *dead;
 		enemies.erase(dead);
 	}
 }
@@ -263,6 +265,29 @@ Stage::usingItens()
 }
 
 void
+Stage::rescuingCivilian()
+{
+	auto secured = civis.end();
+	loop("[LevelOne] Handling Civil Rescue.");
+	for (auto it = civis.begin(); it != civis.end(); it++)
+	{
+		if((*it)->isRunned())
+			secured = it;
+		loop("[Stage] Verifying Collision Between Caio and Civil.");
+		if(caio->nearCivilian((*it)->getPosition()))
+		{
+			if(caio->successfulFirstAid())
+				(*it)->saved();
+		}
+	}
+	if (secured != civis.end())
+	{
+  	delete *secured;
+		civis.erase(secured);
+	}
+}
+
+void
 Stage::controlEntityEvents()
 {
 	loop("[LevelOne] Handling Specific Entity Conditions.");
@@ -270,5 +295,6 @@ Stage::controlEntityEvents()
 	damagingCaio();
 	lootItem();
 	killingEnemy();
+	rescuingCivilian();
 	usingItens();
 }

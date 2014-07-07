@@ -5,6 +5,7 @@
 #include "aim.h"
 #include "caio.h"
 #include "camera.h"
+#include "civil.h"
 #include "enemy.h"
 #include "item.h"
 #include "systemlogger.h"
@@ -30,6 +31,8 @@ protected:
 	Caio* caio;
 	Enemy* enemy;
 	vector<Enemy*> enemies;
+	Civil* civil;
+	vector<Civil*> civis;
 	Item* item;
 	vector<Item*> itens;
 };

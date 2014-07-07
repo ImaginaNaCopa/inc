@@ -10,7 +10,7 @@ Urubu::Urubu(int item, int earlyPosition) : Enemy()
 	m_item = item;
   
 	srand(earlyPosition);
-	m_idleFlying = (rand() % 40) + 50;
+	m_idleFlying = (int) rand() % 100;
 }
 
 Urubu::~Urubu()
@@ -51,9 +51,9 @@ Urubu::generateClips()
 void 
 Urubu::update(SDL_Rect target)
 {
-	defineCurrentIdleTime(2);
 	loop("[Urubu] Updating.");
 	updatePosition(target);
+	defineCurrentIdleTime(2);
 
 	if(getCurrentIdleTime() == 4)
 	{

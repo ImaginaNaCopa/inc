@@ -40,6 +40,7 @@ MainMenu::update()
 	m_mouseSelect = isCShooted();
 	if(isCBackwarded())
 	{
+		falseCBackward();
 		if(m_selection > 0)
 			m_selection--;
 		else
@@ -47,6 +48,7 @@ MainMenu::update()
 	}
 	else if(isCForwarded())
 	{
+		falseCForward();
 		if(m_selection < 3)
 			m_selection++;
 		else
@@ -54,6 +56,7 @@ MainMenu::update()
 	}
 	else if(isCJumped())
 	{
+		falseCJump();
 		m_select = true;
 	}
 
