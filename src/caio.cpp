@@ -71,20 +71,8 @@ Caio::generateDefaultStats()
 	m_looking = FORWARD;
 	m_useItem = NOUSE;
 
-	m_aPressed = false;
-	m_sPressed = false;
-	m_dPressed = false;
-	m_spacePressed = false;
-
 	m_itemUsed = 0;
-	m_keyItemUnpressed = false;
 	m_use = true;
-
-	m_onePressed = false;
-	m_twoPressed = false;
-	m_threePressed = false;
-	m_fivePressed = false;
-	m_sixPressed = false;
 }
 
 void
@@ -153,88 +141,27 @@ Caio::overItem(SDL_Rect rect)
 	return false;
 }
 
-bool 
-Caio::handle(SDL_Event& event)
-{
-	loop("[Caio] Handling Events.");
-	int type = event.type;
-
-	if (type != SDL_KEYDOWN && type != SDL_KEYUP)
-		return false;
-
-	SDL_Keycode sym = event.key.keysym.sym;
-
-	switch (sym)
-	{
-		case SDLK_a:
-			m_aPressed = type == SDL_KEYDOWN ? true : false;
-		break;
-
-		case SDLK_s:
-			m_sPressed = type == SDL_KEYDOWN ? true : false;
-		break;
-
-		case SDLK_d:
-			m_dPressed = type == SDL_KEYDOWN ? true : false;
-		break;
-
-		case SDLK_SPACE:
-			m_spacePressed = type == SDL_KEYDOWN ? true : false;
-		break;
-
-		case SDLK_1:
-			m_onePressed = type == SDL_KEYDOWN ? true : false;
-			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
-		break;
-
-		case SDLK_2:
-			m_twoPressed = type == SDL_KEYDOWN ? true : false;
-			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
-		break; 
-
-		case SDLK_3:
-			m_threePressed = type == SDL_KEYDOWN ? true : false;
-			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
-		break;
-
-		case SDLK_5:
-			m_fivePressed = type == SDL_KEYDOWN ? true : false;
-			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
-		break;
-
-		case SDLK_6:
-			m_sixPressed = type == SDL_KEYDOWN ? true : false;
-			m_keyItemUnpressed = type == SDL_KEYUP ? true : false;
-		break;
-
-		default:
-			return false;
-		break;
-	}
-	return true;	
-}
-
 void
 Caio::handleItens()
 {
 
 	if(m_use)
 	{
-		if(m_onePressed)
+		if(isCItemOne())
 			m_useItem = ENERGYTONIC;
-		else if(m_twoPressed)
+		else if(isCItemTwo())
 			m_useItem = ALTEREDTONIC;
-		else if(m_threePressed)
+		else if(isCItemThree())
 			m_useItem = ANTIALL;
-		else if(m_fivePressed)
+		else if(isCItemFive())
 			m_useItem = FREEBOIMEAT;
-		else if(m_sixPressed)
+		else if(isCItemSix())
 			m_useItem = IMAGINANACOPA;
 		else
 			m_useItem = NOUSE;		
 	}
 
-	if(!m_keyItemUnpressed)
+	if(!isCKeyUp())
 	{
 		switch(m_useItem)
 		{
@@ -281,13 +208,13 @@ Caio::handleItens()
 void
 Caio::stand()
 {
-	if (m_aPressed)
+	if (isCBackwarded())
 		moveBackward();
-	else if (m_dPressed)
+	else if (isCForwarded())
 		moveForward();
-	else if (m_sPressed)
+	else if (isCCrouched())
 		moveCrouch();
-	else if (m_spacePressed)
+	else if (isCJumped())
 		moveJump();
 	else 
 	{	
@@ -318,23 +245,20 @@ void
 Caio::move()
 {
 	defineCurrentIdleTime(1);
-	if (m_sPressed)
-	{
-		m_aPressed = m_dPressed = false;
+	if (isCCrouched())
 		moveCrouch();
-	}
-	else if (m_spacePressed)
+	else if (isCJumped())
 		moveJump();
 	else
 	{
-		if(m_aPressed == false && m_dPressed == false)
+		if(!isCBackwarded() && !isCForwarded())
 		{
 			if (m_looking == FORWARD)
 				return standForward();
 			else
 				return standBackward();
 		} 
-		else if(m_aPressed)
+		else if(isCBackwarded())
 		{
 			m_dx = -1;
 			m_looking = BACKWARD;
@@ -401,16 +325,16 @@ Caio::moveBackward()
 void
 Caio::jump()
 {
-	if (m_aPressed == false && m_dPressed == false)
+	if (!isCBackwarded() && !isCForwarded())
 	{
 		m_dx = 0;
 	} 
-	else if (m_aPressed)
+	else if (isCBackwarded())
 	{
 		m_dx = -1;
 		m_looking = BACKWARD;
 	}
-	else if (m_dPressed)
+	else if (isCForwarded())
 	{
 		m_dx = 1;
 		m_looking = FORWARD;
@@ -481,19 +405,17 @@ void
 Caio::crouch()
 {
 	defineCurrentIdleTime(1);
-	if(m_aPressed)
+	if(isCBackwarded())
 	{
-		m_sPressed = false;
 		moveBackward();
 	}
-	else if(m_dPressed)
+	else if(isCForwarded())
 	{
-		m_sPressed = false;
 		moveForward();
 	}
-	else if(m_spacePressed)
+	else if(isCJumped())
 		moveJump();
-	else if(m_sPressed == false)
+	else if(!isCCrouched())
 	{
 		if(m_looking == FORWARD)
 			standForward();

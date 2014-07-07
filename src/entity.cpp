@@ -16,8 +16,6 @@ Entity::~Entity()
 		delete *it;
 	delete caio;
 	delete aim;
-	removeHandler(aim);
-	removeHandler(caio);
 }
 
 void 
@@ -30,10 +28,6 @@ Entity::initEntity()
 		(*it)->init();
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->init();
-	
-	step("[Entity] Initiating Input Handle Environments.");
-	addHandler(caio);
-	addHandler(aim);
 }
 
 void

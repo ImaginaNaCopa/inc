@@ -6,12 +6,10 @@
 #include "caio.h"
 #include "camera.h"
 #include "enemy.h"
-#include "input.h"
 #include "item.h"
 #include "systemlogger.h"
 
 using namespace camera;
-using namespace input;
 using namespace systemLogger;
 
 class Entity

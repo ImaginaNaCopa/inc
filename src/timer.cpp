@@ -5,7 +5,8 @@ namespace timer
 	Uint32 now = 0;
 	Uint32 last = 0;
 	int normalFPS = 40;
-	Timeline timelineEvent;
+	Timeline timelineEvent = FRONTEND;
+	bool start = false;
 	bool over = false;
 	bool quit = false;
 
@@ -47,6 +48,20 @@ namespace timer
 	}
 
 	bool
+	isStarted()
+	{
+		loop("[Timer] Returning Started Condition from Timeline Event.");
+		return start;
+	}
+
+	void
+	setStart(bool startState)
+	{
+		loop("[Timer] Setting the Start State.");
+		start = startState;
+	}
+
+	bool
 	isOver()
 	{
 		loop("[Timer] Returning Over Condition from Timeline Event.");
@@ -58,6 +73,7 @@ namespace timer
 	{
 		loop("[Timer] Setting the Over State.");
 		over = overState;
+		setStart(!isOver());
 	}
 
 	void

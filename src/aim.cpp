@@ -8,6 +8,7 @@ Aim::Aim() : ImageSprite()
 	generatePosition(round(getWindowW()/2),round(getWindowH()/2),87,90);
 	generateClips();
 	defineEffects();
+	SDL_ShowCursor(0);
 }
 
 Aim::~Aim()
@@ -38,8 +39,9 @@ void
 Aim::update()
 {
 	loop("[Aim] Updating.");
+	m_shoot = isCShooted();
 	updateKernel();
-	m_clipNumber = 2;
+	setOnlyClipNumber(2);
 }
 
 bool 
@@ -49,7 +51,7 @@ Aim::overEnemy(SDL_Rect rect)
 	if (ifCollided(0,getKernel(),rect))
 	{
 		condition("[Aim] Targeted an Entity (Over Enemy).");
-		m_clipNumber = 1;
+		setOnlyClipNumber(1);
 		if(m_shoot==true)
 			shot1->playEffect(0);
 		return m_shoot;
@@ -65,53 +67,8 @@ Aim::overPlayer(SDL_Rect rect)
 	if (ifCollided(0,getKernel(),rect))
 	{
 		condition("[Aim] Targeted an Entity (Over Player).");
-		m_clipNumber = 0;
+		setOnlyClipNumber(0);
 	}
-}
-
-bool 
-Aim::handle(SDL_Event& event)
-{
-	bool processed = false;
-	m_shoot = false;
-	switch (event.type)
-	{
-		case SDL_MOUSEMOTION:
-			controls(0,"[Aim] MouseMotion.");
-			m_position.x = event.motion.x - 45;
-			m_position.y = event.motion.y - 45;
-			processed = true;
-		break;
-
-		case SDL_MOUSEBUTTONDOWN:
-			if (event.button.button == SDL_BUTTON_LEFT)
-			{
-				controls(0,"[Aim] MouseButtonDown.");
-				m_shoot = true;
-				processed = true;
-			}
-			else if (event.button.button == SDL_BUTTON_RIGHT)
-			{
-				cout << "botão direito pressed" << endl;
-			}
-		break;
-
-		case SDL_MOUSEBUTTONUP:
-			if (event.button.button == SDL_BUTTON_LEFT)
-			{
-				controls(0,"[Aim] MouseButtonUp.");
-				processed = true;
-			}
-			else if (event.button.button == SDL_BUTTON_RIGHT)
-			{
-				cout << "botão direito released" << endl;
-			}
-		break;
-
-		default:
-		break;
-	}
-	return processed;
 }
 
 SDL_Rect
@@ -125,6 +82,7 @@ void
 Aim::updateKernel()
 {
 	loop("[Aim] Updating Kernel Position.");
+	m_position = updateKernelMotionM(m_position);
 	m_kernel = {m_position.x+getCameraLeftPosition()+40, m_position.y+40, 5, 5};
 }
 

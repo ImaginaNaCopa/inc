@@ -1,11 +1,10 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "input.h"
-#include "inputhandler.h"
+#include "controls.h"
 #include "secondlayer.h"
 
-using namespace input;
+using namespace controls;
 
 class Menu : public SecondLayer
 {
@@ -17,10 +16,11 @@ public:
 	bool checkCollision(int selection, SDL_Rect targetPosition);	
 
 protected:
+	int m_selection;
+	
 	bool m_mouseSelect;
 	bool m_mouseCollision;
 	bool m_select;
-	int m_selection;
 
 	SDL_Rect m_mouse;
 };

@@ -4,7 +4,6 @@
 #include "background.h"
 #include "fontconfiguration.h"
 #include "menu.h"
-#include "inputhandler.h"
 #include "secondlayer.h"
 #include "text.h"
 

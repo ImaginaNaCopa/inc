@@ -19,6 +19,9 @@ namespace timer
 	Timeline getTimelineEvent();
 	void setTimelineEvent(Timeline timelineEvent);
 
+	bool isStarted();
+	void setStart(bool startState);
+
 	bool isOver();
 	void setOver(bool overState);
 	

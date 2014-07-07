@@ -2,10 +2,12 @@
 #define AIM_H
 
 #include "audiohandler.h"
-#include "inputhandler.h"
+#include "controls.h"
 #include "imagesprite.h"
 
-class Aim : public InputHandler, public ImageSprite
+using namespace controls;
+
+class Aim : public ImageSprite
 {
 public:
 	Aim();
@@ -17,8 +19,6 @@ public:
 
 	bool overEnemy(SDL_Rect rect);
 	void overPlayer(SDL_Rect rect);
-
-	bool handle(SDL_Event& event);
 
 	SDL_Rect getKernel();
 	void updateKernel();

@@ -3,6 +3,9 @@
 
 #include "background.h"
 #include "imageeffect.h"
+#include "controls.h"
+
+using namespace controls;
 
 class FrontEnd : public ImageEffect
 {
@@ -15,6 +18,9 @@ public:
 
 private:
 	Background* background;
+	bool m_use;
+	bool m_skip;
+	
 };
 
 #endif // FRONTEND_H

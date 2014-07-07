@@ -12,7 +12,6 @@ int main()
 		step("[Main] Trying to Initialize Game.");
 		Game* game = new Game();
 		
-		game->init();
 		game->run();
 		game->shutdown();
 	} 

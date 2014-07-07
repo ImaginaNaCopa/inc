@@ -6,23 +6,13 @@ Game::Game()
 {
 	step("[Game] Constructing.");
 	m_system = new System();
-
 	m_window = new Window();
 	setRenderer(m_window->renderer());
 
-	m_frontEnd = new FrontEnd();
-
-	m_mainMenu = new MainMenu();
-
-	m_configurationMenu = new ConfigurationMenu();
-
-	m_levelOne = new LevelOne();
-
-	m_exitstate[0] = false;
-	m_exitstate[1] = false;
-	released = false;
-
-	addHandler(this);
+	m_frontEnd=NULL;
+	m_mainMenu=NULL;
+	m_configurationMenu=NULL;
+	m_levelOne=NULL;
 }
 
 Game::~Game()
@@ -32,29 +22,17 @@ Game::~Game()
 }
 
 void
-Game::init()
-{
-	step("[Game] Using Init Method.");
-	m_frontEnd->init();
-
-	m_mainMenu->init();
-
-	//m_configurationMenu->init();
-
-	m_levelOne->init();
-}
-
-void
 Game::shutdown()
 {
 	step("[Game] Using Shutdown Method.");
-	delete m_levelOne;
-
-	delete m_configurationMenu;
-
-	delete m_mainMenu;
-
-	delete m_frontEnd;
+	if(m_levelOne!=NULL)
+		delete m_levelOne;
+	if(m_configurationMenu!=NULL)
+		delete m_configurationMenu;
+	if(m_mainMenu!=NULL)
+		delete m_mainMenu;
+	if(m_frontEnd!=NULL)
+		delete m_frontEnd;
 
 	freeRenderer();
 	delete m_window;
@@ -65,128 +43,111 @@ void
 Game::run()
 {
 	// TODO: apagar a linha abaixo
-	setTimelineEvent(MAINMENU);
+	setTimelineEvent(FRONTEND);
 
 	step("[Game] Using Run Method.");
-	while ( !onQuit() )
+	while (!onQuit())
 	{
-		loop("[Game] Starting a New Loop");
-		tick();
-		eventLoop();
-
-		if(isBeyondLimitsOfFPS())
+		if(isCExit())
+			iWantToQuit();
+		else
 		{
-			loop("[Game] Plot of Events.");
-			switch(getTimelineEvent())
+			loop("[Game] Starting a New Loop");
+			tick();
+			eventLoop();
+			if(isBeyondLimitsOfFPS())
 			{
-				case FRONTEND:
-					m_frontEnd->update();
-				break;
+				loop("[Game] Plot of Events.");
+				switch(getTimelineEvent())
+				{
+					case FRONTEND:
+						if(!isStarted())
+						{
+							m_frontEnd = new FrontEnd();
+							m_frontEnd->init();
+							setOver(false);
+						}
+						if(!isOver())
+							m_frontEnd->update();
+						else
+							delete m_frontEnd;
+					break;
 
-				case MAINMENU:
-					m_mainMenu->update();
-				break;
+					case MAINMENU:
+						if(!isStarted())
+						{
+							m_mainMenu = new MainMenu();
+							m_mainMenu->init();
+							setOver(false);
+						}
+						if(!isOver())
+							m_mainMenu->update();
+						else
+							delete m_mainMenu;
+					break;
 
-				case PROGRESSIONMENU:
-					setTimelineEvent(LEVELONE);
-				break;
+					case PROGRESSIONMENU:
+						if(!isStarted())
+						{
+							//m_progressionMenu = new ProgressionMenu();
+							//m_progressionMenu->init();
+							setOver(true);
+						}
+							setTimelineEvent(LEVELONE);
+					break;
 
-				case CONFIGURATIONMENU:
-					m_configurationMenu->update();
-				break;
+					case CONFIGURATIONMENU:
+						if(!isStarted())
+						{
+							m_configurationMenu = new ConfigurationMenu();
+							m_configurationMenu->init();
+							setOver(false);	
+						}
+						if(!isOver())
+							m_configurationMenu->update();
+						else
+							delete m_configurationMenu;
+					break;
 
-				case CREDITS:
-					setTimelineEvent(LEVELONE);
-				break;
+					case CREDITS:
+						if(!isStarted())
+						{
+							//m_credits = new Credits();
+							//m_credits->init();
+							setOver(true);
+						}
+						setTimelineEvent(LEVELONE);
+					break;
 
-				case LEVELONE:
-					m_levelOne->update();
-					m_levelOne->draw();
-					if (m_levelOne->isFinished())
-					{
-						delete m_mainMenu;
-						m_mainMenu = new MainMenu();
-						m_mainMenu->init();
-						delete m_levelOne;
-						m_levelOne = new LevelOne();
-						m_levelOne->init();		
-						setTimelineEvent(MAINMENU);
-					} 
-					else if (m_levelOne->gameOver())
-					{
-						setOver(false);
-						delete m_levelOne;
-						m_levelOne = new LevelOne();
-						m_levelOne->init();
-					}
-				break;					
+					case LEVELONE:
+						if(!isStarted())
+						{
+							m_levelOne = new LevelOne();
+							m_levelOne->init();
+							setOver(false);	
+						}
+						if(!isOver())
+						{
+							m_levelOne->update();
+							m_levelOne->draw();
+						}
+						else
+						{
+							delete m_levelOne;
+							if(m_levelOne->isFinished())
+								setTimelineEvent(MAINMENU);
+							if(m_levelOne->gameOver())
+								setTimelineEvent(PROGRESSIONMENU);
+						}
+					break;					
 
-				default:
-				break;				
+					default:
+					break;				
+				}
+				if(!isOver())
+					render();
+				setLastToNow();
 			}
-			if(!isOver())
-				render();
-			setLastToNow();
 		}
 	}
-}
-
-bool 
-Game::handle(SDL_Event &event)
-{
-	loop("[Game] Handling Events.");
-	bool processed = false;	
-	if (event.type == SDL_QUIT)
-	{
-		iWantToQuit();
-	}
-	switch (event.type)
-	{
-		case SDL_KEYDOWN:
-			switch(event.key.keysym.sym)
-			{
-				case SDLK_LALT:
-					controls(1,"[Game] Button Left ALT Down.");
-					m_exitstate[0] = true;
-					processed = true;
-				break;
-				case SDLK_q:
-					controls(1,"[Game] Button q Down.");
-					m_exitstate[1] = true;
-					processed = true;
-				break;
-				default:
-				break;
-			}
-		break;
-
-		case SDL_KEYUP:
-			switch(event.key.keysym.sym)
-			{
-				case SDLK_LALT:
-					controls(1,"[Game] Button Left ALT Up.");
-					m_exitstate[0] = false;
-					processed = true;
-				break;
-				case SDLK_q:
-					controls(1,"[Game] Button q Up.");
-					m_exitstate[1] = false;
-					processed = true;
-				break;
-				default:
-				break;
-			}
-		break;
-
-		default:
-		break;
-	}
-	
-	if (m_exitstate[0] == true && m_exitstate[1] == true)
-	{
-		step("[Game] Player used the Secret Code to Quit the Game.");
-		iWantToQuit();
-	}
-
-	return processed;
 }

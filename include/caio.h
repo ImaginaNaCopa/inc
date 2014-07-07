@@ -2,12 +2,13 @@
 #define CAIO_H
 
 #include "behaviour.h"
-#include "inputhandler.h"
+#include "controls.h"
 #include "imageeffect.h"
 
 using namespace behaviour;
+using namespace controls;
 
-class Caio : public InputHandler, public ImageEffect
+class Caio : public ImageEffect
 {
 
 public:
@@ -18,8 +19,6 @@ public:
 
 	bool overEnemy(SDL_Rect rect);
 	bool overItem(SDL_Rect rect);
-
-	bool handle(SDL_Event& event);
 
 	bool isCrouching();
 	bool isJumping();
@@ -50,18 +49,6 @@ private:
 
 	int m_itemUsed;
 	bool m_use;
-	bool m_keyItemUnpressed;
-
-	bool m_aPressed;
-	bool m_sPressed;
-	bool m_dPressed;
-	bool m_spacePressed;
-	
-	bool m_onePressed;
-	bool m_twoPressed;
-	bool m_threePressed;
-	bool m_fivePressed;
-	bool m_sixPressed;
 
 	float m_jumpspeed;
 

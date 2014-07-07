@@ -8,6 +8,8 @@ FrontEnd::FrontEnd() : ImageEffect()
 	m_alpha = 0;
 	m_fading = true;
 	m_fadingin = true;
+	m_use = false;
+	m_skip = false;
 	generatePosition(225,165,350,270);
 	generateClips();
 	background->init();
@@ -37,7 +39,17 @@ FrontEnd::generateClips()
 void
 FrontEnd::update()
 {
-	setOver(false);
+	if(isCOpenedMenu())
+	{
+		if(!m_use)
+		{
+			m_use = true;
+			m_skip = true;
+		}
+	}
+	else
+		m_use = false;
+
 	loop("[FrontEnd] Updating and Drawing.");
 	fade(15,60);
 		loop("[FrontEnd] If using a new Clip.");
@@ -47,20 +59,19 @@ FrontEnd::update()
 			loop("[FrontEnd] Generating Rating.");
 			generatePosition(200,100,403,403);
 			background->setOnlyClipNumber(1);
-			if(isFadeEnded())
+			if(isFadeEnded() || m_skip)
 			{
 				generatePosition(282,165,235,270);
 				background->setOnlyClipNumber(2);
 				setOnlyClipNumber(2);
 				newFade();
 			}
-
 		break;
 		case 2:
 			loop("[FrontEnd] Generating Other Logos.");
 			generatePosition(282,165,235,270);
 			background->setOnlyClipNumber(2);			
-			if(isFadeEnded())
+			if(isFadeEnded() || m_skip)
 			{
 				step("[FrontEnd] And its over...");
 				setOver(true);
@@ -72,7 +83,7 @@ FrontEnd::update()
 			loop("[FrontEnd] Generating Default Values.");
 			generatePosition(225,165,350,270);
 			background->setOnlyClipNumber(0);
-			if(isFadeEnded())
+			if(isFadeEnded() || m_skip)
 			{
 				generatePosition(200,100,403,403);
 				background->setOnlyClipNumber(1);

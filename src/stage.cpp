@@ -66,8 +66,6 @@ Stage::update()
 	{
 		setOver(true);
 		setFinished(true);
-		removeHandler(caio);
-		removeHandler(aim);
 	}
 }
 
