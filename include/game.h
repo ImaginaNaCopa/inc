@@ -11,6 +11,8 @@
 #include "levelthree.h"
 #include "levelfour.h"
 #include "levelfive.h"
+#include "theend.h"
+#include "gameover.h"
 #include "system.h"
 #include "timer.h"
 #include "window.h"
@@ -40,6 +42,8 @@ private:
 	LevelThree* m_levelThree;
 	LevelFour* m_levelFour;
 	LevelFive* m_levelFive;
+	TheEnd* m_theEnd;
+	GameOver* m_gameOver;
 
 	System* m_system;
 	Window* m_window;

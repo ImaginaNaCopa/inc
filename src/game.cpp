@@ -17,6 +17,8 @@ Game::Game()
 	m_levelThree=NULL;
 	m_levelFour=NULL;
 	m_levelFive=NULL;
+	m_theEnd = NULL;
+	m_gameOver = NULL;
 }
 
 Game::~Game()
@@ -45,6 +47,10 @@ Game::shutdown()
 		delete m_mainMenu;
 	if(m_frontEnd!=NULL)
 		delete m_frontEnd;
+	if(m_theEnd!=NULL)
+		delete m_theEnd;
+	if(m_gameOver!=NULL)
+		delete m_gameOver;
 
 	freeRenderer();
 	delete m_window;
@@ -55,7 +61,7 @@ void
 Game::run()
 {
 	// TODO: apagar a linha abaixo
-	setTimelineEvent(FRONTEND);
+	setTimelineEvent(LEVELFIVE);
 
 	step("[Game] Using Run Method.");
 	while (!onQuit())
@@ -131,27 +137,14 @@ Game::run()
 						setTimelineEvent(LEVELONE);
 					break;
 
-					case LEVELONE:
-						if(!isStarted())
-						{
-							m_levelOne = new LevelOne();
-							m_levelOne->init();
-							setOver(false);	
-						}
-						if(!isOver())
-						{
-							m_levelOne->update();
-							m_levelOne->draw();
-						}
-						if(isOver())
-						{
-							delete m_levelOne;
-							if(m_levelOne->isFinished())
-								setTimelineEvent(LEVELTWO);
-							if(m_levelOne->gameOver())
-								setTimelineEvent(LEVELONE);
-						}
-					break;
+					case LEVELONE:     if(!isStarted())     {
+					m_levelOne = new LevelOne();         m_levelOne->init();
+					setOver(false);      }     if(!isOver())     {
+					m_levelOne->update();         m_levelOne->draw();     }
+					if(isOver())     {         delete m_levelOne;
+					if(m_levelOne->isFinished())
+					setTimelineEvent(LEVELTWO);     if(m_levelOne->gameOver())
+					setTimelineEvent(LEVELONE);     } break;
 
 					case LEVELTWO:
 						if(!isStarted())
@@ -234,12 +227,45 @@ Game::run()
 						if(isOver())
 						{
 							delete m_levelFive;
-							if(m_levelFour->isFinished())
-								setTimelineEvent(CREDITS);
-							if(m_levelFour->gameOver())
-								setTimelineEvent(LEVELFIVE);
+							if(m_levelFive->isFinished())
+								setTimelineEvent(THEEND);
+							if(m_levelFive->gameOver())
+								setTimelineEvent(THEEND);
 						}
 					break;
+
+					case THEEND:
+						if(!isStarted())
+						{
+							m_theEnd = new TheEnd();
+							m_theEnd->init();
+							setOver(false);	
+						}
+						if(!isOver())
+						{
+							m_theEnd->update();
+							m_theEnd->draw();
+						}
+						else
+							delete m_frontEnd;
+					break;
+
+					case GAMEOVER:
+						if(!isStarted())
+						{
+							m_gameOver = new GameOver();
+							m_gameOver->init();
+							setOver(false);	
+						}
+						if(!isOver())
+						{
+							m_gameOver->update();
+						}
+						else
+							delete m_gameOver;
+						
+					break;
+
 
 					default:
 					break;				
