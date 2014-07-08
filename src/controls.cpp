@@ -22,6 +22,14 @@ namespace controls
 	Uint8 shootMouse = SDL_BUTTON_LEFT;
 	Uint8 specialMouse = SDL_BUTTON_RIGHT;
 
+	SDL_Joystick* joystickOne = NULL;
+	SDL_Joystick* joystickTwo = NULL;
+	bool joystickOneCreated = false;
+	bool joystickTwoCreated = false;
+	bool joystickButtonUp = false;
+	int numberOfJoysticks = 0;
+	const int joystickDeadZone = 8000;
+
 	int xAxis = 355;
 	int yAxis = 255;
 
@@ -42,6 +50,7 @@ namespace controls
 	bool itemSix = false;
 	bool keyUp = false;
 	bool key = false;
+	bool quit = false;
 
 	bool shoot = false;
 	bool special = false;
@@ -74,8 +83,12 @@ namespace controls
 	bool
 	isCExit()
 	{
-		if(leftAlt==true && q==true)
+		if((leftAlt==true && q==true) || quit==true)
+		{
+			releaseJoystickOne();
+			releaseJoystickTwo();
 			return true;
+		}
 		return false;
 	}
 
@@ -318,6 +331,60 @@ namespace controls
 		return itemSixKeyboard;
 	}
 
+	bool 
+	getJoystickButtonUp()
+	{
+		return joystickButtonUp;
+	}
+
+	void 
+	falseCJButtonUp()
+	{
+		joystickButtonUp = false;
+	}
+
+	int 
+	getNumberOfJoysticks()
+	{
+		return numberOfJoysticks = SDL_NumJoysticks();
+	}
+
+	void 
+	setNumberOfJoysticks(int quantity)
+	{
+		numberOfJoysticks = quantity;
+	}
+
+	void 
+	createJoystickOne()
+	{
+		joystickOne = SDL_JoystickOpen(0);
+		joystickOneCreated = true;
+	}
+
+	void 
+	createJoystickTwo()
+	{
+		joystickTwo = SDL_JoystickOpen(1);
+		joystickTwoCreated = true;
+	}
+
+	void
+	releaseJoystickOne()
+	{
+		SDL_JoystickClose(joystickOne);
+		joystickOne = NULL;
+		joystickOneCreated = false;
+	}
+
+	void
+	releaseJoystickTwo()
+	{
+		SDL_JoystickClose(joystickTwo);
+		joystickTwo = NULL;
+		joystickTwoCreated = false;
+	}
+
 	void
 	setMForwardK(SDL_Keycode newHotKey)
 	{
@@ -418,7 +485,12 @@ namespace controls
 	handle(SDL_Event &event)
 	{
 		int type = event.type;
-		if(type==SDL_MOUSEBUTTONDOWN || type==SDL_MOUSEBUTTONUP)
+
+		if (type==SDL_QUIT)
+		{
+			quit = true;
+		}
+		else if(type==SDL_MOUSEBUTTONDOWN || type==SDL_MOUSEBUTTONUP)
 		{
 			Uint8 button = event.button.button;
 
@@ -451,6 +523,54 @@ namespace controls
 			else if(sym==itemSixKeyboard){itemSix = type == SDL_KEYDOWN ? true : false; keyUp = type == SDL_KEYUP ? true : false;}
 			else
 				key = false;
+		}
+		else if (getNumberOfJoysticks() > 0)
+		{
+			if (joystickOneCreated && joystickTwoCreated)
+			{
+				if(JOY_BUTTON_BUTTON==BUTTON_JOYSTICK_A){jump = JOY_BUTTON_TYPE == SDL_JOYBUTTONDOWN ? true : false; keyUp = JOY_BUTTON_TYPE == SDL_JOYBUTTONUP ? true : false;}
+			}
+			else if (joystickOneCreated && !joystickTwoCreated)
+			{
+			
+				if (JOY_BUTTON_TYPE == SDL_JOYBUTTONDOWN || JOY_BUTTON_TYPE == SDL_JOYBUTTONUP)
+				{
+				
+				//	cout << "back: " << leftAlt << endl;
+					if(JOY_BUTTON_BUTTON==BUTTON_JOYSTICK_HOME){leftAlt = JOY_BUTTON_TYPE == SDL_JOYBUTTONDOWN ? true : false; keyUp = JOY_BUTTON_TYPE == SDL_JOYBUTTONUP ? true : false;}
+				//	else if(JOY_BUTTON_BUTTON==BUTTON_JOYSTICK_BACK){q = JOY_BUTTON_STATE == SDL_PRESSED ? true : false; keyUp = JOY_BUTTON_STATE == SDL_RELEASED ? true : false;}
+				//	else if(JOY_BUTTON_BUTTON==BUTTON_JOYSTICK_START){openMenu = JOY_BUTTON_STATE == SDL_PRESSED ? true : false; keyUp = JOY_BUTTON_STATE == SDL_RELEASED ? true : false;}
+				//	else if(JOY_HAT_HAT==MOTION_JOYSTICK_HAT_RIGHT){moveForward = JOY_BUTTON_STATE == MOTION_JOYSTICK_HAT_RIGHT ? true : false; keyUp = SDL_JOYHATMOTION == MOTION_JOYSTICK_HAT_CENTERED ? true : false;}
+				//	else if(JOY_HAT_HAT==MOTION_JOYSTICK_HAT_LEFT){moveBackward = JOY_BUTTON_STATE == MOTION_JOYSTICK_HAT_LEFT ? true : false; keyUp = SDL_JOYHATMOTION == MOTION_JOYSTICK_HAT_CENTERED ? true : false;}
+				//	else if(JOY_BUTTON_BUTTON==BUTTON_JOYSTICK_A){jump = JOY_BUTTON_STATE == SDL_PRESSED ? true : false; keyUp = JOY_BUTTON_STATE == SDL_RELEASED ? true : false;}
+				//	else if(JOY_BUTTON_BUTTON==BUTTON_JOYSTICK_B){crouch = JOY_BUTTON_STATE == SDL_PRESSED ? true : false; keyUp = JOY_BUTTON_STATE == SDL_RELEASED ? true : false;}
+				//	else if(JOY_BUTTON_BUTTON==BUTTON_JOYSTICK_X){action = JOY_BUTTON_STATE == SDL_PRESSED ? true : false; keyUp = JOY_BUTTON_STATE == SDL_RELEASED ? true : false;}
+					//else 
+					//	key = false;
+				//	cout << "Home: " << leftAlt << endl;
+				//	cout << "Back: " << q << endl;
+				//	cout << "start: " << openMenu << endl;
+				//	cout << "frente: " << moveForward << endl;
+				//	cout << "trás: " << moveBackward << endl;
+				//	cout << "a: " << jump << endl;
+				//	cout << "b: " << crouch << endl;
+				//	cout << "x: " << action << endl;
+				}
+			}
+			else
+			{
+				if (getNumberOfJoysticks() > 0)
+				{
+					createJoystickOne();
+				}
+				/*else if (getNumberOfJoysticks() == 2 && !joystickOneCreated)
+				{
+					createJoystickOne();
+					createJoystickTwo();
+				}
+				else if (numberOfJoysticks == 2 && joystickOneCreated)
+					createJoystickTwo();*/
+			}
 		}
 	}
 

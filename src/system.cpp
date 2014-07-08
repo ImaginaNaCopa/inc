@@ -1,5 +1,8 @@
 #include "system.h"
 
+#include <iostream>
+using namespace std;
+
 System::System()
 {
 	step("[System] Initializing Fonts.");
@@ -18,6 +21,11 @@ System::System()
 	step("[System] Initializing SDL.");
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		errorSDL("Couldn't Initialize SDL Video.", SDL_GetError());
+
+	step("[System] Initializing Joystick.");
+
+	if (SDL_Init(SDL_INIT_JOYSTICK) < 0)
+		errorSDL("Couldn't Initialize SDL Joystick.", SDL_GetError());
 }
 
 System::~System()
