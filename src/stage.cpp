@@ -48,7 +48,6 @@ Stage::draw()
 void 
 Stage::update()
 {
-	setOver(false);
 	loop("[Stage] Updating Each Stage Object.");
 	if (caio->getHealth() != 0)
 	{
@@ -65,6 +64,7 @@ Stage::update()
 	{
 		setOver(true);
 		setFinished(true);
+		setGameOver(false);
 	}
 }
 

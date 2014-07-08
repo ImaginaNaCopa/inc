@@ -6,11 +6,9 @@ using namespace std;
 LevelTwo::LevelTwo() : Stage()
 {
 	step("[LevelTwo] Constructing.");
-	step("[LevelTwo] Defining Scenario.");
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
-	step("[LevelTwo] Defining Enemies.");
 	generateEnemies();
 	generateCivilians();
 	setFinished(false);

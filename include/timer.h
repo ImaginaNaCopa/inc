@@ -14,7 +14,7 @@ namespace timer
 
 	Uint32 getDelta();
 	
-	typedef enum {FRONTEND, MAINMENU, PROGRESSIONMENU, CONFIGURATIONMENU, CREDITS, LEVELONE} Timeline;
+	typedef enum {FRONTEND, MAINMENU, PROGRESSIONMENU, CONFIGURATIONMENU, CREDITS, LEVELONE, LEVELTWO} Timeline;
 
 	Timeline getTimelineEvent();
 	void setTimelineEvent(Timeline timelineEvent);

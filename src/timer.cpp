@@ -44,6 +44,7 @@ namespace timer
 	setTimelineEvent(Timeline newTimelineEvent)
 	{
 		loop("[Timer] Setting a New Timeline Event.");
+		setOver(true);
 		timelineEvent = newTimelineEvent;
 	}
 

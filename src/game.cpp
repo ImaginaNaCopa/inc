@@ -122,6 +122,28 @@ Game::run()
 					case LEVELONE:
 						if(!isStarted())
 						{
+							m_levelOne = new LevelOne();
+							m_levelOne->init();
+							setOver(false);	
+						}
+						if(!isOver())
+						{
+							m_levelOne->update();
+							m_levelOne->draw();
+						}
+						if(isOver())
+						{
+							delete m_levelOne;
+							if(m_levelOne->isFinished())
+								setTimelineEvent(LEVELTWO);
+							if(m_levelOne->gameOver())
+								setTimelineEvent(LEVELONE);
+						}
+					break;
+
+					case LEVELTWO:
+						if(!isStarted())
+						{
 							m_levelTwo = new LevelTwo();
 							m_levelTwo->init();
 							setOver(false);	
@@ -131,13 +153,13 @@ Game::run()
 							m_levelTwo->update();
 							m_levelTwo->draw();
 						}
-						else
+						if(isOver())
 						{
 							delete m_levelTwo;
 							if(m_levelTwo->isFinished())
 								setTimelineEvent(MAINMENU);
 							if(m_levelTwo->gameOver())
-								setTimelineEvent(PROGRESSIONMENU);
+								setTimelineEvent(LEVELTWO);
 						}
 					break;					
 
