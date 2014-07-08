@@ -8,6 +8,9 @@
 #include "mainmenu.h"
 #include "levelone.h"
 #include "leveltwo.h"
+#include "levelthree.h"
+#include "levelfour.h"
+#include "levelfive.h"
 #include "system.h"
 #include "timer.h"
 #include "window.h"
@@ -34,6 +37,9 @@ private:
 
 	LevelOne* m_levelOne;
 	LevelTwo* m_levelTwo;
+	LevelThree* m_levelThree;
+	LevelFour* m_levelFour;
+	LevelFive* m_levelFive;
 
 	System* m_system;
 	Window* m_window;

@@ -7,6 +7,7 @@ Sebastiao::Sebastiao() : ImageEffect()
 	generatePosition(600,60,98,38);
 
 	m_level = ONE;
+	m_shoot = false;
 
 	m_background = new Background("res/images/s_sebastiao.png");
 	m_background->init();
@@ -17,6 +18,7 @@ Sebastiao::Sebastiao() : ImageEffect()
 	m_border = new Background("res/images/s_hud.png");
 	m_border->init();
 	m_border->generatePosition(595,10,160,90);
+
 
 	generateClips();
 	newIdleTime();

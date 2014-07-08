@@ -16,7 +16,7 @@ namespace configuration
 	void setWindowSizeType(int newWindowSizeType);
 
 	int getLevelW();
-	void setLevelW(float newMultiplyFactorToLevel);
+	void setLevelW(int newSizeOfLevel);
 
 	int getPlatformH();
 }

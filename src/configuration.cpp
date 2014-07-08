@@ -8,7 +8,7 @@ namespace configuration
 	float resizeFactor[3] = {1,1.28,1.8};
 	int windowSizeType = 0;
 
-	float multiplyFactorToLevel = 2;
+	int levelW = 1600;
 
 	bool fullScreenMode = false;
 	bool muteSound = false;
@@ -44,14 +44,14 @@ namespace configuration
 	getLevelW()
 	{
 		loop("[Configuration] Getting Level Width.");
-		return round(getWindowW() * multiplyFactorToLevel);
+		return levelW;
 	}
 
 	void
-	setLevelW(float newMultiplyFactorToLevel)
+	setLevelW(int newSizeOfLevel)
 	{
 		loop("[Configuration] Setting Level Width.");
-		multiplyFactorToLevel = newMultiplyFactorToLevel;
+		levelW = newSizeOfLevel;
 	}
 
 	int

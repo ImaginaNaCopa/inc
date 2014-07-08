@@ -12,7 +12,11 @@ Game::Game()
 	m_frontEnd=NULL;
 	m_mainMenu=NULL;
 	m_configurationMenu=NULL;
+	m_levelOne=NULL;
 	m_levelTwo=NULL;
+	m_levelThree=NULL;
+	m_levelFour=NULL;
+	m_levelFive=NULL;
 }
 
 Game::~Game()
@@ -25,8 +29,16 @@ void
 Game::shutdown()
 {
 	step("[Game] Using Shutdown Method.");
+	if(m_levelFive!=NULL)
+		delete m_levelFive;
+	if(m_levelFour!=NULL)
+		delete m_levelFour;
+	if(m_levelThree!=NULL)
+		delete m_levelThree;
 	if(m_levelTwo!=NULL)
 		delete m_levelTwo;
+	if(m_levelOne!=NULL)
+		delete m_levelOne;
 	if(m_configurationMenu!=NULL)
 		delete m_configurationMenu;
 	if(m_mainMenu!=NULL)
@@ -157,11 +169,77 @@ Game::run()
 						{
 							delete m_levelTwo;
 							if(m_levelTwo->isFinished())
-								setTimelineEvent(MAINMENU);
+								setTimelineEvent(LEVELTHREE);
 							if(m_levelTwo->gameOver())
 								setTimelineEvent(LEVELTWO);
 						}
-					break;					
+					break;
+
+					case LEVELTHREE:
+						if(!isStarted())
+						{
+							m_levelThree = new LevelThree();
+							m_levelThree->init();
+							setOver(false);	
+						}
+						if(!isOver())
+						{
+							m_levelThree->update();
+							m_levelThree->draw();
+						}
+						if(isOver())
+						{
+							delete m_levelThree;
+							if(m_levelThree->isFinished())
+								setTimelineEvent(LEVELFOUR);
+							if(m_levelThree->gameOver())
+								setTimelineEvent(LEVELFOUR);
+						}
+					break;
+
+					case LEVELFOUR:
+						if(!isStarted())
+						{
+							m_levelFour = new LevelFour();
+							m_levelFour->init();
+							setOver(false);	
+						}
+						if(!isOver())
+						{
+							m_levelFour->update();
+							m_levelFour->draw();
+						}
+						if(isOver())
+						{
+							delete m_levelFour;
+							if(m_levelFour->isFinished())
+								setTimelineEvent(LEVELFIVE);
+							if(m_levelFour->gameOver())
+								setTimelineEvent(LEVELFIVE);
+						}
+					break;
+
+					case LEVELFIVE:
+						if(!isStarted())
+						{
+							m_levelFive = new LevelFive();
+							m_levelFive->init();
+							setOver(false);	
+						}
+						if(!isOver())
+						{
+							m_levelFive->update();
+							m_levelFive->draw();
+						}
+						if(isOver())
+						{
+							delete m_levelFive;
+							if(m_levelFour->isFinished())
+								setTimelineEvent(CREDITS);
+							if(m_levelFour->gameOver())
+								setTimelineEvent(LEVELFIVE);
+						}
+					break;
 
 					default:
 					break;				

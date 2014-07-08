@@ -1,14 +1,14 @@
-#ifndef LEVELONE_H
-#define LEVELONE_H
+#ifndef LEVELFOUR_H
+#define LEVELFOUR_H
 
-#include "stage.h"
 #include "curupira.h"
+#include "stage.h"
 
-class LevelOne : public Stage
+class LevelFour : public Stage
 {
 public:
-	LevelOne();
-	~LevelOne();
+	LevelFour();
+	~LevelFour();
 
 	void generateEnemies();
 	void generateCivilians();
@@ -19,4 +19,4 @@ public:
 	void generateSecondLayer();
 };
 
-#endif // LEVELONE_H
+#endif // LEVELFOUR_H

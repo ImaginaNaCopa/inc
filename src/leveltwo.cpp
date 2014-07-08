@@ -1,7 +1,4 @@
 #include "leveltwo.h"
-#include <iostream>
-
-using namespace std;
 
 LevelTwo::LevelTwo() : Stage()
 {
@@ -114,13 +111,13 @@ void
 LevelTwo::drawScenarioRelativeImages()
 {
 	loop("[Sebastiao] Drawing Each Image from Second Layer.");
-	secondlayer->setClipNumber(0);
+	secondlayer->setOnlyClipNumber(0);
 	secondlayer->generatePosition(40,240,270,210);
 	secondlayer->drawRelative();
-	secondlayer->setClipNumber(1);
+	secondlayer->setOnlyClipNumber(1);
 	secondlayer->generatePosition(450,180,270,270);
 	secondlayer->drawRelative();
-	secondlayer->setClipNumber(2);
+	secondlayer->setOnlyClipNumber(2);
 	secondlayer->generatePosition(810,90,120,360);
 	secondlayer->drawRelative();
 	secondlayer->generatePosition(1000,90,120,360);
