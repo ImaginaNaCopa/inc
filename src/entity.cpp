@@ -61,7 +61,10 @@ Entity::updateEntity()
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->update(caio->getPosition());
 	for (auto it = civis.begin(); it != civis.end(); it++)
+	{
+		aim->overPlayer((*it)->getPosition());
 		(*it)->update();
+	}
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->update();
 }

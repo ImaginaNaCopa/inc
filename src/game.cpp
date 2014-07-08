@@ -12,7 +12,7 @@ Game::Game()
 	m_frontEnd=NULL;
 	m_mainMenu=NULL;
 	m_configurationMenu=NULL;
-	m_levelOne=NULL;
+	m_levelTwo=NULL;
 }
 
 Game::~Game()
@@ -25,8 +25,8 @@ void
 Game::shutdown()
 {
 	step("[Game] Using Shutdown Method.");
-	if(m_levelOne!=NULL)
-		delete m_levelOne;
+	if(m_levelTwo!=NULL)
+		delete m_levelTwo;
 	if(m_configurationMenu!=NULL)
 		delete m_configurationMenu;
 	if(m_mainMenu!=NULL)
@@ -122,21 +122,21 @@ Game::run()
 					case LEVELONE:
 						if(!isStarted())
 						{
-							m_levelOne = new LevelOne();
-							m_levelOne->init();
+							m_levelTwo = new LevelTwo();
+							m_levelTwo->init();
 							setOver(false);	
 						}
 						if(!isOver())
 						{
-							m_levelOne->update();
-							m_levelOne->draw();
+							m_levelTwo->update();
+							m_levelTwo->draw();
 						}
 						else
 						{
-							delete m_levelOne;
-							if(m_levelOne->isFinished())
+							delete m_levelTwo;
+							if(m_levelTwo->isFinished())
 								setTimelineEvent(MAINMENU);
-							if(m_levelOne->gameOver())
+							if(m_levelTwo->gameOver())
 								setTimelineEvent(PROGRESSIONMENU);
 						}
 					break;					

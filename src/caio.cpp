@@ -18,7 +18,6 @@ Caio::Caio() : ImageEffect()
 	m_firstAidCountdown->addText("3");
 	m_firstAidCountdown->addText("2");
 	m_firstAidCountdown->addText("1");
-	m_firstAidCountdown->addText("0");
 	m_firstAidCountdown->addPosition(0,0);
 	m_firstAidCountdown->setColor(0,0,0,255);
 }
@@ -161,8 +160,8 @@ Caio::nearCivilian(SDL_Rect rect)
 {
 	loop("[Caio] Checking if Collided with a Rectangle.");
 	SDL_Rect civilian = rect;
-	civilian.x -= 50;
-	civilian.w += 100;
+	civilian.x -= 25;
+	civilian.w += 50;
 	if(ifCollided(1,getPosition(),civilian))
 	{
 		condition("[Caio] Collided on left side.");
@@ -607,7 +606,7 @@ void
 Caio::tickFACountdown()
 {
 	defineCurrentIdleTime(4);
-	if(getCurrentIdleTime() == 5)
+	if(getCurrentIdleTime() == 4)
 	{
 		setCurrentIdleTime(0);
 		m_successfulFirstAid = true;
@@ -719,6 +718,7 @@ Caio::resetFirstAid()
 	setCurrentIdleTime(0);
 	defineCurrentIdleTime(3);
 	setCurrentIdleTime(0);
+	m_firstAidCountdown->setTextNumber(0);
 }
 
 bool

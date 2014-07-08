@@ -185,6 +185,7 @@ Stage::killingEnemy()
 		{
   		loop("[Stage] if Shooted an Enemy, define Dead to it.");
 			falseCShoot();
+			sebastiao->setShoot(true);
 			dead = it;
    		SDL_Rect position = (*dead)->getPosition();
 
@@ -246,7 +247,7 @@ Stage::usingItens()
 			if (caio->getMaxHealth() < 7 && inventory->getQtdAlteredPotion() > 0)
 			{
 				caio->setMaxHealth(1);
-				hp->setHp(caio->getMaxHealth());
+				hp->setMaxHp(caio->getMaxHealth());
 				inventory->setQtdAlteredPotion(-1);
 			}
 		break;
@@ -268,7 +269,7 @@ void
 Stage::rescuingCivilian()
 {
 	auto secured = civis.end();
-	loop("[LevelOne] Handling Civil Rescue.");
+	loop("[LevelTwo] Handling Civil Rescue.");
 	for (auto it = civis.begin(); it != civis.end(); it++)
 	{
 		if((*it)->isRunned())
@@ -278,6 +279,7 @@ Stage::rescuingCivilian()
 		{
 			if(caio->successfulFirstAid())
 				(*it)->saved();
+			break;
 		}
 	}
 	if (secured != civis.end())
@@ -290,7 +292,7 @@ Stage::rescuingCivilian()
 void
 Stage::controlEntityEvents()
 {
-	loop("[LevelOne] Handling Specific Entity Conditions.");
+	loop("[LevelTwo] Handling Specific Entity Conditions.");
 
 	damagingCaio();
 	lootItem();

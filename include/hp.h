@@ -12,9 +12,13 @@ public:
 	void generateClips();
 	void drawEach();
 	void setHp(int health);
+	void setMaxHp(int max);
+	void setPoisonedHp(int poison);
 	int getHp();
 protected:
 	int hp;
+	int maxHp;
+	int poisonedHp;
 };
 
 #endif // HP_H

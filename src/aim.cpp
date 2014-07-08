@@ -5,7 +5,7 @@ Aim::Aim() : ImageSprite()
 {
 	step("[Aim] Constructing.");
 	imagePath.assign("res/images/s_hud.png");
-	generatePosition(round(getWindowW()/2),round(getWindowH()/2),87,90);
+	generatePosition(round(getWindowW()/2),round(getWindowH()/2),50,50);
 	generateClips();
 	defineEffects();
 	SDL_ShowCursor(0);
@@ -21,9 +21,9 @@ void
 Aim::generateClips()
 {
 	image("[Aim] Generating Sprite Clips.");
-	addClip(100,0,87,90);
-	addClip(200,0,87,90);
-	addClip(300,0,87,90);
+	addClip(50,0,50,50);
+	addClip(100,0,50,50);
+	addClip(150,0,50,50);
 }
 
 void
@@ -41,7 +41,7 @@ Aim::update()
 	loop("[Aim] Updating.");
 	m_shoot = isCShooted();
 	updateKernel();
-	setOnlyClipNumber(2);
+	setOnlyClipNumber(1);
 }
 
 bool 
@@ -51,7 +51,7 @@ Aim::overEnemy(SDL_Rect rect)
 	if (ifCollided(0,getKernel(),rect))
 	{
 		condition("[Aim] Targeted an Entity (Over Enemy).");
-		setOnlyClipNumber(1);
+		setOnlyClipNumber(2);
 		if(m_shoot==true)
 			shot1->playEffect(0);
 		return m_shoot;
@@ -83,7 +83,7 @@ Aim::updateKernel()
 {
 	loop("[Aim] Updating Kernel Position.");
 	m_position = updateKernelMotionM(m_position);
-	m_kernel = {m_position.x+getCameraLeftPosition()+40, m_position.y+40, 5, 5};
+	m_kernel = {m_position.x+getCameraLeftPosition()+22, m_position.y+22, 6, 6};
 }
 
 bool

@@ -1,16 +1,16 @@
-#ifndef LEVELONE_H
-#define LEVELONE_H
+#ifndef LEVELTWO_H
+#define LEVELTWO_H
 
 #include "stage.h"
 
 #include "curupira.h"
 #include "urubu.h"
 
-class LevelOne : public Stage
+class LevelTwo : public Stage
 {
 public:
-	LevelOne();
-	~LevelOne();
+	LevelTwo();
+	~LevelTwo();
 
 	void generateEnemies();
 	void generateCivilians();
@@ -21,4 +21,4 @@ public:
 	void generateSecondLayer();
 };
 
-#endif // LEVELONE_H
+#endif // LEVELTWO_H

@@ -46,6 +46,13 @@ Urubu::generateClips()
 
 	addClip(0,60,59,59);
 	addClip(60,60,87,56);
+
+	addClip(0,120,87,57);
+	addClip(90,120,91,51);
+	addClip(185,120,83,54);
+
+	addClip(0,180,59,59);
+	addClip(60,180,87,56);
 }
 
 void 
@@ -61,28 +68,35 @@ Urubu::update(SDL_Rect target)
 		{
 			if(m_attacking)
 			{
-				setClipNumber(3);
+				setClipNumber(8);
 			}
 			else
 			{
 				condition("[Curupira] Moving Backward.");
+				if(m_clipNumber==5)
+					setClipNumber(6);
+				else if (m_clipNumber==6)
+					setClipNumber(7);
+				else
+					setClipNumber(5);				
+			}
+		}
+		else if(isOnRightDirection())
+		{
+			if(m_attacking)
+			{
+				setClipNumber(3);
+			}
+			else
+			{
+				condition("[Curupira] Moving Forward.");
 				if(m_clipNumber==0)
 					setClipNumber(1);
 				else if (m_clipNumber==1)
 					setClipNumber(2);
 				else
-					setClipNumber(0);				
+					setClipNumber(0);
 			}
-		}
-		else if(isOnRightDirection())
-		{
-			condition("[Curupira] Moving Forward.");
-			if(m_clipNumber==0)
-				setClipNumber(1);
-			else if (m_clipNumber==1)
-				setClipNumber(2);
-			else
-				setClipNumber(0);
 		}
 		setCurrentIdleTime(0);
 	}

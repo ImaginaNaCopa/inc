@@ -6,7 +6,7 @@
 #include "frontend.h"
 #include "imageload.h"
 #include "mainmenu.h"
-#include "levelone.h"
+#include "leveltwo.h"
 #include "system.h"
 #include "timer.h"
 #include "window.h"
@@ -31,7 +31,7 @@ private:
 
 	ConfigurationMenu* m_configurationMenu;
 
-	LevelOne* m_levelOne;
+	LevelTwo* m_levelTwo;
 
 	System* m_system;
 	Window* m_window;

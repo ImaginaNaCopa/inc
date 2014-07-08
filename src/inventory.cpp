@@ -6,7 +6,7 @@ Inventory::Inventory() : ImageSprite()
 {
     step("[Inventory] Constructing.");
     imagePath.assign("res/images/s_hud.png");
-    generatePosition(0,0,40,40);
+    generatePosition(0,0,40,65);
     generateClips();
     qtdPotion = 0;
     qtdAlteredPotion = 0;
@@ -31,20 +31,20 @@ Inventory::drawEach()
     m_position.x = 10;
     m_position.y = 30;
     draw();
-    m_position.x += 5 + m_position.w;
+    m_position.x += 10 + m_position.w;
     draw();
-    m_position.x += 5 + m_position.w;
+    m_position.x += 10 + m_position.w;
     draw();
-    m_position.x += 5 + m_position.w;
+    m_position.x += 10 + m_position.w;
     draw();
-    m_position.x += 5 + m_position.w;
+    m_position.x += 10 + m_position.w;
     draw();
-    m_position.x += 5 + m_position.w;
+    m_position.x += 10 + m_position.w;
     draw();
 
     if (getQtdPotion() >= 0)
     {
-        potionText->addPosition(29, 75);
+        potionText->addPosition(27, 72);
         potionText->addText(to_string(getQtdPotion()));
     
         potionText->setPositionNumber(0);
@@ -56,7 +56,7 @@ Inventory::drawEach()
 
     if (getQtdAlteredPotion() >= 0)
     {
-        alteredPotionText->addPosition(73, 75);
+        alteredPotionText->addPosition(77, 72);
         alteredPotionText->addText(to_string(getQtdAlteredPotion()));
     
         alteredPotionText->setPositionNumber(0);
@@ -71,7 +71,7 @@ void
 Inventory::generateClips()
 {
     step("[Inventory] Generating Sprite Clips.");
-    addClip(0,15,m_position.w,m_position.h);
+    addClip(0,45,40,65);
 }
 
 void 

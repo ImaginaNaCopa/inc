@@ -16,8 +16,8 @@ public:
 	bool isRunned();
 
 private:
-	void generateClips();
 	int calculatePosition(int direction);
+	void generateClips();
 	void updatePosition();
 
 	bool m_safe;

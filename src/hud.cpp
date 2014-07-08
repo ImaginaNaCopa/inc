@@ -39,7 +39,7 @@ Hud::drawHud()
 	gameMenu->draw();
 	hp->drawEach();
 	inventory->drawEach();
-	sebastiao->draw();
+	sebastiao->update();
 }
 
 void 

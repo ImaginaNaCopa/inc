@@ -1,13 +1,15 @@
 #ifndef STAGE_H
 #define STAGE_H
 
+#include "entity.h"
 #include "hud.h"
 #include "scenario.h"
-#include "entity.h"
-#include "potion.h"
-#include "alteredpotion.h"
-#include "text.h"
+
 #include "fontconfiguration.h"
+#include "text.h"
+
+#include "alteredpotion.h"
+#include "potion.h"
 
 using namespace fontConfiguration;
 

@@ -8,8 +8,6 @@ class Dialogue : public ImageSprite
 public:
 	Dialogue();
 	~Dialogue();
-
-	void generateClips();
 };
 
 #endif // DIALOGUE_H

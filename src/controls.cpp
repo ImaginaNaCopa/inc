@@ -388,8 +388,8 @@ namespace controls
 	updateKernelMotionM(SDL_Rect kernel)
 	{
 		SDL_Rect newKernel;
-		newKernel.x = xAxis - 45;
-		newKernel.y = yAxis - 45;
+		newKernel.x = xAxis - 25;
+		newKernel.y = yAxis - 25;
 		newKernel.h = kernel.h;
 		newKernel.w = kernel.w;
 		return newKernel;

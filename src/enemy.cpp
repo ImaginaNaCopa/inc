@@ -55,8 +55,9 @@ Enemy::hunt()
 				else
 				{
 					m_tracking = true;
+					if((m_position.x+m_position.w+150 > m_target.x) && (m_position.x < m_target.x+m_target.w+150))
+						setCurrentIdleTime(getCurrentIdleTime()+1);
 					updateDirection();
-					setCurrentIdleTime(getCurrentIdleTime()+1);	
 				}
 			}
 		}
@@ -71,17 +72,15 @@ Enemy::hunt()
 		}
 	}
 	else
-	{
 		m_attacking = true;
-	}
 	if(m_attacking)
 	{
-		if(m_target.x <= m_position.x)
+		if(m_target.x+m_target.w-10 <= m_position.x)
 		{
 			m_direction = -1;
 			m_position.x += calculatePosition(m_direction);
 		}
-		else
+		else if(m_position.x+m_position.w <= m_target.x+10)
 		{
 			m_direction = 1;
 			m_position.x += calculatePosition(m_direction);
@@ -111,10 +110,8 @@ Enemy::updateDetection()
 				m_position.y-((m_typeDetection)/2),
 				m_position.w+m_typeDetection,
 				m_position.h+m_typeDetection	};
-			if((ifCollided(0,rangeDetection,m_target)))
-			{
+			if((ifCollided(0,rangeDetection,m_target)) || ((m_flying) && (ifCollided(0,getCameraRange(),m_position))))
 				m_hunt = true;
-			}
 		break;
 	}
 }
@@ -132,9 +129,9 @@ Enemy::updateDirection()
 	loop("[Enemy] Updating Direction in Horizontal axis.");
 	if(m_flying && m_tracking)
 	{
-			if(m_target.x+80 <= m_position.x)
+			if(m_target.x+150 <= m_position.x)
 				m_direction = -1;
-			else if(m_target.x-80 >= m_position.x+m_position.w)
+			else if(m_target.x-150 >= m_position.x+m_position.w)
 				m_direction = 1;
 	}
 	else
