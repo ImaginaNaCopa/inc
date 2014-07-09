@@ -130,21 +130,43 @@ Game::run()
 					case CREDITS:
 						if(!isStarted())
 						{
-							//m_credits = new Credits();
-							//m_credits->init();
-							setOver(true);
+							m_theEnd = new TheEnd();
+							m_theEnd->init();
+							setOver(false);
 						}
-						setTimelineEvent(LEVELONE);
+						if(!isOver())
+						{
+							m_theEnd->update();
+							m_theEnd->draw();
+						}
+						else
+						{
+							setTimelineEvent(LEVELONE);
+							delete m_theEnd;
+						}
 					break;
 
-					case LEVELONE:     if(!isStarted())     {
-					m_levelOne = new LevelOne();         m_levelOne->init();
-					setOver(false);      }     if(!isOver())     {
-					m_levelOne->update();         m_levelOne->draw();     }
-					if(isOver())     {         delete m_levelOne;
-					if(m_levelOne->isFinished())
-					setTimelineEvent(LEVELTWO);     if(m_levelOne->gameOver())
-					setTimelineEvent(LEVELONE);     } break;
+					case LEVELONE:
+						if(!isStarted())
+						{
+							m_levelOne = new LevelOne();
+							m_levelOne->init();
+							setOver(false);
+						}
+						if(!isOver())
+						{
+							m_levelOne->update();
+							m_levelOne->draw();
+						}
+						if(isOver())
+						{
+							if(m_levelOne->isFinished())
+								setTimelineEvent(LEVELTWO);
+							if(m_levelOne->gameOver())
+								setTimelineEvent(GAMEOVER);
+							delete m_levelOne;
+						}
+					break;
 
 					case LEVELTWO:
 						if(!isStarted())
@@ -160,11 +182,11 @@ Game::run()
 						}
 						if(isOver())
 						{
-							delete m_levelTwo;
 							if(m_levelTwo->isFinished())
 								setTimelineEvent(LEVELTHREE);
 							if(m_levelTwo->gameOver())
-								setTimelineEvent(LEVELTWO);
+								setTimelineEvent(GAMEOVER);
+							delete m_levelTwo;
 						}
 					break;
 
@@ -182,11 +204,11 @@ Game::run()
 						}
 						if(isOver())
 						{
-							delete m_levelThree;
 							if(m_levelThree->isFinished())
 								setTimelineEvent(LEVELFOUR);
 							if(m_levelThree->gameOver())
-								setTimelineEvent(LEVELFOUR);
+								setTimelineEvent(GAMEOVER);
+							delete m_levelThree;
 						}
 					break;
 
@@ -204,11 +226,11 @@ Game::run()
 						}
 						if(isOver())
 						{
-							delete m_levelFour;
 							if(m_levelFour->isFinished())
 								setTimelineEvent(LEVELFIVE);
 							if(m_levelFour->gameOver())
-								setTimelineEvent(LEVELFIVE);
+								setTimelineEvent(GAMEOVER);
+							delete m_levelFour;
 						}
 					break;
 
@@ -226,11 +248,11 @@ Game::run()
 						}
 						if(isOver())
 						{
-							delete m_levelFive;
 							if(m_levelFive->isFinished())
 								setTimelineEvent(THEEND);
 							if(m_levelFive->gameOver())
 								setTimelineEvent(THEEND);
+							delete m_levelFive;
 						}
 					break;
 
@@ -261,8 +283,11 @@ Game::run()
 						{
 							m_gameOver->update();
 						}
-						else
+						if(isOver())
+						{
+							setTimelineEvent(getLastTimelineEvent());
 							delete m_gameOver;
+						}
 						
 					break;
 

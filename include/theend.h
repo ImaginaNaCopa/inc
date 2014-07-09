@@ -25,7 +25,9 @@ private:
 	bool m_return;
 	bool m_skip;
 
-	Background* background;
+	Background* m_background;
+	Background* m_titulo;
+	Background* m_nome;
 
 	typedef enum 
 	{
@@ -39,7 +41,23 @@ private:
 		INIMIGOEOUTRO
 	} TimelineTheEnd;
 
+	typedef enum
+	{
+		IAGO,
+		ARKYE,
+		LUCIANO,
+		ATILLA,
+		INARA,
+		RENATA,
+		LUCIAN,
+		CARLA,
+		EDSON,
+		RENAN,
+		TIAGO,
+	} Nomes;
+
 	TimelineTheEnd m_steps;
+	Nomes m_stepsN;
 };
 
 #endif //THEEND_H

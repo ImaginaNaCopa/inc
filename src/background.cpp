@@ -1,6 +1,6 @@
 #include "background.h"
 
-Background::Background(const string& path) : ImageSprite()
+Background::Background(const string& path) : ImageEffect()
 {
 	step("[Background] Constructing.");
 	imagePath.assign(path);

@@ -41,11 +41,11 @@ FrontEnd::update()
 {
 	if(isCOpenedMenu())
 	{
+		falseCOpenMenu();
 		if(!m_use)
 		{
 			m_use = true;
 			m_skip = true;
-			falseCOpenMenu();
 		}
 	}
 	else

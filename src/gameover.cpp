@@ -5,14 +5,11 @@ GameOver::GameOver() : ImageEffect()
 	step("[GameOver] Constructing.");
 	imagePath.assign("res/images/s_gameover.png");
 	generatePosition(0,0,800,600);
-	generateClips();
-	m_use = false;
-	m_return = false;
-	m_skip = false;
+	addClip(0,0,800,600);
 
-	m_text = new Text(getFontTulpenOne(),getFontSize(8));
-	m_text->addPosition(getWindowW()/2-280, getWindowH()/2+60);
-	m_text->addText("Pressione ESC para continuar!");
+	m_text = new Text(getFontTulpenOne(),getFontSize(5));
+	m_text->addPosition(150,500);
+	m_text->addText("Pressione ABRIR MENU para retornar ao jogo!");
 	m_text->setColor(255, 255, 255, 255);
 	m_text->setTextNumber(0);
 	m_text->setPositionNumber(0);
@@ -21,36 +18,23 @@ GameOver::GameOver() : ImageEffect()
 GameOver::~GameOver()
 {
 	step("[GameOver] Destroying.");
+	delete m_text;
 	release();
-}
-
-void
-GameOver::generateClips()
-{
-	step("[GameOver] Generating Sprite Clips.");
-	addClip(0,0,800,600);
 }
 
 void
 GameOver::update()
 {
 	loop("[GameOver] Drawing if is not Over.");
-	
-	if (m_skip)
-		setTimelineEvent(MAINMENU);
 
 	if(isCOpenedMenu())
 	{
-		if(!m_use)
-		{
-			m_use = true;
-			m_skip = true;
-			falseCOpenMenu();
-		}
+		falseCOpenMenu();
+		setOver(true);
 	}
 	else
-		m_use = false;
-
-	draw();
-	m_text->drawText();
+	{
+		draw();
+		m_text->drawText();
+	}
 }

@@ -6,21 +6,11 @@ using namespace std;
 Stage::Stage() : Scenario(), Hud(), Entity()
 {}
 
-Stage::~Stage()
-{
-	delete m_text;
-}
+Stage::~Stage(){}
 
 void 
 Stage::init()
 {
-	m_text = new Text(getFontTulpenOne(),getFontSize(8));
-	m_text->addPosition(getWindowW()/2-120, getWindowH()/2-60);
-	m_text->addText("Caio morreu! :(");
-	m_text->setColor(0, 0, 0, 255);
-	m_text->setTextNumber(0);
-	m_text->setPositionNumber(0);
-	
 	step("[Stage] Initiating Each Stage Object.");
 	initScenario();
 	initHud();
@@ -32,17 +22,10 @@ Stage::draw()
 {
 	loop("[Stage] Drawing Each Stage Object.");
 	
-	if (caio->getHealth() == 0)
-	{
-		m_text->drawText();
-	}
-	else
-	{
-		drawScenarioStaticImages();
-		drawScenarioRelativeImages();
-		drawHud();
-		drawEntity();
-	}
+	drawScenarioStaticImages();
+	drawScenarioRelativeImages();
+	drawHud();
+	drawEntity();
 }
 
 void 
@@ -54,11 +37,12 @@ Stage::update()
 		updateEntity();
 		controlEntityEvents();
 	}
-	else
+	if (caio->getHealth() == 0)
 	{
+		setGameOver(true);
 		setOver(true);
 		setFinished(false);
-		setGameOver(true);
+		recordCurrentTimelineEvent();
 	}
 	if(caio->getPosition().x >= 1500)
 	{

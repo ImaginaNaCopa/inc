@@ -7,8 +7,11 @@
 #include "fontconfiguration.h"
 #include "text.h"
 
+#include "timer.h"
+
 using namespace controls;
 using namespace fontConfiguration;
+using namespace timer;
 
 class GameOver : public ImageEffect
 {
@@ -16,16 +19,10 @@ public:
 	GameOver();
 	~GameOver();
 
-	void generateClips();
 	void update();
 
 private:
 	Text* m_text;
-
-	bool m_use;
-	bool m_isFinished;
-	bool m_return;
-	bool m_skip;
 };
 
 #endif //GAMEOVER_H

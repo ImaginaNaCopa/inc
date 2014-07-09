@@ -1,9 +1,9 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include "imagesprite.h"
+#include "imageeffect.h"
 
-class Background : public ImageSprite
+class Background : public ImageEffect
 {
 public:
 	Background(const string& path);

@@ -37,9 +37,6 @@ public:
 protected:
 	bool m_gameOver;
 	bool m_finished;
-	Text* m_text;
-	Uint32 now;
-	Uint32 last;
 };
 
 #endif // STAGE_H

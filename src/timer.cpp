@@ -5,6 +5,7 @@ namespace timer
 	Uint32 now = 0;
 	Uint32 last = 0;
 	int normalFPS = 40;
+	Timeline backupGameOver = MAINMENU;
 	Timeline timelineEvent = FRONTEND;
 	bool start = false;
 	bool over = false;
@@ -46,6 +47,20 @@ namespace timer
 		loop("[Timer] Setting a New Timeline Event.");
 		setOver(true);
 		timelineEvent = newTimelineEvent;
+	}
+
+	Timeline
+	getLastTimelineEvent()
+	{
+		loop("[Timer] Getting Timeline Event.");
+		return backupGameOver;
+	}
+
+	void
+	recordCurrentTimelineEvent()
+	{
+		loop("[Timer] Setting a New Timeline Event.");
+		backupGameOver = timelineEvent;
 	}
 
 	bool

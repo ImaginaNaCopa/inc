@@ -18,7 +18,9 @@ namespace timer
 		LEVELTWO, LEVELTHREE, LEVELFOUR, LEVELFIVE, THEEND, GAMEOVER} Timeline;
 
 	Timeline getTimelineEvent();
+	Timeline getLastTimelineEvent();
 	void setTimelineEvent(Timeline timelineEvent);
+	void recordCurrentTimelineEvent();
 
 	bool isStarted();
 	void setStart(bool startState);
