@@ -44,6 +44,7 @@ LevelFour::generateSecondLayer()
 	secondlayer->addClip(198,150,343,220);
 	secondlayer->addClip(541,150,391,300);
 	secondlayer->addClip(262,2,46,46);
+	secondlayer->newIdleTime();
 }
 
 void
@@ -95,20 +96,39 @@ LevelFour::drawExceptionalRelativeImages()
 }
 
 void
-LevelFour::drawShadow(int battery)
+LevelFour::drawShadow()
 {
-
 	secondlayer->setOnlyClipNumber(5);
-	int radius = (int) ((battery*3.5)/2)
+	int radius = 0;
+	if(isCSpecial())
+	{
+		radius = 80+(int)(inventory->getQtdBattery()*1.75);
+		secondlayer->defineCurrentIdleTime(1);
+		if(secondlayer->getCurrentIdleTime() == 6)
+		{
+			secondlayer->setCurrentIdleTime(0);
+			inventory->setQtdBattery(-1);
+		}
+		else
+			secondlayer->setCurrentIdleTime(secondlayer->getCurrentIdleTime()+1);
+	}
+	int x = aim->getKernel().x;
+	int y = aim->getKernel().y;
 	int i = 0;
 	int j = 0;
 	for(i = 0; i<=100 ; i++)
 	{
 		for(j = 0; j<=100; j++)
 		{
-		secondlayer->generatePosition(0,0,8*i,6*j);
-		secondlayer->drawInAlpha(150);
+			if(	(8*i+getCameraLeftPosition()<=x-radius||6*j<=y-radius) ||
+					(8*i+getCameraLeftPosition()>=x+radius||6*j>=y+radius) ||
+					(8*i+getCameraLeftPosition()>x-radius&&6*j<=(y-radius))	)
+			{
+				secondlayer->generatePosition(8*i,6*j,8,6);
+				secondlayer->draw();
+			}
 		}
 	}
-
+	drawHud();
+	aim->draw();
 }

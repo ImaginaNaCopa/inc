@@ -27,7 +27,8 @@ Stage::draw()
 	
 	drawScenarioStaticImages();
 	drawScenarioRelativeImages();
-	drawHud();
+	if(getTimelineEvent() != LEVELFOUR)
+		drawHud();
 	drawEntity();
 }
 

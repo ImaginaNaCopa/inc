@@ -11,7 +11,7 @@ Inventory::Inventory() : ImageSprite()
 	m_qtdPotion = 0;
 	m_qtdAlteredPotion = 0;
 	m_qtdAntiTudo = 0;
-	m_qtdBaterry = 0;
+	m_qtdBaterry = 100;
 	m_qtdFreeboi = 0;
 	m_qtdCup = 0;
 	m_inCLogo = 0;

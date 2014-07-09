@@ -47,7 +47,9 @@ Entity::drawEntity()
 		(*it)->drawRelative();
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->drawRelative();
-	aim->draw();
+
+	if(getTimelineEvent() != LEVELFOUR)
+		aim->draw();
 }
 
 void

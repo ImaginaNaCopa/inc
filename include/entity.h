@@ -8,10 +8,12 @@
 #include "civil.h"
 #include "enemy.h"
 #include "item.h"
+#include "timer.h"
 #include "systemlogger.h"
 
 using namespace camera;
 using namespace systemLogger;
+using namespace timer;
 
 class Entity
 {
