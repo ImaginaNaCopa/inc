@@ -61,7 +61,7 @@ void
 Game::run()
 {
 	// TODO: apagar a linha abaixo
-	setTimelineEvent(LEVELONE);
+	setTimelineEvent(FRONTEND);
 
 	step("[Game] Using Run Method.");
 	while (!onQuit())
@@ -72,6 +72,7 @@ Game::run()
 		{
 			loop("[Game] Starting a New Loop");
 			tick();
+			checkJoysticks();
 			eventLoop();
 			if(isBeyondLimitsOfFPS())
 			{
