@@ -91,6 +91,9 @@ Game::run()
 					case MAINMENU:
 						if(!isStarted())
 						{
+							stopMusic();
+							changeMusic("res/audios/bgm/bachizuera.wav");
+							playMusic(-1);
 							m_mainMenu = new MainMenu();
 							m_mainMenu->init();
 							setOver(false);
@@ -149,6 +152,9 @@ Game::run()
 					case LEVELONE:
 						if(!isStarted())
 						{
+							stopMusic();
+							changeMusic("res/audios/bgm/jornada.wav");
+							playMusic(-1);
 							m_levelOne = new LevelOne();
 							m_levelOne->init();
 							setOver(false);
@@ -172,6 +178,9 @@ Game::run()
 					case LEVELTWO:
 						if(!isStarted())
 						{
+							stopMusic();
+							changeMusic("res/audios/bgm/cromusica.wav");
+							playMusic(-1);
 							m_levelTwo = new LevelTwo();
 							m_levelTwo->init();
 							setOver(false);	
@@ -195,6 +204,9 @@ Game::run()
 					case LEVELTHREE:
 						if(!isStarted())
 						{
+							stopMusic();
+							changeMusic("res/audios/bgm/sapucai.wav");
+							playMusic(-1);
 							m_levelThree = new LevelThree();
 							m_levelThree->init();
 							setOver(false);	
@@ -218,6 +230,9 @@ Game::run()
 					case LEVELFOUR:
 						if(!isStarted())
 						{
+							stopMusic();
+							changeMusic("res/audios/bgm/bossa_nova_safada.wav");
+							playMusic(-1);
 							m_levelFour = new LevelFour();
 							m_levelFour->init();
 							setOver(false);	
@@ -244,6 +259,9 @@ Game::run()
 					case LEVELFIVE:
 						if(!isStarted())
 						{
+							stopMusic();
+							changeMusic("res/audios/bgm/hueragem.wav");
+							playMusic(-1);
 							m_levelFive = new LevelFive();
 							m_levelFive->init();
 							setOver(false);	

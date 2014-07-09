@@ -16,7 +16,6 @@ public:
 
 	void generateClips();
 	void update();
-	void defineEffects();
 
 private:
 	Background* m_background;

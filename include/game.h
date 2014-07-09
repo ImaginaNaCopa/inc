@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "configurationmenu.h"
+#include "audiohandler.h"
 #include "controls.h"
 #include "frontend.h"
 #include "imageload.h"
@@ -20,6 +21,7 @@
 using namespace controls;
 using namespace timer;
 using namespace imageLoad;
+using namespace audioHandler;
 
 class Game
 {
