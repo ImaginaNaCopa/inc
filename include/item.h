@@ -1,9 +1,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "imagesprite.h"
+#include "imageeffect.h"
 
-class Item : public ImageSprite
+class Item : public ImageEffect
 {
 public:
 	Item();

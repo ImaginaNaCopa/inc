@@ -1,6 +1,6 @@
 #include "item.h"
 
-Item::Item() : ImageSprite(){}
+Item::Item() : ImageEffect(){}
 
 Item::~Item(){}
 

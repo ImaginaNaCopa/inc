@@ -5,6 +5,7 @@
 #include "caio.h"
 #include "imagesprite.h"
 #include "systemlogger.h"
+#include "background.h"
 #include "text.h"
 
 using namespace std;
@@ -47,6 +48,8 @@ private:
 	int m_qtdCup;
 	bool m_inCLogo;
 	int m_qtdAntiBoss;
+
+	Background* m_itemSprite;
 
 	Text* m_potionText;
 	Text* m_alteredPotionText;
