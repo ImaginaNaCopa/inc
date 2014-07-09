@@ -45,11 +45,11 @@ LevelOne::generateEnemies()
 	int positionReference = 400;
 	while(positionReference < 700)
 	{
-		enemy = new Curupira(0,positionReference);
+		enemy = new Curupira(7,positionReference);
 		enemies.push_back(enemy);
 		positionReference += 60;
 	}
-	enemy = new Curupira(1,420);
+	enemy = new Curupira(8,420);
 	enemies.push_back(enemy);
 	positionReference = 900;
 	while(positionReference < 1200)
@@ -58,13 +58,13 @@ LevelOne::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 60;
 	}
-	enemy = new Curupira(0,990);
+	enemy = new Curupira(3,990);
 	enemies.push_back(enemy);
-	enemy = new Curupira(0,1470);
+	enemy = new Curupira(4,1470);
 	enemies.push_back(enemy);
-	enemy = new Curupira(1,1500);
+	enemy = new Curupira(5,1500);
 	enemies.push_back(enemy);
-	enemy = new Curupira(0,1530);
+	enemy = new Curupira(6,1530);
 	enemies.push_back(enemy);
 }
 

@@ -4,7 +4,7 @@ Cup::Cup(int earlyPositionX, int earlyPositionY) : Item()
 {
     step("[Cup] Constructing.");
     imagePath.assign("res/images/s_item.png");
-    generatePosition(earlyPositionX, earlyPositionY, 33, 40);
+    generatePosition(earlyPositionX, earlyPositionY, 22, 40);
     generateClips();
     id = 6;
 }

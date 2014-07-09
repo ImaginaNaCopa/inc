@@ -4,12 +4,19 @@
 #include "entity.h"
 #include "hud.h"
 #include "scenario.h"
+//#include "item.h"
 
 #include "fontconfiguration.h"
 #include "text.h"
 
-#include "alteredpotion.h"
 #include "potion.h"
+#include "alteredpotion.h"
+#include "antitudo.h"
+#include "battery.h"
+#include "freeboi.h"
+#include "cup.h"
+#include "inclogo.h"
+#include "antiboss.h"
 
 using namespace fontConfiguration;
 
@@ -33,7 +40,7 @@ public:
 	void usingItens();
 	void rescuingCivilian();
 	void controlEntityEvents();
-	
+
 protected:
 	bool m_gameOver;
 	bool m_finished;
