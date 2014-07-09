@@ -7,6 +7,8 @@ Enemy::Enemy() : ImageEffect()
 	m_direction = -1;
 	m_tracking = false;
 	m_damaging = false;
+	m_health = 0;
+	died = false;
 }
 
 Enemy::~Enemy()
@@ -34,7 +36,9 @@ Enemy::updatePosition(SDL_Rect target)
 	{
 		updateDirection();
 		m_position.x += calculatePosition(m_direction);
-	}		
+	}
+	if (ifCollided(1,m_position,target) || ifCollided(2,m_position,target))
+		m_hunt = true;
 }
 
 void
@@ -147,6 +151,23 @@ Enemy::updateDirection()
 	}
 }
 
+void
+Enemy::setEnemyHealth(int damage)
+{
+	if (m_health > 0)
+		m_health += damage;
+	if (m_health == 0)
+		died = true;
+	if (m_health == -1){}
+		//Do BOSS things here
+}
+
+int
+Enemy::getEnemyHealth()
+{
+	return m_health;
+}
+
 bool
 Enemy::isOnRightDirection()
 {
@@ -175,4 +196,22 @@ void
 Enemy::setDamaging(bool dmg)
 {
 	m_damaging = dmg;
+}
+
+bool
+Enemy::isTheBoss()
+{
+	return m_isTheBoss;
+}
+
+int
+Enemy::getBossHealth()
+{
+	return m_bossHealth;
+}
+
+void
+Enemy::setBossHealth(int value)
+{
+	m_bossHealth += value;
 }

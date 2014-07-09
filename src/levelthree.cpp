@@ -9,7 +9,6 @@ LevelThree::LevelThree() : Stage()
 	generatePlatform();
 	generateSecondLayer();
 	generateEnemies();
-	generateCivilians();
 	setFinished(false);
 	setGameOver(false);
 }
@@ -47,16 +46,6 @@ LevelThree::generateSecondLayer()
 }
 
 void
-LevelThree::generateEnemies()
-{
-	enemy = new Curupira(0,990);
-	enemies.push_back(enemy);
-}
-
-void
-LevelThree::generateCivilians(){}
-
-void
 LevelThree::drawScenarioRelativeImages()
 {
 	loop("[Sebastiao] Drawing Each Image from Second Layer.");
@@ -67,4 +56,14 @@ LevelThree::drawScenarioRelativeImages()
 	secondlayer->setOnlyClipNumber(1);
 	secondlayer->generatePosition(1050,getPlatformH()-80,249,142);
 	secondlayer->drawRelative();
+}
+
+void 
+LevelThree::generateEnemies()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		enemy = new Politico (0, false, 100*i);
+		enemies.push_back(enemy);
+	}
 }

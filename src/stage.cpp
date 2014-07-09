@@ -196,62 +196,113 @@ Stage::killingEnemy()
 	{
 		if (aim->overEnemy((*it)->getPosition()) && isCShooted())
 		{
-  		loop("[Stage] if Shooted an Enemy, define Dead to it.");
+  			loop("[Stage] if Shooted an Enemy, define Dead to it.");
 			falseCShoot();
 			sebastiao->setShoot(true);
-			dead = it;
-   		SDL_Rect position = (*dead)->getPosition();
+			(*it)->setEnemyHealth(-1);
+			if ((*it)->getEnemyHealth() == 0)
+			{
+				dead = it;
+	   			SDL_Rect position = (*dead)->getPosition();
 
-			switch ((*dead)->getItem())
+				switch ((*dead)->getItem())
+				{
+					case 0:
+						// Nothing to drop
+					break;
+					case 1: // Normal Potion Drop
+						item = new Potion(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 2: // Altered Potion Drop
+						item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 3:
+						item = new AntiTudo(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 4:
+						item = new Battery(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 5:
+						item = new Freeboi(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 6:
+						item = new Cup(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 7:
+						item = new InCLogo(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 8:
+						item = new AntiBoss(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+
+					default:
+					break;
+				}
+			}
+			break;
+		}
+		if ((*it)->isTheBoss())
+		{
+			switch ((*it)->getBossHealth())
 			{
 				case 0:
-					// Nothing to drop
+					//Dead!
 				break;
-				case 1: // Normal Potion Drop
-					item = new Potion(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 2: // Altered Potion Drop
-					item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 3:
-					item = new AntiTudo(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 4:
-					item = new Battery(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 5:
-					item = new Freeboi(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 6:
-					item = new Cup(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 7:
-					item = new InCLogo(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 8:
-					item = new AntiBoss(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
+				/*	
+				case 1:
+					for (int i = 1; i < 5; i++)
+					{
+						enemy = new Politico (0, false, 100*i);
+						enemies.push_back(enemy);	
+					}
+					enemy = new Politico (8, false, 600);
+					enemies.push_back(enemy);
+					for (int i = 6; i < 10; i++)
+					{
+						enemy = new Politico (0, false, 1000*i);
+						enemies.push_back(enemy);	
+					}
 				break;
 
+				case 2:
+					for (int i = 1; i < 10; i++)
+					{
+						enemy = new Politico (0, false, 1000-100*i);
+						enemies.push_back(enemy);	
+					}
+					enemy = new Politico (8, false, 100);
+					enemies.push_back(enemy);
+				break;
+
+				case 3:
+					for (int i = 1; i < 10; i++)
+					{
+						enemy = new Politico (0, false, 100*i);
+						enemies.push_back(enemy);	
+					}
+					enemy = new Politico (8, false, 1000);
+					enemies.push_back(enemy);
+				break;
+*/
 				default:
 				break;
 			}
-			break;
 		}
 	}
 	falseCShoot();

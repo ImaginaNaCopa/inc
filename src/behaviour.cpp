@@ -21,7 +21,7 @@ namespace behaviour
 	int weakHealth = 1;
 	int normalHealth = 3;
 	int strongHealth = 5;
-	int eventHealth = 0;	
+	int eventHealth = -1;	
 
 	int simpleDamageType = 1;
 	int poisonDamageType = 2;

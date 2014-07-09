@@ -2,6 +2,7 @@
 #define MAINMENU_H
 
 #include "background.h"
+#include "audiohandler.h"
 #include "menu.h"
 #include "text.h"
 
@@ -13,8 +14,10 @@ public:
 
 	void generateClips();
 	void update();
+	void defineEffects();
 
 private:
+	AudioHandler* m_mainmenu;
 	Background* m_background;
 	Text* m_option;
 

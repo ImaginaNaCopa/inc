@@ -6,7 +6,11 @@ MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 	m_background = new Background("res/images/s_mainmenu.png");
 	m_option = new Text(getFontNulshock(),30);
 	generateClips();
+<<<<<<< HEAD
 
+=======
+	defineEffects();
+>>>>>>> 2805ec13841c5385472ff5f94dd3206f103db1fe
 	m_background->init();
 }
 
@@ -31,7 +35,10 @@ MainMenu::generateClips()
 	m_option->addText("Sair");
 	m_option->setColor(255,255,0,255);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2805ec13841c5385472ff5f94dd3206f103db1fe
 	addClip(0,610,350,350);
 
 	addClip(360,610,55,55);
