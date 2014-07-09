@@ -26,6 +26,8 @@ System::System()
 
 	if (SDL_Init(SDL_INIT_JOYSTICK) < 0)
 		errorSDL("Couldn't Initialize SDL Joystick.", SDL_GetError());
+
+	SDL_SetHint(SDL_HINT_JOYSTICK_ALLOW_BACKGROUND_EVENTS,"1");
 }
 
 System::~System()

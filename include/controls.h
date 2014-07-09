@@ -6,24 +6,26 @@
 #include "systemlogger.h"
 
 //Button
-#define JOY_BUTTON_BUTTON event.jbutton.button
-#define JOY_BUTTON_WHICH event.jbutton.which
-#define JOY_BUTTON_TYPE event.jbutton.type
-#define JOY_BUTTON_STATE event.jbutton.state
+#define J_B_BUTTON event.jbutton.button
+#define J_B_ID event.jbutton.which
+#define J_B_TYPE event.jbutton.type
+#define J_B_STATE event.jbutton.state
 
 //Hat
-#define JOY_HAT_HAT event.jhat.hat
-#define JOY_HAT_TYPE event.jhat.type
-#define JOY_HAT_VALUE event.jhat.value
+#define J_H_HAT event.jhat.hat
+#define J_H_ID event.jhat.which
+#define J_H_TYPE event.jhat.type
+#define J_H_VALUE event.jhat.value
 
 //Sticks
-#define MOTION_JOYSTICK SDL_JOYAXISMOTION
-#define MOTION_JOYSTICK_STICK_LEFT_X 0
-#define MOTION_JOYSTICK_STICK_LEFT_Y 1
-#define MOTION_JOYSTICK_STICK_RIGHT_X 2
-#define MOTION_JOYSTICK_STICK_RIGHT_Y 3
-#define MOTION_JOYSTICK_STICK_RT 4
-#define MOTION_JOYSTICK_STICK_LT 5
+#define J_A_AXIS event.jaxis.axis
+#define J_A_VALUE event.jaxis.value
+#define M_J_S_LEFT_X 0
+#define M_J_S_LEFT_Y 1
+#define M_J_S_RIGHT_X 2
+#define M_J_S_RIGHT_Y 5
+#define M_J_S_R2 4
+#define M_J_S_L2 5
 
 //D-Pad
 #define MOTION_JOYSTICK_HAT SDL_JOYHATMOTION
@@ -42,20 +44,20 @@
 #define MOTION_JOYSTICK_HAT_RIGHTDOWN SDL_HAT_RIGHTDOWN
 
 //XBox Buttons
-#define BUTTON_JOYSTICK_A 0
-#define BUTTON_JOYSTICK_B 1
-#define BUTTON_JOYSTICK_X 2
-#define BUTTON_JOYSTICK_Y 3
-#define BUTTON_JOYSTICK_LB 4
-#define BUTTON_JOYSTICK_RB 5
-#define BUTTON_JOYSTICK_BACK 6
-#define BUTTON_JOYSTICK_START 7
-#define BUTTON_JOYSTICK_HOME 8
-#define BUTTON_JOYSTICK_STICK1 9
-#define BUTTON_JOYSTICK_STICK2 10
+#define B_J_ACTION 0
+#define B_J_JUMP 1
+#define B_J_CROUCH 2
+#define B_J_USEITEM 3
+#define B_J_LITEM 4
+#define B_J_RITEM 5
+#define B_J_SPECIAL 6
+#define B_J_SHOOT 7
+#define B_J_FEC 8
+#define B_J_MENU 9
+#define B_J_SEC 13
 
-#define ADDED_NEW_JOYSTICK SDL_JOYDEVICEADDED
-#define REMOVED_JOYSTICK SDL_JOYDEVICEREMOVED
+/*#define ADDED_NEW_JOYSTICK SDL_JOYDEVICEADDED
+#define REMOVED_JOYSTICK SDL_JOYDEVICEREMOVED*/
 
 using namespace systemLogger;
 
@@ -74,6 +76,9 @@ namespace controls
 	bool isCJumped();
 	bool isCCrouched();
 	bool isCActioned();
+	bool isCUsedItem();
+	bool isCLeftItem();
+	bool isCRightItem();
 	bool isCItemOne();
 	bool isCItemTwo();
 	bool isCItemThree();
@@ -96,6 +101,9 @@ namespace controls
 	void falseCJump();
 	void falseCCrouch();
 	void falseCAction();
+	void falseCUseItem();
+	void falseCLeftItem();
+	void falseCRightItem();
 	void falseCItemOne();
 	void falseCItemTwo();
 	void falseCItemThree();
@@ -104,6 +112,13 @@ namespace controls
 	void falseCItemSix();
 	void falseCShoot();
 	void falseCSpecial();
+
+	void trueCItemOne();
+	void trueCItemTwo();
+	void trueCItemThree();
+	void trueCItemFour();
+	void trueCItemFive();
+	void trueCItemSix();
 
 	SDL_Keycode getMForwardK();
 	SDL_Keycode getMBackwardK();
@@ -118,6 +133,8 @@ namespace controls
 	SDL_Keycode getItemSixK();
 
 	//Controle XBox
+	typedef enum{ONE,TWO,NONE} QtdJ;
+	void checkJoysticks();
 	bool getJoystickButtonUp();
 	void falseCJButtonUp();
 	int getNumberOfJoysticks();

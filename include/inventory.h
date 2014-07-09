@@ -26,10 +26,12 @@ public:
 	int getQtdAlteredPotion();
 
 private:
-	int qtdPotion;
-	int qtdAlteredPotion;
-	Text* potionText;
-	Text* alteredPotionText;
+	int m_currentItem;
+	int m_qtdPotion;
+	int m_qtdAlteredPotion;
+	Text* m_potionText;
+	Text* m_alteredPotionText;
+	Text* m_referencedText;
 };
 
 #endif // INVENTORY_H
