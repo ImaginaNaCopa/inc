@@ -742,7 +742,34 @@ namespace controls
 			}
 			else
 				step("[Joystick] Unknown Joystick in use.");
-		}	
+		}
+		else if(type == SDL_JOYDEVICEADDED)
+		{
+			checkJoysticks();
+		}
+		else if(type == SDL_JOYDEVICEREMOVED)
+		{
+			if(event.jdevice.which == SDL_JoystickInstanceID(joystickOne) && joystickTwoCreated)
+			{
+				step("[Joystick] Joystick #01 removed.");
+				step("[Joystick] Redefining Joystick #02 to #01.");
+				releaseJoystickTwo();
+				releaseJoystickOne();
+				checkJoysticks();
+			}
+			else if(event.jdevice.which == SDL_JoystickInstanceID(joystickOne))
+			{
+				step("[Joystick] Joystick #01 removed.");
+				releaseJoystickOne();
+				checkJoysticks();
+			}
+			else if(event.jdevice.which == SDL_JoystickInstanceID(joystickTwo))
+			{
+				step("[Joystick] Joystick #02 removed.");
+				releaseJoystickTwo();
+				checkJoysticks();
+			}
+		}
 	}
 
 	void

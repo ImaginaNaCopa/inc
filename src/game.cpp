@@ -72,7 +72,6 @@ Game::run()
 		{
 			loop("[Game] Starting a New Loop");
 			tick();
-			checkJoysticks();
 			eventLoop();
 			if(isBeyondLimitsOfFPS())
 			{
