@@ -2,6 +2,8 @@
 #define LEVELFOUR_H
 
 #include "curupira.h"
+#include "urubu.h"
+#include "politico.h"
 #include "stage.h"
 
 class LevelFour : public Stage

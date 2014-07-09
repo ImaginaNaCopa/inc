@@ -11,6 +11,8 @@ namespace configuration
 	int limitW = 1600;
 	int levelW = 1600;
 
+	int limitM = 230;
+
 	bool fullScreenMode = false;
 	bool muteSound = false;
 
@@ -19,6 +21,12 @@ namespace configuration
 	{
 		loop("[Configuration] Getting Window Width.");
 		return windowWidthBase*resizeFactor[windowSizeType];
+	}
+
+	int
+	getLimitM()
+	{
+		return limitM;
 	}
 
 	int
