@@ -23,6 +23,9 @@ Politico::Politico(int item, bool side, int earlyPosition) : Enemy()
 Politico::~Politico()
 {
 	step("[Politico] Destroying.");
+	setCurrentEffect("res/audios/se/corrupto_die.ogg");
+	setEffectVolume(100);
+	playEffect(0);
 }
 
 void

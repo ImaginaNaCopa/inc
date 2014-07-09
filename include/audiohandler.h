@@ -11,6 +11,9 @@ using namespace systemLogger;
 
 namespace audioHandler 
 {
+	void tickRand();
+	int getRand();
+	void resetRand();
 	void playMusic(const int times_);
 	void playEffect(const int times_);
 	void stopMusic();

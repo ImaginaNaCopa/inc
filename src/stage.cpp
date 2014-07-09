@@ -50,6 +50,9 @@ Stage::update()
 		}
 		if(caio->getHealth() == 0)
 		{
+			setCurrentEffect("res/audios/se/game_over.ogg");
+			setEffectVolume(100);
+			playEffect(0);	
 			setGameOver(true);
 			setOver(true);
 			setFinished(false);
@@ -57,6 +60,9 @@ Stage::update()
 		}
 		if((caio->getPosition().x >= 1500)||((caio->getPosition().x >= 1000)&&(getTimelineEvent()==LEVELTHREE||getTimelineEvent()==LEVELFIVE)))
 		{
+			setCurrentEffect("res/audios/se/fanfare.ogg");
+			setEffectVolume(100);
+			playEffect(0);	
 			setOver(true);
 			setFinished(true);
 			setGameOver(false);
@@ -102,6 +108,9 @@ Stage::damagingCaio()
 			loop("[Stage] Verifying Collision Between Caio and Enemies.");
 			if (caio->overEnemy((*it)->getPosition()))
 			{
+				setCurrentEffect("res/audios/se/ouch.ogg");
+				setEffectVolume(100);
+				playEffect(0);
 				(*it)->setDamaging(true);
 				caio->setImune(true);
 				caio->resetFirstAid();
@@ -182,8 +191,11 @@ Stage::lootItem()
 
 	if (loot != itens.end())
 	{
-    	loop("[Stage] Delete all Dead Enemies.");
-  		delete *loot;
+		setCurrentEffect("res/audios/se/item_collect.ogg");
+		setEffectVolume(100);
+		playEffect(0);		
+  	loop("[Stage] Delete all Dead Enemies.");
+		delete *loot;
 		itens.erase(loot);
 	}
 }
@@ -257,53 +269,6 @@ Stage::killingEnemy()
 			}
 			break;
 		}
-		if ((*it)->isTheBoss())
-		{
-			switch ((*it)->getBossHealth())
-			{
-				case 0:
-					//Dead!
-				break;
-				/*	
-				case 1:
-					for (int i = 1; i < 5; i++)
-					{
-						enemy = new Politico (0, false, 100*i);
-						enemies.push_back(enemy);	
-					}
-					enemy = new Politico (8, false, 600);
-					enemies.push_back(enemy);
-					for (int i = 6; i < 10; i++)
-					{
-						enemy = new Politico (0, false, 1000*i);
-						enemies.push_back(enemy);	
-					}
-				break;
-
-				case 2:
-					for (int i = 1; i < 10; i++)
-					{
-						enemy = new Politico (0, false, 1000-100*i);
-						enemies.push_back(enemy);	
-					}
-					enemy = new Politico (8, false, 100);
-					enemies.push_back(enemy);
-				break;
-
-				case 3:
-					for (int i = 1; i < 10; i++)
-					{
-						enemy = new Politico (0, false, 100*i);
-						enemies.push_back(enemy);	
-					}
-					enemy = new Politico (8, false, 1000);
-					enemies.push_back(enemy);
-				break;
-*/
-				default:
-				break;
-			}
-		}
 	}
 	falseCShoot();
 
@@ -323,6 +288,9 @@ Stage::usingItens()
 		case 1:
 			if (caio->getHealth() < caio->getMaxHealth() && inventory->getQtdPotion() > 0)
 			{
+				setCurrentEffect("res/audios/se/item_use.ogg");
+				setEffectVolume(100);
+				playEffect(0);	
 				caio->setHealth(+1);
 				hp->setHp(caio->getHealth());
 				inventory->setQtdPotion(-1);
@@ -331,6 +299,9 @@ Stage::usingItens()
 		case 2:
 			if (caio->getMaxHealth() < 7 && inventory->getQtdAlteredPotion() > 0)
 			{
+				setCurrentEffect("res/audios/se/item_use.ogg");
+				setEffectVolume(100);
+				playEffect(0);	
 				caio->setMaxHealth(1);
 				hp->setMaxHp(caio->getMaxHealth());
 				inventory->setQtdAlteredPotion(-1);

@@ -29,8 +29,6 @@ void
 Aim::defineEffects()
 {
 	step("[Aim] Defining Audio Effects.");
-	setCurrentEffect("res/audios/se/shot.ogg");
-	setEffectVolume(100);
 }
 
 void 
@@ -51,7 +49,20 @@ Aim::overEnemy(SDL_Rect rect)
 		condition("[Aim] Targeted an Entity (Over Enemy).");
 		setOnlyClipNumber(2);
 		if(m_shoot==true)
-			playEffect(0);
+		{
+			if(getTimelineEvent()==LEVELFOUR)
+			{
+				setCurrentEffect("res/audios/se/shot_long.ogg");
+				setEffectVolume(100);
+				playEffect(0);
+			}
+			else
+			{
+				setCurrentEffect("res/audios/se/shot.ogg");
+				setEffectVolume(100);
+				playEffect(0);
+			}
+		}
 		return m_shoot;
 	}
 

@@ -3,6 +3,9 @@
 
 #include "enemy.h"
 
+#include "audiohandler.h"
+using namespace audioHandler;
+
 class Urubu : public Enemy
 {
 public:

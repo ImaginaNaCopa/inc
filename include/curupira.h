@@ -2,6 +2,9 @@
 #define CURUPIRA_H
 
 #include "enemy.h"
+#include "audiohandler.h"
+
+using namespace audioHandler;
 
 class Curupira : public Enemy
 {

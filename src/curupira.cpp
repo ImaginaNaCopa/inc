@@ -18,6 +18,22 @@ Curupira::Curupira(int item, int earlyPosition) : Enemy()
 Curupira::~Curupira()
 {
 	step("[Curupira] Destroying.");
+	if(m_position.x % 23 == 0)
+		setCurrentEffect("res/audios/se/enemy_herpderp_1.ogg");
+	else if(m_position.x % 19 == 0)
+		setCurrentEffect("res/audios/se/enemy_herpderp_2.ogg");
+	else if(m_position.x % 17 == 0)
+		setCurrentEffect("res/audios/se/enemy_herpderp_3.ogg");
+	else if(m_position.x % 13 == 0)
+		setCurrentEffect("res/audios/se/enemy_herpderp_4.ogg");
+	else if(m_position.x % 11 == 0)
+		setCurrentEffect("res/audios/se/enemy_herpderp_5.ogg");
+	else if(m_position.x % 9 == 0)
+		setCurrentEffect("res/audios/se/enemy_herpderp_6.ogg");
+	else
+		setCurrentEffect("res/audios/se/enemy_herpderp_7.ogg");
+	setEffectVolume(100);
+	playEffect(0);
 }
 
 void

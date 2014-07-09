@@ -5,6 +5,23 @@ namespace audioHandler
 	Mix_Music* currentMusic = NULL; 
 	Mix_Chunk* currentEffect = NULL;
 
+	int aleatorio = 0;
+
+	void tickRand()
+	{
+		aleatorio++;
+	}
+
+	int getRand()
+	{
+		return aleatorio;
+	}
+
+	void resetRand()
+	{
+		aleatorio = 0;
+	}
+
 	void setCurrentMusic(const std::string& path_){
 		if(currentMusic != nullptr){
 			Mix_FreeMusic(currentMusic);

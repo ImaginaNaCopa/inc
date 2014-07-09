@@ -13,7 +13,18 @@ Urubu::Urubu(int item, int earlyPosition) : Enemy()
 	m_idleFlying = (int) rand() % 100;
 }
 
-Urubu::~Urubu(){}
+Urubu::~Urubu()
+{
+	if(getRand()>20)
+	{
+	setCurrentEffect("res/audios/se/urubu_die.ogg");
+	setEffectVolume(100);
+	playEffect(0);	
+	resetRand();
+	}
+	else
+		tickRand();
+}
 
 void
 Urubu::generateBehaviour()

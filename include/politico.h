@@ -3,6 +3,9 @@
 
 #include "enemy.h"
 
+#include "audiohandler.h"
+using namespace audioHandler;
+
 class Politico : public Enemy
 {
 public:
