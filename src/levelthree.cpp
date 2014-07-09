@@ -49,6 +49,8 @@ LevelThree::generateSecondLayer()
 void
 LevelThree::generateEnemies()
 {
+	enemy = new Politico (1, false, 100);
+	enemies.push_back(enemy);
 	enemy = new Curupira(0,990);
 	enemies.push_back(enemy);
 }

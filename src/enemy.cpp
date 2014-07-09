@@ -7,6 +7,8 @@ Enemy::Enemy() : ImageEffect()
 	m_direction = -1;
 	m_tracking = false;
 	m_damaging = false;
+	m_health = 0;
+	died = false;
 }
 
 Enemy::~Enemy()
@@ -145,6 +147,23 @@ Enemy::updateDirection()
 		else if (m_position.x <= m_patrolRange[0])
 			m_direction = 1;
 	}
+}
+
+void
+Enemy::setEnemyHealth(int damage)
+{
+	if (m_health > 0)
+		m_health += damage;
+	if (m_health == 0)
+		died = true;
+	if (m_health == -1){}
+		//Do things here	
+}
+
+int
+Enemy::getEnemyHealth()
+{
+	return m_health;
 }
 
 bool

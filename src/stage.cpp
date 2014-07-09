@@ -187,60 +187,64 @@ Stage::killingEnemy()
 	{
 		if (aim->overEnemy((*it)->getPosition()) && isCShooted())
 		{
-  		loop("[Stage] if Shooted an Enemy, define Dead to it.");
+  			loop("[Stage] if Shooted an Enemy, define Dead to it.");
 			falseCShoot();
 			sebastiao->setShoot(true);
-			dead = it;
-   		SDL_Rect position = (*dead)->getPosition();
-
-			switch ((*dead)->getItem())
+			(*it)->setEnemyHealth(-1);
+			if ((*it)->getEnemyHealth() == 0)
 			{
-				case 0:
-					// Nothing to drop
-				break;
-				case 1: // Normal Potion Drop
-					item = new Potion(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 2: // Altered Potion Drop
-					item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 3:
-					item = new AntiTudo(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 4:
-					item = new Battery(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 5:
-					item = new Freeboi(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 6:
-					item = new Cup(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 7:
-					item = new InCLogo(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
-				case 8:
-					item = new AntiBoss(round(position.x + (position.w/2)), position.y);
-					item->init();
-					itens.push_back(item);
-				break;
+				dead = it;
+	   			SDL_Rect position = (*dead)->getPosition();
 
-				default:
-				break;
+				switch ((*dead)->getItem())
+				{
+					case 0:
+						// Nothing to drop
+					break;
+					case 1: // Normal Potion Drop
+						item = new Potion(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 2: // Altered Potion Drop
+						item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 3:
+						item = new AntiTudo(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 4:
+						item = new Battery(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 5:
+						item = new Freeboi(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 6:
+						item = new Cup(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 7:
+						item = new InCLogo(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 8:
+						item = new AntiBoss(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+
+					default:
+					break;
+				}
 			}
 			break;
 		}

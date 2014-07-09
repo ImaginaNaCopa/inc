@@ -21,6 +21,8 @@ public:
 	void updateDirection();
 
 	int calculatePosition(int direction);
+	void setEnemyHealth(int damage);
+	int getEnemyHealth();
 
 	bool isOnLeftDirection();
 	bool isOnRightDirection();
@@ -52,6 +54,8 @@ protected:
 	int m_direction;
 	int m_typeDetection;
 	int m_patrolRange[2];
+
+	bool died;
 
 };
 

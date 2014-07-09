@@ -2,6 +2,7 @@
 #define LEVELTHREE_H
 
 #include "curupira.h"
+#include "politico.h"
 #include "stage.h"
 
 class LevelThree : public Stage
