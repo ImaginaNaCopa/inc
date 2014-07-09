@@ -175,6 +175,7 @@ Game::run()
 							if(m_levelOne->gameOver())
 								setTimelineEvent(GAMEOVER);
 							delete m_levelOne;
+							m_levelOne = NULL;
 						}
 					break;
 
@@ -197,6 +198,7 @@ Game::run()
 							if(m_levelTwo->gameOver())
 								setTimelineEvent(GAMEOVER);
 							delete m_levelTwo;
+							m_levelTwo = NULL;
 						}
 					break;
 
@@ -219,6 +221,7 @@ Game::run()
 							if(m_levelThree->gameOver())
 								setTimelineEvent(GAMEOVER);
 							delete m_levelThree;
+							m_levelThree = NULL;
 						}
 					break;
 
@@ -241,6 +244,7 @@ Game::run()
 							if(m_levelFour->gameOver())
 								setTimelineEvent(GAMEOVER);
 							delete m_levelFour;
+							m_levelFour = NULL;
 						}
 					break;
 
@@ -263,6 +267,7 @@ Game::run()
 							if(m_levelFive->gameOver())
 								setTimelineEvent(THEEND);
 							delete m_levelFive;
+							m_levelFive = NULL;
 						}
 					break;
 
@@ -287,7 +292,7 @@ Game::run()
 						{
 							m_gameOver = new GameOver();
 							m_gameOver->init();
-							setOver(false);	
+							setOver(false);
 						}
 						if(!isOver())
 						{
@@ -309,4 +314,8 @@ Game::run()
 			}
 		}
 	}
+	if(areTwoJoysticks())
+		releaseJoystickTwo();
+	if(isOneJoystick())
+		releaseJoystickOne();
 }

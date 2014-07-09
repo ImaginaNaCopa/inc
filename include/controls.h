@@ -127,6 +127,8 @@ namespace controls
 	void createJoystickTwo();
 	void releaseJoystickOne();
 	void releaseJoystickTwo();
+	bool isOneJoystick();
+	bool areTwoJoysticks();
 
 	void setMForwardK(SDL_Keycode newHotKey);
 	void setMBackwardK(SDL_Keycode newHotKey);
