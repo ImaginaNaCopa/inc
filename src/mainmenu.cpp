@@ -6,11 +6,7 @@ MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 	m_background = new Background("res/images/s_mainmenu.png");
 	m_option = new Text(getFontNulshock(),30);
 	generateClips();
-<<<<<<< HEAD
-
-=======
-	defineEffects();
->>>>>>> 2805ec13841c5385472ff5f94dd3206f103db1fe
+	//defineEffects();
 	m_background->init();
 }
 
@@ -35,10 +31,6 @@ MainMenu::generateClips()
 	m_option->addText("Sair");
 	m_option->setColor(255,255,0,255);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 2805ec13841c5385472ff5f94dd3206f103db1fe
 	addClip(0,610,350,350);
 
 	addClip(360,610,55,55);
@@ -83,8 +75,7 @@ MainMenu::update()
 
 	m_option->setPositionNumber(0);
 	m_option->setTextNumber(0);
-	if(!m_mouseCollision)
-		m_mouseCollision = checkCollision(0,m_option->getCurrentPosition());
+	m_mouseCollision = checkCollision(0,m_option->getCurrentPosition());
 	m_option->drawText();
 
 	m_option->setPositionNumber(1);
@@ -166,6 +157,4 @@ MainMenu::update()
 		}
 		draw();
 	}
-	m_mouseSelect = false;
-	m_mouseCollision = false;
 }

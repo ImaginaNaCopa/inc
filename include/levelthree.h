@@ -1,6 +1,7 @@
 #ifndef LEVELTHREE_H
 #define LEVELTHREE_H
 
+#include "urubu.h"
 #include "gigante.h"
 #include "politico.h"
 #include "stage.h"

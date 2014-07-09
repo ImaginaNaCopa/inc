@@ -2,7 +2,7 @@
 
 Menu::Menu(const string& path) : SecondLayer(path)
 {
-	m_mouse = {400,300,1,1};
+	m_mouse = {0,0,1,1};
 	m_selection = 0;
 	m_mouseSelect = false;
 	m_mouseCollision = false;

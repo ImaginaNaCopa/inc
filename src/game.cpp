@@ -61,7 +61,7 @@ void
 Game::run()
 {
 	// TODO: apagar a linha abaixo
-	setTimelineEvent(LEVELTHREE);
+	setTimelineEvent(FRONTEND);
 
 	step("[Game] Using Run Method.");
 	while (!onQuit())
@@ -295,6 +295,7 @@ Game::run()
 						{
 							setTimelineEvent(getLastTimelineEvent());
 							delete m_gameOver;
+							m_gameOver = NULL;
 						}
 					break;
 

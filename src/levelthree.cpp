@@ -61,6 +61,37 @@ LevelThree::drawScenarioRelativeImages()
 void 
 LevelThree::generateEnemies()
 {
+	int positionReference = 400;
+	enemy = new Urubu(4,100);
+	enemies.push_back(enemy);
+	enemy = new Urubu(4,300);
+	enemies.push_back(enemy);
+	while(positionReference < 700)
+	{
+		enemy = new Urubu(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 90;
+	}
+	enemy = new Urubu(4,570);
+	enemies.push_back(enemy);
+	positionReference = 1250;
+	while(positionReference < 1600)
+	{
+		enemy = new Urubu(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 70;
+	}
+	enemy = new Urubu(4,925);
+	enemies.push_back(enemy);
+	positionReference = 1200;
+	while(positionReference < 1550)
+	{
+		enemy = new Urubu(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 50;
+	}
+	enemy = new Urubu(4,1420);
+	enemies.push_back(enemy);
 	for (int i = 0; i < 10; i++)
 	{
 		enemy = new Politico (0, false, 100*i);
