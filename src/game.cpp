@@ -60,9 +60,6 @@ Game::shutdown()
 void
 Game::run()
 {
-	// TODO: apagar a linha abaixo
-	setTimelineEvent(FRONTEND);
-
 	step("[Game] Using Run Method.");
 	while (!onQuit())
 	{
@@ -101,7 +98,10 @@ Game::run()
 						if(!isOver())
 							m_mainMenu->update();
 						else
+						{
 							delete m_mainMenu;
+							m_mainMenu = NULL;
+						}
 					break;
 
 					case PROGRESSIONMENU:

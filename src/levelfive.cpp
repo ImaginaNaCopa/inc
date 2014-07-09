@@ -47,8 +47,60 @@ LevelFive::generateSecondLayer()
 void
 LevelFive::generateEnemies()
 {
+	int positionReference = 700;
+	while(positionReference < 1100)
+	{
+		enemy = new Curupira(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 10;
+	}
+	enemy = new Curupira(0,420);
+	enemies.push_back(enemy);
+	positionReference = 900;
+	while(positionReference < 1200)
+	{
+		enemy = new Curupira(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 10;
+	}
 	enemy = new Curupira(0,990);
 	enemies.push_back(enemy);
+	enemy = new Curupira(0,1500);
+	enemies.push_back(enemy);
+	enemy = new Curupira(0,1530);
+	enemies.push_back(enemy);
+	positionReference = 250;
+	while(positionReference < 700)
+	{
+		enemy = new Urubu(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 30;
+	}
+	enemy = new Urubu(4,570);
+	enemies.push_back(enemy);
+	positionReference = 600;
+	while(positionReference < 1000)
+	{
+		enemy = new Urubu(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 40;
+	}
+	enemy = new Urubu(4,925);
+	enemies.push_back(enemy);
+	positionReference = 800;
+	while(positionReference < 1100)
+	{
+		enemy = new Urubu(0,positionReference);
+		enemies.push_back(enemy);
+		positionReference += 20;
+	}
+	enemy = new Urubu(0,1020);
+	enemies.push_back(enemy);
+	for (int i = 0; i < 20; i++)
+	{
+		enemy = new Politico (0, false, 300+50*i);
+		enemies.push_back(enemy);
+	}
 }
 
 void

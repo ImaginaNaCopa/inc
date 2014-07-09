@@ -9,6 +9,8 @@ Caio::Caio() : ImageEffect()
 
 	imagePath.assign("res/images/s_caio.png");
 	generatePosition(round(getWindowW()/16),getPlatformH(),48,55);
+	if(getTimelineEvent()==LEVELFOUR)
+		generatePosition(250,getPlatformH(),48,55);
 	generateClips();
 	generateDefaultStats();
 	newVariousIdleTimes(4);
@@ -114,13 +116,20 @@ Caio::update()
 			firstAid();
 		break;
 	}
-
-	if(m_position.y > getPlatformH() - m_position.h)
-		m_position.y = getPlatformH() - m_position.h;
-	if(m_position.x <= 0)
-		m_position.x = 0;
-	else if(m_position.x+m_position.w >= getLimitW())
-		m_position.x = getLimitW() - m_position.w;
+	if(getTimelineEvent()==LEVELFOUR)
+	{
+		if(m_position.x <= getLimitM())
+			m_position.x = getLimitM();
+	}
+	else
+	{
+		if(m_position.y > getPlatformH() - m_position.h)
+			m_position.y = getPlatformH() - m_position.h;
+		if(m_position.x <= 0)
+			m_position.x = 0;
+		else if(m_position.x+m_position.w >= getLimitW())
+			m_position.x = getLimitW() - m_position.w;		
+	}
 
 	handleItens();
 }

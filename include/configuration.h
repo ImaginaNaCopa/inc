@@ -21,6 +21,8 @@ namespace configuration
 	int getLimitW();
 	void setLimitW(int newLimitOfLevel);
 
+	int getLimitM();
+
 	int getPlatformH();
 }
 

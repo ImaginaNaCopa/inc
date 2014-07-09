@@ -53,7 +53,7 @@ LevelTwo::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 13;
 	}
-	enemy = new Curupira(0,420);
+	enemy = new Curupira(4,420);
 	enemies.push_back(enemy);
 	positionReference = 900;
 	while(positionReference < 1200)
@@ -62,11 +62,11 @@ LevelTwo::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 13;
 	}
-	enemy = new Curupira(0,990);
+	enemy = new Curupira(2,990);
 	enemies.push_back(enemy);
-	enemy = new Curupira(0,1500);
+	enemy = new Curupira(2,1500);
 	enemies.push_back(enemy);
-	enemy = new Curupira(0,1530);
+	enemy = new Curupira(4,1530);
 	enemies.push_back(enemy);
 	positionReference = 250;
 	while(positionReference < 700)
@@ -93,7 +93,7 @@ LevelTwo::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 50;
 	}
-	enemy = new Urubu(0,1420);
+	enemy = new Urubu(1,1420);
 	enemies.push_back(enemy);
 }
 
@@ -101,9 +101,9 @@ void
 LevelTwo::generateCivilians()
 {
 	step("[LevelTwo] Generating Civilians.");
-	civil = new Civil(6,2,200);
+	civil = new Civil(4,2,200);
 	civis.push_back(civil);
-	civil = new Civil(3,5,350);
+	civil = new Civil(1,5,350);
 	civis.push_back(civil);
 	civil = new Civil(2,3,800);
 	civis.push_back(civil);

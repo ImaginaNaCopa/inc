@@ -61,9 +61,9 @@ LevelOne::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 60;
 	}
-	enemy = new Curupira(0,990);
+	enemy = new Curupira(1,990);
 	enemies.push_back(enemy);
-	enemy = new Curupira(0,1470);
+	enemy = new Curupira(2,1470);
 	enemies.push_back(enemy);
 	enemy = new Curupira(1,1500);
 	enemies.push_back(enemy);
@@ -77,7 +77,7 @@ LevelOne::generateCivilians()
 	step("[LevelOne] Generating Civilians.");
 	civil = new Civil(1,0,350);
 	civis.push_back(civil);
-	civil = new Civil(3,1,900);
+	civil = new Civil(4,1,900);
 	civis.push_back(civil);
 	civil = new Civil(4,2,1350);
 	civis.push_back(civil);

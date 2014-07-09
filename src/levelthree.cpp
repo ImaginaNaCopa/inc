@@ -74,8 +74,8 @@ LevelThree::generateEnemies()
 	}
 	enemy = new Urubu(4,570);
 	enemies.push_back(enemy);
-	positionReference = 1250;
-	while(positionReference < 1600)
+	positionReference = 600;
+	while(positionReference < 1000)
 	{
 		enemy = new Urubu(0,positionReference);
 		enemies.push_back(enemy);
@@ -83,18 +83,18 @@ LevelThree::generateEnemies()
 	}
 	enemy = new Urubu(4,925);
 	enemies.push_back(enemy);
-	positionReference = 1200;
-	while(positionReference < 1550)
+	positionReference = 100;
+	while(positionReference < 100)
 	{
 		enemy = new Urubu(0,positionReference);
 		enemies.push_back(enemy);
-		positionReference += 50;
+		positionReference += 130;
 	}
 	enemy = new Urubu(4,1420);
 	enemies.push_back(enemy);
 	for (int i = 0; i < 10; i++)
 	{
-		enemy = new Politico (0, false, 100*i);
+		enemy = new Politico (0, false, 50+100*i);
 		enemies.push_back(enemy);
 	}
 }
