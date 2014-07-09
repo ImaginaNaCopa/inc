@@ -12,7 +12,10 @@ LevelFour::LevelFour() : Stage()
 	setGameOver(false);
 }
 
-LevelFour::~LevelFour(){}
+LevelFour::~LevelFour()
+{
+	step("[LevelFour] Destroying.");
+}
 
 void
 LevelFour::defineBackground()

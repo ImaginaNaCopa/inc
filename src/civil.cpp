@@ -47,7 +47,11 @@ Civil::Civil(int item, int tipo, int earlyPosition) : ImageEffect()
 
 Civil::~Civil()
 {
+<<<<<<< HEAD
 	release();
+=======
+	step("[Civil] Destroying.");
+>>>>>>> Attempting
 }
 
 void

@@ -5,6 +5,9 @@
 
 #include <string>
 #include <SDL2/SDL_mixer.h>
+#include "systemlogger.h"
+
+using namespace systemLogger;
 
 class AudioHandler 
 {

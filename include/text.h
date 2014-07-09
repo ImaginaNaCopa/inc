@@ -8,7 +8,6 @@
 #include "collision.h"
 #include "configuration.h"
 #include "imageload.h"
-#include "imageeffect.h"
 #include "fontconfiguration.h"
 
 using namespace camera;
@@ -18,7 +17,7 @@ using namespace imageLoad;
 using namespace std;
 using namespace fontConfiguration;
 
-class Text : public ImageEffect
+class Text
 {
 public:
 	Text(const string& fontPath, int fontSize);
@@ -35,7 +34,6 @@ public:
 	void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
 	void drawText();
-	void drawFadeText();
 	void drawTextRelative();
 
 private:

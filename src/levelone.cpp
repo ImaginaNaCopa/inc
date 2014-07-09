@@ -12,7 +12,10 @@ LevelOne::LevelOne() : Stage()
 	setGameOver(false);
 }
 
-LevelOne::~LevelOne() {}
+LevelOne::~LevelOne()
+{
+	step("[LevelOne] Destroying.");
+}
 
 void
 LevelOne::defineBackground()

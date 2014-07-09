@@ -9,7 +9,10 @@ Enemy::Enemy() : ImageEffect()
 	m_damaging = false;
 }
 
-Enemy::~Enemy() {}
+Enemy::~Enemy()
+{
+	step("[Enemy] Destroying.");
+}
 
 void
 Enemy::update(SDL_Rect target) 

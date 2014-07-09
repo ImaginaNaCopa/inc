@@ -11,7 +11,7 @@ ImageSprite::ImageSprite()
 
 ImageSprite::~ImageSprite()
 {
-	loop("[ImageSprite] Destroying.");
+	m_clips.clear();
 	release();
 }
 

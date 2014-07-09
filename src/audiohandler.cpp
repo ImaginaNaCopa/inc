@@ -8,6 +8,7 @@ AudioHandler::AudioHandler() :
 }
 
 AudioHandler::~AudioHandler(){
+	step("[Aim] Destroying.");
 	if(this->currentMusic != nullptr){
 		Mix_FreeMusic(this->currentMusic);
 		this->currentMusic = nullptr;

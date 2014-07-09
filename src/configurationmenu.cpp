@@ -10,9 +10,11 @@ ConfigurationMenu::ConfigurationMenu() : Menu("res/images/s_mainmenu.png")
 
 ConfigurationMenu::~ConfigurationMenu()
 {
+	step("[Configuration Menu] Destroying.");
 	delete m_background;
 	delete m_textIndex;
 	delete m_textTitle;
+	delete m_textApply;
 	delete m_textOption;
 }
 

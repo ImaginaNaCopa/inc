@@ -7,4 +7,7 @@ Background::Background(const string& path) : ImageEffect()
 	generatePosition(0,0,getWindowW(),getWindowH());
 }
 
-Background::~Background(){}
+Background::~Background()
+{
+	step("[Background] Destroying.");
+}

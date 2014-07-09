@@ -13,7 +13,6 @@ Potion::Potion(int earlyPositionX, int earlyPositionY) : Item()
 Potion::~Potion()
 {
     step("[Potion] Destroying.");
-    release();
 }
 
 void 

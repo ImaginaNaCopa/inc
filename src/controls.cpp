@@ -91,8 +91,10 @@ namespace controls
 	{
 		if((firstExitCommand==true && secondExitCommand==true) || quit==true)
 		{
-			releaseJoystickOne();
-			releaseJoystickTwo();
+			if(joystickOneCreated)
+				releaseJoystickOne();
+			if(joystickTwoCreated)
+				releaseJoystickTwo();
 			return true;
 		}
 		return false;

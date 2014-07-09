@@ -18,7 +18,6 @@ public:
 	void generateClips();
 	void update();
 
-	//bool handle(SDL_Event& event);
 	void generateIndexTexts();
 
 private:

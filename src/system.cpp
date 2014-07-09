@@ -33,6 +33,8 @@ System::System()
 System::~System()
 {
 	step("[System] Destroying.");
+
+	SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
 	
 	Mix_CloseAudio();
 	Mix_Quit();

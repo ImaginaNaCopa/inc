@@ -4,7 +4,7 @@ SecondLayer::SecondLayer(){}
 
 SecondLayer::SecondLayer(const string& path)
 {
-	step("[Sebastiao] Constructing.");
+	step("[SecondLayer] Constructing.");
 	imagePath.assign(path);
 }
 

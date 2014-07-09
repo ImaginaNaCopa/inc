@@ -39,14 +39,14 @@ void
 Entity::drawEntity()
 {
 	loop("[Entity] Drawing Entities.");
+	caio->drawTexts();
+	caio->drawRelative();
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
 		(*it)->drawRelative();
 	for (auto it = civis.begin(); it != civis.end(); it++)
 		(*it)->drawRelative();
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		(*it)->drawRelative();
-	caio->drawRelative();
-	caio->drawTexts();
 	aim->draw();
 }
 

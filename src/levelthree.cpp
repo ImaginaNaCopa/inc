@@ -15,6 +15,7 @@ LevelThree::LevelThree() : Stage()
 
 LevelThree::~LevelThree()
 {
+	step("[LevelThree] Destroying.");
 	setLevelW(1600);
 }
 

@@ -1,6 +1,6 @@
 #include "text.h"
 
-Text::Text(const string& fontPath, int fontSize) : ImageEffect()
+Text::Text(const string& fontPath, int fontSize)
 {
 	m_font = TTF_OpenFont(fontPath.c_str(),fontSize);
 	if(!m_font)
@@ -12,12 +12,14 @@ Text::Text(const string& fontPath, int fontSize) : ImageEffect()
 	m_fontColor = {255,255,255,255};
 	m_textNumber = 0;
 	m_positionNumber = 0;
-	newFade();
 }
 
 Text::~Text()
 {
+	step("[Text] Destroying.");
 	TTF_CloseFont(m_font);
+	m_texts.clear();
+	m_positions.clear();
 }
 
 void
@@ -77,24 +79,6 @@ Text::drawText()
 	{
 		errorSDL("[Text] Null Texture.",SDL_GetError());
 	}
-	SDL_QueryTexture(textureText,NULL,NULL,&m_positions.at(m_positionNumber).w,&m_positions.at(m_positionNumber).h);
-	imageDraw(textureText, NULL, &m_positions.at(m_positionNumber));
-}
-
-void
-Text::drawFadeText()
-{
-	SDL_Surface* renderedText = TTF_RenderText_Blended(m_font, m_texts.at(m_textNumber).c_str(), m_fontColor);
-	if(!renderedText)
-	{
-		errorSDL("[Text] Null Texture.",SDL_GetError());
-	}
-	SDL_Texture* textureText = surfaceToTexture(renderedText);
-	if(!textureText)
-	{
-		errorSDL("[Text] Null Texture.",SDL_GetError());
-	}
-	fade(15, 80);
 	SDL_QueryTexture(textureText,NULL,NULL,&m_positions.at(m_positionNumber).w,&m_positions.at(m_positionNumber).h);
 	imageDraw(textureText, NULL, &m_positions.at(m_positionNumber));
 }

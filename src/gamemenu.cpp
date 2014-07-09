@@ -9,7 +9,10 @@ GameMenu::GameMenu() : ImageSprite()
 	generateClips();
 }
 
-GameMenu::~GameMenu(){}
+GameMenu::~GameMenu()
+{
+	step("[GameMenu] Destroying.");
+}
 
 void
 GameMenu::generateClips()

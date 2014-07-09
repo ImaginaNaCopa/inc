@@ -11,7 +11,9 @@ Menu::Menu(const string& path) : SecondLayer(path)
 }
 
 Menu::~Menu()
-{}
+{
+	step("[Menu] Destroying.");
+}
 
 bool
 Menu::isSelected()

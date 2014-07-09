@@ -45,7 +45,6 @@ Window::~Window()
 {
 	step("[Window] Destroying.");
 	SDL_DestroyRenderer(m_renderer);
-	// FALHANDO AQUI (?)
 	//SDL_DestroyWindow(m_window);
 }
 

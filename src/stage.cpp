@@ -6,7 +6,10 @@ using namespace std;
 Stage::Stage() : Scenario(), Hud(), Entity()
 {}
 
-Stage::~Stage(){}
+Stage::~Stage()
+{
+	step("[Stage] Destroying.");
+}
 
 void 
 Stage::init()
@@ -37,7 +40,7 @@ Stage::update()
 		updateEntity();
 		controlEntityEvents();
 	}
-	if (caio->getHealth() == 0)
+	if(caio->getHealth() == 0)
 	{
 		setGameOver(true);
 		setOver(true);

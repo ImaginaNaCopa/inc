@@ -15,6 +15,7 @@ LevelFive::LevelFive() : Stage()
 
 LevelFive::~LevelFive()
 {
+	step("[LevelFive] Destroying.");
 	setLevelW(1600);
 }
 
