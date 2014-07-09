@@ -438,6 +438,8 @@ namespace controls
 				step("[Joystick] Joystick #02 ready to use.");
 			}
 		}
+		else
+			currentJoysticksInUse = NONE;
 	}
 
 	bool

@@ -7,7 +7,6 @@ Inventory::Inventory() : ImageSprite()
 	step("[Inventory] Constructing.");
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(0,0,40,65);
-	generateClips();
 	m_qtdPotion = 0;
 	m_qtdAlteredPotion = 0;
 	m_qtdAntiTudo = 0;
@@ -16,6 +15,11 @@ Inventory::Inventory() : ImageSprite()
 	m_qtdCup = 0;
 	m_inCLogo = 0;
 	m_qtdAntiBoss = 0;
+
+	m_itemSprite = new Background("res/images/s_item.png");
+	m_itemSprite->init();
+	m_itemSprite->generatePosition(10,34,32,40);
+	generateClips();
 
 	m_currentItem = 0;
 	m_referencedText = new Text(getFontTulpenOne(),getFontSize(1));
@@ -74,7 +78,10 @@ Inventory::drawEach()
 	m_position.x += 10 + m_position.w;
 	draw();
 
-	if (getQtdPotion() >= 0)
+	m_itemSprite->setOnlyClipNumber(0);
+	m_itemSprite->generatePosition(16,34,26,33);
+
+	if (getQtdPotion() > 0)
 	{
 		m_potionText->addText(to_string(getQtdPotion()));
 	
@@ -82,9 +89,15 @@ Inventory::drawEach()
 	
 		m_potionText->drawText();
 		m_potionText->removeText();
-	}
 
-	if (getQtdAlteredPotion() >= 0)
+		m_itemSprite->drawInAlpha(255);
+	}
+	else
+		m_itemSprite->drawInAlpha(50);
+
+	m_itemSprite->setOnlyClipNumber(1);
+	m_itemSprite->generatePosition(66,34,26,33);
+	if (getQtdAlteredPotion() > 0)
 	{
 		m_alteredPotionText->addText(to_string(getQtdAlteredPotion()));
 	
@@ -92,9 +105,15 @@ Inventory::drawEach()
 	
 		m_alteredPotionText->drawText();
 		m_alteredPotionText->removeText();
-	}
 
-	if (getQtdAntiTudo() >= 0)
+		m_itemSprite->drawInAlpha(255);
+	}
+	else
+		m_itemSprite->drawInAlpha(50);
+
+	m_itemSprite->setOnlyClipNumber(2);
+	m_itemSprite->generatePosition(116,34,26,33);
+	if (getQtdAntiTudo() > 0)
 	{
 		m_antiTudoText->addText(to_string(getQtdAntiTudo()));
 	
@@ -102,9 +121,15 @@ Inventory::drawEach()
 	
 		m_antiTudoText->drawText();
 		m_antiTudoText->removeText();
-	}
 
-	if (getQtdBattery() >= 0)
+		m_itemSprite->drawInAlpha(255);
+	}
+	else
+		m_itemSprite->drawInAlpha(50);
+
+	m_itemSprite->setOnlyClipNumber(3);
+	m_itemSprite->generatePosition(173,34,16,33);
+	if (getQtdBattery() > 0)
 	{
 		m_batteryText->addText(to_string(getQtdBattery()));
 	
@@ -112,9 +137,15 @@ Inventory::drawEach()
 	
 		m_batteryText->drawText();
 		m_batteryText->removeText();
-	}
 
-	if (getQtdFreeboi() >= 0)
+		m_itemSprite->drawInAlpha(255);
+	}
+	else
+		m_itemSprite->drawInAlpha(50);
+
+	m_itemSprite->setOnlyClipNumber(4);
+	m_itemSprite->generatePosition(214,42,33,16);
+	if (getQtdFreeboi() > 0)
 	{
 		m_freeboiText->addText(to_string(getQtdFreeboi()));
 	
@@ -122,9 +153,15 @@ Inventory::drawEach()
 	
 		m_freeboiText->drawText();
 		m_freeboiText->removeText();
-	}
 
-	if (getQtdCup() >= 0)
+		m_itemSprite->drawInAlpha(255);
+	}
+	else
+		m_itemSprite->drawInAlpha(50);
+
+	m_itemSprite->setOnlyClipNumber(5);
+	m_itemSprite->generatePosition(272,34,16,33);
+	if (getQtdCup() > 0)
 	{
 		m_cupText->addText(to_string(getQtdCup()));
 	
@@ -132,7 +169,12 @@ Inventory::drawEach()
 	
 		m_cupText->drawText();
 		m_cupText->removeText();
+
+		m_itemSprite->drawInAlpha(255);
 	}
+	else
+		m_itemSprite->drawInAlpha(50);
+
 	if (getQtdCup() == 4)
 	{
 		delete m_cupText;
@@ -182,6 +224,12 @@ Inventory::generateClips()
 {
 	step("[Inventory] Generating Sprite Clips.");
 	addClip(0,45,40,65);
+	m_itemSprite->addClip(0,0,32,40);
+	m_itemSprite->addClip(32,0,32,40);
+	m_itemSprite->addClip(64,0,33,40);
+	m_itemSprite->addClip(97,0,21,40);
+	m_itemSprite->addClip(118,0,40,22);
+	m_itemSprite->addClip(158,0,22,40);
 }
 
 void 
@@ -230,6 +278,8 @@ void
 Inventory::setQtdBattery(int qtd)
 {
 	m_qtdBaterry += qtd;
+	if(m_qtdBaterry<0)
+		m_qtdBaterry=0;
 }
 
 int
