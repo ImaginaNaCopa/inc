@@ -30,7 +30,6 @@ Sebastiao::~Sebastiao()
 	delete m_background;
 	delete m_border;
 	delete m_platform;
-	release();
 }
 
 void

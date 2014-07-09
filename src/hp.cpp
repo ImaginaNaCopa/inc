@@ -11,11 +11,7 @@ Hp::Hp() : ImageSprite()
 	poisonedHp = 0;
 }
 
-Hp::~Hp()
-{
-	step("[HP] Destroying.");
-	release();
-}
+Hp::~Hp(){}
 
 void
 Hp::generateClips()

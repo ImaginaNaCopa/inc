@@ -26,7 +26,6 @@ Caio::~Caio()
 {
 	step("[Caio] Destroying.");
 	delete m_firstAidCountdown;
-	release();
 }
 
 void

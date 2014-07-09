@@ -11,11 +11,7 @@ Aim::Aim() : ImageSprite()
 	SDL_ShowCursor(0);
 }
 
-Aim::~Aim()
-{
-	step("[Aim] Destroying.");
-	release();
-}
+Aim::~Aim(){}
 
 void
 Aim::generateClips()

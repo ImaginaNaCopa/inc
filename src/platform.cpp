@@ -9,8 +9,4 @@ Platform::Platform(const string& path) : ImageSprite()
 	generatePosition(0,getPlatformH(),getWindowW(),getWindowH()-getPlatformH());
 }
 
-Platform::~Platform()
-{
-	step("[Platform] Destroying.");
-	release();
-}
+Platform::~Platform(){}

@@ -1,7 +1,6 @@
 #include "secondlayer.h"
 
-SecondLayer::SecondLayer()
-{}
+SecondLayer::SecondLayer(){}
 
 SecondLayer::SecondLayer(const string& path)
 {
@@ -9,8 +8,4 @@ SecondLayer::SecondLayer(const string& path)
 	imagePath.assign(path);
 }
 
-SecondLayer::~SecondLayer()
-{
-	step("[Sebastiao] Destroying.");
-	release();
-}
+SecondLayer::~SecondLayer(){}

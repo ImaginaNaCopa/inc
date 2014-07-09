@@ -15,11 +15,7 @@ Curupira::Curupira(int item, int earlyPosition) : Enemy()
 	setClipNumber(18);
 }
 
-Curupira::~Curupira()
-{
-	step("[Curupira] Destroying.");
-	release();
-}
+Curupira::~Curupira(){}
 
 void
 Curupira::generateBehaviour()

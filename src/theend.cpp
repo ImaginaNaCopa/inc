@@ -24,7 +24,8 @@ TheEnd::~TheEnd()
 {
 	step("[TheEnd] Destroying.");
 	delete m_background;
-	release();
+	delete m_titulo;
+	delete m_nome;
 }
 
 void
@@ -142,6 +143,9 @@ TheEnd::update()
 						m_stepsN = LUCIANO;
 						m_skip = false;
 					break;
+
+					default:
+					break;
 				}
 			}
 			if(m_titulo->isFadeEnded() || m_skip)
@@ -183,6 +187,9 @@ TheEnd::update()
 						m_nome->generatePosition(353,500,95,17);
 						m_stepsN = RENATA;
 						m_skip = false;
+					break;
+
+					default:
 					break;
 				}
 			}
@@ -254,6 +261,9 @@ TheEnd::update()
 						m_nome->generatePosition(359,500,82,17);
 						m_stepsN = TIAGO;
 						m_skip = false;
+					break;
+
+					default:
 					break;
 				}
 			}

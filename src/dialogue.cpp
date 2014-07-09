@@ -8,8 +8,4 @@ Dialogue::Dialogue() : ImageSprite()
 	addClip(200,0,260,90);
 }
 
-Dialogue::~Dialogue()
-{
-	step("[Dialogue] Destroying.");
-	release();
-}
+Dialogue::~Dialogue(){}

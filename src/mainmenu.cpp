@@ -11,7 +11,6 @@ MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 MainMenu::~MainMenu()
 {
 	step("[MainMenu] Destroying.");
-	release();
 	delete m_background;
 }
 

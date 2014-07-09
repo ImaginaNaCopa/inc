@@ -11,7 +11,10 @@ ImageEffect::ImageEffect() : ImageSprite()
 	newIdleTime();
 }
 
-ImageEffect::~ImageEffect() {}
+ImageEffect::~ImageEffect()
+{
+	idleTimes.clear();
+}
 
 void
 ImageEffect::fade(Uint8 fadeTick, int idle)

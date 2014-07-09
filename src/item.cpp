@@ -1,14 +1,11 @@
 #include "item.h"
 
-Item::Item() : ImageSprite() {}
+Item::Item() : ImageSprite(){}
 
-Item::~Item() {}
+Item::~Item(){}
 
 void
-Item::update()
-{
-	
-}
+Item::update(){}
 
 int
 Item::getId()

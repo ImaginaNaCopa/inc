@@ -10,11 +10,7 @@ AlteredPotion::AlteredPotion(int earlyPositionX, int earlyPositionY) : Item()
     id = 2;
 }
 
-AlteredPotion::~AlteredPotion()
-{
-    step("[AlteredPotion] Destroying.");
-    release();
-}
+AlteredPotion::~AlteredPotion(){}
 
 void
 AlteredPotion::generateClips()

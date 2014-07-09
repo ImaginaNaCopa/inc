@@ -18,7 +18,6 @@ FrontEnd::FrontEnd() : ImageEffect()
 FrontEnd::~FrontEnd()
 {
 	step("[FrontEnd] Destroying.");
-	release();
 	delete background;
 }
 

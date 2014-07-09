@@ -3,8 +3,7 @@
 
 using namespace std;
 
-Stage::Stage() : Scenario(), Hud(), Entity()
-{}
+Stage::Stage() : Scenario(), Hud(), Entity() {}
 
 Stage::~Stage(){}
 

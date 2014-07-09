@@ -13,11 +13,7 @@ Urubu::Urubu(int item, int earlyPosition) : Enemy()
 	m_idleFlying = (int) rand() % 100;
 }
 
-Urubu::~Urubu()
-{
-	step("[Urubu] Destroying.");
-	release();
-}
+Urubu::~Urubu(){}
 
 void
 Urubu::generateBehaviour()

@@ -45,11 +45,7 @@ Civil::Civil(int item, int tipo, int earlyPosition) : ImageEffect()
 	m_times = 0;
 }
 
-Civil::~Civil()
-{
-	step("[Civil] Destroying.");
-	release();
-}
+Civil::~Civil(){}
 
 void
 Civil::generateClips()

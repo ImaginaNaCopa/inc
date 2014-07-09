@@ -19,7 +19,6 @@ GameOver::~GameOver()
 {
 	step("[GameOver] Destroying.");
 	delete m_text;
-	release();
 }
 
 void

@@ -30,7 +30,6 @@ Inventory::~Inventory()
 	delete m_alteredPotionText;
 	delete m_potionText;
 	delete m_referencedText;
-	release();
 }
 
 void 
