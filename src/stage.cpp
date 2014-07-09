@@ -3,7 +3,8 @@
 
 using namespace std;
 
-Stage::Stage() : Scenario(), Hud(), Entity() {}
+Stage::Stage() : Scenario(), Hud(), Entity()
+{}
 
 Stage::~Stage(){}
 
@@ -96,6 +97,7 @@ Stage::damagingCaio()
 				hp->setHp(caio->getHealth());
 				cout << "hp: " << hp->getHp() << endl;
 				caio->newReverseFade();
+				break;
 			}
 		}
 	}
@@ -262,7 +264,38 @@ Stage::rescuingCivilian()
 		if(caio->nearCivilian((*it)->getPosition()))
 		{
 			if(caio->successfulFirstAid())
+			{
 				(*it)->saved();
+
+				SDL_Rect position = (*it)->getPosition();
+				
+				switch ((*it)->getItem())
+				{
+					case 0:
+						// Nothing to drop
+					break;
+					case 1: // Normal Potion Drop
+						item = new Potion(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 2: // Altered Potion Drop
+						item = new AlteredPotion(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 3:
+					break;
+					case 4:
+					break;
+					case 5:
+					break;
+					case 6:
+					break;
+					default:
+					break;
+				}
+			}
 			break;
 		}
 	}

@@ -45,7 +45,10 @@ Civil::Civil(int item, int tipo, int earlyPosition) : ImageEffect()
 	m_times = 0;
 }
 
-Civil::~Civil(){}
+Civil::~Civil()
+{
+	release();
+}
 
 void
 Civil::generateClips()
