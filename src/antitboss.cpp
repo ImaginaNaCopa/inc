@@ -4,7 +4,7 @@ AntiBoss::AntiBoss(int earlyPositionX, int earlyPositionY) : Item()
 {
     step("[AntiBoss] Constructing.");
     imagePath.assign("res/images/s_item.png");
-    generatePosition(earlyPositionX, earlyPositionY, 33, 40);
+    generatePosition(earlyPositionX, earlyPositionY, 32, 40);
     generateClips();
     m_dropspeed = 5;
     id = 8;

@@ -4,7 +4,7 @@ InCLogo::InCLogo(int earlyPositionX, int earlyPositionY) : Item()
 {
     step("[InCLogo] Constructing.");
     imagePath.assign("res/images/s_item.png");
-    generatePosition(earlyPositionX, earlyPositionY, 33, 40);
+    generatePosition(earlyPositionX, earlyPositionY, 40, 40);
     generateClips();
     id = 7;
 }

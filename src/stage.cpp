@@ -194,13 +194,36 @@ Stage::killingEnemy()
 					itens.push_back(item);
 				break;
 				case 3:
+					item = new AntiTudo(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
 				break;
 				case 4:
+					item = new Battery(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
 				break;
 				case 5:
+					item = new Freeboi(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
 				break;
 				case 6:
+					item = new Cup(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
 				break;
+				case 7:
+					item = new InCLogo(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
+				break;
+				case 8:
+					item = new AntiBoss(round(position.x + (position.w/2)), position.y);
+					item->init();
+					itens.push_back(item);
+				break;
+
 				default:
 				break;
 			}
