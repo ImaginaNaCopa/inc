@@ -169,6 +169,7 @@ Civil::grounded()
 void
 Civil::moving()
 {
+	m_safe = true;
 	switch(m_tipo)
 	{
 		case 0:

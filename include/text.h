@@ -32,6 +32,9 @@ public:
 	void setPosition(int newX, int newY);
 
 	void setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+	
+
+	SDL_Rect getCurrentPosition();
 
 	void drawText();
 	void drawTextRelative();

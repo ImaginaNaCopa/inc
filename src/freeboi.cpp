@@ -7,7 +7,7 @@ Freeboi::Freeboi(int earlyPositionX, int earlyPositionY) : Item()
     generatePosition(earlyPositionX, earlyPositionY, 40, 22);
     generateClips();
     m_dropspeed = 5;
-    id = 4;
+    id = 5;
 }
 
 Freeboi::~Freeboi(){}

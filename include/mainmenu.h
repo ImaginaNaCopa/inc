@@ -3,6 +3,7 @@
 
 #include "background.h"
 #include "menu.h"
+#include "text.h"
 
 class MainMenu : public Menu
 {
@@ -15,6 +16,7 @@ public:
 
 private:
 	Background* m_background;
+	Text* m_option;
 
 };
 

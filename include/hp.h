@@ -2,6 +2,9 @@
 #define HP_H
 
 #include "imagesprite.h"
+#include "userlogger.h"
+
+using namespace userLogger;
 
 class Hp : public ImageSprite
 {

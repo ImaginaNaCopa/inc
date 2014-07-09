@@ -6,8 +6,8 @@ Hp::Hp() : ImageSprite()
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(0,10,50,15);
 	generateClips();
-	hp = 3;
-	maxHp = 3;
+	hp = getCurrentMaxHealth();
+	maxHp = getCurrentHealth();
 	poisonedHp = 0;
 }
 

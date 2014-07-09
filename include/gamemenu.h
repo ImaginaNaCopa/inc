@@ -1,6 +1,7 @@
 #ifndef GAMEMENU_H
 #define GAMEMENU_H
 
+#include "text.h"
 #include "imagesprite.h"
 
 class GameMenu : public ImageSprite

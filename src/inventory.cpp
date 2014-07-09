@@ -7,13 +7,13 @@ Inventory::Inventory() : ImageSprite()
 	step("[Inventory] Constructing.");
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(0,0,40,65);
-	m_qtdPotion = 0;
-	m_qtdAlteredPotion = 0;
-	m_qtdAntiTudo = 0;
-	m_qtdBaterry = 0;
-	m_qtdFreeboi = 0;
-	m_qtdCup = 0;
-	m_inCLogo = 0;
+	m_qtdPotion = getItemQuantity(1);
+	m_qtdAlteredPotion = getItemQuantity(2);
+	m_qtdAntiTudo = getItemQuantity(3);
+	m_qtdBaterry = getItemQuantity(4);
+	m_qtdFreeboi = getItemQuantity(5);
+	m_qtdCup = getItemQuantity(6);
+	m_inCLogo = getItemQuantity(7);
 	m_qtdAntiBoss = 0;
 
 	m_itemSprite = new Background("res/images/s_item.png");
@@ -242,6 +242,9 @@ void
 Inventory::setQtdPotion(int qtd)
 {
 	m_qtdPotion += qtd;
+	if(m_qtdPotion<0)
+		m_qtdPotion=0;
+	updateItem(1,m_qtdPotion);
 }
 
 int
@@ -254,6 +257,9 @@ void
 Inventory::setQtdAlteredPotion(int qtd)
 {
 	m_qtdAlteredPotion += qtd;
+	if(m_qtdAlteredPotion<0)
+		m_qtdAlteredPotion=0;
+	updateItem(2,m_qtdAlteredPotion);
 }
 
 int
@@ -266,6 +272,10 @@ void
 Inventory::setQtdAntiTudo(int qtd)
 {
 	m_qtdAntiTudo += qtd;
+	if(m_qtdAntiTudo<0)
+		m_qtdAntiTudo=0;
+
+	updateItem(3,m_qtdAntiTudo);
 }
 
 int 
@@ -280,6 +290,8 @@ Inventory::setQtdBattery(int qtd)
 	m_qtdBaterry += qtd;
 	if(m_qtdBaterry<0)
 		m_qtdBaterry=0;
+
+	updateItem(4,m_qtdBaterry);
 }
 
 int
@@ -292,6 +304,9 @@ void
 Inventory::setQtdFreeboi(int qtd)
 {
 	m_qtdFreeboi += qtd;
+	if(m_qtdFreeboi<0)
+		m_qtdFreeboi=0;
+	updateItem(5,m_qtdFreeboi);
 }
 
 int
@@ -304,6 +319,9 @@ void
 Inventory::setQtdCup(int qtd)
 {
 	m_qtdCup += qtd;
+	if(m_qtdCup<0)
+		m_qtdCup=0;
+	updateItem(6,m_qtdCup);
 }
 
 int
@@ -316,6 +334,9 @@ void
 Inventory::setIncLogo(bool inCLogo)
 {
 	m_inCLogo += inCLogo;
+	if(m_inCLogo<0)
+		m_inCLogo=0;
+	updateItem(7,m_inCLogo);
 }
 
 bool 
@@ -328,6 +349,8 @@ void
 Inventory::setQtdAntiBoss(int qtd)
 {
 	m_qtdAntiBoss += qtd;
+	if(m_qtdAntiBoss<0)
+		m_qtdAntiBoss=0;
 }
 
 int

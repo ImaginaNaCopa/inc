@@ -6,10 +6,12 @@
 #include "fontconfiguration.h"
 #include "imageeffect.h"
 #include "text.h"
+#include "userlogger.h"
 
 using namespace behaviour;
 using namespace controls;
 using namespace fontConfiguration;
+using namespace userLogger;
 
 class Caio : public ImageEffect
 {
@@ -21,7 +23,7 @@ public:
 	void update();
 	void drawTexts();
 
-	bool nearCivilian(SDL_Rect rect);
+	bool nearCivilian(SDL_Rect rect, bool saved);
 	bool overEnemy(SDL_Rect rect);
 	bool overItem(SDL_Rect rect);
 

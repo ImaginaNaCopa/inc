@@ -48,11 +48,11 @@ LevelOne::generateEnemies()
 	int positionReference = 400;
 	while(positionReference < 700)
 	{
-		enemy = new Curupira(7,positionReference);
+		enemy = new Curupira(0,positionReference);
 		enemies.push_back(enemy);
 		positionReference += 60;
 	}
-	enemy = new Curupira(8,420);
+	enemy = new Curupira(2,420);
 	enemies.push_back(enemy);
 	positionReference = 900;
 	while(positionReference < 1200)
@@ -61,13 +61,13 @@ LevelOne::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 60;
 	}
-	enemy = new Curupira(3,990);
+	enemy = new Curupira(0,990);
 	enemies.push_back(enemy);
-	enemy = new Curupira(4,1470);
+	enemy = new Curupira(0,1470);
 	enemies.push_back(enemy);
-	enemy = new Curupira(5,1500);
+	enemy = new Curupira(1,1500);
 	enemies.push_back(enemy);
-	enemy = new Curupira(6,1530);
+	enemy = new Curupira(0,1530);
 	enemies.push_back(enemy);
 }
 
@@ -75,11 +75,11 @@ void
 LevelOne::generateCivilians()
 {
 	step("[LevelOne] Generating Civilians.");
-	civil = new Civil(0,0,350);
+	civil = new Civil(1,3,350);
 	civis.push_back(civil);
-	civil = new Civil(0,1,900);
+	civil = new Civil(3,1,900);
 	civis.push_back(civil);
-	civil = new Civil(0,2,1350);
+	civil = new Civil(4,2,1350);
 	civis.push_back(civil);
 }
 

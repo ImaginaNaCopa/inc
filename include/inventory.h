@@ -7,8 +7,10 @@
 #include "systemlogger.h"
 #include "background.h"
 #include "text.h"
+#include "userlogger.h"
 
 using namespace std;
+using namespace userLogger;
 
 class Inventory : public ImageSprite
 {

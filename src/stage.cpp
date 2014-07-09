@@ -36,23 +36,31 @@ void
 Stage::update()
 {
 	loop("[Stage] Updating Each Stage Object.");
-	if (caio->getHealth() != 0)
-	{
-		updateEntity();
-		controlEntityEvents();
-	}
-	if(caio->getHealth() == 0)
-	{
-		setGameOver(true);
-		setOver(true);
-		setFinished(false);
-		recordCurrentTimelineEvent();
-	}
-	if(caio->getPosition().x >= 1500)
+	if(isCOpenedMenu())
 	{
 		setOver(true);
-		setFinished(true);
-		setGameOver(false);
+		setTimelineEvent(MAINMENU);
+	}
+	else
+	{
+		if (caio->getHealth() != 0)
+		{
+			updateEntity();
+			controlEntityEvents();
+		}
+		if(caio->getHealth() == 0)
+		{
+			setGameOver(true);
+			setOver(true);
+			setFinished(false);
+			recordCurrentTimelineEvent();
+		}
+		if((caio->getPosition().x >= 1500)||((caio->getPosition().x >= 1000)&&(getTimelineEvent()==LEVELTHREE||getTimelineEvent()==LEVELFIVE)))
+		{
+			setOver(true);
+			setFinished(true);
+			setGameOver(false);
+		}
 	}
 }
 
@@ -132,7 +140,6 @@ void
 Stage::lootItem()
 {
 	auto loot = itens.end();
-
 	for (auto it = itens.begin(); it != itens.end(); it++)
 	{
 		loop("[Stage] Verifying Collision Between Caio and Itens.");
@@ -151,7 +158,7 @@ Stage::lootItem()
 					inventory->setQtdAntiTudo(1);
 				break;
 				case 4:
-					inventory->setQtdBattery(1);
+					inventory->setQtdBattery(10);
 				break;
 				case 5:
 					inventory->setQtdFreeboi(1);
@@ -160,7 +167,7 @@ Stage::lootItem()
 					inventory->setQtdCup(1);
 				break;
 				case 7:
-					// Do nothing (InCLogo)
+					inventory->setIncLogo(1);
 				break;
 				case 8:
 					inventory->setQtdAntiBoss(1);
@@ -169,6 +176,7 @@ Stage::lootItem()
 					// Nothing to do
 				break;
 			}
+			break;
 		}
 	}
 
@@ -301,7 +309,7 @@ Stage::rescuingCivilian()
 		if((*it)->isRunned())
 			secured = it;
 		loop("[Stage] Verifying Collision Between Caio and Civil.");
-		if(caio->nearCivilian((*it)->getPosition()))
+		if(caio->nearCivilian((*it)->getPosition(),(*it)->isSafe()))
 		{
 			if(caio->successfulFirstAid())
 			{
@@ -372,8 +380,8 @@ Stage::controlEntityEvents()
 	loop("[LevelTwo] Handling Specific Entity Conditions.");
 
 	damagingCaio();
-	lootItem();
 	killingEnemy();
 	rescuingCivilian();
+	lootItem();
 	usingItens();
 }

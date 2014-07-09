@@ -34,7 +34,8 @@ Menu::isSelected()
 bool
 Menu::checkCollision(int selection, SDL_Rect targetPosition)
 {
-	if(ifCollided(0,m_mouse,targetPosition))
+	SDL_Rect resTarget = {0,targetPosition.y,800,100};
+	if(ifCollided(0,m_mouse,resTarget))
 	{
 		m_selection = selection;
 		loop("[MainMenu] Returning true, Mouse collided with some Option Rect.");

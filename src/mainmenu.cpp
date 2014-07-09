@@ -4,7 +4,9 @@ MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 {
 	step("[MainMenu] Constructing.");
 	m_background = new Background("res/images/s_mainmenu.png");
+	m_option = new Text(getFontNulshock(),30);
 	generateClips();
+
 	m_background->init();
 }
 
@@ -12,17 +14,23 @@ MainMenu::~MainMenu()
 {
 	step("[MainMenu] Destroying.");
 	delete m_background;
+	delete m_option;
 }
 
 void
 MainMenu::generateClips()
 {
 	step("[MainMenu] Generating Sprite Clips.");
+	m_option->addPosition(100,100);
+	m_option->addPosition(100,200);
+	m_option->addPosition(100,300);
+	m_option->addPosition(100,400);
+	m_option->addText("Iniciar Jogo");
+	m_option->addText("Configurar");
+	m_option->addText("Creditos");
+	m_option->addText("Sair");
+	m_option->setColor(255,255,0,255);
 
-	//addClip(350,650,230,20);
-	//addClip(350,670,260,35);
-	//addClip(350,705,160,30);
-	//addClip(350,735,230,20);
 
 	addClip(0,610,350,350);
 
@@ -62,32 +70,33 @@ MainMenu::update()
 	loop("[MainMenu] Updating and Drawing.");
 	m_background->draw();
 
-	m_clipNumber = 0;
+	setOnlyClipNumber(0);
 	generatePosition(400,50,350,350);
 	draw();
 
-	/*m_clipNumber = 0;
-	generatePosition(100,100,230,20);
-	m_mouseCollision = checkCollision(0,getPosition());
-	draw();*/
-
-	/*m_clipNumber = 1;
-	generatePosition(100,200,260,35);
+	m_option->setPositionNumber(0);
+	m_option->setTextNumber(0);
 	if(!m_mouseCollision)
-		m_mouseCollision = checkCollision(1,getPosition());
-	draw();*/
+		m_mouseCollision = checkCollision(0,m_option->getCurrentPosition());
+	m_option->drawText();
 
-	/*m_clipNumber = 2;
-	generatePosition(100,300,160,30);
+	m_option->setPositionNumber(1);
+	m_option->setTextNumber(1);
 	if(!m_mouseCollision)
-		m_mouseCollision = checkCollision(2,getPosition());
-	draw();*/
+		m_mouseCollision = checkCollision(1,m_option->getCurrentPosition());
+	m_option->drawText();
 
-	/*m_clipNumber = 3;
-	generatePosition(100,400,230,20);
+	m_option->setPositionNumber(2);
+	m_option->setTextNumber(2);
 	if(!m_mouseCollision)
-		m_mouseCollision = checkCollision(3,getPosition());
-	draw();*/
+		m_mouseCollision = checkCollision(2,m_option->getCurrentPosition());
+	m_option->drawText();
+
+	m_option->setPositionNumber(3);
+	m_option->setTextNumber(3);
+	if(!m_mouseCollision)
+		m_mouseCollision = checkCollision(3,m_option->getCurrentPosition());
+	m_option->drawText();
 
 	if(isSelected())
 	{
@@ -129,7 +138,7 @@ MainMenu::update()
 		switch(m_selection)
 		{
 			case 0:
-				generatePosition(40,80,50,50);
+				generatePosition(40,90,50,50);
 			break;
 
 			case 1:
@@ -141,13 +150,15 @@ MainMenu::update()
 			break;
 
 			case 3:
-				generatePosition(40,380,50,50);
+				generatePosition(40,390,50,50);
 			break;
 
 			default:
-				generatePosition(40,80,50,50);
+				generatePosition(40,90,50,50);
 			break;
 		}
 		draw();
 	}
+	m_mouseSelect = false;
+	m_mouseCollision = false;
 }

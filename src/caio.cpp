@@ -70,8 +70,8 @@ Caio::generateDefaultStats()
 	m_speed = haveQuicklySpeed();
 	m_jumpspeed = 10;
 
-	m_health = 1000;
-	m_maxHealth = 1000;
+	m_health = getCurrentHealth();
+	m_maxHealth = getCurrentMaxHealth();
 	m_dead = false;
 	m_imune = false;
 
@@ -155,28 +155,33 @@ Caio::overEnemy(SDL_Rect rect)
 }
 
 bool
-Caio::nearCivilian(SDL_Rect rect)
+Caio::nearCivilian(SDL_Rect rect, bool saved)
 {
 	loop("[Caio] Checking if Collided with a Rectangle.");
-	SDL_Rect civilian = rect;
-	civilian.x -= 25;
-	civilian.w += 50;
-	if(ifCollided(1,getPosition(),civilian))
+	if(!saved)
 	{
-		condition("[Caio] Collided on left side.");
-		m_nearCivilian = true;
-		m_nearOnLeftSide = true;
-		return true;
+		SDL_Rect civilian = rect;
+		civilian.x -= 25;
+		civilian.w += 50;
+		if(ifCollided(1,getPosition(),civilian))
+		{
+			condition("[Caio] Collided on left side.");
+			m_nearCivilian = true;
+			m_nearOnLeftSide = true;
+			return true;
+		}
+		else if(ifCollided(2,getPosition(),civilian))
+		{
+			condition("[Caio] Collided on right side.");
+			m_nearCivilian = true;
+			m_nearOnLeftSide = false;
+			return true;
+		}
+		m_nearCivilian = false;
+		return false;		
 	}
-	else if(ifCollided(2,getPosition(),civilian))
-	{
-		condition("[Caio] Collided on right side.");
-		m_nearCivilian = true;
-		m_nearOnLeftSide = false;
-		return true;
-	}
-	m_nearCivilian = false;
-	return false;
+	else
+		return false;
 }
 
 bool
@@ -691,15 +696,21 @@ Caio::setHealth(int health)
 {
 	if (m_health <= 0)
 		setDead(true);
-	else if (m_health < 10)
+	else if (m_health < 8)
 		m_health += health;
+
+	if(m_health < 3)
+		updateHealth(3);
+	else
+		updateHealth(m_health);
 }
 
 void 
 Caio::setMaxHealth(int quantity)
 {
-	if (m_maxHealth < 6)
+	if (m_maxHealth < 8)
 		m_maxHealth += quantity;
+	updateHealth(m_maxHealth);
 }
 
 void 

@@ -66,6 +66,12 @@ Text::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 	m_fontColor = newColor;
 }
 
+SDL_Rect
+Text::getCurrentPosition()
+{
+	return m_positions.at(m_positionNumber);
+}
+
 void
 Text::drawText()
 {
