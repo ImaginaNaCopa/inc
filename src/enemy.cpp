@@ -36,7 +36,9 @@ Enemy::updatePosition(SDL_Rect target)
 	{
 		updateDirection();
 		m_position.x += calculatePosition(m_direction);
-	}		
+	}
+	if (ifCollided(1,m_position,target) || ifCollided(2,m_position,target))
+		m_hunt = true;
 }
 
 void
@@ -157,7 +159,7 @@ Enemy::setEnemyHealth(int damage)
 	if (m_health == 0)
 		died = true;
 	if (m_health == -1){}
-		//Do things here	
+		//Do BOSS things here
 }
 
 int
@@ -194,4 +196,22 @@ void
 Enemy::setDamaging(bool dmg)
 {
 	m_damaging = dmg;
+}
+
+bool
+Enemy::isTheBoss()
+{
+	return m_isTheBoss;
+}
+
+int
+Enemy::getBossHealth()
+{
+	return m_bossHealth;
+}
+
+void
+Enemy::setBossHealth(int value)
+{
+	m_bossHealth += value;
 }

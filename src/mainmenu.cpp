@@ -5,6 +5,7 @@ MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 	step("[MainMenu] Constructing.");
 	m_background = new Background("res/images/s_mainmenu.png");
 	generateClips();
+	defineEffects();
 	m_background->init();
 }
 
@@ -18,11 +19,6 @@ void
 MainMenu::generateClips()
 {
 	step("[MainMenu] Generating Sprite Clips.");
-
-	//addClip(350,650,230,20);
-	//addClip(350,670,260,35);
-	//addClip(350,705,160,30);
-	//addClip(350,735,230,20);
 
 	addClip(0,610,350,350);
 

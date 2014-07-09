@@ -1,7 +1,7 @@
 #ifndef LEVELTHREE_H
 #define LEVELTHREE_H
 
-#include "curupira.h"
+#include "gigante.h"
 #include "politico.h"
 #include "stage.h"
 
@@ -11,9 +11,8 @@ public:
 	LevelThree();
 	~LevelThree();
 
-	void generateEnemies();
-	void generateCivilians();
 	void drawScenarioRelativeImages();
+	void generateEnemies();
 
 	void defineBackground();
 	void generatePlatform();

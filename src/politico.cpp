@@ -12,9 +12,10 @@ Politico::Politico(int item, bool side, int earlyPosition) : Enemy()
 	generateBehaviour();
 	m_side = side;
 	m_item = item;
-	m_state = MOVING;
-	m_looking = BACKWARD;
+	m_state = ATTACKING;
+	m_looking = FORWARD;
 	wasJustBorn = true;
+	passive = true;
 	setClipNumber(0);
 
 }
@@ -28,14 +29,16 @@ void
 Politico::generateBehaviour()
 {
 	step("[Politico] Generating Behaviour.");
-	m_hunter = isPassive();
+	m_hunter = isHunter();
 	m_flying = isTerrestrial();
-	m_typeDamage = doPoisonDamageType();
+	m_typeDamage = doSimpleDamageType();
 	m_health = haveNormalHealth();
 	m_patrol = dontPatrol();
+	m_patrolRange[0] = (m_position.x - m_patrol);
+	m_patrolRange[1] = (m_position.x + m_patrol);
 	m_speed = haveSlowSpeed();
 	m_taxRotation = haveZombieRotation();
-	m_typeDetection = haveDumbDetection();
+	m_typeDetection = haveCommonDetection();
 }
 
 void 
@@ -59,7 +62,7 @@ Politico::generateClips()
 
 	addClip(0,165,51,53);//11
 	addClip(51,165,49,53);
-	addClip(110,165,50,54);
+	addClip(100,165,50,54);
 }
 
 void 
@@ -82,9 +85,27 @@ Politico::update(SDL_Rect target)
 	}
 
 	if(!m_hunt)
+	{
 		m_state = STANDING;
-	else
+	}
+	else if (m_damaging)
+	{
 		m_state = ATTACKING;
+	}
+	else
+	{
+		m_state = MOVING;
+		if(isOnLeftDirection())
+		{
+			condition("[Curupira] Moving Backward.");
+			m_looking = BACKWARD;
+		}
+		else if(isOnRightDirection())
+		{
+			condition("[Curupira] Moving Forward.");
+			m_looking = FORWARD;
+		}	
+	}
 }
 
 void
@@ -103,8 +124,6 @@ Politico::attacking()
 	{
 		if(m_looking == FORWARD)
 		{
-			m_position.x = calculatePosition(1);
-			
 			if(m_clipNumber==8)
 				setClipNumber(9);
 			else if(m_clipNumber==9)
@@ -116,16 +135,14 @@ Politico::attacking()
 		}
 		else
 		{
-			m_position.x = calculatePosition(-1);
-
-			if(m_clipNumber==15)
-				setClipNumber(16);
-			else if(m_clipNumber==16)
-				setClipNumber(17);
-			else if(m_clipNumber==17)
+			if(m_clipNumber==11)
+				setClipNumber(12);
+			else if(m_clipNumber==12)
+				setClipNumber(13);
+			else if(m_clipNumber==13)
 				m_damaging = false;
 			else
-				setClipNumber(15);			
+				setClipNumber(11);			
 		}
 		setCurrentIdleTime(0);
 	}
@@ -136,11 +153,22 @@ Politico::attacking()
 void
 Politico::moving()
 {
-	cout << "aqui" << endl;
 	if(getCurrentIdleTime() == 3)
 	{
-
+		
 		if(m_looking == FORWARD)
+		{
+			if(m_clipNumber==0)
+				setClipNumber(1);
+			else if(m_clipNumber==1)
+				setClipNumber(2);
+			else if(m_clipNumber==2)
+				setClipNumber(3);
+
+			else
+				setClipNumber(0);
+		}
+		else
 		{
 			if(m_clipNumber==4)
 				setClipNumber(5);
@@ -149,42 +177,11 @@ Politico::moving()
 			else if(m_clipNumber==6)
 				setClipNumber(7);
 			else
-				setClipNumber(4);
-		}
-		else
-		{
-			if(m_clipNumber==11)
-				setClipNumber(12);
-			else if(m_clipNumber==12)
-				setClipNumber(13);
-			else if(m_clipNumber==13)
-				setClipNumber(14);
-			else
-				setClipNumber(11);			
+				setClipNumber(4);			
 		}
 		setCurrentIdleTime(0);
-		m_position.x = calculatePosition(1);
-	/*	
-		if (wasJustBorn && m_side) //true for forward
-		{
-			m_position.x = calculatePosition(1);
-			if (m_position.x >= (rand()%550))
-			{
-				//m_looking = FORWARD;
-				wasJustBorn = false;
-				m_state = STANDING;
-			}
-		}
-		else if (wasJustBorn && !m_side)
-		{
-			m_position.x = calculatePosition(-1);
-			if (m_position.x <= (rand()%550))
-			{
-				//m_looking = BACKWARD;
-				wasJustBorn = false;
-				m_state = STANDING;
-			}
-		}*/
+		
+		
 	}
 	else
 		setCurrentIdleTime(getCurrentIdleTime()+1);

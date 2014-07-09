@@ -249,6 +249,53 @@ Stage::killingEnemy()
 			}
 			break;
 		}
+		if ((*it)->isTheBoss())
+		{
+			switch ((*it)->getBossHealth())
+			{
+				case 0:
+					//Dead!
+				break;
+				/*	
+				case 1:
+					for (int i = 1; i < 5; i++)
+					{
+						enemy = new Politico (0, false, 100*i);
+						enemies.push_back(enemy);	
+					}
+					enemy = new Politico (8, false, 600);
+					enemies.push_back(enemy);
+					for (int i = 6; i < 10; i++)
+					{
+						enemy = new Politico (0, false, 1000*i);
+						enemies.push_back(enemy);	
+					}
+				break;
+
+				case 2:
+					for (int i = 1; i < 10; i++)
+					{
+						enemy = new Politico (0, false, 1000-100*i);
+						enemies.push_back(enemy);	
+					}
+					enemy = new Politico (8, false, 100);
+					enemies.push_back(enemy);
+				break;
+
+				case 3:
+					for (int i = 1; i < 10; i++)
+					{
+						enemy = new Politico (0, false, 100*i);
+						enemies.push_back(enemy);	
+					}
+					enemy = new Politico (8, false, 1000);
+					enemies.push_back(enemy);
+				break;
+*/
+				default:
+				break;
+			}
+		}
 	}
 	falseCShoot();
 

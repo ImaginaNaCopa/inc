@@ -29,6 +29,9 @@ public:
 
 	void setDamaging(bool dmg);
 	int getItem();
+	bool isTheBoss();
+	int getBossHealth();
+	void setBossHealth(int value);
 
 protected:
 	SDL_Rect m_target;
@@ -56,6 +59,8 @@ protected:
 	int m_patrolRange[2];
 
 	bool died;
+	bool m_isTheBoss;
+	int m_bossHealth;
 
 };
 

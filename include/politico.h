@@ -22,8 +22,8 @@ private:
 
 	bool m_side;
 	bool wasJustBorn;
+	bool passive;
 
-	void underground();
 	void standing();
 	void attacking();
 	void moving();
