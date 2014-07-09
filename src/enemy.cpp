@@ -6,6 +6,7 @@ Enemy::Enemy() : ImageEffect()
 	m_attacking = false;
 	m_direction = -1;
 	m_tracking = false;
+	m_damaging = false;
 }
 
 Enemy::~Enemy() {}
@@ -165,4 +166,10 @@ int
 Enemy::getItem()
 {
 	return m_item;
+}
+
+void
+Enemy::setDamaging(bool dmg)
+{
+	m_damaging = dmg;
 }

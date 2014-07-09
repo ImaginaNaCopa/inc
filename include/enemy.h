@@ -25,6 +25,7 @@ public:
 	bool isOnLeftDirection();
 	bool isOnRightDirection();
 
+	void setDamaging(bool dmg);
 	int getItem();
 
 protected:
@@ -32,6 +33,8 @@ protected:
 
 	bool m_hunter;
 	bool m_hunt;
+
+	bool m_damaging;
 
 	bool m_flying;
 	bool m_attacking;

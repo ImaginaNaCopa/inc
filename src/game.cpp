@@ -61,7 +61,7 @@ void
 Game::run()
 {
 	// TODO: apagar a linha abaixo
-	setTimelineEvent(LEVELFIVE);
+	setTimelineEvent(LEVELONE);
 
 	step("[Game] Using Run Method.");
 	while (!onQuit())

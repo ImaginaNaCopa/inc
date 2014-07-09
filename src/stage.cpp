@@ -106,6 +106,7 @@ Stage::damagingCaio()
 			loop("[Stage] Verifying Collision Between Caio and Enemies.");
 			if (caio->overEnemy((*it)->getPosition()))
 			{
+				(*it)->setDamaging(true);
 				caio->setImune(true);
 				caio->resetFirstAid();
 				caio->setHealth(-1);
