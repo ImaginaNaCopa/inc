@@ -3,8 +3,8 @@
 AlteredPotion::AlteredPotion(int earlyPositionX, int earlyPositionY) : Item()
 {
     step("[AlteredPotion] Constructing.");
-    imagePath.assign("res/images/s_alteredpotion.png");
-    generatePosition(earlyPositionX, earlyPositionY, 20, 20);
+    imagePath.assign("res/images/s_item.png");
+    generatePosition(earlyPositionX, earlyPositionY, 32, 40);
     generateClips();
     m_dropspeed = 5;
     id = 2;
@@ -16,7 +16,7 @@ void
 AlteredPotion::generateClips()
 {
     step("[AlteredPotion] Generating Sprite Clips.");
-    addClip(0,0,m_position.w,m_position.h);
+    addClip(32,0,32,40);
 }
 
 void
