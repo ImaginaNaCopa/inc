@@ -6,6 +6,8 @@
 #include "menu.h"
 #include "text.h"
 
+using namespace audioHandler;
+
 class MainMenu : public Menu
 {
 public:
@@ -17,7 +19,6 @@ public:
 	void defineEffects();
 
 private:
-	AudioHandler* m_mainmenu;
 	Background* m_background;
 	Text* m_option;
 

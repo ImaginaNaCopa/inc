@@ -5,6 +5,7 @@
 #include "controls.h"
 #include "imagesprite.h"
 
+using namespace audioHandler;
 using namespace controls;
 
 class Aim : public ImageSprite
@@ -26,7 +27,6 @@ public:
 	void setShoot(bool shoot);
 
 private:
-	AudioHandler* shot1;
 	SDL_Rect m_kernel;
 	bool m_shoot;
 };

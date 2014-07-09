@@ -9,12 +9,8 @@
 
 using namespace systemLogger;
 
-class AudioHandler 
+namespace audioHandler 
 {
-public:
-	AudioHandler();
-	virtual ~AudioHandler();
-
 	void playMusic(const int times_);
 	void playEffect(const int times_);
 	void stopMusic();
@@ -23,10 +19,6 @@ public:
 	void changeMusic(const std::string& path_);
 	void setCurrentMusic(const std::string& path_);
 	void setCurrentEffect(const std::string& path_);
-
-private:
-	Mix_Music* currentMusic; 
-	Mix_Chunk* currentEffect;
-};
+}
 
 #endif //AUDIOHANDLER_H

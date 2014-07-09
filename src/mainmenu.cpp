@@ -6,8 +6,9 @@ MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 	m_background = new Background("res/images/s_mainmenu.png");
 	m_option = new Text(getFontNulshock(),30);
 	generateClips();
-	//defineEffects();
+	defineEffects();
 	m_background->init();
+
 }
 
 MainMenu::~MainMenu()
@@ -157,4 +158,12 @@ MainMenu::update()
 		}
 		draw();
 	}
+}
+
+void 
+MainMenu::defineEffects()
+{
+	setCurrentMusic("res/audios/bgm/bachizuera.wav");
+	setMusicVolume(100);
+	playMusic(-1);
 }
