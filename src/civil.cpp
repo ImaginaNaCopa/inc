@@ -1,39 +1,48 @@
 #include "civil.h"
+#include <iostream>
+
+using namespace std;
 
 Civil::Civil(int item, int tipo, int earlyPosition) : ImageEffect()
 {
 	step("[Civil] Constructing.");
 	imagePath.assign("res/images/s_civil.png"); 
-	switch(tipo)
+	m_tipo = tipo;
+	switch(m_tipo)
 	{
 		case 0:
-			generatePosition(earlyPosition,(getPlatformH()-50),54,45);
+			generatePosition(earlyPosition,(getPlatformH()-45),54,45);
+			generateClips();
 		break;
 		case 1:
-			generatePosition(earlyPosition,(getPlatformH()-50),64,50);
+			generatePosition(earlyPosition,(getPlatformH()-35),64,50);
+			generateClips();
 		break;
 		case 2:
-			generatePosition(earlyPosition,(getPlatformH()-50),66,53);
+			generatePosition(earlyPosition,(getPlatformH()-40),66,53);
+			generateClips();
 		break;
 		case 3:
-			generatePosition(earlyPosition,(getPlatformH()-50),64,52);
+			generatePosition(earlyPosition,(getPlatformH()-30),64,52);
+			generateClips();
 		break;
 		case 4:
-			generatePosition(earlyPosition,(getPlatformH()-50),46,55);
+			generatePosition(earlyPosition,(getPlatformH()-45),46,55);
+			generateClips();
 		break;
 		case 5:
-			generatePosition(earlyPosition,(getPlatformH()-50),62,48);
+			generatePosition(earlyPosition,(getPlatformH()-28),62,48);
+			generateClips();
 		break;
 		default:
 		break;
 	}
-	generateClips();
 	gotUp = false;
-	m_tipo = tipo;
 	m_item = item;
 	m_safe = false;
 	m_runned = false;
 	m_state = GROUNDED;
+	m_times = 0;
 }
 
 Civil::~Civil()
@@ -55,11 +64,13 @@ Civil::generateClips()
 			addClip(151,0,45,57);
 			addClip(196,0,45,57);
 			addClip(241,0,45,56);//5
+			setClipNumber(0);
 		break;
 		case 1:
 			step("[Civil] Adding Clips.");
 			addClip(286,0,64,50);//6 civil 2
 			addClip(350,0,48,66);
+			setClipNumber(0);
 		break;
 		case 2:
 			step("[Civil] Adding Clips.");
@@ -69,14 +80,16 @@ Civil::generateClips()
 			addClip(170,80,52,66);
 			addClip(222,80,52,65);
 			addClip(274,80,52,66);//13
+			setClipNumber(0);
 		break;
 		case 3:
 			step("[Civil] Adding Clips.");
 			addClip(0,160,64,52);//14caido
 			addClip(64,160,58,63);//levanta
 			addClip(122,160,56,64);//parado
-			addClip(178,160,60,69);//olhapra cima
+			addClip(178,160,50,69);//olhapra cima
 			addClip(228,160,56,64);//18costas
+			setClipNumber(0);
 		break;
 		case 4:
 			step("[Civil] Adding Clips.");
@@ -85,6 +98,7 @@ Civil::generateClips()
 			addClip(92,240,46,58);
 			addClip(138,240,45,57);
 			addClip(183,240,45,56);//23
+			setClipNumber(0);
 		break;
 		case 5:
 			step("[Civil] Adding Clips.");
@@ -96,6 +110,7 @@ Civil::generateClips()
 			addClip(262,320,51,64);//29tropeça
 			addClip(313,320,64,51);//tropeça
 			addClip(377,320,56,39);//31tropeça
+			setClipNumber(0);
 		break;
 		default:
 		break;
@@ -137,7 +152,17 @@ Civil::grounded()
 		{
 			setClipNumber(1);
 			gotUp = true;
-			m_state = MOVING; 
+			m_state = MOVING;
+			if (m_tipo == 1)
+				m_position.y -= 15;
+			if (m_tipo == 2)
+				m_position.y -= 13;
+			if (m_tipo == 3)
+				m_position.y -= 22;
+			if (m_tipo == 4)
+				m_position.y -= 10;
+			if (m_tipo == 5)
+				m_position.y -= 20;
 		}
 	}
 }
@@ -189,47 +214,186 @@ Civil::civilOneMove()
 	else
 		setCurrentIdleTime(getCurrentIdleTime()+1);
 
-	m_position.x += calculatePosition(0);
+	m_position.x += calculatePosition(-1);
 
 	if(!ifCollided(0, getPosition(), getCameraRange()))
 		m_runned = true;
-
 }
 
 void
 Civil::civilTwoMove()
 {
+	if(getCurrentIdleTime() == 3)
+	{		
+		if(getCurrentIdleTime()%2 == 0)
+			m_position.y += 5;
+		else if(getCurrentIdleTime()%2 == 1)
+			m_position.y -= 5;
 
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
+
+	m_position.x += calculatePosition(-1);
+
+	if(!ifCollided(0, getPosition(), getCameraRange()))
+		m_runned = true;
 }
 
 void
 Civil::civilThreeMove()
 {
+	if(getCurrentIdleTime() == 3)
+	{		
+		if(m_clipNumber==2)
+			setClipNumber(3);
+		else if(m_clipNumber==3)
+			setClipNumber(4);
+		else if(m_clipNumber==4)
+			setClipNumber(5);
+		else
+			setClipNumber(2);
 
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
+
+	m_position.x += calculatePosition(-1);
+
+	if(!ifCollided(0, getPosition(), getCameraRange()))
+		m_runned = true;
 }
 
 void
 Civil::civilFourMove()
 {
+	if(getCurrentIdleTime() == 20)
+	{		
+		setClipNumber(2);
+		m_state = STOPED;
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
 
+
+	if(!ifCollided(0, getPosition(), getCameraRange()))
+		m_runned = true;
 }
 
 void
 Civil::civilFiveMove()
 {
+	if(getCurrentIdleTime() == 3)
+	{		
+		if(m_clipNumber==2)
+			setClipNumber(3);
+		else if(m_clipNumber==3)
+			setClipNumber(4);
+		else
+			setClipNumber(2);
 
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
+
+	m_position.x += calculatePosition(-1);
+
+	if(!ifCollided(0, getPosition(), getCameraRange()))
+		m_runned = true;
 }
 
 void
 Civil::civilSixMove()
 {
+	defineCurrentIdleTime(0);
+	if(getCurrentIdleTime() == 3)
+	{		
+		if(m_clipNumber==2)
+			setClipNumber(3);
+		else if(m_clipNumber==3)
+			setClipNumber(4);
+		else
+			setClipNumber(2);
+	
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
 
+	if (m_clipNumber == 4)
+		m_state = STOPED;
+
+	m_position.x += calculatePosition(1);
+
+	if(!ifCollided(0, getPosition(), getCameraRange()))
+		m_runned = true;
 }
 
 void
 Civil::stoped()
 {
+	if (m_tipo == 3)
+		stopedCivilFour();
+	if (m_tipo == 5)
+		stopedCivilSix();
+}
 
+void
+Civil::stopedCivilFour()
+{
+	if(getCurrentIdleTime() == 100)
+	{	
+		if (m_clipNumber == 2)
+		{	
+			m_position.x -= 10;
+			setClipNumber(3);
+		}
+		else if (m_clipNumber == 3)
+		{
+			m_position.x += 8;
+			setClipNumber(4);
+		}
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
+
+	if(!ifCollided(0, getPosition(), getCameraRange()))
+		m_runned = true;
+}
+
+void
+Civil::stopedCivilSix()
+{
+	if(getCurrentIdleTime() == 3 && m_clipNumber != 7)
+	{	
+		if(m_clipNumber==2)
+			setClipNumber(3);
+		else if(m_clipNumber==3)
+			setClipNumber(4);
+		else if(m_clipNumber==4)
+			setClipNumber(5);	
+		else if(m_clipNumber==5)
+			setClipNumber(6);
+		else if(m_clipNumber==6)
+			setClipNumber(7);
+		else
+			setClipNumber(2);
+
+		setCurrentIdleTime(0);
+	}
+	else
+		setCurrentIdleTime(getCurrentIdleTime()+1);
+		
+	if (m_clipNumber != 7)
+		m_position.x += calculatePosition(1);
+
+	if(!ifCollided(0, getPosition(), getCameraRange()))
+		m_runned = true;
 }
 
 int

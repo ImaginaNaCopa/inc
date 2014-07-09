@@ -24,6 +24,8 @@ private:
 	void grounded();
 	void moving();
 	void stoped();
+	void stopedCivilFour();
+	void stopedCivilSix();
 	void civilOneMove();
 	void civilTwoMove();
 	void civilThreeMove();
@@ -37,6 +39,7 @@ private:
 	bool m_safe;
 	bool m_runned;
 	bool gotUp;
+	bool m_times;
 
 	int m_item;
 	int m_tipo;

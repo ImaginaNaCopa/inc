@@ -99,11 +99,11 @@ void
 LevelTwo::generateCivilians()
 {
 	step("[LevelTwo] Generating Civilians.");
-	civil = new Civil(6,3,200);
+	civil = new Civil(6,5,200);
 	civis.push_back(civil);
 	civil = new Civil(0,4,350);
 	civis.push_back(civil);
-	civil = new Civil(0,5,800);
+	civil = new Civil(0,3,800);
 	civis.push_back(civil);
 }
 

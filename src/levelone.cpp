@@ -74,7 +74,7 @@ LevelOne::generateCivilians()
 	step("[LevelOne] Generating Civilians.");
 	civil = new Civil(0,0,350);
 	civis.push_back(civil);
-	civil = new Civil(0,0,900);
+	civil = new Civil(0,1,900);
 	civis.push_back(civil);
 	civil = new Civil(0,2,1350);
 	civis.push_back(civil);
