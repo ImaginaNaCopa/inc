@@ -147,7 +147,22 @@ Stage::lootItem()
 					inventory->setQtdAlteredPotion(1);
 				break;
 				case 3:
-					// Nothing yet
+					inventory->setQtdAntiTudo(1);
+				break;
+				case 4:
+					inventory->setQtdBattery(1);
+				break;
+				case 5:
+					inventory->setQtdFreeboi(1);
+				break;
+				case 6:
+					inventory->setQtdCup(1);
+				break;
+				case 7:
+					// Do nothing (InCLogo)
+				break;
+				case 8:
+					inventory->setQtdAntiBoss(1);
 				break;
 				default:
 					// Nothing to do
@@ -246,7 +261,6 @@ Stage::usingItens()
 	switch (caio->getItemUsed())
 	{
 		case 1:
-			cout << "health atual: " << caio->getHealth() << endl;
 			if (caio->getHealth() < caio->getMaxHealth() && inventory->getQtdPotion() > 0)
 			{
 				caio->setHealth(+1);
@@ -255,7 +269,6 @@ Stage::usingItens()
 			}
 		break;
 		case 2:
-			cout << "health máximo: " << caio->getMaxHealth() << endl;
 			if (caio->getMaxHealth() < 7 && inventory->getQtdAlteredPotion() > 0)
 			{
 				caio->setMaxHealth(1);
@@ -264,13 +277,13 @@ Stage::usingItens()
 			}
 		break;
 		case 3:
-			cout << caio->getItemUsed() << endl;
+			// Nothing yet
 		break;
 		case 5:
-			cout << caio->getItemUsed() << endl;
+			// Nothing yet
 		break;
 		case 6:
-			cout << caio->getItemUsed() << endl;
+			// Nothing Yet
 		break;
 		default:
 		break;
@@ -311,14 +324,34 @@ Stage::rescuingCivilian()
 						itens.push_back(item);
 					break;
 					case 3:
+						item = new AntiTudo(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
 					break;
 					case 4:
+						item = new Battery(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
 					break;
 					case 5:
+						item = new Freeboi(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
 					break;
 					case 6:
+						item = new Cup(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
 					break;
-					default:
+					case 7:
+						item = new InCLogo(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
+					break;
+					case 8:
+						item = new AntiBoss(round(position.x + (position.w/2)), position.y);
+						item->init();
+						itens.push_back(item);
 					break;
 				}
 			}
