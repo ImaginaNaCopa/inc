@@ -17,6 +17,7 @@ public:
 	bool isFadeEnded();
 	void newFade();
 	void newReverseFade();
+	void drawInAlpha(Uint8 alpha);
 
 	int getCurrentIdleTime();
 	void setCurrentIdleTime(int newIdleTime);

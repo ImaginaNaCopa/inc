@@ -38,7 +38,7 @@ LevelTwo::generateSecondLayer()
 {
 	step("[LevelTwo] Generating SecondLayer.");
 	secondlayer = new SecondLayer("res/images/s_level02.png");
-	secondlayer->addClip(0,0,1040,210);
+	secondlayer->addClip(0,0,1040,200);
 	secondlayer->addClip(0,210,472,257);
 }
 
@@ -114,9 +114,9 @@ LevelTwo::drawScenarioRelativeImages()
 {
 	loop("[Sebastiao] Drawing Each Image from Second Layer.");
 	secondlayer->setOnlyClipNumber(0);
-	secondlayer->generatePosition(40,getPlatformH()-190,1040,210);
+	secondlayer->generatePosition(40,getPlatformH()-200,1040,200);
 	secondlayer->drawRelative();
 	secondlayer->setOnlyClipNumber(1);
-	secondlayer->generatePosition(1100,getPlatformH()-247,472,257);
+	secondlayer->generatePosition(1100,getPlatformH()-253,472,257);
 	secondlayer->drawRelative();
 }

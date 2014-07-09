@@ -70,8 +70,8 @@ Caio::generateDefaultStats()
 	m_speed = haveQuicklySpeed();
 	m_jumpspeed = 10;
 
-	m_health = 3;
-	m_maxHealth = 3;
+	m_health = 1000;
+	m_maxHealth = 1000;
 	m_dead = false;
 	m_imune = false;
 
@@ -119,8 +119,8 @@ Caio::update()
 		m_position.y = getPlatformH() - m_position.h;
 	if(m_position.x <= 0)
 		m_position.x = 0;
-	else if(m_position.x >= getLevelW() - m_position.w)
-		m_position.x = getLevelW() - m_position.w;
+	else if(m_position.x+m_position.w >= getLimitW())
+		m_position.x = getLimitW() - m_position.w;
 
 	handleItens();
 }

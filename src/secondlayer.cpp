@@ -1,8 +1,6 @@
 #include "secondlayer.h"
 
-SecondLayer::SecondLayer(){}
-
-SecondLayer::SecondLayer(const string& path)
+SecondLayer::SecondLayer(const string& path) : ImageEffect()
 {
 	step("[SecondLayer] Constructing.");
 	imagePath.assign(path);

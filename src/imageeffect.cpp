@@ -117,6 +117,14 @@ ImageEffect::reverseFade(Uint8 fadeTick, int idle)
 }
 
 void
+ImageEffect::drawInAlpha(Uint8 alpha)
+{
+	SDL_SetTextureBlendMode(m_texture, SDL_BLENDMODE_BLEND);
+	SDL_SetTextureAlphaMod(m_texture, alpha);
+	draw();
+}
+
+void
 ImageEffect::fadeinTick(Uint8 fadeTick)
 {
 	loop("[ImageEffect] Ticking a Fade In.");

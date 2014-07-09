@@ -8,6 +8,7 @@ namespace configuration
 	float resizeFactor[3] = {1,1.28,1.8};
 	int windowSizeType = 0;
 
+	int limitW = 1600;
 	int levelW = 1600;
 
 	bool fullScreenMode = false;
@@ -52,6 +53,18 @@ namespace configuration
 	{
 		loop("[Configuration] Setting Level Width.");
 		levelW = newSizeOfLevel;
+	}
+
+	int
+	getLimitW()
+	{
+		return limitW;
+	}
+
+	void
+	setLimitW(int newLimitOfLevel)
+	{
+		limitW = newLimitOfLevel;
 	}
 
 	int

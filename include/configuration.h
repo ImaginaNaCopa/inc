@@ -18,6 +18,9 @@ namespace configuration
 	int getLevelW();
 	void setLevelW(int newSizeOfLevel);
 
+	int getLimitW();
+	void setLimitW(int newLimitOfLevel);
+
 	int getPlatformH();
 }
 

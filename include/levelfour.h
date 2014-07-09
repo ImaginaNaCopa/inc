@@ -17,6 +17,9 @@ public:
 	void defineBackground();
 	void generatePlatform();
 	void generateSecondLayer();
+
+	void drawExceptionalRelativeImages();
+	void drawShadow();
 };
 
 #endif // LEVELFOUR_H

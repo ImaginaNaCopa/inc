@@ -31,34 +31,24 @@ void
 Game::shutdown()
 {
 	step("[Game] Using Shutdown Method.");
-	step("[Game] Attempting Level Five");
 	if(m_levelFive!=NULL)
 		delete m_levelFive;
-	step("[Game] Attempting Level Four");
 	if(m_levelFour!=NULL)
 		delete m_levelFour;
-	step("[Game] Attempting Level Three");
 	if(m_levelThree!=NULL)
 		delete m_levelThree;
-	step("[Game] Attempting Level Two");
 	if(m_levelTwo!=NULL)
 		delete m_levelTwo;
-	step("[Game] Attempting Level One");
 	if(m_levelOne!=NULL)
 		delete m_levelOne;
-	step("[Game] Attempting Configuration Menu");
 	if(m_configurationMenu!=NULL)
 		delete m_configurationMenu;
-	step("[Game] Attempting Main Menu");
 	if(m_mainMenu!=NULL)
 		delete m_mainMenu;
-	step("[Game] Attempting Front End");
 	if(m_frontEnd!=NULL)
 		delete m_frontEnd;
-	step("[Game] Attempting The End");
 	if(m_theEnd!=NULL)
 		delete m_theEnd;
-	step("[Game] Attempting Game Over");
 	if(m_gameOver!=NULL)
 		delete m_gameOver;
 
@@ -71,7 +61,7 @@ void
 Game::run()
 {
 	// TODO: apagar a linha abaixo
-	setTimelineEvent(FRONTEND);
+	setTimelineEvent(LEVELFOUR);
 
 	step("[Game] Using Run Method.");
 	while (!onQuit())
@@ -236,6 +226,9 @@ Game::run()
 						{
 							m_levelFour->update();
 							m_levelFour->draw();
+							m_levelFour->drawExceptionalRelativeImages();
+							m_levelFour->drawShadow();
+							m_levelFour->drawHud();
 						}
 						if(isOver())
 						{

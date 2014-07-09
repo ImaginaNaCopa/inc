@@ -1,9 +1,9 @@
 #ifndef SECONDLAYER_H
 #define SECONDLAYER_H
 
-#include "imagesprite.h"
+#include "imageeffect.h"
 
-class SecondLayer : public ImageSprite
+class SecondLayer : public ImageEffect
 {
 public:
 	SecondLayer();
