@@ -2,7 +2,7 @@
 
 Window::Window()
 {
-	step("[Window] Trying to Construct.");
+	//step("[Window] Trying to Construct.");
 	m_width = getWindowW();
 	m_height = getWindowH();
 
@@ -43,7 +43,7 @@ Window::Window()
 
 Window::~Window()
 {
-	step("[Window] Destroying.");
+	//step("[Window] Destroying.");
 	SDL_DestroyRenderer(m_renderer);
 	//SDL_DestroyWindow(m_window);
 }
@@ -51,13 +51,13 @@ Window::~Window()
 SDL_Renderer *
 Window::renderer() const
 {
-	step("[Window] Getting the Renderer.");
+	//step("[Window] Getting the Renderer.");
 	return m_renderer;
 }
 
 SDL_Surface *
 Window::getSurface() const
 {
-	step("[Window] Getting the Surface.");
+	//step("[Window] Getting the Surface.");
 	return m_surface;
 }

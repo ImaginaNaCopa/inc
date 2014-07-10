@@ -4,7 +4,7 @@ using namespace std;
 
 Game::Game()
 {
-	step("[Game] Constructing.");
+	//step("[Game] Constructing.");
 	m_system = new System();
 	m_window = new Window();
 	setRenderer(m_window->renderer());
@@ -23,14 +23,14 @@ Game::Game()
 
 Game::~Game()
 {
-	step("[Game] Destroying.");
+	//step("[Game] Destroying.");
 	shutdown();
 }
 
 void
 Game::shutdown()
 {
-	step("[Game] Using Shutdown Method.");
+	//step("[Game] Using Shutdown Method.");
 	if(m_levelFive!=NULL)
 		delete m_levelFive;
 	if(m_levelFour!=NULL)
@@ -60,19 +60,20 @@ Game::shutdown()
 void
 Game::run()
 {
-	step("[Game] Using Run Method.");
+	//step("[Game] Using Run Method.");
+	initMusicsAndSoundEffects();
 	while (!onQuit())
 	{
 		if(isCExit())
 			iWantToQuit();
 		else
 		{
-			loop("[Game] Starting a New Loop");
+			//loop("[Game] Starting a New Loop");
 			tick();
 			eventLoop();
 			if(isBeyondLimitsOfFPS())
 			{
-				loop("[Game] Plot of Events.");
+				//loop("[Game] Plot of Events.");
 				switch(getTimelineEvent())
 				{
 					case FRONTEND:
@@ -91,8 +92,7 @@ Game::run()
 					case MAINMENU:
 						if(!isStarted())
 						{
-							stopMusic();
-							changeMusic("res/audios/bgm/bachizuera.wav");
+							setCurrentMusic(BCH);
 							playMusic(-1);
 							m_mainMenu = new MainMenu();
 							m_mainMenu->init();
@@ -152,8 +152,7 @@ Game::run()
 					case LEVELONE:
 						if(!isStarted())
 						{
-							stopMusic();
-							changeMusic("res/audios/bgm/jornada.wav");
+							setCurrentMusic(JOR);
 							playMusic(-1);
 							m_levelOne = new LevelOne();
 							m_levelOne->init();
@@ -178,8 +177,7 @@ Game::run()
 					case LEVELTWO:
 						if(!isStarted())
 						{
-							stopMusic();
-							changeMusic("res/audios/bgm/cromusica.wav");
+							setCurrentMusic(CRO);
 							playMusic(-1);
 							m_levelTwo = new LevelTwo();
 							m_levelTwo->init();
@@ -204,8 +202,7 @@ Game::run()
 					case LEVELTHREE:
 						if(!isStarted())
 						{
-							stopMusic();
-							changeMusic("res/audios/bgm/sapucai.wav");
+							setCurrentMusic(SAP);
 							playMusic(-1);
 							m_levelThree = new LevelThree();
 							m_levelThree->init();
@@ -230,8 +227,7 @@ Game::run()
 					case LEVELFOUR:
 						if(!isStarted())
 						{
-							stopMusic();
-							changeMusic("res/audios/bgm/bossa_nova_safada.wav");
+							setCurrentMusic(BNS);
 							playMusic(-1);
 							m_levelFour = new LevelFour();
 							m_levelFour->init();
@@ -259,8 +255,7 @@ Game::run()
 					case LEVELFIVE:
 						if(!isStarted())
 						{
-							stopMusic();
-							changeMusic("res/audios/bgm/hueragem.wav");
+							setCurrentMusic(HUE);
 							playMusic(-1);
 							m_levelFive = new LevelFive();
 							m_levelFive->init();
@@ -307,6 +302,7 @@ Game::run()
 						}
 						if(!isOver())
 						{
+							setCurrentMusic(NOMUSIC);
 							m_gameOver->update();
 						}
 						if(isOver())
@@ -330,4 +326,5 @@ Game::run()
 		releaseJoystickTwo();
 	if(isOneJoystick())
 		releaseJoystickOne();
+	freeMusicsAndSoundEffects();
 }

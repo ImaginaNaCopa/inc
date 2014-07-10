@@ -2,7 +2,7 @@
 
 SecondLayer::SecondLayer(const string& path) : ImageEffect()
 {
-	step("[SecondLayer] Constructing.");
+	//step("[SecondLayer] Constructing.");
 	imagePath.assign(path);
 }
 

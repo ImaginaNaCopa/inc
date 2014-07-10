@@ -5,7 +5,7 @@ using namespace std;
 
 Gigante::Gigante(int earlyPosition) : Enemy() 
 {
-	step("[Gigante] Constructing.");
+	//step("[Gigante] Constructing.");
 	imagePath.assign("res/images/s_gigante.png");
 	generatePosition(earlyPosition,(getPlatformH()-248),240,248);
 	generateClips();
@@ -23,14 +23,14 @@ Gigante::Gigante(int earlyPosition) : Enemy()
 
 Gigante::~Gigante()
 {
-	step("[Gigante] Destroying.");
+	//step("[Gigante] Destroying.");
 }
 
 
 void 
 Gigante::generateClips()
 {
-	step("[Gigante] Generating Sprite Clips.");
+	//step("[Gigante] Generating Sprite Clips.");
 
 	addClip(0,0,240,248);//0 foward
 	addClip(240,0,240,256);
@@ -46,7 +46,7 @@ Gigante::generateClips()
 void 
 Gigante::update(SDL_Rect target)
 {
-	loop("[Gigante] Updating.");
+	//loop("[Gigante] Updating.");
 	updatePosition(target);
 
 	switch (m_state)
@@ -65,12 +65,12 @@ Gigante::update(SDL_Rect target)
 		
 		if(isOnLeftDirection())
 		{
-			condition("[Curupira] Moving Backward.");
+			//condition("[Curupira] Moving Backward.");
 			m_looking = BACKWARD;
 		}
 		else if(isOnRightDirection())
 		{
-			condition("[Curupira] Moving Forward.");
+			//condition("[Curupira] Moving Forward.");
 			m_looking = FORWARD;
 		}	
 	}

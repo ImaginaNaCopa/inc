@@ -2,7 +2,7 @@
 
 Hp::Hp() : ImageSprite()
 {
-	step("[HP] Constructing.");
+	//step("[HP] Constructing.");
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(0,10,50,15);
 	generateClips();
@@ -13,13 +13,13 @@ Hp::Hp() : ImageSprite()
 
 Hp::~Hp()
 {
-	step("[HP] Destroying.");
+	//step("[HP] Destroying.");
 }
 
 void
 Hp::generateClips()
 {
-	step("[HP] Generating Sprite Clips.");
+	//step("[HP] Generating Sprite Clips.");
 	addClip(0,0,50,15);
 	addClip(0,15,50,15);
 	addClip(0,30,50,15);
@@ -28,7 +28,7 @@ Hp::generateClips()
 void 
 Hp::drawEach()
 {
-	loop("[HP] Drawing Each Health Bar.");
+	//loop("[HP] Drawing Each Health Bar.");
 	m_position.y = 10;
 	m_position.x = 10;
 	int iterator = 0;

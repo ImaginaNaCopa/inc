@@ -2,14 +2,14 @@
 
 Entity::Entity()
 {
-	step("[Entity] Constructing.");
+	//step("[Entity] Constructing.");
 	aim = new Aim();
 	caio = new Caio();
 }
 
 Entity::~Entity()
 {
-	step("[Entity] Destroying.");
+	//step("[Entity] Destroying.");
 	for (auto it = itens.begin(); it != itens.end(); it++)
 		delete *it;
 	for (auto it = civis.begin(); it != civis.end(); it++)
@@ -24,7 +24,7 @@ Entity::~Entity()
 void 
 Entity::initEntity()
 {
-	step("[Entity] Uploading Sprite Sheets");
+	//step("[Entity] Uploading Sprite Sheets");
 	aim->init();
 	caio->init();
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
@@ -38,7 +38,7 @@ Entity::initEntity()
 void
 Entity::drawEntity()
 {
-	loop("[Entity] Drawing Entities.");
+	//loop("[Entity] Drawing Entities.");
 	caio->drawTexts();
 	caio->drawRelative();
 	for (auto it = enemies.begin(); it != enemies.end(); it++)
@@ -55,7 +55,7 @@ Entity::drawEntity()
 void
 Entity::updateEntity()
 {
-	loop("[Entity] Updating Entities.");
+	//loop("[Entity] Updating Entities.");
 	aim->update();
 	aim->overPlayer(caio->getPosition());
 	caio->update();

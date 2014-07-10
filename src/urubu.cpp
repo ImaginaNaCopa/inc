@@ -2,7 +2,7 @@
 
 Urubu::Urubu(int item, int earlyPosition) : Enemy() 
 {
-	step("[Urubu] Constructing.");
+	//step("[Urubu] Constructing.");
   imagePath.assign("res/images/s_urubu.png");
 	generatePosition(earlyPosition,getFlyingStandardHeight(),87,57);
   generateClips();
@@ -15,21 +15,15 @@ Urubu::Urubu(int item, int earlyPosition) : Enemy()
 
 Urubu::~Urubu()
 {
-	if(getRand()>20)
-	{
-	setCurrentEffect("res/audios/se/urubu_die.ogg");
-	setEffectVolume(100);
-	playEffect(0);	
-	resetRand();
-	}
-	else
-		tickRand();
+	setCurrentEffect(uDie);
+	playEffect();
+	tickRand();
 }
 
 void
 Urubu::generateBehaviour()
 {
-	step("[Urubu] Generating Behaviour.");
+	//step("[Urubu] Generating Behaviour.");
 	m_hunter = isHunter();
 	m_flying = isFlying();
 	m_typeDamage = doSimpleDamageType();
@@ -46,7 +40,7 @@ Urubu::generateBehaviour()
 void 
 Urubu::generateClips()
 {
-	step("[Urubu] Generating Sprite Clips.");
+	//step("[Urubu] Generating Sprite Clips.");
 	addClip(0,0,87,57);
 	addClip(90,0,91,51);
 	addClip(185,0,83,54);
@@ -65,7 +59,7 @@ Urubu::generateClips()
 void 
 Urubu::update(SDL_Rect target)
 {
-	loop("[Urubu] Updating.");
+	//loop("[Urubu] Updating.");
 	updatePosition(target);
 	defineCurrentIdleTime(2);
 
@@ -79,7 +73,7 @@ Urubu::update(SDL_Rect target)
 			}
 			else
 			{
-				condition("[Curupira] Moving Backward.");
+				//condition("[Curupira] Moving Backward.");
 				if(m_clipNumber==5)
 					setClipNumber(6);
 				else if (m_clipNumber==6)
@@ -96,7 +90,7 @@ Urubu::update(SDL_Rect target)
 			}
 			else
 			{
-				condition("[Curupira] Moving Forward.");
+				//condition("[Curupira] Moving Forward.");
 				if(m_clipNumber==0)
 					setClipNumber(1);
 				else if (m_clipNumber==1)

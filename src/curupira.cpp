@@ -3,7 +3,7 @@
 
 Curupira::Curupira(int item, int earlyPosition) : Enemy() 
 {
-	step("[Curupira] Constructing.");
+	//step("[Curupira] Constructing.");
 	imagePath.assign("res/images/s_curupira.png");
 	generatePosition(earlyPosition,(getPlatformH()-15),50,15);
 	generateClips();
@@ -17,29 +17,28 @@ Curupira::Curupira(int item, int earlyPosition) : Enemy()
 
 Curupira::~Curupira()
 {
-	step("[Curupira] Destroying.");
+	//step("[Curupira] Destroying.");
 	if(m_position.x % 23 == 0)
-		setCurrentEffect("res/audios/se/enemy_herpderp_1.ogg");
+		setCurrentEffect(eDerp1);
 	else if(m_position.x % 19 == 0)
-		setCurrentEffect("res/audios/se/enemy_herpderp_2.ogg");
+		setCurrentEffect(eDerp2);
 	else if(m_position.x % 17 == 0)
-		setCurrentEffect("res/audios/se/enemy_herpderp_3.ogg");
+		setCurrentEffect(eDerp3);
 	else if(m_position.x % 13 == 0)
-		setCurrentEffect("res/audios/se/enemy_herpderp_4.ogg");
+		setCurrentEffect(eDerp4);
 	else if(m_position.x % 11 == 0)
-		setCurrentEffect("res/audios/se/enemy_herpderp_5.ogg");
+		setCurrentEffect(eDerp5);
 	else if(m_position.x % 9 == 0)
-		setCurrentEffect("res/audios/se/enemy_herpderp_6.ogg");
+		setCurrentEffect(eDerp6);
 	else
-		setCurrentEffect("res/audios/se/enemy_herpderp_7.ogg");
-	setEffectVolume(100);
-	playEffect(0);
+		setCurrentEffect(eDerp7);
+	playEffect();
 }
 
 void
 Curupira::generateBehaviour()
 {
-	step("[Curupira] Generating Behaviour.");
+	//step("[Curupira] Generating Behaviour.");
 	m_hunter = isHunter();
 	m_flying = isTerrestrial();
 	m_typeDamage = doSimpleDamageType();
@@ -55,7 +54,7 @@ Curupira::generateBehaviour()
 void 
 Curupira::generateClips()
 {
-	step("[Curupira] Generating Sprite Clips.");
+	//step("[Curupira] Generating Sprite Clips.");
 
 	addClip(0,0,56,15);
 	addClip(0,0,56,30);
@@ -86,7 +85,7 @@ Curupira::generateClips()
 void 
 Curupira::update(SDL_Rect target)
 {
-	loop("[Curupira] Updating.");
+	//loop("[Curupira] Updating.");
 	updatePosition(target);
 
 	switch (m_state)
@@ -119,12 +118,12 @@ Curupira::update(SDL_Rect target)
 		m_state = MOVING;
 		if(isOnLeftDirection())
 		{
-			condition("[Curupira] Moving Backward.");
+			//condition("[Curupira] Moving Backward.");
 			m_looking = BACKWARD;
 		}
 		else if(isOnRightDirection())
 		{
-			condition("[Curupira] Moving Forward.");
+			//condition("[Curupira] Moving Forward.");
 			m_looking = FORWARD;
 		}	
 	}

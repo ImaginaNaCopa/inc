@@ -5,7 +5,7 @@ using namespace std;
 
 Caio::Caio() : ImageEffect()
 {
-	step("[Caio] Constructing.");
+	//step("[Caio] Constructing.");
 
 	imagePath.assign("res/images/s_caio.png");
 	generatePosition(round(getWindowW()/16),getPlatformH(),48,55);
@@ -26,14 +26,14 @@ Caio::Caio() : ImageEffect()
 
 Caio::~Caio()
 {
-	step("[Caio] Destroying.");
+	//step("[Caio] Destroying.");
 	delete m_firstAidCountdown;
 }
 
 void
 Caio::generateClips()
 {
-	step("[Caio] Generating Sprite Clips.");
+	//step("[Caio] Generating Sprite Clips.");
 	addClip(0,0,48,55);
 	addClip(48,0,48,57);
 	addClip(96,0,48,56);
@@ -92,7 +92,7 @@ Caio::generateDefaultStats()
 void
 Caio::update()
 {
-	loop("[Caio] Updating.");
+	//loop("[Caio] Updating.");
 
 	switch (m_state)
 	{
@@ -147,16 +147,16 @@ Caio::drawTexts()
 bool
 Caio::overEnemy(SDL_Rect rect)
 {
-	loop("[Caio] Checking if Collided with a Rectangle.");
+	//loop("[Caio] Checking if Collided with a Rectangle.");
 	if(ifCollided(1,getPosition(),rect))
 	{
-		condition("[Caio] Collided on left side.");
+		//condition("[Caio] Collided on left side.");
 		m_position.x -= 10;
 		return true;
 	}
 	else if(ifCollided(2,getPosition(),rect))
 	{
-		condition("[Caio] Collided on right side.");
+		//condition("[Caio] Collided on right side.");
 		m_position.x += 10;
 		return true;
 	}
@@ -166,7 +166,7 @@ Caio::overEnemy(SDL_Rect rect)
 bool
 Caio::nearCivilian(SDL_Rect rect, bool saved)
 {
-	loop("[Caio] Checking if Collided with a Rectangle.");
+	//loop("[Caio] Checking if Collided with a Rectangle.");
 	if(!saved)
 	{
 		SDL_Rect civilian = rect;
@@ -174,14 +174,14 @@ Caio::nearCivilian(SDL_Rect rect, bool saved)
 		civilian.w += 50;
 		if(ifCollided(1,getPosition(),civilian))
 		{
-			condition("[Caio] Collided on left side.");
+			//condition("[Caio] Collided on left side.");
 			m_nearCivilian = true;
 			m_nearOnLeftSide = true;
 			return true;
 		}
 		else if(ifCollided(2,getPosition(),civilian))
 		{
-			condition("[Caio] Collided on right side.");
+			//condition("[Caio] Collided on right side.");
 			m_nearCivilian = true;
 			m_nearOnLeftSide = false;
 			return true;
@@ -196,15 +196,15 @@ Caio::nearCivilian(SDL_Rect rect, bool saved)
 bool
 Caio::overItem(SDL_Rect rect)
 {
-	loop("[Caio] Checking if Collided with an Item Rectangle.");
+	//loop("[Caio] Checking if Collided with an Item Rectangle.");
 	if(ifCollided(1,getPosition(),rect))
 	{
-		condition("[Caio] Collided on left side.");
+		//condition("[Caio] Collided on left side.");
 		return true;
 	}
 	else if(ifCollided(2,getPosition(),rect))
 	{
-		condition("[Caio] Collided on right side.");
+		//condition("[Caio] Collided on right side.");
 		return true;
 	}
 	return false;
@@ -305,7 +305,7 @@ Caio::stand()
 void 
 Caio::standForward()
 {
-	action(0,"[Caio] Standing forward.");
+	//action(0,"[Caio] Standing forward.");
 	m_state = STANDING;
 	m_dx = 0;
 	setClipNumber(0);
@@ -314,7 +314,7 @@ Caio::standForward()
 void 
 Caio::standBackward()
 {
-	action(0,"[Caio] Standing backward.");
+	//action(0,"[Caio] Standing backward.");
 	m_state = STANDING;
 	m_dx = 0;
 	setClipNumber(4);
@@ -388,7 +388,7 @@ Caio::move()
 void
 Caio::moveForward()
 {
-	action(0,"[Caio] Moving Forward.");
+	//action(0,"[Caio] Moving Forward.");
 	m_state = MOVING;
 	m_looking = FORWARD;
 	m_dx = 1;
@@ -398,7 +398,7 @@ Caio::moveForward()
 void
 Caio::moveBackward()
 {
-	action(0,"[Caio] Moving Backward.");
+	//action(0,"[Caio] Moving Backward.");
 	m_state = MOVING;
 	m_looking = BACKWARD;
 	m_dx = -1;
@@ -476,7 +476,7 @@ Caio::jump()
 void
 Caio::moveJump()
 {
-	action(0,"[Caio] Jumping.");
+	//action(0,"[Caio] Jumping.");
 	m_state = JUMPING;
 	if(m_looking == FORWARD)
 		setClipNumber(8);
@@ -542,7 +542,7 @@ Caio::crouch()
 void
 Caio::moveCrouch()
 {
-	action(0,"[Caio] Crouching.");
+	//action(0,"[Caio] Crouching.");
 	m_state = CROUCHING;
 	m_dx = 0;
 	if(m_looking == FORWARD)
@@ -599,7 +599,7 @@ Caio::firstAid()
 void
 Caio::moveFirstAid()
 {
-	action(0,"[Caio] First Aid.");
+	//action(0,"[Caio] First Aid.");
 	m_firstAid = true;
 	m_state = FIRSTAID;
 	m_dx = 0;
@@ -634,49 +634,49 @@ Caio::tickFACountdown()
 bool
 Caio::isDead()
 {
-	loop("[Caio] Verifying if Caio is Dead.");
+	//loop("[Caio] Verifying if Caio is Dead.");
 	return m_dead;
 }
 
 bool
 Caio::isImune()
 {
-	loop("[Caio] Verifying if Caio is Imune.");
+	//loop("[Caio] Verifying if Caio is Imune.");
 	return m_imune;
 }
 
 float
 Caio::getJumpspeed()
 {
-	loop("[Caio] Getting Jump Speed.");
+	//loop("[Caio] Getting Jump Speed.");
 	return m_jumpspeed;
 }
 
 int
 Caio::getDirection()
 {
-	loop("[Caio] Getting Direction.");
+	//loop("[Caio] Getting Direction.");
 	return m_dx;
 }
 
 int
 Caio::getSpeed()
 {
-	loop("[Caio] Getting Speed.");
+	//loop("[Caio] Getting Speed.");
 	return m_speed;
 }
 
 int
 Caio::getHealth()
 {
-	loop("[Caio] Getting Health.");
+	//loop("[Caio] Getting Health.");
 	return m_health;
 }
 
 int
 Caio::getMaxHealth()
 {
-	loop("[Caio] Getting Maximum Health.");
+	//loop("[Caio] Getting Maximum Health.");
 	return m_maxHealth;
 }
 
@@ -689,14 +689,14 @@ Caio::getItemUsed()
 void
 Caio::setDead(bool dead)
 {
-	loop("[Caio] Setting a New Speed.");
+	//loop("[Caio] Setting a New Speed.");
 	m_dead = dead;
 }
 
 void
 Caio::setSpeed(int speed)
 {
-	loop("[Caio] Setting a New Speed.");
+	//loop("[Caio] Setting a New Speed.");
 	m_speed = speed;
 }
 

@@ -87,7 +87,7 @@ namespace systemLogger
 	step(const string& message)
 	{
 		if(isStepVerbose())
-			cout << "Step:	" << message << endl;
+			cout << message << endl;
 	}
 
 	void

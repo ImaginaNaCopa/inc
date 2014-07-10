@@ -2,7 +2,7 @@
 
 AlteredPotion::AlteredPotion(int earlyPositionX, int earlyPositionY) : Item()
 {
-    step("[AlteredPotion] Constructing.");
+    //step("[AlteredPotion] Constructing.");
     imagePath.assign("res/images/s_item.png");
     generatePosition(earlyPositionX, earlyPositionY, 32, 40);
     generateClips();
@@ -12,29 +12,29 @@ AlteredPotion::AlteredPotion(int earlyPositionX, int earlyPositionY) : Item()
 
 AlteredPotion::~AlteredPotion()
 {
-    step("[Aim] Destroying.");
+    //step("[Aim] Destroying.");
 }
 
 void
 AlteredPotion::generateClips()
 {
-    step("[AlteredPotion] Generating Sprite Clips.");
+    //step("[AlteredPotion] Generating Sprite Clips.");
     addClip(32,0,32,40);
 }
 
 void
 AlteredPotion::update()
 {
-    loop("[AlteredPotion] Updating.");
+    //loop("[AlteredPotion] Updating.");
     m_clipNumber = 0;
 
-    condition("[Caio] If AlteredPotion is in the air.");
+    //condition("[Caio] If AlteredPotion is in the air.");
     m_position.y += m_dropspeed;
     m_dropspeed += 0.5f;
 
     if((m_position.y+m_position.h) >= getPlatformH())
     {
-        condition("[AlteredPotion] Platform Collision.");
+        //condition("[AlteredPotion] Platform Collision.");
         m_position.y = getPlatformH() - m_position.h;
     }
 }

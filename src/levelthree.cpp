@@ -4,7 +4,7 @@ LevelThree::LevelThree() : Stage()
 {
 	setLevelW(1300);
 	setLimitW(1050);
-	step("[LevelThree] Constructing.");
+	//step("[LevelThree] Constructing.");
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
@@ -15,7 +15,7 @@ LevelThree::LevelThree() : Stage()
 
 LevelThree::~LevelThree()
 {
-	step("[LevelThree] Destroying.");
+	//step("[LevelThree] Destroying.");
 	setLevelW(1600);
 	setLimitW(1600);
 }
@@ -23,7 +23,7 @@ LevelThree::~LevelThree()
 void
 LevelThree::defineBackground()
 {
-	step("[LevelThree] Defining Background.");
+	//step("[LevelThree] Defining Background.");
 	background = new Background("res/images/s_level03.png");
 	background->addClip(902,2,46,46);
 }
@@ -31,7 +31,7 @@ LevelThree::defineBackground()
 void
 LevelThree::generatePlatform()
 {
-	step("[LevelThree] Generating Platform.");
+	//step("[LevelThree] Generating Platform.");
 	platform = new Platform("res/images/s_level03.png");
 	platform->addClip(902,72,46,46);
 }
@@ -39,7 +39,7 @@ LevelThree::generatePlatform()
 void
 LevelThree::generateSecondLayer()
 {
-	step("[LevelThree] Generating SecondLayer.");
+	//step("[LevelThree] Generating SecondLayer.");
 	secondlayer = new SecondLayer("res/images/s_level03.png");
 	secondlayer->addClip(0,0,880,345);
 	secondlayer->addClip(0,350,249,142);
@@ -48,7 +48,7 @@ LevelThree::generateSecondLayer()
 void
 LevelThree::drawScenarioRelativeImages()
 {
-	loop("[Sebastiao] Drawing Each Image from Second Layer.");
+	//loop("[Sebastiao] Drawing Each Image from Second Layer.");
 	secondlayer->setOnlyClipNumber(0);
 	secondlayer->generatePosition(110,getPlatformH()-345,880,345);
 	secondlayer->drawRelative();

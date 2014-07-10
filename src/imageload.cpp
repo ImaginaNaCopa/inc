@@ -7,21 +7,21 @@ namespace imageLoad
 	void
 	setRenderer(SDL_Renderer* newRenderer)
 	{
-		step("[Image Load] Setting Renderer.");
+		//step("[Image Load] Setting Renderer.");
 		renderer = newRenderer;
 	}
 
 	void
 	freeRenderer()
 	{
-		step("[Image Load] Freeing Renderer.");
+		//step("[Image Load] Freeing Renderer.");
 		free(renderer);
 	}
 
 	SDL_Texture*
 	loadImage(const string& path)
 	{
-		loop("[Image Load] Loading Image.");
+		//loop("[Image Load] Loading Image.");
 
 		if (renderer == NULL)
 		{
@@ -50,14 +50,14 @@ namespace imageLoad
 	void
 	imageDraw(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect)
 	{
-		loop("[Image Load] Updating the Image.");
+		//loop("[Image Load] Updating the Image.");
 		SDL_RenderCopy( renderer, texture, srcRect, destRect);
 	}
 
 	void
 	render()
 	{
-		loop("[Image Load] Rendering the Image.");
+		//loop("[Image Load] Rendering the Image.");
 		SDL_RenderPresent( renderer );
 		SDL_RenderClear ( renderer );
 	}

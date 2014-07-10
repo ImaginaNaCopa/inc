@@ -36,161 +36,161 @@ namespace behaviour
 	int
 	haveSlowSpeed()
 	{
-		loop("[Behaviour] Receiving Speed -> SLOW.");
+		//loop("[Behaviour] Receiving Speed -> SLOW.");
 		return slowSpeed;
 	}
 
 	int
 	haveNormalSpeed()
 	{
-		loop("[Behaviour] Receiving Speed -> NORMAL.");
+		//loop("[Behaviour] Receiving Speed -> NORMAL.");
 		return normalSpeed;
 	}
 
 	int
 	haveQuicklySpeed()
 	{
-		loop("[Behaviour] Receiving Speed -> QUICKLY.");
+		//loop("[Behaviour] Receiving Speed -> QUICKLY.");
 		return quicklySpeed;
 	}
 
 	int
 	haveZombieRotation()
 	{
-		loop("[Behaviour] Receiving Rotation -> ZOMBIE.");
+		//loop("[Behaviour] Receiving Rotation -> ZOMBIE.");
 		return zombieRotation;
 	}
 
 	int
 	haveNormalRotation()
 	{
-		loop("[Behaviour] Receiving Rotation -> NORMAL.");
+		//loop("[Behaviour] Receiving Rotation -> NORMAL.");
 		return normalRotation;
 	}
 
 	int
 	haveAgileRotation()
 	{
-		loop("[Behaviour] Receiving Rotation -> AGILE.");
+		//loop("[Behaviour] Receiving Rotation -> AGILE.");
 		return agileRotation;
 	}
 
 	int
 	haveDumbDetection()
 	{
-		loop("[Behaviour] Receiving Detection -> DUMB.");
+		//loop("[Behaviour] Receiving Detection -> DUMB.");
 		return dumbDetection;
 	}
 
 	int
 	haveCommonDetection()
 	{
-		loop("[Behaviour] Receiving Detection -> COMMON.");
+		//loop("[Behaviour] Receiving Detection -> COMMON.");
 		return commonDetection;
 	}
 
 	int
 	haveSmartDetection()
 	{
-		loop("[Behaviour] Receiving Detection -> SMART.");
+		//loop("[Behaviour] Receiving Detection -> SMART.");
 		return smartDetection;
 	}
 
 	int
 	dontPatrol()
 	{
-		loop("[Behaviour] Receiving Patrolling -> NO.");
+		//loop("[Behaviour] Receiving Patrolling -> NO.");
 		return noPatrol;
 	}
 
 	int
 	doNormalPatrol()
 	{
-		loop("[Behaviour] Receiving Patrolling -> NORMAL.");
+		//loop("[Behaviour] Receiving Patrolling -> NORMAL.");
 		return normalPatrol;
 	}
 
 	int
 	doExtensePatrol()
 	{
-		loop("[Behaviour] Receiving Patrolling -> EXTENSE.");
+		//loop("[Behaviour] Receiving Patrolling -> EXTENSE.");
 		return extensePatrol;
 	}
 
 	int
 	haveWeakHealth()
 	{
-		loop("[Behaviour] Receiving Health -> WEAK.");
+		//loop("[Behaviour] Receiving Health -> WEAK.");
 		return weakHealth;
 	}
 
 	int
 	haveNormalHealth()
 	{
-		loop("[Behaviour] Receiving Health -> NORMAL.");
+		//loop("[Behaviour] Receiving Health -> NORMAL.");
 		return normalHealth;
 	}
 
 	int
 	haveStrongHealth()
 	{
-		loop("[Behaviour] Receiving Health -> STRONG.");
+		//loop("[Behaviour] Receiving Health -> STRONG.");
 		return strongHealth;
 	}
 
 	int
 	haveEventHealth()
 	{
-		loop("[Behaviour] Receiving Health -> EVENT.");
+		//loop("[Behaviour] Receiving Health -> EVENT.");
 		return eventHealth;
 	}
 
 	int
 	doSimpleDamageType()
 	{
-		loop("[Behaviour] Receiving Dam. Type -> SIMPLE.");
+		//loop("[Behaviour] Receiving Dam. Type -> SIMPLE.");
 		return simpleDamageType;
 	}
 
 	int
 	doPoisonDamageType()
 	{
-		loop("[Behaviour] Receiving Dam. Type -> POISON.");
+		//loop("[Behaviour] Receiving Dam. Type -> POISON.");
 		return poisonDamageType;
 	}
 
 	int
 	doInstakillDamageType()
 	{
-		loop("[Behaviour] Receiving Dam. Type -> INSTAKILL.");
+		//loop("[Behaviour] Receiving Dam. Type -> INSTAKILL.");
 		return instakillDamageType;
 	}
 
 	bool
 	isFlying()
 	{
-		loop("[Behaviour] Receiving Mov. Type -> FLYING.");
+		//loop("[Behaviour] Receiving Mov. Type -> FLYING.");
 		return flying;
 	}
 
 	bool
 	isTerrestrial()
 	{
-		loop("[Behaviour] Receiving Mov. Type -> TERRESTRIAL.");
+		//loop("[Behaviour] Receiving Mov. Type -> TERRESTRIAL.");
 		return terrestrial;
 	}
 
 	bool
 	isHunter()
 	{
-		loop("[Behaviour] Receiving Sniffler Type -> HUNTER.");
+		//loop("[Behaviour] Receiving Sniffler Type -> HUNTER.");
 		return hunter;
 	}
 	
 	bool
 	isPassive()
 	{
-		loop("[Behaviour] Receiving Sniffler Type -> PASSIVE.");
+		//loop("[Behaviour] Receiving Sniffler Type -> PASSIVE.");
 		return passive;
 	}
 

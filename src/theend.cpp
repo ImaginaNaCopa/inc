@@ -2,7 +2,7 @@
 
 TheEnd::TheEnd() : ImageEffect()
 {
-	step("[TheEnd] Constructing.");
+	//step("[TheEnd] Constructing.");
 	imagePath.assign("res/images/s_mainmenu.png");
 	generatePosition(225,50,350,350);
 	m_background = new Background("res/images/s_frontend.png");
@@ -22,7 +22,7 @@ TheEnd::TheEnd() : ImageEffect()
 
 TheEnd::~TheEnd()
 {
-	step("[TheEnd] Destroying.");
+	//step("[TheEnd] Destroying.");
 	delete m_background;
 	delete m_titulo;
 	delete m_nome;
@@ -31,7 +31,7 @@ TheEnd::~TheEnd()
 void
 TheEnd::generateClips()
 {
-	step("[TheEnd] Generating Sprite Clips.");
+	//step("[TheEnd] Generating Sprite Clips.");
 	addClip(0, 610, 350, 350);
 
 	m_background->addClip(252,702,34,24);
@@ -69,7 +69,7 @@ TheEnd::generateClips()
 void
 TheEnd::update()
 {
-	loop("[TheEnd] Drawing if is not Over.");
+	//loop("[TheEnd] Drawing if is not Over.");
 
 	if(isCOpenedMenu())
 	{
@@ -86,7 +86,7 @@ TheEnd::update()
 	switch(m_steps)
 	{
 		case TRYFORCE:
-			loop("[TheEnd] Rendering Text for Tryforce.");
+			//loop("[TheEnd] Rendering Text for Tryforce.");
 			m_background->draw();
 			m_titulo->generatePosition(302,425,195,21);
 			m_titulo->fade(15,120);
@@ -101,7 +101,7 @@ TheEnd::update()
 			}
 		break;
 		case EQUIPE:
-			loop("[TheEnd] Rendering Text for Equipe.");
+			//loop("[TheEnd] Rendering Text for Equipe.");
 			m_background->draw();
 			m_titulo->fade(15,80);
 			m_titulo->draw();
@@ -118,7 +118,7 @@ TheEnd::update()
 			}
 		break;
 		case PROGRAMADORES:
-			loop("[TheEnd] Rendering Text for Programadores.");
+			//loop("[TheEnd] Rendering Text for Programadores.");
 			m_background->draw();
 			m_titulo->fade(15,340);
 			m_titulo->draw();
@@ -163,7 +163,7 @@ TheEnd::update()
 			}
 		break;
 		case ARTISTAS:
-			loop("[TheEnd] Rendering Text for Artistas.");
+			//loop("[TheEnd] Rendering Text for Artistas.");
 			m_background->draw();
 			m_titulo->fade(15,340);
 			m_titulo->draw();
@@ -208,7 +208,7 @@ TheEnd::update()
 			}
 		break;
 		case MUSICO:
-			loop("[TheEnd] Rendering Text for Musicos.");
+			//loop("[TheEnd] Rendering Text for Musicos.");
 			m_background->draw();
 			m_titulo->fade(15,80);
 			m_titulo->draw();
@@ -229,7 +229,7 @@ TheEnd::update()
 			}
 		break;
 		case AGRADECIMENTOS:
-			loop("[TheEnd] Rendering Text for Agradecimentos.");
+			//loop("[TheEnd] Rendering Text for Agradecimentos.");
 			m_background->draw();
 			m_titulo->fade(15,400);
 			m_titulo->draw();
@@ -279,7 +279,7 @@ TheEnd::update()
 		break;
 		
 		case FIMDEJOGO:
-			loop("[TheEnd] Rendering Text for FimDeJogo.");
+			//loop("[TheEnd] Rendering Text for FimDeJogo.");
 			m_background->draw();
 			m_titulo->fade(15,200);
 			m_titulo->draw();
@@ -293,7 +293,7 @@ TheEnd::update()
 			}
 		break;
 		case INIMIGOEOUTRO:
-			loop("[TheEnd] Rendering Text for FimDeJogo.");
+			//loop("[TheEnd] Rendering Text for FimDeJogo.");
 			m_background->draw();
 			m_titulo->fade(15,120);
 			m_titulo->draw();

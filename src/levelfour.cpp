@@ -2,7 +2,7 @@
 
 LevelFour::LevelFour() : Stage()
 {
-	step("[LevelFour] Constructing.");
+	//step("[LevelFour] Constructing.");
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
@@ -14,13 +14,13 @@ LevelFour::LevelFour() : Stage()
 
 LevelFour::~LevelFour()
 {
-	step("[LevelFour] Destroying.");
+	//step("[LevelFour] Destroying.");
 }
 
 void
 LevelFour::defineBackground()
 {
-	step("[LevelFour] Defining Background.");
+	//step("[LevelFour] Defining Background.");
 	background = new Background("res/images/s_level04.png");
 	background->addClip(262,62,46,46);
 }
@@ -28,7 +28,7 @@ LevelFour::defineBackground()
 void
 LevelFour::generatePlatform()
 {
-	step("[LevelFour] Generating Platform.");
+	//step("[LevelFour] Generating Platform.");
 	platform = new Platform("res/images/s_level04.png");
 	platform->addClip(322,62,46,46);
 }
@@ -36,7 +36,7 @@ LevelFour::generatePlatform()
 void
 LevelFour::generateSecondLayer()
 {
-	step("[LevelFour] Generating SecondLayer.");
+	//step("[LevelFour] Generating SecondLayer.");
 	secondlayer = new SecondLayer("res/images/s_level04.png");
 	secondlayer->addClip(0,0,249,142);
 	secondlayer->addClip(0,150,100,220);
@@ -112,7 +112,7 @@ LevelFour::generateCivilians(){}
 void
 LevelFour::drawScenarioRelativeImages()
 {
-	loop("[Sebastiao] Drawing Each Image from Second Layer.");
+	//loop("[Sebastiao] Drawing Each Image from Second Layer.");
 	secondlayer->setOnlyClipNumber(0);
 	secondlayer->generatePosition(0,getPlatformH()-80,249,142);
 	secondlayer->drawRelative();

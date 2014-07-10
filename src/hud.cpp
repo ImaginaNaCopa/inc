@@ -2,7 +2,7 @@
 
 Hud::Hud()
 {
-	step("[HUD] Constructing.");
+	//step("[HUD] Constructing.");
 	dialogue = new Dialogue();
 	gameMenu = new GameMenu();
 	hp = new Hp();
@@ -12,7 +12,7 @@ Hud::Hud()
 
 Hud::~Hud()
 {
-	step("[HUD] Destroying.");
+	//step("[HUD] Destroying.");
 	delete sebastiao;
 	delete inventory;
 	delete hp;
@@ -23,7 +23,7 @@ Hud::~Hud()
 void 
 Hud::initHud()
 {
-	step("[HUD] Uploading Sprite Sheets.");
+	//step("[HUD] Uploading Sprite Sheets.");
 	dialogue->init();
 	gameMenu->init();
 	hp->init();
@@ -34,7 +34,7 @@ Hud::initHud()
 void 
 Hud::drawHud()
 {
-	loop("[HUD] Rendering HUD.");
+	//loop("[HUD] Rendering HUD.");
 	dialogue->draw();
 	gameMenu->draw();
 	hp->drawEach();

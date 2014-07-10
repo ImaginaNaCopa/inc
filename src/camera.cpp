@@ -7,7 +7,7 @@ namespace camera
 	void
 	updateCamera(SDL_Rect target)
 	{
-		loop("[Camera] Updating Camera Position.");
+		//loop("[Camera] Updating Camera Position.");
 		m_range.x = (target.x+target.w/2)-(m_range.w/2);
 		if(m_range.x < 0)
 			m_range.x = 0;
@@ -18,7 +18,7 @@ namespace camera
 	void
 	updateCameraRange()
 	{
-		step("[Camera] Updating Range According to Window Dimensions.");
+		//step("[Camera] Updating Range According to Window Dimensions.");
 		m_range.w = getWindowW();
 		m_range.h = getWindowH();
 	}
@@ -26,21 +26,21 @@ namespace camera
 	SDL_Rect
 	getCameraRange()
 	{
-		loop("[Camera] Getting Camera AOS.");
+		//loop("[Camera] Getting Camera AOS.");
 		return m_range;
 	}
 
 	int
 	getCameraLeftPosition()
 	{
-		loop("[Camera] Getting Camera Left Position.");
+		//loop("[Camera] Getting Camera Left Position.");
 		return m_range.x;
 	}
 
 	int
 	getCameraRightPosition()
 	{
-		loop("[Camera] Getting Camera Right Position.");
+		//loop("[Camera] Getting Camera Right Position.");
 		return m_range.x + m_range.w;
 	}
 }

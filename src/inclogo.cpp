@@ -2,7 +2,7 @@
 
 InCLogo::InCLogo(int earlyPositionX, int earlyPositionY) : Item()
 {
-    step("[InCLogo] Constructing.");
+    //step("[InCLogo] Constructing.");
     imagePath.assign("res/images/s_item.png");
     generatePosition(earlyPositionX, earlyPositionY, 40, 40);
     generateClips();
@@ -14,13 +14,13 @@ InCLogo::~InCLogo(){}
 void
 InCLogo::generateClips()
 {
-    step("[InCLogo] Generating Sprite Clips.");
+    //step("[InCLogo] Generating Sprite Clips.");
     addClip(0,40,40,40);
 }
 
 void
 InCLogo::update()
 {
-    loop("[InCLogo] Updating.");
+    //loop("[InCLogo] Updating.");
     m_clipNumber = 0;
 }

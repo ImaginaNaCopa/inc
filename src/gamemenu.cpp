@@ -3,7 +3,7 @@
 
 GameMenu::GameMenu() : ImageSprite()
 {
-	step("[GameMenu] Constructing.");
+	//step("[GameMenu] Constructing.");
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(760,10,35,35);
 	generateClips();
@@ -11,12 +11,12 @@ GameMenu::GameMenu() : ImageSprite()
 
 GameMenu::~GameMenu()
 {
-	step("[GameMenu] Destroying.");
+	//step("[GameMenu] Destroying.");
 }
 
 void
 GameMenu::generateClips()
 {
-	step("[GameMenu] Generating Sprite Clips.");
+	//step("[GameMenu] Generating Sprite Clips.");
 	addClip(40,50,35,35);
 }

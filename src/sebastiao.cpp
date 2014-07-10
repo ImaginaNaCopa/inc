@@ -2,7 +2,7 @@
 
 Sebastiao::Sebastiao() : ImageEffect()
 {
-	step("[Sebastiao] Constructing.");
+	//step("[Sebastiao] Constructing.");
 	imagePath.assign("res/images/s_sebastiao.png");
 	generatePosition(600,60,98,38);
 
@@ -26,7 +26,7 @@ Sebastiao::Sebastiao() : ImageEffect()
 
 Sebastiao::~Sebastiao()
 {
-	step("[Sebastiao] Destroying.");
+	//step("[Sebastiao] Destroying.");
 	delete m_background;
 	delete m_border;
 	delete m_platform;
@@ -35,7 +35,7 @@ Sebastiao::~Sebastiao()
 void
 Sebastiao::generateClips()
 {
-	step("[Sebastiao] Generating Sprite Clips.");
+	//step("[Sebastiao] Generating Sprite Clips.");
 	m_background->addClip(0,0,5,5);
 	m_platform->addClip(0,0,5,5);
 	m_border->addClip(460,0,200,90);

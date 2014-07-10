@@ -84,7 +84,7 @@ namespace controls
 	void falseCBackward();
 	void falseCJump();
 	void falseCCrouch();
-	void falseCAction();
+	void falseCaction();
 	void falseCUseItem();
 	void falseCLeftItem();
 	void falseCRightItem();

@@ -2,7 +2,7 @@
 
 MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 {
-	step("[MainMenu] Constructing.");
+	//step("[MainMenu] Constructing.");
 	m_background = new Background("res/images/s_mainmenu.png");
 	m_option = new Text(getFontNulshock(),30);
 	generateClips();
@@ -13,7 +13,7 @@ MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 
 MainMenu::~MainMenu()
 {
-	step("[MainMenu] Destroying.");
+	//step("[MainMenu] Destroying.");
 	delete m_background;
 	delete m_option;
 }
@@ -21,7 +21,7 @@ MainMenu::~MainMenu()
 void
 MainMenu::generateClips()
 {
-	step("[MainMenu] Generating Sprite Clips.");
+	//step("[MainMenu] Generating Sprite Clips.");
 	m_option->addPosition(100,100);
 	m_option->addPosition(100,200);
 	m_option->addPosition(100,300);
@@ -67,7 +67,7 @@ MainMenu::update()
 		m_select = true;
 	}
 
-	loop("[MainMenu] Updating and Drawing.");
+	//loop("[MainMenu] Updating and Drawing.");
 	m_background->draw();
 
 	setOnlyClipNumber(0);
@@ -99,40 +99,40 @@ MainMenu::update()
 
 	if(isSelected())
 	{
-		step("[MainMenu] If selected an option, remove the InputHandler.");
+		//step("[MainMenu] If selected an option, remove the InputHandler.");
 		SDL_ShowCursor(0);
 		setOver(true);
 		switch(m_selection)
 		{
 			case 0:
-				step("[MainMenu] Transitioning: Main Menu >>> Progression Menu.");
+				//step("[MainMenu] Transitioning: Main Menu >>> Progression Menu.");
 				setTimelineEvent(PROGRESSIONMENU);
 			break;
 
 			case 1:
-				step("[MainMenu] Transitioning: Main Menu >>> Configuration Menu.");
+				//step("[MainMenu] Transitioning: Main Menu >>> Configuration Menu.");
 				setTimelineEvent(CONFIGURATIONMENU);
 			break;
 
 			case 2:
-				step("[MainMenu] Transitioning: Main Menu >>> Credits.");
+				//step("[MainMenu] Transitioning: Main Menu >>> Credits.");
 				setTimelineEvent(CREDITS);
 			break;
 
 			case 3:
-				step("[MainMenu] Transitioning: Main Menu >>> Exiting The Game.");
+				//step("[MainMenu] Transitioning: Main Menu >>> Exiting The Game.");
 				iWantToQuit();
 			break;
 
 			default:
-				step("[MainMenu] Transitioning: Main Menu >>> Progression Menu.");
+				//step("[MainMenu] Transitioning: Main Menu >>> Progression Menu.");
 				setTimelineEvent(PROGRESSIONMENU);
 			break;
 		}
 	}
 	else
 	{
-		loop("[MainMenu] If not selected an option, generate the Fleur-de-Lis.");
+		//loop("[MainMenu] If not selected an option, generate the Fleur-de-Lis.");
 		m_clipNumber = 1;
 		switch(m_selection)
 		{

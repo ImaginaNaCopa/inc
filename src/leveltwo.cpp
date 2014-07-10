@@ -2,7 +2,7 @@
 
 LevelTwo::LevelTwo() : Stage()
 {
-	step("[LevelTwo] Constructing.");
+	//step("[LevelTwo] Constructing.");
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
@@ -14,13 +14,13 @@ LevelTwo::LevelTwo() : Stage()
 
 LevelTwo::~LevelTwo()
 {
-	step("[LevelTwo] Destroying.");
+	//step("[LevelTwo] Destroying.");
 }
 
 void
 LevelTwo::defineBackground()
 {
-	step("[LevelTwo] Defining Background.");
+	//step("[LevelTwo] Defining Background.");
 	background = new Background("res/images/s_level02.png");
 	background->addClip(562,252,46,46);
 }
@@ -28,15 +28,15 @@ LevelTwo::defineBackground()
 void
 LevelTwo::generatePlatform()
 {
-	step("[LevelTwo] Generating Platform.");
+	//step("[LevelTwo] Generating Platform.");
 	platform = new Platform("res/images/s_level02.png");
-	platform->addClip(562,332,46,46);
+	platform->addClip(562,330,46,46);
 }
 
 void
 LevelTwo::generateSecondLayer()
 {
-	step("[LevelTwo] Generating SecondLayer.");
+	//step("[LevelTwo] Generating SecondLayer.");
 	secondlayer = new SecondLayer("res/images/s_level02.png");
 	secondlayer->addClip(0,0,1040,200);
 	secondlayer->addClip(0,210,472,257);
@@ -45,7 +45,7 @@ LevelTwo::generateSecondLayer()
 void
 LevelTwo::generateEnemies()
 {
-	step("[LevelTwo] Generating Enemies.");
+	//step("[LevelTwo] Generating Enemies.");
 	int positionReference = 400;
 	while(positionReference < 700)
 	{
@@ -100,8 +100,8 @@ LevelTwo::generateEnemies()
 void
 LevelTwo::generateCivilians()
 {
-	step("[LevelTwo] Generating Civilians.");
-	civil = new Civil(4,2,200);
+	//step("[LevelTwo] Generating Civilians.");
+	civil = new Civil(4,4,200);
 	civis.push_back(civil);
 	civil = new Civil(1,5,350);
 	civis.push_back(civil);
@@ -112,7 +112,7 @@ LevelTwo::generateCivilians()
 void
 LevelTwo::drawScenarioRelativeImages()
 {
-	loop("[Sebastiao] Drawing Each Image from Second Layer.");
+	//loop("[Sebastiao] Drawing Each Image from Second Layer.");
 	secondlayer->setOnlyClipNumber(0);
 	secondlayer->generatePosition(40,getPlatformH()-200,1040,200);
 	secondlayer->drawRelative();

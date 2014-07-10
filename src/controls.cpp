@@ -247,7 +247,7 @@ namespace controls
 	}
 
 	void
-	falseCAction()
+	falseCaction()
 	{
 		action = false;
 	}
@@ -429,13 +429,13 @@ namespace controls
 			{
 				createJoystickOne();
 				currentJoysticksInUse = ONE;
-				step("[Joystick] Joystick #01 ready to use.");
+				step("[Imagina na Copa] Joystick #01 ready to use.");
 			}
 			if(SDL_NumJoysticks()>1 && !joystickTwoCreated)
 			{
 				createJoystickTwo();
 				currentJoysticksInUse = TWO;
-				step("[Joystick] Joystick #02 ready to use.");
+				step("[Imagina na Copa] Joystick #02 ready to use.");
 			}
 		}
 		else
@@ -704,7 +704,7 @@ namespace controls
 					}
 				}
 				else
-					step("[Joystick] Unknown Joystick in use.");
+					step("[Imagina na Copa] Unknown Joystick in use.");
 			}
 			else if(isOneJoystick())
 			{
@@ -741,7 +741,7 @@ namespace controls
 				}
 			}
 			else
-				step("[Joystick] Unknown Joystick in use.");
+				step("[Imagina na Copa] Unknown Joystick in use.");
 		}
 		else if(type == SDL_JOYDEVICEADDED)
 		{
@@ -751,22 +751,23 @@ namespace controls
 		{
 			if(event.jdevice.which == SDL_JoystickInstanceID(joystickOne) && joystickTwoCreated)
 			{
-				step("[Joystick] Joystick #01 removed.");
-				step("[Joystick] Redefining Joystick #02 to #01.");
+				step("[Imagina na Copa] Joystick #01 removed.");
+				step("[Imagina na Copa] --> Redefining Joystick #02 to #01.");
 				releaseJoystickTwo();
 				releaseJoystickOne();
 				checkJoysticks();
 			}
 			else if(event.jdevice.which == SDL_JoystickInstanceID(joystickOne))
 			{
-				step("[Joystick] Joystick #01 removed.");
+				step("[Imagina na Copa] Joystick #01 removed.");
 				releaseJoystickOne();
 				checkJoysticks();
 			}
 			else if(event.jdevice.which == SDL_JoystickInstanceID(joystickTwo))
 			{
-				step("[Joystick] Joystick #02 removed.");
+				step("[Imagina na Copa] Joystick #02 removed.");
 				releaseJoystickTwo();
+				releaseJoystickOne();
 				checkJoysticks();
 			}
 		}
@@ -785,16 +786,16 @@ namespace controls
 			xAxis=400+((int)(SDL_JoystickGetAxis(joystickOne,M_J_S_RIGHT_X)*0.012207218));
 			yAxis=300+((int)(SDL_JoystickGetAxis(joystickOne,M_J_S_RIGHT_Y)*0.012207218));
 		}
-		loop("[Input] Beginning the event Handling Loop.");
+		//loop("[Input] Beginning the event Handling Loop.");
 		SDL_Event event;
 		queue <SDL_Event> events;
-		loop("[Input] Adding all Events in a Queue.");
+		//loop("[Input] Adding all Events in a Queue.");
 		while (SDL_PollEvent(&event) != 0)
 		{
 			events.push(event);
 		}
 
-		loop("[Input] Handling each Event until Queue empty.");
+		//loop("[Input] Handling each Event until Queue empty.");
 		while(events.empty() == false)
 		{
 			event = events.front();

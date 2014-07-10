@@ -8,13 +8,13 @@ Stage::Stage() : Scenario(), Hud(), Entity()
 
 Stage::~Stage()
 {
-	step("[Stage] Destroying.");
+	//step("[Stage] Destroying.");
 }
 
 void 
 Stage::init()
 {
-	step("[Stage] Initiating Each Stage Object.");
+	//step("[Stage] Initiating Each Stage Object.");
 	initScenario();
 	initHud();
 	initEntity();
@@ -23,7 +23,7 @@ Stage::init()
 void
 Stage::draw()
 {
-	loop("[Stage] Drawing Each Stage Object.");
+	//loop("[Stage] Drawing Each Stage Object.");
 	
 	drawScenarioStaticImages();
 	drawScenarioRelativeImages();
@@ -35,7 +35,7 @@ Stage::draw()
 void 
 Stage::update()
 {
-	loop("[Stage] Updating Each Stage Object.");
+	//loop("[Stage] Updating Each Stage Object.");
 	if(isCOpenedMenu())
 	{
 		setOver(true);
@@ -50,9 +50,8 @@ Stage::update()
 		}
 		if(caio->getHealth() == 0)
 		{
-			setCurrentEffect("res/audios/se/game_over.ogg");
-			setEffectVolume(100);
-			playEffect(0);	
+			setCurrentEffect(GO);
+			playEffect();	
 			setGameOver(true);
 			setOver(true);
 			setFinished(false);
@@ -60,9 +59,8 @@ Stage::update()
 		}
 		if((caio->getPosition().x >= 1500)||((caio->getPosition().x >= 1000)&&(getTimelineEvent()==LEVELTHREE||getTimelineEvent()==LEVELFIVE)))
 		{
-			setCurrentEffect("res/audios/se/fanfare.ogg");
-			setEffectVolume(100);
-			playEffect(0);	
+			setCurrentEffect(FF);
+			playEffect();	
 			setOver(true);
 			setFinished(true);
 			setGameOver(false);
@@ -79,7 +77,7 @@ Stage::setGameOver(bool over)
 bool
 Stage::gameOver()
 {
-	loop("[Stage] Returning Game Over.");
+	//loop("[Stage] Returning Game Over.");
 	return m_gameOver;
 }
 
@@ -92,7 +90,7 @@ Stage::setFinished(bool finished)
 bool
 Stage::isFinished()
 {
-	loop("[Stage] Returning True if Finished.");
+	//loop("[Stage] Returning True if Finished.");
 	return m_finished;
 }
 
@@ -100,17 +98,16 @@ Stage::isFinished()
 void 
 Stage::damagingCaio()
 {
-	loop("[Stage] Verifying if Caio is imune.");
+	//loop("[Stage] Verifying if Caio is imune.");
 	if (!caio->isImune())
 	{
 		for (auto it = enemies.begin(); it != enemies.end(); it++)
 		{
-			loop("[Stage] Verifying Collision Between Caio and Enemies.");
+			//loop("[Stage] Verifying Collision Between Caio and Enemies.");
 			if (caio->overEnemy((*it)->getPosition()))
 			{
-				setCurrentEffect("res/audios/se/ouch.ogg");
-				setEffectVolume(100);
-				playEffect(0);
+				setCurrentEffect(Ouch);
+				playEffect();
 				(*it)->setDamaging(true);
 				caio->setImune(true);
 				caio->resetFirstAid();
@@ -151,7 +148,7 @@ Stage::lootItem()
 	auto loot = itens.end();
 	for (auto it = itens.begin(); it != itens.end(); it++)
 	{
-		loop("[Stage] Verifying Collision Between Caio and Itens.");
+		//loop("[Stage] Verifying Collision Between Caio and Itens.");
 		if (caio->overItem((*it)->getPosition()))
 		{
 			loot = it;
@@ -191,10 +188,9 @@ Stage::lootItem()
 
 	if (loot != itens.end())
 	{
-		setCurrentEffect("res/audios/se/item_collect.ogg");
-		setEffectVolume(100);
-		playEffect(0);		
-  	loop("[Stage] Delete all Dead Enemies.");
+		setCurrentEffect(iC);
+		playEffect();		
+  	//loop("[Stage] Delete all Dead Enemies.");
 		delete *loot;
 		itens.erase(loot);
 	}
@@ -208,7 +204,7 @@ Stage::killingEnemy()
 	{
 		if (aim->overEnemy((*it)->getPosition()) && isCShooted())
 		{
-  			loop("[Stage] if Shooted an Enemy, define Dead to it.");
+  			//loop("[Stage] if Shooted an Enemy, define Dead to it.");
 			falseCShoot();
 			sebastiao->setShoot(true);
 			(*it)->setEnemyHealth(-1);
@@ -274,7 +270,7 @@ Stage::killingEnemy()
 
 	if (dead != enemies.end())
 	{
-    loop("[Stage] Delete all Dead Enemies.");
+    //loop("[Stage] Delete all Dead Enemies.");
   	delete *dead;
 		enemies.erase(dead);
 	}
@@ -288,9 +284,8 @@ Stage::usingItens()
 		case 1:
 			if (caio->getHealth() < caio->getMaxHealth() && inventory->getQtdPotion() > 0)
 			{
-				setCurrentEffect("res/audios/se/item_use.ogg");
-				setEffectVolume(100);
-				playEffect(0);	
+				setCurrentEffect(iU);
+				playEffect();	
 				caio->setHealth(+1);
 				hp->setHp(caio->getHealth());
 				inventory->setQtdPotion(-1);
@@ -299,9 +294,8 @@ Stage::usingItens()
 		case 2:
 			if (caio->getMaxHealth() < 7 && inventory->getQtdAlteredPotion() > 0)
 			{
-				setCurrentEffect("res/audios/se/item_use.ogg");
-				setEffectVolume(100);
-				playEffect(0);	
+				setCurrentEffect(iU);
+				playEffect();	
 				caio->setMaxHealth(1);
 				hp->setMaxHp(caio->getMaxHealth());
 				inventory->setQtdAlteredPotion(-1);
@@ -325,12 +319,12 @@ void
 Stage::rescuingCivilian()
 {
 	auto secured = civis.end();
-	loop("[LevelTwo] Handling Civil Rescue.");
+	//loop("[LevelTwo] Handling Civil Rescue.");
 	for (auto it = civis.begin(); it != civis.end(); it++)
 	{
 		if((*it)->isRunned())
 			secured = it;
-		loop("[Stage] Verifying Collision Between Caio and Civil.");
+		//loop("[Stage] Verifying Collision Between Caio and Civil.");
 		if(caio->nearCivilian((*it)->getPosition(),(*it)->isSafe()))
 		{
 			if(caio->successfulFirstAid())
@@ -399,7 +393,7 @@ Stage::rescuingCivilian()
 void
 Stage::controlEntityEvents()
 {
-	loop("[LevelTwo] Handling Specific Entity Conditions.");
+	//loop("[LevelTwo] Handling Specific Entity Conditions.");
 
 	damagingCaio();
 	killingEnemy();

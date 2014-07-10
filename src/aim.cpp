@@ -3,7 +3,7 @@
 
 Aim::Aim() : ImageSprite()
 {
-	step("[Aim] Constructing.");
+	//step("[Aim] Constructing.");
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(round(getWindowW()/2),round(getWindowH()/2),50,50);
 	generateClips();
@@ -13,7 +13,7 @@ Aim::Aim() : ImageSprite()
 
 Aim::~Aim()
 {
-	step("[Aim] Destroying.");
+	//step("[Aim] Destroying.");
 }
 
 void
@@ -28,13 +28,13 @@ Aim::generateClips()
 void
 Aim::defineEffects()
 {
-	step("[Aim] Defining Audio Effects.");
+	//step("[Aim] Defining Audio Effects.");
 }
 
 void 
 Aim::update()
 {
-	loop("[Aim] Updating.");
+	//loop("[Aim] Updating.");
 	m_shoot = isCShooted();
 	updateKernel();
 	setOnlyClipNumber(1);
@@ -43,24 +43,22 @@ Aim::update()
 bool 
 Aim::overEnemy(SDL_Rect rect)
 {
-	loop("[Aim] Searching if Targeted an Entity (Over Enemy).");   
+	//loop("[Aim] Searching if Targeted an Entity (Over Enemy).");   
 	if (ifCollided(0,getKernel(),rect))
 	{
-		condition("[Aim] Targeted an Entity (Over Enemy).");
+		//condition("[Aim] Targeted an Entity (Over Enemy).");
 		setOnlyClipNumber(2);
 		if(m_shoot==true)
 		{
 			if(getTimelineEvent()==LEVELFOUR)
 			{
-				setCurrentEffect("res/audios/se/shot_long.ogg");
-				setEffectVolume(100);
-				playEffect(0);
+				setCurrentEffect(S2);
+				playEffect();
 			}
 			else
 			{
-				setCurrentEffect("res/audios/se/shot.ogg");
-				setEffectVolume(100);
-				playEffect(0);
+				setCurrentEffect(S1);
+				playEffect();
 			}
 		}
 		return m_shoot;
@@ -72,10 +70,10 @@ Aim::overEnemy(SDL_Rect rect)
 void
 Aim::overPlayer(SDL_Rect rect)
 {
-	loop("[Aim] Searching if Targeted an Entity (Over Player).");   
+	//loop("[Aim] Searching if Targeted an Entity (Over Player).");   
 	if (ifCollided(0,getKernel(),rect))
 	{
-		condition("[Aim] Targeted an Entity (Over Player).");
+		//condition("[Aim] Targeted an Entity (Over Player).");
 		setOnlyClipNumber(0);
 	}
 }
@@ -83,14 +81,14 @@ Aim::overPlayer(SDL_Rect rect)
 SDL_Rect
 Aim::getKernel()
 {
-	loop("[Aim] Getting Kernel Position.");
+	//loop("[Aim] Getting Kernel Position.");
 	return m_kernel;
 }
 
 void
 Aim::updateKernel()
 {
-	loop("[Aim] Updating Kernel Position.");
+	//loop("[Aim] Updating Kernel Position.");
 	m_position = updateKernelMotionM(m_position);
 	m_kernel = {m_position.x+getCameraLeftPosition()+22, m_position.y+22, 6, 6};
 }

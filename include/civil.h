@@ -1,7 +1,10 @@
 #ifndef CIVIL_H
 #define CIVIL_H
 
+#include "audiohandler.h"
 #include "imageeffect.h"
+
+using namespace audioHandler;
 
 class Civil : public ImageEffect
 {

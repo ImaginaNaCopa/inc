@@ -12,7 +12,7 @@ Menu::Menu(const string& path) : SecondLayer(path)
 
 Menu::~Menu()
 {
-	step("[Menu] Destroying.");
+	//step("[Menu] Destroying.");
 }
 
 bool
@@ -20,12 +20,12 @@ Menu::isSelected()
 {
 	if(((m_mouseSelect) && (m_mouseCollision)) || (m_select))
 	{
-		loop("[MainMenu] MouseOver + MouseSelect or Keyboard Select = True.");
+		//loop("[MainMenu] MouseOver + MouseSelect or Keyboard Select = True.");
 		return true;
 	}
 	else
 	{
-		loop("[MainMenu] If not Selected, reset the MouseSelect and return False.");
+		//loop("[MainMenu] If not Selected, reset the MouseSelect and return False.");
 		m_mouseSelect = false;
 		return false;
 	}
@@ -38,7 +38,7 @@ Menu::checkCollision(int selection, SDL_Rect targetPosition)
 	if(ifCollided(0,m_mouse,resTarget))
 	{
 		m_selection = selection;
-		loop("[MainMenu] Returning true, Mouse collided with some Option Rect.");
+		//loop("[MainMenu] Returning true, Mouse collided with some Option Rect.");
 		return true;
 	}
 	else

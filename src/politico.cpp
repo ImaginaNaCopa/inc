@@ -5,7 +5,7 @@ using namespace std;
 
 Politico::Politico(int item, bool side, int earlyPosition) : Enemy() 
 {
-	step("[Politico] Constructing.");
+	//step("[Politico] Constructing.");
 	imagePath.assign("res/images/s_politico.png");
 	generatePosition(earlyPosition,(getPlatformH()-52),50,52);
 	generateClips();
@@ -22,16 +22,15 @@ Politico::Politico(int item, bool side, int earlyPosition) : Enemy()
 
 Politico::~Politico()
 {
-	step("[Politico] Destroying.");
-	setCurrentEffect("res/audios/se/corrupto_die.ogg");
-	setEffectVolume(100);
-	playEffect(0);
+	//step("[Politico] Destroying.");
+	setCurrentEffect(pDie);
+	playEffect();
 }
 
 void
 Politico::generateBehaviour()
 {
-	step("[Politico] Generating Behaviour.");
+	//step("[Politico] Generating Behaviour.");
 	m_hunter = isHunter();
 	m_flying = isTerrestrial();
 	m_typeDamage = doSimpleDamageType();
@@ -47,7 +46,7 @@ Politico::generateBehaviour()
 void 
 Politico::generateClips()
 {
-	step("[Politico] Generating Sprite Clips.");
+	//step("[Politico] Generating Sprite Clips.");
 
 	addClip(0,0,50,52);//0 foward
 	addClip(50,0,50,53);
@@ -71,7 +70,7 @@ Politico::generateClips()
 void 
 Politico::update(SDL_Rect target)
 {
-	loop("[Politico] Updating.");
+	//loop("[Politico] Updating.");
 	updatePosition(target);
 
 	switch (m_state)
@@ -100,12 +99,12 @@ Politico::update(SDL_Rect target)
 		m_state = MOVING;
 		if(isOnLeftDirection())
 		{
-			condition("[Curupira] Moving Backward.");
+			//condition("[Curupira] Moving Backward.");
 			m_looking = BACKWARD;
 		}
 		else if(isOnRightDirection())
 		{
-			condition("[Curupira] Moving Forward.");
+			//condition("[Curupira] Moving Forward.");
 			m_looking = FORWARD;
 		}	
 	}

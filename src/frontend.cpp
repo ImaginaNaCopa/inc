@@ -2,7 +2,7 @@
 
 FrontEnd::FrontEnd() : ImageEffect()
 {
-	step("[FrontEnd] Constructing.");
+	//step("[FrontEnd] Constructing.");
 	background = new Background("res/images/s_frontend.png");	
 	imagePath.assign("res/images/s_frontend.png");
 	m_alpha = 0;
@@ -17,14 +17,14 @@ FrontEnd::FrontEnd() : ImageEffect()
 
 FrontEnd::~FrontEnd()
 {
-	step("[FrontEnd] Destroying.");
+	//step("[FrontEnd] Destroying.");
 	delete background;
 }
 
 void
 FrontEnd::generateClips()
 {
-	step("[FrontEnd] Generating Sprite Clips.");
+	//step("[FrontEnd] Generating Sprite Clips.");
 	addClip(0,0,350,270);
 	addClip(0,280,403,403);
 	addClip(0,690,235,270);
@@ -50,12 +50,12 @@ FrontEnd::update()
 	else
 		m_use = false;
 
-	loop("[FrontEnd] Updating and Drawing.");
+	//loop("[FrontEnd] Updating and Drawing.");
 	fade(15,80);
 	switch(m_clipNumber)
 	{
 		case 1:
-			loop("[FrontEnd] Generating Rating.");
+			//loop("[FrontEnd] Generating Rating.");
 			generatePosition(200,100,403,403);
 			background->setOnlyClipNumber(1);
 			if(isFadeEnded() || m_skip)
@@ -70,12 +70,12 @@ FrontEnd::update()
 			}
 		break;
 		case 2:
-			loop("[FrontEnd] Generating Other Logos.");
+			//loop("[FrontEnd] Generating Other Logos.");
 			generatePosition(282,165,235,270);
 			background->setOnlyClipNumber(2);			
 			if(isFadeEnded() || m_skip)
 			{
-				step("[FrontEnd] And its over...");
+				//step("[FrontEnd] And its over...");
 				m_skip = false;
 				falseCOpenMenu();
 				setOver(true);
@@ -84,7 +84,7 @@ FrontEnd::update()
 		break;
 
 		default:
-			loop("[FrontEnd] Generating Default Values.");
+			//loop("[FrontEnd] Generating Default Values.");
 			generatePosition(225,165,350,270);
 			background->setOnlyClipNumber(0);
 			if(isFadeEnded() || m_skip)
@@ -100,7 +100,7 @@ FrontEnd::update()
 		break;			
 	}
 
-	loop("[FrontEnd] Drawing if is not Over.");
+	//loop("[FrontEnd] Drawing if is not Over.");
 	background->draw();
 	draw();
 }

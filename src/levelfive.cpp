@@ -3,7 +3,7 @@
 LevelFive::LevelFive() : Stage()
 {
 	setLevelW(1100);
-	step("[LevelFive] Constructing.");
+	//step("[LevelFive] Constructing.");
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
@@ -15,14 +15,14 @@ LevelFive::LevelFive() : Stage()
 
 LevelFive::~LevelFive()
 {
-	step("[LevelFive] Destroying.");
+	//step("[LevelFive] Destroying.");
 	setLevelW(1600);
 }
 
 void
 LevelFive::defineBackground()
 {
-	step("[LevelFive] Defining Background.");
+	//step("[LevelFive] Defining Background.");
 	background = new Background("res/images/s_level05.png");
 	background->addClip(1112,62,46,46);
 }
@@ -30,7 +30,7 @@ LevelFive::defineBackground()
 void
 LevelFive::generatePlatform()
 {
-	step("[LevelFive] Generating Platform.");
+	//step("[LevelFive] Generating Platform.");
 	platform = new Platform("res/images/s_level05.png");
 	platform->addClip(1112,2,46,46);
 }
@@ -38,7 +38,7 @@ LevelFive::generatePlatform()
 void
 LevelFive::generateSecondLayer()
 {
-	step("[LevelFive] Generating SecondLayer.");
+	//step("[LevelFive] Generating SecondLayer.");
 	secondlayer = new SecondLayer("res/images/s_level05.png");
 	secondlayer->addClip(0,0,1100,450);
 	secondlayer->generatePosition(0,getPlatformH()-450,1100,450);
@@ -85,7 +85,7 @@ LevelFive::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 40;
 	}
-	enemy = new Urubu(4,925);
+	enemy = new Urubu(1,925);
 	enemies.push_back(enemy);
 	positionReference = 800;
 	while(positionReference < 1100)
@@ -109,6 +109,6 @@ LevelFive::generateCivilians(){}
 void
 LevelFive::drawScenarioRelativeImages()
 {
-	loop("[Sebastiao] Drawing Each Image from Second Layer.");
+	//loop("[Sebastiao] Drawing Each Image from Second Layer.");
 	secondlayer->drawRelative();
 }

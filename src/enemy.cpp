@@ -13,7 +13,7 @@ Enemy::Enemy() : ImageEffect()
 
 Enemy::~Enemy()
 {
-	step("[Enemy] Destroying.");
+	//step("[Enemy] Destroying.");
 }
 
 void
@@ -127,14 +127,14 @@ Enemy::updateDetection()
 int
 Enemy::calculatePosition(int direction)
 {
-	loop("[Enemy] Updating Position in Horizontal axis.");
+	//loop("[Enemy] Updating Position in Horizontal axis.");
 		return round(((m_speed*getDelta())/1000.0)*direction);
 }
 
 void
 Enemy::updateDirection()
 {
-	loop("[Enemy] Updating Direction in Horizontal axis.");
+	//loop("[Enemy] Updating Direction in Horizontal axis.");
 	if(m_flying && m_tracking)
 	{
 			if(m_target.x+150 <= m_position.x)
@@ -171,7 +171,7 @@ Enemy::getEnemyHealth()
 bool
 Enemy::isOnRightDirection()
 {
-	loop("[Enemy] Verifying if is on Right Direction.");
+	//loop("[Enemy] Verifying if is on Right Direction.");
 	if(m_direction == 1)
 		return true;
 	return false;
@@ -180,7 +180,7 @@ Enemy::isOnRightDirection()
 bool
 Enemy::isOnLeftDirection()
 {
-	loop("[Enemy] Verifying if is on Left Direction.");
+	//loop("[Enemy] Verifying if is on Left Direction.");
 	if(m_direction == -1)
 		return true;
 	return false;

@@ -16,7 +16,7 @@ Text::Text(const string& fontPath, int fontSize)
 
 Text::~Text()
 {
-	step("[Text] Destroying.");
+	//step("[Text] Destroying.");
 	TTF_CloseFont(m_font);
 	m_texts.clear();
 	m_positions.clear();

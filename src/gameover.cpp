@@ -2,7 +2,7 @@
 
 GameOver::GameOver() : ImageEffect()
 {
-	step("[GameOver] Constructing.");
+	//step("[GameOver] Constructing.");
 	imagePath.assign("res/images/s_gameover.png");
 	generatePosition(0,0,800,600);
 	addClip(0,0,800,600);
@@ -17,14 +17,14 @@ GameOver::GameOver() : ImageEffect()
 
 GameOver::~GameOver()
 {
-	step("[GameOver] Destroying.");
+	//step("[GameOver] Destroying.");
 	delete m_text;
 }
 
 void
 GameOver::update()
 {
-	loop("[GameOver] Drawing if is not Over.");
+	//loop("[GameOver] Drawing if is not Over.");
 
 	if(isCOpenedMenu())
 	{

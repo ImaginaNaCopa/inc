@@ -9,7 +9,7 @@ int main()
 	setVerbosity(0,0,0,0,0,1);
 	try 
 	{
-		step("[Main] Trying to Initialize Game.");
+		//step("[Main] Trying to Initialize Game.");
 		Game* game = new Game();
 		
 		game->run();
@@ -20,6 +20,6 @@ int main()
 		error(e);
 		return -1;
 	}
-	step("[Main] Exiting.");
+	//step("[Main] Exiting.");
 	return 0;
 }

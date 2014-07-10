@@ -4,7 +4,7 @@ using namespace std;
 
 Inventory::Inventory() : ImageSprite()
 {
-	step("[Inventory] Constructing.");
+	//step("[Inventory] Constructing.");
 	imagePath.assign("res/images/s_hud.png");
 	generatePosition(0,0,40,65);
 	m_qtdPotion = getItemQuantity(1);
@@ -49,7 +49,7 @@ Inventory::Inventory() : ImageSprite()
 
 Inventory::~Inventory()
 {
-	step("[Inventory] Destroying.");
+	//step("[Inventory] Destroying.");
 	delete m_cupText;
 	delete m_freeboiText;
 	delete m_batteryText;
@@ -62,7 +62,7 @@ Inventory::~Inventory()
 void 
 Inventory::drawEach()
 {
-	loop("[Inventory] Drawing each Inventory Rect.");
+	//loop("[Inventory] Drawing each Inventory Rect.");
 	
 	m_position.x = 10;
 	m_position.y = 30;
@@ -222,7 +222,7 @@ Inventory::drawEach()
 void
 Inventory::generateClips()
 {
-	step("[Inventory] Generating Sprite Clips.");
+	//step("[Inventory] Generating Sprite Clips.");
 	addClip(0,45,40,65);
 	m_itemSprite->addClip(0,0,32,40);
 	m_itemSprite->addClip(32,0,32,40);
@@ -288,7 +288,9 @@ void
 Inventory::setQtdBattery(int qtd)
 {
 	m_qtdBaterry += qtd;
-	if(m_qtdBaterry<0)
+	if(m_qtdBaterry>100)
+		m_qtdBaterry=100;
+	else if(m_qtdBaterry<0)
 		m_qtdBaterry=0;
 
 	updateItem(4,m_qtdBaterry);

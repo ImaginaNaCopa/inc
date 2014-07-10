@@ -2,7 +2,7 @@
 
 LevelOne::LevelOne() : Stage()
 {
-	step("[LevelOne] Constructing.");
+	//step("[LevelOne] Constructing.");
 	defineBackground();
 	generatePlatform();
 	generateSecondLayer();
@@ -14,13 +14,13 @@ LevelOne::LevelOne() : Stage()
 
 LevelOne::~LevelOne()
 {
-	step("[LevelOne] Destroying.");
+	//step("[LevelOne] Destroying.");
 }
 
 void
 LevelOne::defineBackground()
 {
-	step("[LevelOne] Defining Background.");
+	//step("[LevelOne] Defining Background.");
 	background = new Background("res/images/s_level01.png");
 	background->addClip(282,0,46,46);
 }
@@ -28,7 +28,7 @@ LevelOne::defineBackground()
 void
 LevelOne::generatePlatform()
 {
-	step("[LevelOne] Generating Platform.");
+	//step("[LevelOne] Generating Platform.");
 	platform = new Platform("res/images/s_level01.png");
 	platform->addClip(282,72,46,46);
 }
@@ -36,7 +36,7 @@ LevelOne::generatePlatform()
 void
 LevelOne::generateSecondLayer()
 {
-	step("[LevelOne] Generating SecondLayer.");
+	//step("[LevelOne] Generating SecondLayer.");
 	secondlayer = new SecondLayer("res/images/s_level01.png");
 	secondlayer->addClip(0,0,270,360);
 }
@@ -44,7 +44,7 @@ LevelOne::generateSecondLayer()
 void
 LevelOne::generateEnemies()
 {
-	step("[LevelOne] Generating Enemies.");
+	//step("[LevelOne] Generating Enemies.");
 	int positionReference = 400;
 	while(positionReference < 700)
 	{
@@ -74,7 +74,7 @@ LevelOne::generateEnemies()
 void
 LevelOne::generateCivilians()
 {
-	step("[LevelOne] Generating Civilians.");
+	//step("[LevelOne] Generating Civilians.");
 	civil = new Civil(1,0,350);
 	civis.push_back(civil);
 	civil = new Civil(4,1,900);
@@ -86,7 +86,7 @@ LevelOne::generateCivilians()
 void
 LevelOne::drawScenarioRelativeImages()
 {
-	loop("[Sebastiao] Drawing Each Image from Second Layer.");
+	//loop("[Sebastiao] Drawing Each Image from Second Layer.");
 	secondlayer->generatePosition(50,getPlatformH()-360,270,360);
 	secondlayer->drawRelative();
 	secondlayer->generatePosition(480,getPlatformH()-360,270,360);

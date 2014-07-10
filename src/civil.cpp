@@ -5,7 +5,7 @@ using namespace std;
 
 Civil::Civil(int item, int tipo, int earlyPosition) : ImageEffect()
 {
-	step("[Civil] Constructing.");
+	//step("[Civil] Constructing.");
 	imagePath.assign("res/images/s_civil.png"); 
 	m_tipo = tipo;
 	switch(m_tipo)
@@ -47,7 +47,7 @@ Civil::Civil(int item, int tipo, int earlyPosition) : ImageEffect()
 
 Civil::~Civil()
 {
-	step("[Civil] Destroying.");
+	//step("[Civil] Destroying.");
 }
 
 void
@@ -56,7 +56,7 @@ Civil::generateClips()
 	switch (m_tipo)
 	{
 		case 0:
-			step("[Civil] Adding Clips.");
+			//step("[Civil] Adding Clips.");
 			addClip(0,0,54,45);//0civil um caido
 			addClip(54,0,52,51);//levantando
 			addClip(106,0,45,55);
@@ -66,13 +66,13 @@ Civil::generateClips()
 			setClipNumber(0);
 		break;
 		case 1:
-			step("[Civil] Adding Clips.");
+			//step("[Civil] Adding Clips.");
 			addClip(286,0,64,50);//6 civil 2
 			addClip(350,0,48,66);
 			setClipNumber(0);
 		break;
 		case 2:
-			step("[Civil] Adding Clips.");
+			//step("[Civil] Adding Clips.");
 			addClip(0,80,66,53);//8caido
 			addClip(66,80,52,62);//caido
 			addClip(118,80,52,64);//corre
@@ -82,7 +82,7 @@ Civil::generateClips()
 			setClipNumber(0);
 		break;
 		case 3:
-			step("[Civil] Adding Clips.");
+			//step("[Civil] Adding Clips.");
 			addClip(0,160,64,52);//14caido
 			addClip(64,160,58,63);//levanta
 			addClip(122,160,56,64);//parado
@@ -91,7 +91,7 @@ Civil::generateClips()
 			setClipNumber(0);
 		break;
 		case 4:
-			step("[Civil] Adding Clips.");
+			//step("[Civil] Adding Clips.");
 			addClip(0,240,46,55);//19
 			addClip(46,240,46,55);
 			addClip(92,240,46,58);
@@ -100,7 +100,7 @@ Civil::generateClips()
 			setClipNumber(0);
 		break;
 		case 5:
-			step("[Civil] Adding Clips.");
+			//step("[Civil] Adding Clips.");
 			addClip(0,320,62,48);//24caido
 			addClip(62,320,49,60);//levantado
 			addClip(111,320,50,62);//26correndo
@@ -119,14 +119,14 @@ Civil::generateClips()
 int
 Civil::calculatePosition(int direction)
 {
-	loop("[Civil] Updating Position in Horizontal axis.");
+	//loop("[Civil] Updating Position in Horizontal axis.");
 	return round(((100*getDelta())/1000.0)*direction);
 }
 
 void
 Civil::update()
 {
-	loop("[Civil] Updating State.");
+	//loop("[Civil] Updating State.");
 	switch (m_state)
 	{
 		case GROUNDED:
@@ -144,7 +144,7 @@ Civil::update()
 void
 Civil::grounded()
 {
-	loop("[Civil] Updating Position.");
+	//loop("[Civil] Updating Position.");
 	if (isSafe())
 	{
 		if (isSafe() && !gotUp)
@@ -152,16 +152,36 @@ Civil::grounded()
 			setClipNumber(1);
 			gotUp = true;
 			m_state = MOVING;
-			if (m_tipo == 1)
-				m_position.y -= 15;
-			if (m_tipo == 2)
-				m_position.y -= 13;
-			if (m_tipo == 3)
-				m_position.y -= 22;
-			if (m_tipo == 4)
-				m_position.y -= 10;
-			if (m_tipo == 5)
-				m_position.y -= 20;
+			switch(m_tipo)
+			{
+				case 0:
+					setCurrentEffect(C1);
+				break;
+				case 1:
+					m_position.y -= 15;
+					setCurrentEffect(C4);
+				break;
+				case 2:
+					m_position.y -= 13;
+					setCurrentEffect(C2);
+				break;
+				case 3:
+					m_position.y -= 22;
+					setCurrentEffect(C5);
+				break;
+				case 4:
+					m_position.y -= 10;
+					setCurrentEffect(C2);
+				break;
+				case 5:
+					setCurrentEffect(C1);
+					m_position.y -= 20;
+				break;
+				default:
+					setCurrentEffect(C1);
+				break;
+			}
+			playEffect();			
 		}
 	}
 }
