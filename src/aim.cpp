@@ -50,16 +50,8 @@ Aim::overEnemy(SDL_Rect rect)
 		setOnlyClipNumber(2);
 		if(m_shoot==true)
 		{
-			if(getTimelineEvent()==LEVELFOUR)
-			{
-				setCurrentEffect(S2);
-				playEffect();
-			}
-			else
-			{
 				setCurrentEffect(S1);
 				playEffect();
-			}
 		}
 		return m_shoot;
 	}

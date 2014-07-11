@@ -16,7 +16,7 @@ void
 Battery::generateClips()
 {
     //step("[Battery] Generating Sprite Clips.");
-    addClip(97,0,21,40);
+    addClip(97,3,21,40);
 }
 
 void
