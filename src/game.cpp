@@ -302,7 +302,6 @@ Game::run()
 						}
 						if(!isOver())
 						{
-							setCurrentMusic(NOMUSIC);
 							m_gameOver->update();
 						}
 						if(isOver())

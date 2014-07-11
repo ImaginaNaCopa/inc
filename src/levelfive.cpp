@@ -76,7 +76,7 @@ LevelFive::generateEnemies()
 		enemies.push_back(enemy);
 		positionReference += 30;
 	}
-	enemy = new Urubu(4,570);
+	enemy = new Urubu(1,570);
 	enemies.push_back(enemy);
 	positionReference = 600;
 	while(positionReference < 1000)

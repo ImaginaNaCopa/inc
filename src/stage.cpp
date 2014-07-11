@@ -60,7 +60,7 @@ Stage::update()
 		if((caio->getPosition().x >= 1500)||((caio->getPosition().x >= 1000)&&(getTimelineEvent()==LEVELTHREE||getTimelineEvent()==LEVELFIVE)))
 		{
 			setCurrentEffect(FF);
-			playEffect();	
+			playEffect();
 			setOver(true);
 			setFinished(true);
 			setGameOver(false);
@@ -113,7 +113,6 @@ Stage::damagingCaio()
 				caio->resetFirstAid();
 				caio->setHealth(-1);
 				hp->setHp(caio->getHealth());
-				cout << "hp: " << hp->getHp() << endl;
 				caio->newReverseFade();
 				break;
 			}
@@ -204,7 +203,7 @@ Stage::killingEnemy()
 	{
 		if (aim->overEnemy((*it)->getPosition()) && isCShooted())
 		{
-  			//loop("[Stage] if Shooted an Enemy, define Dead to it.");
+  		//loop("[Stage] if Shooted an Enemy, define Dead to it.");
 			falseCShoot();
 			sebastiao->setShoot(true);
 			(*it)->setEnemyHealth(-1);
