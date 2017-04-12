@@ -1,7 +1,8 @@
 InC - Imagina na Copa
 =====================
 Imagina na Copa é um jogo criado para a disciplina Introdução aos Jogos Eletrônicos 
-da Universidade de Brasília campus Gama.  
+da Universidade de Brasília campus Gama, com colaboração de alunos de música e design 
+do campus Darcy Ribeiro.
 
 Dependências
 ------------
@@ -19,9 +20,6 @@ Após instalar as dependências listadas acima e execute os seguintes comandos:
 3. Execute `make` para compilar.  
 4. O comando `./InC` irá iniciar o jogo.  
 
-Tryforce Entertainment
-======================
-
 Comandos do jogo
 ----------------
 Usando mouse e teclado:  
@@ -33,9 +31,20 @@ Usando mouse e teclado:
 * __botão esquerdo do mouse__ - atira nos inimigos.  
 * __1__, __2__, __3__, __4__, __5__, __6__ - botões para usar itens da barra de inventário.  
 
-Autores
--------
+Tryforce Entertainment
+======================
 
-Jonathan Henrique Maia de Moraes  
-Lucian Lorens Ramos  
-Luciano Henrique Nunes de Almeida  
+Programadores:  
+
+* Iago Mendes Leite  
+* Jonathan Henrique Maia de Moraes  
+* Luciano Henrique Nunes de Almeida  
+  
+Artistas:  
+
+* Inara Régia Cardoso  
+* Renata Rinaldi  
+  
+Músico:  
+
+* Lucian Lorens Ramos  
