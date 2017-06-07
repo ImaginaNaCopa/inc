@@ -1,50 +1,76 @@
 InC - Imagina na Copa
 =====================
-Imagina na Copa é um jogo criado para a disciplina Introdução aos Jogos Eletrônicos 
-da Universidade de Brasília campus Gama, com colaboração de alunos de música e design 
-do campus Darcy Ribeiro.
 
-Dependências
-------------
-Para compilar o o jogo é necessário instalar as seguintes dependências:
-```bash
-sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev
-```
+**Imagina na Copa (InC.)** é um jogo cooperativo de gênero Plataforma para o primeiro jogador e *Shooter* para o segundo jogador. Ambientado em Brasília, o jogo narra as aventuras da dupla Caio Martins e seu vizinho Sebastião Nascimento durante a excêntrica Copa do Mundo de Futebol sediada no Brasil em 2014.
 
-Compilando e executando o jogo
------------------
-Após instalar as dependências listadas acima e execute os seguintes comandos:  
+![Menu Inicial](../wiki/resources/print_1_0_home.png)
 
-1. Clone o repositório `git clone https://github.com/LucianoAlmeida/InC.git`.  
-2. Entre na pasta com `cd InC`.  
-3. Execute `make` para compilar.  
-4. O comando `./InC` irá iniciar o jogo.  
+![Primeira Fase - Eixão](../wiki/resources/print_1_0_stage_1.png)
 
-Comandos do jogo
-----------------
-Usando mouse e teclado:  
+![Segunda Fase - Esplanada](../wiki/resources/print_1_0_stage_2.png)
 
-* __a__, __d__ - movimenta personagem principal para esquerda e direita, respectivamente.  
-* __s__ - se agacha para salvar civis.  
-* __barra de espaço__ - faz personagem pricipal pular.  
-* __mouse__ - movimenta a mira do personagem secundário.  
-* __botão esquerdo do mouse__ - atira nos inimigos.  
-* __1__, __2__, __3__, __4__, __5__, __6__ - botões para usar itens da barra de inventário.  
+![Tela de Game Over](../wiki/resources/print_1_0_game_over.png)
 
-Tryforce Entertainment
-======================
+![Tela de Créditos](../wiki/resources/print_1_0_credits.png)
 
-Programadores:  
+* [Vídeo do Jogo](https://www.youtube.com/watch?v=iNYCmSRvDSA)
 
-* Iago Mendes Leite  
-* Jonathan Henrique Maia de Moraes  
-* Luciano Henrique Nunes de Almeida  
-  
-Artistas:  
+Contexto de Desenvolvimento
+---------------------------
 
-* Inara Régia Cardoso  
-* Renata Rinaldi  
-  
-Músico:  
+Imagina na Copa é um jogo criado por alunos durante a realização da disciplina Introdução aos Jogos Eletrônicos da Universidade de Brasília Campus Gama, com colaboração de alunos de música e artes gráficas do campus Darcy Ribeiro.
 
-* Lucian Lorens Ramos  
+Instalação
+----------
+
+### Windows
+
+> Em breve
+
+### Debian/Ubuntu
+
+> Em breve
+
+### Fedora
+
+> Em breve
+
+Controle e Jogabilidade
+-----------------------
+
+### Utilizando Teclado e Mouse
+
+![Jogabilidade via Mouse](../wiki/resources/1_0_mouse.png)
+
+![Jogabilidade via Teclado](../wiki/resources/1_0_keyboard.png)
+
+### Utilizando Joystick
+
+#### Modo 2 Jogadores
+
+![Jogabilidade via Controle (Jogador 1)](../wiki/resources/1_0_p1_joystick.png)
+
+![Jogabilidade via Controle (Jogador 2)](../wiki/resources/1_0_p2_joystick.png)
+
+#### Modo 1 Jogador
+
+![Jogabilidade via Controle](../wiki/resources/1_0_joystick.png)
+
+Equipe Original: Tryforce Entertainment
+=======================================
+
+* **Programadores**:
+  * Iago Mendes Leite
+  * Jonathan Henrique Maia de Moraes
+  * Luciano Henrique Nunes de Almeida
+* **Artistas**:
+  * Inara Régia Cardoso
+  * Renata Rinaldi
+* **Músico**:
+  * Lucian Lorens Ramos
+
+Equipe GCS
+==========
+
+* Jonathan Henrique Maia de Moraes
+* Laércio Júnior
