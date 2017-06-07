@@ -1,6 +1,6 @@
 #include <iostream>
-#include "game.h"
-#include "systemlogger.h"
+#include "../include/game.h"
+#include "../include/systemlogger.h"
 
 using namespace systemLogger;
 

@@ -2,11 +2,11 @@
 #define IMAGESPRITE_H
 
 #include <vector>
-#include "imageload.h"
-#include "camera.h"
-#include "collision.h"
-#include "configuration.h"
-#include "timer.h"
+#include "../include/imageload.h"
+#include "../include/camera.h"
+#include "../include/collision.h"
+#include "../include/configuration.h"
+#include "../include/timer.h"
 
 using namespace camera;
 using namespace collision;

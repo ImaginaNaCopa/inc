@@ -2,8 +2,8 @@
 #define BEHAVIOUR_H
 
 #include <cmath>
-#include "systemlogger.h"
-#include "configuration.h"
+#include "../include/systemlogger.h"
+#include "../include/configuration.h"
 
 using namespace configuration;
 using namespace systemLogger;

@@ -1,8 +1,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
-#include "scenario.h"
-#include "systemlogger.h"
+#include "../include/scenario.h"
+#include "../include/systemlogger.h"
 
 using namespace std;
 

@@ -1,22 +1,22 @@
 #ifndef STAGE_H
 #define STAGE_H
 
-#include "entity.h"
-#include "hud.h"
-#include "scenario.h"
-//#include "item.h"
+#include "../include/entity.h"
+#include "../include/hud.h"
+#include "../include/scenario.h"
+//#include "../include/item.h"
 
-#include "fontconfiguration.h"
-#include "text.h"
+#include "../include/fontconfiguration.h"
+#include "../include/text.h"
 
-#include "potion.h"
-#include "alteredpotion.h"
-#include "antitudo.h"
-#include "battery.h"
-#include "freeboi.h"
-#include "cup.h"
-#include "inclogo.h"
-#include "antiboss.h"
+#include "../include/potion.h"
+#include "../include/alteredpotion.h"
+#include "../include/antitudo.h"
+#include "../include/battery.h"
+#include "../include/freeboi.h"
+#include "../include/cup.h"
+#include "../include/inclogo.h"
+#include "../include/antiboss.h"
 
 using namespace fontConfiguration;
 

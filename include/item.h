@@ -1,7 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "imageeffect.h"
+#include "../include/imageeffect.h"
 
 class Item : public ImageEffect
 {

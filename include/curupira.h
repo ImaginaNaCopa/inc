@@ -1,8 +1,8 @@
 #ifndef CURUPIRA_H
 #define CURUPIRA_H
 
-#include "enemy.h"
-#include "audiohandler.h"
+#include "../include/enemy.h"
+#include "../include/audiohandler.h"
 
 using namespace audioHandler;
 

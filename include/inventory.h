@@ -1,13 +1,13 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
-#include "imageload.h"
-#include "caio.h"
-#include "imagesprite.h"
-#include "systemlogger.h"
-#include "background.h"
-#include "text.h"
-#include "userlogger.h"
+#include "../include/imageload.h"
+#include "../include/caio.h"
+#include "../include/imagesprite.h"
+#include "../include/systemlogger.h"
+#include "../include/background.h"
+#include "../include/text.h"
+#include "../include/userlogger.h"
 
 using namespace std;
 using namespace userLogger;

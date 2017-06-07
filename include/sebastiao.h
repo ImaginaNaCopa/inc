@@ -1,8 +1,8 @@
 #ifndef SEBASTIAO_H
 #define SEBASTIAO_H
 
-#include "background.h"
-#include "imageeffect.h"
+#include "../include/background.h"
+#include "../include/imageeffect.h"
 
 class Sebastiao : public ImageEffect
 {

@@ -1,4 +1,4 @@
-#include "antitudo.h"
+#include "../include/antitudo.h"
 
 AntiTudo::AntiTudo(int earlyPositionX, int earlyPositionY) : Item()
 {

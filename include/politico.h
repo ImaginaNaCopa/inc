@@ -1,9 +1,9 @@
 #ifndef POLITICO_H
 #define POLITICO_H
 
-#include "enemy.h"
+#include "../include/enemy.h"
 
-#include "audiohandler.h"
+#include "../include/audiohandler.h"
 using namespace audioHandler;
 
 class Politico : public Enemy

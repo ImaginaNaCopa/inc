@@ -1,10 +1,10 @@
 #ifndef LEVELTWO_H
 #define LEVELTWO_H
 
-#include "stage.h"
+#include "../include/stage.h"
 
-#include "curupira.h"
-#include "urubu.h"
+#include "../include/curupira.h"
+#include "../include/urubu.h"
 
 class LevelTwo : public Stage
 {

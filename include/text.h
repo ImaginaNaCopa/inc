@@ -4,11 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <SDL2/SDL_ttf.h>
-#include "camera.h"
-#include "collision.h"
-#include "configuration.h"
-#include "imageload.h"
-#include "fontconfiguration.h"
+#include "../include/camera.h"
+#include "../include/collision.h"
+#include "../include/configuration.h"
+#include "../include/imageload.h"
+#include "../include/fontconfiguration.h"
 
 using namespace camera;
 using namespace collision;

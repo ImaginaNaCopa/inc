@@ -1,4 +1,4 @@
-#include "aim.h"
+#include "../include/aim.h"
 #include <iostream>
 
 Aim::Aim() : ImageSprite()

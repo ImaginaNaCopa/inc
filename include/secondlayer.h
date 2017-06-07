@@ -1,7 +1,7 @@
 #ifndef SECONDLAYER_H
 #define SECONDLAYER_H
 
-#include "imageeffect.h"
+#include "../include/imageeffect.h"
 
 class SecondLayer : public ImageEffect
 {

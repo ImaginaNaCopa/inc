@@ -1,10 +1,10 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "background.h"
-#include "audiohandler.h"
-#include "menu.h"
-#include "text.h"
+#include "../include/background.h"
+#include "../include/audiohandler.h"
+#include "../include/menu.h"
+#include "../include/text.h"
 
 using namespace audioHandler;
 

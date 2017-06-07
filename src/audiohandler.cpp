@@ -1,4 +1,4 @@
-#include "audiohandler.h"
+#include "../include/audiohandler.h"
 
 namespace audioHandler
 {

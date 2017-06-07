@@ -1,8 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "controls.h"
-#include "secondlayer.h"
+#include "../include/controls.h"
+#include "../include/secondlayer.h"
 
 using namespace controls;
 

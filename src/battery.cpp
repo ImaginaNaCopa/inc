@@ -1,4 +1,4 @@
-#include "battery.h"
+#include "../include/battery.h"
 
 Battery::Battery(int earlyPositionX, int earlyPositionY) : Item()
 {

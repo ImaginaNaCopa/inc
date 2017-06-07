@@ -1,4 +1,4 @@
-#include "antiboss.h"
+#include "../include/antiboss.h"
 
 AntiBoss::AntiBoss(int earlyPositionX, int earlyPositionY) : Item()
 {

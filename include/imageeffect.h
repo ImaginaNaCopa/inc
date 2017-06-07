@@ -1,7 +1,7 @@
 #ifndef IMAGEEFFECT_H
 #define IMAGEEFFECT_H
 
-#include "imagesprite.h"
+#include "../include/imagesprite.h"
 
 class ImageEffect : public ImageSprite
 {

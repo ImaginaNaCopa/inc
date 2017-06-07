@@ -1,7 +1,7 @@
 #ifndef GIGANTE_H
 #define GIGANTE_H
 
-#include "enemy.h"
+#include "../include/enemy.h"
 
 class Gigante : public Enemy
 {

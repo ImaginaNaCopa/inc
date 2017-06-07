@@ -1,4 +1,4 @@
-#include "politico.h"
+#include "../include/politico.h"
 #include <iostream>
 
 using namespace std;

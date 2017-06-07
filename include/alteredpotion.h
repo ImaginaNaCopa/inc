@@ -1,7 +1,7 @@
 #ifndef ALTEREDPOTION_H
 #define ALTEREDPOTION_H
 
-#include "item.h"
+#include "../include/item.h"
 
 class AlteredPotion : public Item
 {

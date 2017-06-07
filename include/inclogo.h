@@ -1,7 +1,7 @@
 #ifndef INCLOGO_H
 #define INCLOGO_H
 
-#include "item.h"
+#include "../include/item.h"
 
 class InCLogo : public Item
 {

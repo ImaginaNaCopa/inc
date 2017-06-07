@@ -1,5 +1,5 @@
-#include "gamemenu.h"
-#include "systemlogger.h"
+#include "../include/gamemenu.h"
+#include "../include/systemlogger.h"
 
 GameMenu::GameMenu() : ImageSprite()
 {

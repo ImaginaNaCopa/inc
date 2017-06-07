@@ -1,4 +1,4 @@
-#include "frontend.h"
+#include "../include/frontend.h"
 
 FrontEnd::FrontEnd() : ImageEffect()
 {

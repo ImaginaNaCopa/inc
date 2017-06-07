@@ -1,4 +1,4 @@
-#include "sebastiao.h"
+#include "../include/sebastiao.h"
 
 Sebastiao::Sebastiao() : ImageEffect()
 {

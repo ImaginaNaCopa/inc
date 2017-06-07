@@ -1,9 +1,9 @@
 #ifndef URUBU_H
 #define URUBU_H
 
-#include "enemy.h"
+#include "../include/enemy.h"
 
-#include "audiohandler.h"
+#include "../include/audiohandler.h"
 using namespace audioHandler;
 
 class Urubu : public Enemy

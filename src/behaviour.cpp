@@ -1,4 +1,4 @@
-#include "behaviour.h"
+#include "../include/behaviour.h"
 
 namespace behaviour
 {

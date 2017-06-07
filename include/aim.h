@@ -1,9 +1,9 @@
 #ifndef AIM_H
 #define AIM_H
 
-#include "audiohandler.h"
-#include "controls.h"
-#include "imagesprite.h"
+#include "../include/audiohandler.h"
+#include "../include/controls.h"
+#include "../include/imagesprite.h"
 
 using namespace audioHandler;
 using namespace controls;

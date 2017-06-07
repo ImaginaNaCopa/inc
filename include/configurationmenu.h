@@ -1,11 +1,11 @@
 #ifndef CONFIGURATIONMENU_H
 #define CONFIGURATIONMENU_H
 
-#include "background.h"
-#include "fontconfiguration.h"
-#include "menu.h"
-#include "secondlayer.h"
-#include "text.h"
+#include "../include/background.h"
+#include "../include/fontconfiguration.h"
+#include "../include/menu.h"
+#include "../include/secondlayer.h"
+#include "../include/text.h"
 
 using namespace fontConfiguration;
 

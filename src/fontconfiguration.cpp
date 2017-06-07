@@ -1,4 +1,4 @@
-#include "fontconfiguration.h"
+#include "../include/fontconfiguration.h"
 
 namespace fontConfiguration
 {

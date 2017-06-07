@@ -1,7 +1,7 @@
 #ifndef BATTERY_H
 #define BATTERY_H
 
-#include "item.h"
+#include "../include/item.h"
 
 class Battery : public Item
 {

@@ -1,4 +1,4 @@
-#include "urubu.h"
+#include "../include/urubu.h"
 
 Urubu::Urubu(int item, int earlyPosition) : Enemy() 
 {

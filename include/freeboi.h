@@ -1,7 +1,7 @@
 #ifndef FREEBOI_H
 #define FREEBOI_H
 
-#include "item.h"
+#include "../include/item.h"
 
 class Freeboi : public Item
 {

@@ -1,7 +1,7 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#include "imagesprite.h"
+#include "../include/imagesprite.h"
 
 class Platform : public ImageSprite
 {
