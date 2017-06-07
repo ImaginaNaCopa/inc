@@ -1,7 +1,7 @@
 #ifndef DIALOGUE_H
 #define DIALOGUE_H
 
-#include "imagesprite.h"
+#include "../include/imagesprite.h"
 
 class Dialogue : public ImageSprite
 {

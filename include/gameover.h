@@ -1,13 +1,13 @@
 #ifndef GAMEOVER_H
 #define GAMEOVER_H
 
-#include "imageeffect.h"
-#include "controls.h"
+#include "../include/imageeffect.h"
+#include "../include/controls.h"
 
-#include "fontconfiguration.h"
-#include "text.h"
+#include "../include/fontconfiguration.h"
+#include "../include/text.h"
 
-#include "timer.h"
+#include "../include/timer.h"
 
 using namespace controls;
 using namespace fontConfiguration;

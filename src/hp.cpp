@@ -1,4 +1,4 @@
-#include "hp.h"
+#include "../include/hp.h"
 
 Hp::Hp() : ImageSprite()
 {

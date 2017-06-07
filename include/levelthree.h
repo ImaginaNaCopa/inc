@@ -1,10 +1,10 @@
 #ifndef LEVELTHREE_H
 #define LEVELTHREE_H
 
-#include "urubu.h"
-#include "gigante.h"
-#include "politico.h"
-#include "stage.h"
+#include "../include/urubu.h"
+#include "../include/gigante.h"
+#include "../include/politico.h"
+#include "../include/stage.h"
 
 class LevelThree : public Stage
 {

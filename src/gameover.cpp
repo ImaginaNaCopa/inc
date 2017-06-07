@@ -1,4 +1,4 @@
-#include "gameover.h"
+#include "../include/gameover.h"
 
 GameOver::GameOver() : ImageEffect()
 {

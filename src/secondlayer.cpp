@@ -1,4 +1,4 @@
-#include "secondlayer.h"
+#include "../include/secondlayer.h"
 
 SecondLayer::SecondLayer(const string& path) : ImageEffect()
 {

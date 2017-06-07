@@ -1,4 +1,4 @@
-#include "stage.h"
+#include "../include/stage.h"
 #include <iostream>
 
 using namespace std;

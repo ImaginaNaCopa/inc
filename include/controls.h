@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <queue>
-#include "systemlogger.h"
+#include "../include/systemlogger.h"
 
 //Button
 #define J_B_BUTTON event.jbutton.button

@@ -1,11 +1,11 @@
 #ifndef HUD_H
 #define HUD_H
 
-#include "dialogue.h"
-#include "hp.h"
-#include "gamemenu.h"
-#include "inventory.h"
-#include "sebastiao.h"
+#include "../include/dialogue.h"
+#include "../include/hp.h"
+#include "../include/gamemenu.h"
+#include "../include/inventory.h"
+#include "../include/sebastiao.h"
 
 class Hud
 {

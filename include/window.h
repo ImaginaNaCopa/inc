@@ -3,8 +3,8 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "systemlogger.h"
-#include "configuration.h"
+#include "../include/systemlogger.h"
+#include "../include/configuration.h"
 
 using namespace configuration;
 using namespace systemLogger;

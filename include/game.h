@@ -1,22 +1,22 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "configurationmenu.h"
-#include "audiohandler.h"
-#include "controls.h"
-#include "frontend.h"
-#include "imageload.h"
-#include "mainmenu.h"
-#include "levelone.h"
-#include "leveltwo.h"
-#include "levelthree.h"
-#include "levelfour.h"
-#include "levelfive.h"
-#include "theend.h"
-#include "gameover.h"
-#include "system.h"
-#include "timer.h"
-#include "window.h"
+#include "../include/configurationmenu.h"
+#include "../include/audiohandler.h"
+#include "../include/controls.h"
+#include "../include/frontend.h"
+#include "../include/imageload.h"
+#include "../include/mainmenu.h"
+#include "../include/levelone.h"
+#include "../include/leveltwo.h"
+#include "../include/levelthree.h"
+#include "../include/levelfour.h"
+#include "../include/levelfive.h"
+#include "../include/theend.h"
+#include "../include/gameover.h"
+#include "../include/system.h"
+#include "../include/timer.h"
+#include "../include/window.h"
 
 using namespace controls;
 using namespace timer;

@@ -1,12 +1,12 @@
 #ifndef CAIO_H
 #define CAIO_H
 
-#include "behaviour.h"
-#include "controls.h"
-#include "fontconfiguration.h"
-#include "imageeffect.h"
-#include "text.h"
-#include "userlogger.h"
+#include "../include/behaviour.h"
+#include "../include/controls.h"
+#include "../include/fontconfiguration.h"
+#include "../include/imageeffect.h"
+#include "../include/text.h"
+#include "../include/userlogger.h"
 
 using namespace behaviour;
 using namespace controls;

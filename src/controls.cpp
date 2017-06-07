@@ -1,4 +1,4 @@
-#include "controls.h"
+#include "../include/controls.h"
 #include <math.h>
 #include <iostream>
 

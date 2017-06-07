@@ -1,4 +1,4 @@
-#include "alteredpotion.h"
+#include "../include/alteredpotion.h"
 
 AlteredPotion::AlteredPotion(int earlyPositionX, int earlyPositionY) : Item()
 {

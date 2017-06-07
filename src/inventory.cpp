@@ -1,4 +1,4 @@
-#include "inventory.h"
+#include "../include/inventory.h"
 
 using namespace std;
 

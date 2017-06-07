@@ -1,4 +1,4 @@
-#include "configuration.h"
+#include "../include/configuration.h"
 
 namespace configuration
 {

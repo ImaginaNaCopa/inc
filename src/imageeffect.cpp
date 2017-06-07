@@ -1,4 +1,4 @@
-#include "imageeffect.h"
+#include "../include/imageeffect.h"
 #include <iostream>
 
 ImageEffect::ImageEffect() : ImageSprite()

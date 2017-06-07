@@ -1,4 +1,4 @@
-#include "dialogue.h"
+#include "../include/dialogue.h"
 
 Dialogue::Dialogue() : ImageSprite()
 {

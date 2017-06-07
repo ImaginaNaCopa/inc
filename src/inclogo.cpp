@@ -1,4 +1,4 @@
-#include "inclogo.h"
+#include "../include/inclogo.h"
 
 InCLogo::InCLogo(int earlyPositionX, int earlyPositionY) : Item()
 {

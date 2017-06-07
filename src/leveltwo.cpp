@@ -1,4 +1,4 @@
-#include "leveltwo.h"
+#include "../include/leveltwo.h"
 
 LevelTwo::LevelTwo() : Stage()
 {

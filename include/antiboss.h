@@ -1,7 +1,7 @@
 #ifndef ANTIBOSS_H
 #define ANTIBOSS_H
 
-#include "item.h"
+#include "../include/item.h"
 
 class AntiBoss : public Item
 {

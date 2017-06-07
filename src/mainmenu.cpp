@@ -1,4 +1,4 @@
-#include "mainmenu.h"
+#include "../include/mainmenu.h"
 
 MainMenu::MainMenu() : Menu("res/images/s_mainmenu.png")
 {

@@ -1,8 +1,8 @@
 #ifndef CIVIL_H
 #define CIVIL_H
 
-#include "audiohandler.h"
-#include "imageeffect.h"
+#include "../include/audiohandler.h"
+#include "../include/imageeffect.h"
 
 using namespace audioHandler;
 

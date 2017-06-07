@@ -1,4 +1,4 @@
-#include "imageload.h"
+#include "../include/imageload.h"
 
 namespace imageLoad
 {

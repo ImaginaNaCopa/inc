@@ -2,8 +2,8 @@
 #define ENEMY_H
 
 #include <time.h>
-#include "behaviour.h"
-#include "imageeffect.h"
+#include "../include/behaviour.h"
+#include "../include/imageeffect.h"
 
 using namespace behaviour;
 

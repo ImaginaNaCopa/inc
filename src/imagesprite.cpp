@@ -1,4 +1,4 @@
-#include "imagesprite.h"
+#include "../include/imagesprite.h"
 
 ImageSprite::ImageSprite()
 {

@@ -1,4 +1,4 @@
-#include "curupira.h"
+#include "../include/curupira.h"
 
 
 Curupira::Curupira(int item, int earlyPosition) : Enemy() 

@@ -1,4 +1,4 @@
-#include "platform.h"
+#include "../include/platform.h"
 
 using namespace std;
 

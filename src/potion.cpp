@@ -1,4 +1,4 @@
-#include "potion.h"
+#include "../include/potion.h"
 
 Potion::Potion(int earlyPositionX, int earlyPositionY) : Item()
 {

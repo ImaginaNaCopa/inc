@@ -1,7 +1,7 @@
 #ifndef CUP_H
 #define CUP_H
 
-#include "item.h"
+#include "../include/item.h"
 
 class Cup : public Item
 {

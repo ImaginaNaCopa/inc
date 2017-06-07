@@ -2,8 +2,8 @@
 #define CAMERA_H
 
 #include <SDL2/SDL.h>
-#include "configuration.h"
-#include "systemlogger.h"
+#include "../include/configuration.h"
+#include "../include/systemlogger.h"
 
 using namespace configuration;
 using namespace systemLogger;

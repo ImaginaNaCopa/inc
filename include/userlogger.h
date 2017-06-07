@@ -1,7 +1,7 @@
 #ifndef USERLOGGER_H
 #define USERLOGGER_H
 
-#include "systemlogger.h"
+#include "../include/systemlogger.h"
 
 using namespace systemLogger;
 

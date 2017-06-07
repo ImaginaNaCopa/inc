@@ -1,9 +1,9 @@
 #ifndef SCENARIO_H
 #define SCENARIO_H
 
-#include "background.h"
-#include "platform.h"
-#include "secondlayer.h"
+#include "../include/background.h"
+#include "../include/platform.h"
+#include "../include/secondlayer.h"
 
 class Scenario
 {

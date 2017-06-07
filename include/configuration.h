@@ -2,8 +2,8 @@
 #define CONFIGURATION_H
 
 #include <cmath>
-#include "systemlogger.h"
-#include "imageload.h"
+#include "../include/systemlogger.h"
+#include "../include/imageload.h"
 
 using namespace systemLogger;
 

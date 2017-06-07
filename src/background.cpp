@@ -1,4 +1,4 @@
-#include "background.h"
+#include "../include/background.h"
 
 Background::Background(const string& path) : ImageEffect()
 {

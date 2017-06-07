@@ -1,8 +1,8 @@
 #ifndef HP_H
 #define HP_H
 
-#include "imagesprite.h"
-#include "userlogger.h"
+#include "../include/imagesprite.h"
+#include "../include/userlogger.h"
 
 using namespace userLogger;
 

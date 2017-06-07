@@ -2,7 +2,7 @@
 #define IMAGELOAD_H
 
 #include <SDL2/SDL_image.h>
-#include "systemlogger.h"
+#include "../include/systemlogger.h"
 
 using namespace systemLogger;
 

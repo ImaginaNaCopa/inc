@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "../include/menu.h"
 
 Menu::Menu(const string& path) : SecondLayer(path)
 {
@@ -44,3 +44,4 @@ Menu::checkCollision(int selection, SDL_Rect targetPosition)
 	else
 		return false;
 }
+

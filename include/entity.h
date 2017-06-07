@@ -2,14 +2,14 @@
 #define ENTITY_H
 
 #include <vector>
-#include "aim.h"
-#include "caio.h"
-#include "camera.h"
-#include "civil.h"
-#include "enemy.h"
-#include "item.h"
-#include "timer.h"
-#include "systemlogger.h"
+#include "../include/aim.h"
+#include "../include/caio.h"
+#include "../include/camera.h"
+#include "../include/civil.h"
+#include "../include/enemy.h"
+#include "../include/item.h"
+#include "../include/timer.h"
+#include "../include/systemlogger.h"
 
 using namespace camera;
 using namespace systemLogger;

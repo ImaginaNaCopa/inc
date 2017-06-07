@@ -1,7 +1,7 @@
 #ifndef ANTITUDO_H
 #define ANTITUDO_H
 
-#include "item.h"
+#include "../include/item.h"
 
 class AntiTudo : public Item
 {

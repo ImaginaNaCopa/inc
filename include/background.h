@@ -1,7 +1,7 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
-#include "imageeffect.h"
+#include "../include/imageeffect.h"
 
 class Background : public ImageEffect
 {

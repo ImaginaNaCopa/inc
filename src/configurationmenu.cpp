@@ -1,4 +1,4 @@
-#include "configurationmenu.h"
+#include "../include/configurationmenu.h"
 
 ConfigurationMenu::ConfigurationMenu() : Menu("res/images/s_mainmenu.png")
 {

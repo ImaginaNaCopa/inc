@@ -1,4 +1,4 @@
-#include "freeboi.h"
+#include "../include/freeboi.h"
 
 Freeboi::Freeboi(int earlyPositionX, int earlyPositionY) : Item()
 {

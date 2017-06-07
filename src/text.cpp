@@ -1,4 +1,4 @@
-#include "text.h"
+#include "../include/text.h"
 
 Text::Text(const string& fontPath, int fontSize)
 {

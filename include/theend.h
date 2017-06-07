@@ -1,11 +1,11 @@
 #ifndef THEEND_H
 #define THEEND_H
 
-#include "imageeffect.h"
-#include "background.h"
-#include "controls.h"
-#include "fontconfiguration.h"
-#include "text.h"
+#include "../include/imageeffect.h"
+#include "../include/background.h"
+#include "../include/controls.h"
+#include "../include/fontconfiguration.h"
+#include "../include/text.h"
 
 using namespace controls;
 using namespace fontConfiguration;

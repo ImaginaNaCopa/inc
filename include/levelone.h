@@ -1,8 +1,8 @@
 #ifndef LEVELONE_H
 #define LEVELONE_H
 
-#include "stage.h"
-#include "curupira.h"
+#include "../include/stage.h"
+#include "../include/curupira.h"
 
 class LevelOne : public Stage
 {

@@ -1,9 +1,9 @@
 #ifndef FRONTEND_H
 #define FRONTEND_H
 
-#include "background.h"
-#include "imageeffect.h"
-#include "controls.h"
+#include "../include/background.h"
+#include "../include/imageeffect.h"
+#include "../include/controls.h"
 
 using namespace controls;
 

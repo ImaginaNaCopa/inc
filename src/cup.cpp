@@ -1,4 +1,4 @@
-#include "cup.h"
+#include "../include/cup.h"
 
 Cup::Cup(int earlyPositionX, int earlyPositionY) : Item()
 {

@@ -1,10 +1,10 @@
 #ifndef LEVELFOUR_H
 #define LEVELFOUR_H
 
-#include "curupira.h"
-#include "urubu.h"
-#include "politico.h"
-#include "stage.h"
+#include "../include/curupira.h"
+#include "../include/urubu.h"
+#include "../include/politico.h"
+#include "../include/stage.h"
 
 class LevelFour : public Stage
 {

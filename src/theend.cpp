@@ -1,4 +1,4 @@
-#include "theend.h"
+#include "../include/theend.h"
 
 TheEnd::TheEnd() : ImageEffect()
 {
