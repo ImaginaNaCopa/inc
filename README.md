@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/ImaginaNaCopa/InC/tree/master.svg?style=svg)](https://circleci.com/gh/ImaginaNaCopa/InC/tree/master)
+
 InC - Imagina na Copa
 =====================
 
