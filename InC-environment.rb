@@ -4,7 +4,7 @@ execute 'apt-get install -y --force-yes libsdl2-dev libsdl2-image-dev libsdl2-tt
 ## Git for clone
 execute 'apt-get install -y --force-yes git'
 ## Clone project
-execute 'git clone https://github.com/LucianoAlmeida/InC.git'
+execute 'git clone https://github.com/ImaginaNaCopa/InC.git'
 execute 'cd InC'
 ## Build essential
 execute 'apt-get -y --force-yes install build-essential'
