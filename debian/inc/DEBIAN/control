@@ -1,0 +1,11 @@
+Package: inc
+Version: 1.01-1
+Architecture: all
+Maintainer: Jonathan Moraes <arkyebr@gmail.com>
+Installed-Size: 2894
+Depends: build-essential, libsdl2-dev, libsdl2-image-dev, libsdl2-ttf-dev, libsdl2-mixer-dev
+Section: games
+Priority: optional
+Homepage: http://github.com/ImaginaNaCopa/InC
+Description: Platform/Shooter Game
+ InC is a Platform/Shooter game created using SDL.

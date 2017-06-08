@@ -1,0 +1,25 @@
+Source: inc
+Section: games
+Priority: optional
+Homepage: http://github.com/ImaginaNaCopa/InC
+Maintainer: Jonathan Moraes <arkyebr@gmail.com>
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 7.0.50~),
+ build-essential,
+ libsdl2-dev,
+ libsdl2-image-dev,
+ libsdl2-ttf-dev,
+ libsdl2-mixer-dev
+
+Package: inc
+Architecture: all
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ build-essential,
+ libsdl2-dev,
+ libsdl2-image-dev,
+ libsdl2-ttf-dev,
+ libsdl2-mixer-dev
+Description: Platform/Shooter Game
+ InC is a Platform/Shooter game created using SDL.
